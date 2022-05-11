@@ -10,5 +10,8 @@ import lombok.EqualsAndHashCode;
 public class NoticeVO extends BoardVO{
 
 	private String id;
+	private Integer grade;
+	
+	private NoticeCateVO noticeCateVO;
 	
 }

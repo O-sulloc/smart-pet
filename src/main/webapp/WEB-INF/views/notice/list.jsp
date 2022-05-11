@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%-- <c:import url="../temp/header.jsp"></c:import> --%>
+<c:import url="../temp/header.jsp"></c:import>
 
 
 <div class="container mt-4">
@@ -28,8 +28,7 @@
 				<tr>
 					<th>Num</th>
 					<th>Title</th>
-					<th>Writer</th>
-					<th>Hit</th>
+					<th>id</th>
 					<th>Date</th>
 				</tr>
 			</thead>
@@ -38,8 +37,7 @@
 				<tr>
 					<td>${vo.num}</td>
 					<td><a class="link-dark text-decoration-none" href="./detail?num=${vo.num}">${vo.title}</a></td>
-					<td>${vo.writer}</td>
-					<td>${vo.hit}</td>
+					<td>${vo.id}</td>
 					<td>${vo.regDate}</td>
 				</tr>
 			</c:forEach>	
@@ -75,7 +73,7 @@
 	</div>
 	
 	<br><br>
-	<%-- <div class="position-relative">
+	<div class="position-relative">
 		<div class="position-absolute top-0 start-50 translate-middle">
 			<nav aria-label="Page navigation example">
 			  <ul class="pagination">
@@ -99,7 +97,7 @@
 			  </ul>
 			</nav>
 		</div>
-	</div> --%>
+	</div>
 
 </div>
 
