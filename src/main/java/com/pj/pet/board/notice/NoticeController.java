@@ -26,8 +26,12 @@ public class NoticeController {
 	
 	//전체 리스트
 	@GetMapping("list")
-	public ModelAndView getList(Pager pager) throws Exception{
+	public ModelAndView getList(Pager pager, Integer grade) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		
+		if(grade != null) {
+			pager.setGrade(grade);
+		}
 		
 		List<NoticeVO> ar = noticeService.getList(pager);
 		
@@ -43,6 +47,9 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		
 		noticeVO = noticeService.getDetail(noticeVO);
+		System.out.println(noticeVO.getNextNum());
+		System.out.println(noticeVO.getNextTitle());
+		
 		
 		mv.addObject("vo", noticeVO);
 		mv.setViewName("notice/detail");

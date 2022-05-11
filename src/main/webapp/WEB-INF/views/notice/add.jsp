@@ -29,9 +29,8 @@
 						<select class="type1 col-lg-12" name="grade">
 							<option selected value="none">선택</option>
 							<option value="0">일반</option>
-							<option value="1">상품</option>
-							<option value="2">예약</option>
-							<option value="3">이벤트</option>
+							<option value="1">매장</option>
+							<option value="2">이벤트</option>
 						</select>
 					</div>
 				</div>
@@ -62,6 +61,7 @@
 	</div>	
 </div>	
 
+<script type="text/javascript" src="../resources/js/notice_add.js"></script>
 <c:import url="../temp/header_script.jsp"></c:import>
 </body>
 </html>

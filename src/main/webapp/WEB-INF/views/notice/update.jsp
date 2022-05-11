@@ -23,6 +23,8 @@
 	<div class="row mt-4">
 		<form action="./update" method="post">
 			<input type="hidden" name="num" value="${vo.num}">
+			<!-- 임시로 넣어놓음 -->
+			<input type="hidden" name="grade" value="${vo.grade}">
 		  <div class="row mb-3">
 		    <label for="title" class="col-sm-2 col-form-label">Title</label>
 		    <div class="col-sm-10">

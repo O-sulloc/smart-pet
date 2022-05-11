@@ -21,7 +21,7 @@ public class NoticeService {
 		
 		pager.makeRow();
 		pager.makeNum(noticeMapper.getTotalCount(pager));
-		
+	
 		return noticeMapper.getList(pager);
 	}
 	

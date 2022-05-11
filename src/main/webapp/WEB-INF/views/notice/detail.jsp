@@ -41,26 +41,43 @@
 			</tbody>
 		</table>
 		
-		<div>
-			<a href="./update?num=${vo.num}" role="button" class="btn btn-success mx-1">수정하기</a>	
-			<a href="./delete?num=${vo.num}" role="button" class="btn btn-danger mx-1">삭제하기</a>
-		</div>
 		
 		<ul>
-			<li>
-				<button type="button">다음글</button>
-				<strong class="FG01">일반</strong>
-				<a href="#">제목</a>
-			</li>
-			<li>
-				<button type="button">이전글</button>
-				<strong class="FG01">일반</strong>
-				<a href="#">제목</a>
-			</li>
+			<c:choose>
+				<c:when test="${vo.nextTitle eq null}">
+					<li>
+						<button type="button" class="btn btn-warning mr-3 mb-3" disabled>다음글이 없습니다</button>
+					</li>
+				</c:when>
+				<c:otherwise>
+					<li>
+						<button type="button" class="btn btn-warning mr-3 mb-3" onclick="location.href='./detail?num=${vo.nextNum}'"> 
+						<span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>다음글</button>
+						<a href="./detail?num=${vo.nextNum}" style="color: black">${vo.nextTitle}</a>
+					</li>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${vo.prevTitle eq null}">
+					<li>
+						<button type="button"  class="btn btn-info mr-3" disabled>이전글이 없습니다</button>
+					</li>
+				</c:when>
+				<c:otherwise>
+					<li>
+						<button type="button" class="btn btn-info mr-3" onclick="location.href='./detail?num=${vo.prevNum}'"> 
+						<span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>이전글</button>
+						<a href="./detail?num=${vo.prevNum}" style="color: black">${vo.prevTitle}</a>
+					</li>
+				</c:otherwise>
+			</c:choose>
 		</ul>
 		
+		
 		<div>
-			<a href="#">목록보기</a>
+			<a href="./list" role="button" class="btn btn-primary mx-1">목록보기</a>
+			<a href="./update?num=${vo.num}" role="button" class="btn btn-success mx-1">수정하기</a>	
+			<a href="./delete?num=${vo.num}" role="button" class="btn btn-danger mx-1">삭제하기</a>
 		</div>
 		
 	</div>

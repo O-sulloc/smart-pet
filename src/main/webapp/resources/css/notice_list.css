@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+ul{
+	display:flex;  
+	list-style:none;
+}
+
+.link{
+	cursor: pointer;
+}
