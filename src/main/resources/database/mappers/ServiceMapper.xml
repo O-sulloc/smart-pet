@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pj.pet.service.ServiceMapper">
+	<select id="getList" parameterType="Pager" resultType="ServiceVO">
+		SELECT * FROM SERVICE
+		WHERE SERNUM>0
+		AND
+		<choose>
+			<when test="kind=='col1'">
+				SERNAME
+			</when>
+			<when test="kind =='col2'">
+				SERADDRESS
+			</when>
+			<otherwise>
+				SERTEL
+			</otherwise>
+		</choose>
+		LIKE CONCAT('%',#{search},'%')
+		ORDER BY SERNUM DESC
+		LIMIT
+		#{startRow},#{perPage}
+	</select>
+
+	<select id="total" resultType="Long" parameterType="Pager">
+		SELECT COUNT(SERNUM) FROM SERVICE
+		WHERE SERNUM>0
+		AND
+		<choose>
+			<when test="kind=='col1'">
+				SERNAME
+			</when>
+			<when test="kind =='col2'">
+				SERADDRESS
+			</when>
+			<otherwise>
+				SERTEL
+			</otherwise>
+		</choose>
+		LIKE CONCAT('%',#{search},'%')
+	</select>
+	
+	<select id="getDetail" parameterType="ServiceVO" resultType="ServiceVO">
+		SELECT * FROM SERVICE WHERE SERNUM=#{serNum}
+	</select>
+
+</mapper>
