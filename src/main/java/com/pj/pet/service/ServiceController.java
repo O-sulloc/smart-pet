@@ -36,7 +36,7 @@ public class ServiceController {
 	public ModelAndView getDetail(ServiceVO serviceVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		serviceVO=serviceService.getDetail(serviceVO);
-		mv.addObject("detail",serviceVO);
+		mv.addObject("vo",serviceVO);
 		mv.setViewName("service/detail");
 		return mv;
 	}
