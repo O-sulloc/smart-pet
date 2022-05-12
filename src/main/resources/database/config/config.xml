@@ -7,8 +7,9 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="java.lang.Long" alias="Long"/>
-		<typeAlias type="com.pj.pet.service.ServiceVO" alias="ServiceVO"/>
 		<typeAlias type="com.pj.pet.util.Pager" alias="Pager"/>
+		<typeAlias type="com.pj.pet.service.ServiceVO" alias="ServiceVO"/>
+		<typeAlias type="com.pj.pet.reservation.ReservationVO" alias="ReservationVO"/>
 	</typeAliases>
 
 </configuration>

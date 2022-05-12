@@ -9,7 +9,7 @@ public class ReservationVO {
 	
 	 private Long resNum;
 	 private String id;
-	 private Long sNum;
+	 private Long serNum;
 	 private Date resDate;
 	 private Date resTime;
 	 private String resMemo;

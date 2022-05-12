@@ -7,6 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <c:import url="../temp/header_css.jsp"></c:import>
+<link href="../css/calendar.css" rel="stylesheet">
 <c:import url="../temp/header_script.jsp"></c:import>
 <title>Insert title here</title>
 </head>
@@ -25,21 +26,53 @@
 
 
 
-	<div class="book">
-		<button type="button" class="btn btn-outline-success book_btn">예약</button>
+	<div class="order">
+				<button type="button" class="orderInfo_btn">주문정보입력</button>
+				
+				<!-- $(선택자).동작함수 -->
+				<script>
+					$(".orderInfo_btn").click(function () {
+						$(".calendar").slideDown();
+						$(".orderInfo_btn").slideUp();
+					});
+				</script>
+			</div>
+
+	<div class="calendar">
+		<div class="header">
+			<button class="calendar_btn" onclick="prevCal();">&lt;</button>
+			<div class="title">
+				<span class="year"></span><span class="month"></span>
+			</div>
+			<button class="calendar_btn" onclick="nextCal();">&gt;</button>
+		</div>
+		<div class="day">
+			<div>S</div>
+			<div>M</div>
+			<div>T</div>
+			<div>W</div>
+			<div>T</div>
+			<div>F</div>
+			<div>S</div>
+		</div>
+		<div class="dates"></div>
+	</div>
+
+	<div class="inputArea">
+		<button type="submit" class="order_btn">예약</button>
+		<button type="button" class="cancel_btn">취소</button>
+
 		<script>
-			$(".book_btn").click(function() {
+			$(".cancel_btn").click(function() {
 				$(".calendar").slideUp();
-				$(".book_btn").slideDown();
+				$(".order_btn").slideDown();
+
 			});
 		</script>
 	</div>
 
-	<div class="calendar">
-		<h6>calendar</h6>
-	</div>
+	<script type="text/javascript" src="../js/calendar.js"></script>
 
-	</div>
 
 </body>
 </html>

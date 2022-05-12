@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="sample">
+	<insert id="setAdd" parameterType="ReservationVO" useGeneratedKeys="true" keyProperty="resNum">
+		INSERT INTO RESERVATION(RESNUM,ID,SERNUM,RESDATE,RESTIME,RESMEMO,RESSTATE)
+		VALUES (#{resNum},'keem',1,#{resDate},18,'memo',0)
+	</insert>
+
+</mapper>
