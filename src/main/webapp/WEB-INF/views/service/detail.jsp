@@ -27,13 +27,13 @@
 
 
 	<div class="order">
-				<button type="button" class="orderInfo_btn">주문정보입력</button>
+		<button type="button" class="btn btn-outline-success orderInfo_btn">예약</button>
 				
 				<!-- $(선택자).동작함수 -->
 				<script>
 					$(".orderInfo_btn").click(function () {
-						$(".calendar").slideDown();
-						$(".orderInfo_btn").slideUp();
+						$(".calendar").slideToggle();
+					
 					});
 				</script>
 			</div>
@@ -46,30 +46,19 @@
 			</div>
 			<button class="calendar_btn" onclick="nextCal();">&gt;</button>
 		</div>
+		
 		<div class="day">
-			<div>S</div>
-			<div>M</div>
-			<div>T</div>
-			<div>W</div>
-			<div>T</div>
-			<div>F</div>
-			<div>S</div>
+			<div>일</div>
+			<div>월</div>
+			<div>화</div>
+			<div>수</div>
+			<div>목</div>
+			<div>금</div>
+			<div>토</div>
 		</div>
 		<div class="dates"></div>
 	</div>
 
-	<div class="inputArea">
-		<button type="submit" class="order_btn">예약</button>
-		<button type="button" class="cancel_btn">취소</button>
-
-		<script>
-			$(".cancel_btn").click(function() {
-				$(".calendar").slideUp();
-				$(".order_btn").slideDown();
-
-			});
-		</script>
-	</div>
 
 	<script type="text/javascript" src="../js/calendar.js"></script>
 
