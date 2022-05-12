@@ -23,6 +23,11 @@
 			<span>무엇을 도와드릴까요?</span>
 		</div>
 	</div>
+	
+	<br>
+	<hr>
+	<br>
+	
 	<div class="row row-cols-2 row-cols-md-4 mb-4 text-center link">
 		<!-- 각각 링크를 걸어서 할꺼고 -->
 		<!-- FAQ 페이지도 만들꺼임 -->
@@ -36,6 +41,9 @@
 		</div>
 	</div>
 	
+	<br>
+	<hr>
+	<br>
 	
 	<div class="table_total">
 		<ul>
@@ -109,17 +117,8 @@
 </div>
 
 <c:import url="../temp/header_script.jsp"></c:import>
+<script type="text/javascript" src="../resources/js/notice_list.js"></script>
 
 
-<script type="text/javascript">
-	$(".notice").click(function(){
-		location.href="/notice/list;
-	})
-	
-	$(".faq").click(function(){
-		location.href="/faq/list;
-	})
-	
-</script>
 </body>
 </html>

@@ -30,7 +30,15 @@ public class Pager {
 	private boolean next;
 	
 	//list 가지고 올때 카테고리 명 별 리스트 가지고 오려고 추가
-	private Integer grade;
+	private String grade;
+	private String gradeRef;
+	
+	public String getGrade() {
+		if(this.grade == "") {
+			this.grade = null;
+		}
+		return grade;
+	}
 	
 	
 	//lombok이 있어도 직접 만들어줌 - 기본값을 부여하기 위해서

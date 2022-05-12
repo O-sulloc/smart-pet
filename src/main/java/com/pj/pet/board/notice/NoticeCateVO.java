@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class NoticeCateVO {
 
-	private Integer grade;
+	private String grade;
 	private String cateName;
 	
 }

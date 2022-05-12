@@ -8,7 +8,8 @@
 
 	<!-- 전체 리스트 출력 -->
 	<select id="getList" resultMap="noticeCateDetail" parameterType="Pager">
-		SELECT N.*, NC.* FROM 
+		SELECT N.*, NC.* 
+		FROM 
 		(SELECT *, @ROWNUM:=@ROWNUM+1 as ROWNUM FROM NOTICE, (SELECT @ROWNUM:=0) TMP    	
 		WHERE NUM > 0
 			<if test="grade != null">
