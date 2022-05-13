@@ -6,6 +6,15 @@
     
 <mapper namespace="com.pj.pet.board.faq.FaqMapper">
 
+	<!-- TITLECHECK -->
+	<select id="getTitleCount" resultType="int" parameterType="FaqVO">
+		SELECT COUNT(TITLE) FROM FAQ WHERE TITLE=#{title}
+	</select>
+
+
+
+
+	<!-- FAQCATE -->
 	<!-- 카테고리 별 리스트 출력 -->
 	<select id="getCateList" resultType="FaqCateVO">
 		SELECT * FROM FAQCATE 
@@ -14,9 +23,7 @@
 		</if>
 	</select>
 
-
-
-
+	<!-- FAQ -->
 	<!-- 전체 리스트 출력 -->
 	<select id="getList" resultMap="faqCateDetail" parameterType="Pager">
 		<!-- SELECT F.*, FC.* FROM 

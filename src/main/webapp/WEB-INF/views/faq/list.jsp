@@ -49,14 +49,14 @@
 		<form class="d-flex" action="./list" method="get">
 			<div class="col-6 me-2"> 
 				<input type="hidden" name="kind" value="col1">
-	        	<input value="${pager.search}" name="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+	        	<input value="${pager.search}" id="search" name="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
 	        </div>
 	        <div class="col-2">
 	        	<button class="btn btn-outline-success" type="submit">Search</button>
 	        </div>
         </form>
         <div>
-        	<span>인기키워드</span>
+        	<span id="keyWord">인기키워드</span>
         	<div>
         		<a>sadfs</a>
         		<a>sadfs</a>
@@ -75,14 +75,14 @@
 	
 	<div class="table_total">
 		<ul>
-			<li><a class="btn btn-primary" href="./list?gradeRef=90">가장 궁금해 하시는 질문 10개</a></li>
+			<li><a class="btn btn-primary" href="./list?gradeRef=400">가장 궁금해 하시는 질문 10개</a></li>
 			<li><a class="btn btn-primary" href="./list?gradeRef=100">홈페이지</a></li>
 			<li><a class="btn btn-primary" href="./list?gradeRef=200">상품</a></li>
 			<li><a class="btn btn-primary" href="./list?gradeRef=300">예약서비스</a></li>
 		</ul>
 		
 		<!-- gradeRef=99이면 미출력, total empty면 미출력 -->
-		<c:if test="${total ne 90 && not empty total}">
+		<c:if test="${total ne 400 && not empty total}">
 			<ul>			
 				<!-- 그냥 controller에서 바로 받아와버림 -->	
 				<li><a class="btn btn-primary" href="./list?gradeRef=${total}">전체</a></li>
@@ -103,8 +103,7 @@
 		        <i class="bi bi-award"></i>
 		        
 				<strong>${vo.faqCateVO.cateName}</strong>
-				
-				${vo.title}
+				<div id="title">${vo.title}</div>
 		     
 		      </button>
 		    </h2>
@@ -116,6 +115,12 @@
 						<span>도움이 되었어요</span>
 					</button>
 				</p>
+				<%-- <c:if test=""> 멤버들어오면 작성 --%>
+					<div>
+						<a href="./update?num=${vo.num}" role="button" class="btn btn-success mx-1">수정하기</a>	
+						<a href="./delete?num=${vo.num}" role="button" class="btn btn-danger mx-1">삭제하기</a>
+					</div>
+				<%-- </c:if> --%>
 		    </div>
 			</c:forEach>
 		  </div>

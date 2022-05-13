@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +27,24 @@ public class FaqController {
 		return "faq";
 	}
 	
+	//제목 중복체크
+	@PostMapping("titleCheck")
+	public ModelAndView titleCheck(FaqVO faqVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int result = faqService.getTitleCount(faqVO);
+		
+		//공백체크 자바(공백일때 1 리턴)
+		if(!StringUtils.hasText(faqVO.getTitle())) {
+			result = 1;
+		}
+		
+		mv.addObject("result", result);
+		mv.setViewName("common/result");
+		return mv;
+	}
+	
+	
 	//전체 리스트
 	@GetMapping("list")
 	public ModelAndView getList(Pager pager, String grade, String gradeRef) throws Exception{
@@ -45,7 +65,7 @@ public class FaqController {
 		mv.addObject("list", ar);
 		mv.addObject("cate", ar1);
 		//그냥 보내버림
-		System.out.println(gradeRef);
+		//System.out.println(gradeRef);
 		
 		if(gradeRef != null) {
 			mv.addObject("total", gradeRef);
@@ -93,16 +113,28 @@ public class FaqController {
 	@PostMapping("add")
 	public ModelAndView setAdd(FaqVO faqVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		
 		int result = faqService.setAdd(faqVO);
-		mv.setViewName("redirect:./list");
+		
+		//System.out.println(faqVO.getGrade().substring(0,2));
+		//문자열 잘라서 redirect 본인이 작성한 곳으로 이동하게 만들어줌
+		mv.setViewName("redirect:./list?gradeRef="+faqVO.getGrade().substring(0,2)+"0");
 		return mv;
 	}
 	
 	//update form 이동
 	@GetMapping("update")
-	public ModelAndView setUpdate(FaqVO faqVO) throws Exception{
+	public ModelAndView setUpdate(FaqVO faqVO, String gradeRef) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
+		
+		//update에 필요한 select 리스트 가져오기
+		List<FaqCateVO> list = faqService.getCateList(gradeRef);
+		ObjectMapper objm = new ObjectMapper();
+		String cateList = objm.writeValueAsString(list);
+		mv.addObject("cateList", cateList);
+		
+		//세부내용 갖고오기
 		faqVO = faqService.getDetail(faqVO);
 		mv.addObject("vo", faqVO);
 		mv.setViewName("faq/update");
@@ -116,7 +148,7 @@ public class FaqController {
 		
 		int result = faqService.setUpdate(faqVO);
 		
-		mv.setViewName("redirect:./detail?num="+faqVO.getNum());
+		mv.setViewName("redirect:./list?gradeRef="+faqVO.getGrade().substring(0,2)+"0");
 		
 		return mv;
 	}

@@ -10,3 +10,7 @@ ul{
 }
 
 .hidden_col {display:none;}
+
+.text-red {
+    color: red;
+}

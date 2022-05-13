@@ -21,10 +21,10 @@
 	
 	
 	<div class="row mt-4">
-		<form action="./add" method="post">
+		<form action="./add" method="post" class="frm">
  
 		 <div>
-			<h5>상품타입</h5>
+			<h5>카테고리</h5>
 			<div class="row">
 				<div class="form_section_content col-lg-12" id="type">
 					<div class="type_wrap checkout__input">
@@ -33,7 +33,7 @@
 						</select>
 					</div>
 					<div class="type_wrap checkout__input">
-						<span>소분류</span> <select class="type2 col-lg-12" name="gradeRef">
+						<span>소분류</span> <select class="type2 col-lg-12" name="grade">
 							<option selected value="none">선택</option>
 						</select>
 					</div>
@@ -44,7 +44,8 @@
 		  <div class="row mb-3">
 		    <label for="title" class="col-sm-2 col-form-label">Title</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="title" name="title">
+		      <input type="text" class="form-control title_check" id="title" name="title">
+			  <font id="checkTitle" size="2"></font>
 		    </div>
 		  </div>
 		  <div class="row mb-3">
@@ -60,7 +61,7 @@
 		    </div>
 		  </div>
 		  
-		  <button type="submit" class="btn btn-primary my-4">Write</button>
+		  <button type="button" class="btn btn-primary my-4" id="btn">Write</button>
 		</form>
 		<%-- <input type="hidden" id="cateGory" value="${cateList}"> --%>
 	</div>	
@@ -71,6 +72,7 @@
 
 <script type="text/javascript">
 	makeList('${cateList}');
+	totalCheck();
 </script>
 </body>
 </html>

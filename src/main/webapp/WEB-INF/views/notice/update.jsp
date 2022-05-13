@@ -23,8 +23,26 @@
 	<div class="row mt-4">
 		<form action="./update" method="post">
 			<input type="hidden" name="num" value="${vo.num}">
-			<!-- 임시로 넣어놓음 -->
+			
+			<!-- 카테고리 변경이 가능하게 할지 아니면 그냥 둘지 고민 -->
+			<!-- <div class="form_section">
+				<div class="row">
+					<div class="form_section_content col-lg-12" id="grade">
+						<span>카테고리</span> 
+						<select class="type1 type2 col-lg-12" name="grade">
+							<option selected value="none">선택</option>
+							<option value="0">일반</option>
+							<option value="1">매장</option>
+							<option value="2">이벤트</option>
+						</select>
+					</div>
+				</div>
+			</div> -->
+			
 			<input type="hidden" name="grade" value="${vo.grade}">
+			<h3>${vo.noticeCateVO.cateName} 탭</h3>
+			<br>
+			
 		  <div class="row mb-3">
 		    <label for="title" class="col-sm-2 col-form-label">Title</label>
 		    <div class="col-sm-10">
@@ -49,7 +67,12 @@
 		
 	</div>	
 </div>	
-
+<script type="text/javascript" src="../resources/js/notice_update.js"></script>
 <c:import url="../temp/header_script.jsp"></c:import>
+
+<script type="text/javascript">
+	totalCheck();
+</script>
+
 </body>
 </html>

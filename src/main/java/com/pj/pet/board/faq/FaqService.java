@@ -15,14 +15,21 @@ public class FaqService {
 	@Autowired
 	private FaqMapper faqMapper;
 	
-	//faqList
+	//TITLE 중복체크
+	public int getTitleCount(FaqVO faqVO) throws Exception{
+		return faqMapper.getTitleCount(faqVO);
+	}
+	
+	
+	
+	//FAQCATE
+	//LIST
 	public List<FaqCateVO> getCateList(String gradeRef) throws Exception{
 		return faqMapper.getCateList(gradeRef);
 	}
 	
 	
-	
-	//faq
+	//FAQ
 	//list
 	public List<FaqVO> getList(Pager pager) throws Exception{
 		

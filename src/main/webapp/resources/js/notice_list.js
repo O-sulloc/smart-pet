@@ -5,17 +5,21 @@ $(".notice").click(function(){
 })
 
 $(".faq").click(function(){
-	location.href="/faq/list?gradeRef=90";
+	location.href="/faq/list?gradeRef=400";
 })
 
 $(".faqList").click(function(){
-	location.href="/faq/list?gradeRef=90";
+	location.href="/faq/list?gradeRef=400";
 })
 
-$(document).ready(function(){
-	// menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
+$('#search').focus().select();
+//$('#search').trigger("focus");
+
+$('#search').blur(function(){
+	console.log($(this).val());
+    var search = $('#search').val();
+    $("#title:contains('"+search+"')").each(function () {
+        var regex = new RegExp(search,'gi');
+        $(this).html($(this).text().replace(regex, "<span class='text-red'>"+search+"</span>") );
+    });
 });
-
-
-
-

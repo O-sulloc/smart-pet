@@ -8,13 +8,18 @@ import com.pj.pet.util.Pager;
 
 @Mapper
 public interface FaqMapper{
+	
+	
+	//titleCount 중복체크
+	public int getTitleCount(FaqVO faqVO) throws Exception;
 
-	//faqCate
+	
+	//FAQCATE
 	//cate list 출력시 필요
 	public List<FaqCateVO> getCateList(String gradeRef) throws Exception;
 	
 	
-	//faq
+	//FAQ
 	//list
 	public List<FaqVO> getList(Pager pager) throws Exception;
 	

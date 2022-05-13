@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pj.pet.board.faq.FaqVO;
 import com.pj.pet.util.Pager;
 
 @Controller
@@ -23,6 +24,21 @@ public class NoticeController {
 	public String getBoard() {
 		return "notice";
 	}
+	
+
+	//제목 중복체크
+	@PostMapping("titleCheck")
+	public ModelAndView titleCheck(NoticeVO noticeVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int result = noticeService.getTitleCount(noticeVO);
+		
+		mv.addObject("result", result);
+		mv.setViewName("common/result");
+		return mv;
+	}
+	
+	
 	
 	//전체 리스트
 	@GetMapping("list")

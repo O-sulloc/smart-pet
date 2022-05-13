@@ -1,5 +1,90 @@
 
-//add js
+//update js
+
+//업데이트시 구현(기존거 가지고 오기) - 보류
+//시작시 작동하는 함수
+function takeList(cateList) {
+
+	//타입 관련 JQUERY
+	//let typeList = JSON.parse(cateList);
+
+	// let type1Array = new Array();
+	// let type2Array = new Array();
+
+	// let type1Obj = new Object();
+	// let type2Obj = new Object();
+
+	// let typeSelect1 = $(".type1");
+	// let typeSelect2 = $(".type2");
+
+	// //타입 배열 초기화 메서드
+	// function makeTypeArray(obj, array, typeList, cateLevel) {
+	// 	for (let i = 0; i < typeList.length; i++) {
+	// 		if (typeList[i].cateLevel === cateLevel) {
+	// 			obj = new Object();
+
+	// 			obj.cateName = typeList[i].cateName;
+	// 			obj.grade = typeList[i].grade;
+	// 			obj.gradeRef = typeList[i].gradeRef;
+
+	// 			array.push(obj);
+	// 		}
+	// 	}
+	// }
+
+	// //배열 초기화
+	// makeTypeArray(type1Obj, type1Array, typeList, 1);
+	// makeTypeArray(type2Obj, type2Array, typeList, 2);
+
+	// let targetType1 = '';
+	// let targetType2 = '${dto.productType}'; 여기 갖고와야함(아마 위에 변수추가해서 갖고오기로)
+
+	// //중분류 가져오기
+	// for (let i = 0; i < type2Array.length; i++) {
+	// 	if (targetType2.gradeRef === type1Array[i].grade) {
+	// 		targetType2 = type2Array[i];
+	// 	}
+	// }
+
+	// //none 없애기 위해 기존꺼 지웠다가 다시 생성(중분류)
+	// typeSelect2.children().remove();
+	// typeSelect2.append("<option value='none'>선택</option>");
+
+	// for (let i = 0; i < type2Array.length; i++) {
+	// 	if (targetType2.gradeRef === type2Array[i].gradeRef) {
+	// 		typeSelect2.append("<option value='"+type2Array[i].grade+"'>"
+	// 		+ type2Array[i].cateName+ "</option>");
+	// 	}
+	// }
+
+	// $(".type2 option").each(function(i, obj) {
+	// 	if (targetType2.productType === obj.value) {
+	// 		$(obj).attr("selected", "selected");
+	// 	}
+	// });
+
+	// //대분류 가져오기
+
+	// //none 없애기 위해 기존꺼 지웠다가 다시 생성(대분류)
+	// typeSelect1.children().remove();
+	// typeSelect1.append("<option value='none'>선택</option>");
+
+	// for (let i = 0; i < type1Array.length; i++) {
+	// 	typeSelect1.append("<option value='"+type1Array[i].grade+"'>"
+	// 	+ type1Array[i].cateName+ "</option>");
+	// }
+
+	// $(".type1 option").each(function(i, obj) {
+	// 	if (targetType2.typeTop === obj.value) {
+	// 		$(obj).attr("selected", "selected");
+	// 	}
+	// });
+}
+//업데이트시 구현(기존거 가지고 오기) 끝
+
+
+
+
 
 
 //카테고리 리스트 호출
@@ -207,8 +292,8 @@ function totalCheck(){
 			return;
 		}
 
-		//모두 체크시(카테고리 수정 막아버릴까?)
-		let check = window.confirm("카테고리는 수정이 어렵습니다. 이대로 작성하시겠습니까?"); //check에 boolean 담김
+		//모두 체크시
+		let check = window.confirm("이대로 작성하시겠습니까?"); //check에 boolean 담김
 		if(!check){
 			return;
 		}else{

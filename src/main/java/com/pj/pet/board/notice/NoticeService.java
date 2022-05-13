@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pj.pet.board.faq.FaqVO;
 import com.pj.pet.util.Pager;
 
 @Service
@@ -15,7 +16,13 @@ public class NoticeService {
 	@Autowired
 	private NoticeMapper noticeMapper;
 	
-	//notice
+	//TITLE 중복체크
+	public int getTitleCount(NoticeVO noticeVO) throws Exception{
+		return noticeMapper.getTitleCount(noticeVO);
+	}
+	
+	
+	//NOTICE
 	//list
 	public List<NoticeVO> getList(Pager pager) throws Exception{
 		

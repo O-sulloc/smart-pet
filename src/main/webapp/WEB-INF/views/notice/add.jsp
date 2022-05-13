@@ -21,12 +21,12 @@
 	
 	
 	<div class="row mt-4">
-		<form action="./add" method="post">
+		<form action="./add" method="post" class="frm">
 			<div class="form_section">
 				<div class="row">
 					<div class="form_section_content col-lg-12" id="grade">
 						<span>카테고리</span> 
-						<select class="type1 col-lg-12" name="grade">
+						<select class="type1 type2 col-lg-12" name="grade">
 							<option selected value="none">선택</option>
 							<option value="0">일반</option>
 							<option value="1">매장</option>
@@ -39,7 +39,8 @@
 		  <div class="row mb-3">
 		    <label for="title" class="col-sm-2 col-form-label">Title</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="title" name="title">
+		      <input type="text" class="form-control title_check" id="title" name="title">
+			  <font id="checkTitle" size="2"></font>
 		    </div>
 		  </div>
 		  <div class="row mb-3">
@@ -55,7 +56,7 @@
 		    </div>
 		  </div>
 		  
-		  <button type="submit" class="btn btn-primary my-4">Write</button>
+		  <button type="button" class="btn btn-primary my-4" id="btn">Write</button>
 		</form>
 		
 	</div>	
@@ -63,5 +64,10 @@
 
 <script type="text/javascript" src="../resources/js/notice_add.js"></script>
 <c:import url="../temp/header_script.jsp"></c:import>
+
+<script type="text/javascript">
+	totalCheck();
+</script>
+
 </body>
 </html>
