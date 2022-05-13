@@ -1,17 +1,9 @@
 @charset "UTF-8";
 
-.calendar {
-	width: 400px; 
-	padding: 5px 20px 20px 20px; 
-	box-sizing: border-box;
-	border: 1px solid;
-	}
-.calendar > .header {
-	text-align: center;
-	}
-.calendar > .header > .title {
-	width:50%; display: inline-block;
-	}
+
+.calendar {width: 400px; padding: 5px 20px 20px 20px; box-sizing: border-box; border: 1px solid;}
+.calendar > .header {text-align: center;}
+.calendar > .header > .title {width:50%; display: inline-block;}
 .calendar > .header > .calendar_btn {
 	width: 30px;
 	height: 30px;

@@ -7,7 +7,7 @@
 <mapper namespace="sample">
 	<insert id="setAdd" parameterType="ReservationVO" useGeneratedKeys="true" keyProperty="resNum">
 		INSERT INTO RESERVATION(RESNUM,ID,SERNUM,RESDATE,RESTIME,RESMEMO,RESSTATE)
-		VALUES (#{resNum},'keem',1,#{resDate},18,'memo',0)
+		VALUES (#{resNum},'keem',#{serNum},#{resDate},18,'memo',0)
 	</insert>
 
 </mapper>

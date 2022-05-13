@@ -27,16 +27,16 @@
 
 
 	<div class="order">
-		<button type="button" class="btn btn-outline-success orderInfo_btn">예약</button>
-				
-				<!-- $(선택자).동작함수 -->
-				<script>
-					$(".orderInfo_btn").click(function () {
-						$(".calendar").slideToggle();
-					
-					});
-				</script>
-			</div>
+		<button type="button" class="btn btn-outline-success dateInfo_btn">예약날짜 확인</button>
+
+		<!-- $(선택자).동작함수 -->
+		<script>
+			$(".dateInfo_btn").click(function() {
+				$(".calendar").slideToggle();
+
+			});
+		</script>
+	</div>
 
 	<div class="calendar">
 		<div class="header">
@@ -46,7 +46,6 @@
 			</div>
 			<button class="calendar_btn" onclick="nextCal();">&gt;</button>
 		</div>
-		
 		<div class="day">
 			<div>일</div>
 			<div>월</div>
@@ -57,10 +56,13 @@
 			<div>토</div>
 		</div>
 		<div class="dates"></div>
+		<button type="submit" id="reservation" data-sn="${vo.serNum}" class="btn btn-outline-success">예약진행</button>
 	</div>
+	
 
 
 	<script type="text/javascript" src="../js/calendar.js"></script>
+	<script type="text/javascript" src="../js/reservation.js"></script>
 
 
 </body>
