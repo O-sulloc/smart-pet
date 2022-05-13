@@ -8,7 +8,10 @@
 
 	<!-- 카테고리 별 리스트 출력 -->
 	<select id="getCateList" resultType="FaqCateVO">
-		SELECT * FROM FAQCATE WHERE GRADEREF=#{gradeRef}
+		SELECT * FROM FAQCATE 
+		<if test="gradeRef != null">
+			WHERE GRADEREF=#{gradeRef}
+		</if>
 	</select>
 
 
@@ -33,13 +36,21 @@
 		FROM 
 		 (SELECT *, @ROWNUM:=@ROWNUM+1 as ROWNUM FROM FAQ, (SELECT @ROWNUM:=0) TMP    	
 			WHERE NUM > 0
+			
 				<if test="grade != null">
 		  			AND GRADE = #{grade}
 				</if>
-			
-		    	<if test="kind == 'col1'">
-		  			AND TITLE
-				</if>
+				
+				AND
+				
+		       	<choose>
+			    	<when test="kind == 'col2'">
+			    		CONTENTS
+			    	</when>
+			    	<otherwise>
+			    		TITLE
+			    	</otherwise>
+				</choose>
 				
     		LIKE CONCAT('%',#{search},'%')
 	   		ORDER BY NUM DESC, ROWNUM DESC 
@@ -66,9 +77,16 @@
   			AND GRADE = #{grade}
 		</if>
 		
-    	<if test="kind == 'col1'">
-  			AND TITLE
-		</if>
+    	AND
+    		
+   		<choose>
+	    	<when test="kind == 'col2'">
+	    		CONTENTS
+	    	</when>
+	    	<otherwise>
+	    		TITLE
+	    	</otherwise>
+		</choose>
 				
 		LIKE CONCAT('%',#{search},'%')
    	</select>
@@ -102,19 +120,19 @@
 	</resultMap>
 
 
-	<!-- 공지사항 등록 -->
+	<!-- FAQ 등록 -->
 	<insert id="setAdd" parameterType="FaqVO" useGeneratedKeys="true"  keyProperty="num">
 		INSERT INTO FAQ(NUM, ID, TITLE, CONTENTS, REGDATE, GRADE)
 		VALUES(#{num}, #{id}, #{title}, #{contents}, now(), #{grade})
 	</insert>
 
-	<!-- 공지사항 수정 -->
+	<!-- FAQ 수정 -->
 	<update id="setUpdate" parameterType="FaqVO">
 		UPDATE FAQ SET TITLE = #{title}, CONTENTS = #{contents}, GRADE = #{grade} WHERE ID = #{id}
 	</update>
 	
 	
-	<!-- 공지사항 삭제 -->
+	<!-- FAQ 삭제 -->
 	<delete id="setDelete" parameterType="NoticeVO">
 		DELETE FROM FAQ WHERE NUM=#{num}
 	</delete>	

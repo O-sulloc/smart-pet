@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pj.pet.util.Pager;
 
 @Controller
@@ -44,6 +45,8 @@ public class FaqController {
 		mv.addObject("list", ar);
 		mv.addObject("cate", ar1);
 		//그냥 보내버림
+		System.out.println(gradeRef);
+		
 		if(gradeRef != null) {
 			mv.addObject("total", gradeRef);
 		}
@@ -68,17 +71,30 @@ public class FaqController {
 	
 	//add form 이동
 	@GetMapping("add")
-	public void setAdd() throws Exception{}
+	public ModelAndView setAdd(String gradeRef) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		
+		List<FaqCateVO> list = faqService.getCateList(gradeRef);
+		
+		System.out.println(list);
+		
+		ObjectMapper objm = new ObjectMapper();
+		String cateList = objm.writeValueAsString(list);
+		
+		System.out.println(cateList);
+		mv.addObject("cateList", cateList);
+		mv.setViewName("faq/add");
+		return mv;
+		
+	}
 	
 	//add DB 적용
 	@PostMapping("add")
 	public ModelAndView setAdd(FaqVO faqVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		
 		int result = faqService.setAdd(faqVO);
-		
 		mv.setViewName("redirect:./list");
-		
 		return mv;
 	}
 	

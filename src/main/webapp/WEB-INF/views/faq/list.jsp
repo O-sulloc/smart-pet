@@ -55,6 +55,18 @@
 	        	<button class="btn btn-outline-success" type="submit">Search</button>
 	        </div>
         </form>
+        <div>
+        	<span>인기키워드</span>
+        	<div>
+        		<a>sadfs</a>
+        		<a>sadfs</a>
+        		<a>sadfs</a>
+        		<a>sadfs</a>
+        		<a>sadfs</a>
+        		<a>sadfs</a>
+        		
+        	</div>
+        </div>
 	</div>
 		
 	<br>
@@ -63,28 +75,22 @@
 	
 	<div class="table_total">
 		<ul>
-			<li><a class="btn btn-primary" href="./list?gradeRef=99">가장 궁금해 하시는 질문 10개</a></li>
+			<li><a class="btn btn-primary" href="./list?gradeRef=90">가장 궁금해 하시는 질문 10개</a></li>
 			<li><a class="btn btn-primary" href="./list?gradeRef=100">홈페이지</a></li>
 			<li><a class="btn btn-primary" href="./list?gradeRef=200">상품</a></li>
 			<li><a class="btn btn-primary" href="./list?gradeRef=300">예약서비스</a></li>
 		</ul>
 		
-
-		<!-- gradeRef=99이면 미출력 -->
-		<c:choose>
-			<c:when test="${total ne 99}">
-				<ul>			
-					<!-- 그냥 controller에서 바로 받아와버림 -->	
-					<li><a class="btn btn-primary" href="./list?gradeRef=${total}">전체</a></li>
-					<c:forEach items="${cate}" var="cate">
-						<li><a class="btn btn-primary" href="./list?gradeRef=${cate.gradeRef}&grade=${cate.grade}">${cate.cateName}</a></li>
-					</c:forEach>
-				</ul>
-			</c:when>
-			<c:when test="${total eq null}">
-				<h1>hi</h1>
-			</c:when>
-		</c:choose>
+		<!-- gradeRef=99이면 미출력, total empty면 미출력 -->
+		<c:if test="${total ne 90 && not empty total}">
+			<ul>			
+				<!-- 그냥 controller에서 바로 받아와버림 -->	
+				<li><a class="btn btn-primary" href="./list?gradeRef=${total}">전체</a></li>
+				<c:forEach items="${cate}" var="cate">
+					<li><a class="btn btn-primary" href="./list?gradeRef=${cate.gradeRef}&grade=${cate.grade}">${cate.cateName}</a></li>
+				</c:forEach>
+			</ul>
+		</c:if>
 
 		<hr>
 
@@ -120,64 +126,51 @@
 		<hr>
 		<br>
 		
-
-		<!-- 안쓸듯 -->
-		<%-- <div class="table_down">
-			<div class="row mt-4">
-				<hr>
-				<table class="table table-hover menu">
-					<c:forEach items="${list}" var="vo">
-						<tr>
-							<!-- 정렬은 하지만 안보이게 만듬 -->
-							<td class="hidden_col">${vo.rowNum}</td>
-							<td><i class="bi bi-award"></i></td>
-							<td>${vo.faqCateVO.cateName}</td>
-							<td>${vo.title}</td>
-						</tr>
-						<div>
-							${vo.contents}
-						</div>	
-					</c:forEach>	
-				</table>
-			</div>
-
-		</div> --%>
-		
 		<div class="row justify-content-between">
 			<!-- 위치 수정 필요 -->
 			<div class="col-1">
 				<a href="./add" type="button" class="btn btn-outline-primary">WRITE</a>
 			</div>
 		</div>
-	</div>
-	<br><br>
-	<div class="position-relative">
-		<div class="position-absolute top-0 start-50 translate-middle">
-			<nav aria-label="Page navigation example">
-			  <ul class="pagination">
-			  
-		    	<li class="page-item">
-		    		<a class="page-link" aria-label="Previous" href="./list?pn=${pager.pre?pager.startNum-1:1}&grade=${pager.grade}&kind=${pager.kind}&search=${pager.search}">
-				 		<span aria-hidden="true">&laquo;</span>
-					</a>
-				</li>
-			   
-			    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-			    	<li class="page-item"><a class="page-link" href="./list?pn=${i}&grade=${pager.grade}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
-			    </c:forEach>
-
-		    	<li class="page-item">
-		    		<a class="page-link" href="./list?pn=${pager.next?pager.lastNum+1:pager.lastNum}&grade=${pager.grade}&kind=${pager.kind}&search=${pager.search}">
-		    			<span aria-hidden="true">&raquo;</span>
-		    		</a>
-		    	</li>
-			   
-			  </ul>
-			</nav>
+		<div class="position-relative">
+			<div class="position-absolute top-0 start-50 translate-middle">
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination">
+				  
+			    	<li class="page-item">
+			    		<a class="page-link" aria-label="Previous" href="./list?pn=${pager.pre?pager.startNum-1:1}&grade=${pager.grade}&gradeRef=${pager.gradeRef}&kind=${pager.kind}&search=${pager.search}">
+					 		<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+				   
+				    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+				    	<li class="page-item"><a class="page-link" href="./list?pn=${i}&grade=${pager.grade}&gradeRef=${pager.gradeRef}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+				    </c:forEach>
+	
+			    	<li class="page-item">
+			    		<a class="page-link" href="./list?pn=${pager.next?pager.lastNum+1:pager.lastNum}&grade=${pager.grade}&gradeRef=${pager.gradeRef}&kind=${pager.kind}&search=${pager.search}">
+			    			<span aria-hidden="true">&raquo;</span>
+			    		</a>
+			    	</li>
+				   
+				  </ul>
+				</nav>
+			</div>
 		</div>
 	</div>
-
+	<br><br>
+	<p>찾으시는 질문이 없다면?</p>
+	<div class="area1sButton">
+		<button type="button" class="btn btn-outline-success faqList">FAQ 전체보기</button>
+		<!-- 링크 미구현 구현시 js로 -->
+		<button type="button" class="btn btn-success">1:1 문의하기</button>
+		<!-- 밑에껀 함수호출하는 javascript -->
+		<!-- <a href="javascript:common.link.moveQnaForm();" class="btnGreen">1:1 문의하기</a> -->
+	</div>
 </div>
+
+
+<br><br>
 
 <c:import url="../temp/header_script.jsp"></c:import>
 <script type="text/javascript" src="../resources/js/notice_list.js"></script>

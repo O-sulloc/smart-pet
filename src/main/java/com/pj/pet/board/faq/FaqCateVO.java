@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class FaqCateVO {
-
+	private Integer cateLevel;
 	private String grade;
 	private String cateName;
 	private String gradeRef;

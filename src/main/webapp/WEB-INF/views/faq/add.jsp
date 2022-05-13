@@ -22,20 +22,25 @@
 	
 	<div class="row mt-4">
 		<form action="./add" method="post">
-			<div class="form_section">
-				<div class="row">
-					<div class="form_section_content col-lg-12" id="grade">
-						<span>카테고리</span> 
-						<select class="type1 col-lg-12" name="grade">
+ 
+		 <div>
+			<h5>상품타입</h5>
+			<div class="row">
+				<div class="form_section_content col-lg-12" id="type">
+					<div class="type_wrap checkout__input">
+						<span>중분류</span> <select class="type1 col-lg-12">
 							<option selected value="none">선택</option>
-							<option value="0">일반</option>
-							<option value="1">매장</option>
-							<option value="2">이벤트</option>
+						</select>
+					</div>
+					<div class="type_wrap checkout__input">
+						<span>소분류</span> <select class="type2 col-lg-12" name="gradeRef">
+							<option selected value="none">선택</option>
 						</select>
 					</div>
 				</div>
 			</div>
-
+		</div>
+			 
 		  <div class="row mb-3">
 		    <label for="title" class="col-sm-2 col-form-label">Title</label>
 		    <div class="col-sm-10">
@@ -57,11 +62,15 @@
 		  
 		  <button type="submit" class="btn btn-primary my-4">Write</button>
 		</form>
-		
+		<%-- <input type="hidden" id="cateGory" value="${cateList}"> --%>
 	</div>	
 </div>	
 
 <script type="text/javascript" src="../resources/js/notice_add.js"></script>
 <c:import url="../temp/header_script.jsp"></c:import>
+
+<script type="text/javascript">
+	makeList('${cateList}');
+</script>
 </body>
 </html>

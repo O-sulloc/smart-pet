@@ -40,6 +40,13 @@ public class Pager {
 		return grade;
 	}
 	
+	public String getGradeRef() {
+		if(this.gradeRef == "") {
+			this.gradeRef = null;
+		}
+		return gradeRef;
+	}
+	
 	
 	//lombok이 있어도 직접 만들어줌 - 기본값을 부여하기 위해서
 	public Integer getPerPage() {
