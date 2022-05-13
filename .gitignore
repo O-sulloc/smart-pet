@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+###email###
+application-email.properties
+
 ###mydb###
 application-db.properties
 
