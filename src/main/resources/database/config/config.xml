@@ -7,5 +7,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.pj.pet.user.UserVO" alias="UserVO"/>
+		<typeAlias type="com.pj.pet.user.UserPetVO" alias="UserPetVO"/>
 	</typeAliases>
 </configuration>

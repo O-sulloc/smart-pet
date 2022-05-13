@@ -14,35 +14,29 @@
 	
 	<div class="container mt-5 text-center">
 		<main class="form-signin">
-			<form:form modelAttribute="userVO" method="post">
+			<form action="login" method="post">
 				<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 				
 				<div class="row justify-content-center">
 					<div class="col-3">
 						<div class="form-floating mt-2">
-							<form:input path="id" cssClass="form-control" id="id"/>
-							<div>
-								<form:errors path="id"></form:errors>
-							</div>
+							<input type="text" class="form-control" name="id" value="${cookie.remember.value }">
 							<label for=floatingInput>ID</label>
 						</div>
 						
 						<div class="form-floating mt-2">
-							<form:password path="pw" cssClass="form-control" id="pw"/>
-							<div>
-								<form:errors path="pw"></form:errors>
-							</div>
+							<input type="password" name="pw" class="form-control">
 							<label for=floatingInput>PW</label>
 						</div>
 					
 						<div class="checkbox mb-3 mt-2">
 							<label>
-								<input type="checkbox" value="remember-me"> Remember
+								<input type="checkbox" value="1" name="remember"> Remember
 							</label>
 						</div>
 						
 						<button class="w-100 btn btn-lg btn-success mb-2" type="submit">Sign In</button>
-						<button class="w-100 btn btn-lg btn btn-outline-danger" onclick="location.href='/user/join'" type="submit">Join Now!</button>
+						<button class="w-100 btn btn-lg btn btn-outline-danger" onclick="location.href='/user/join'" type="button">Join Now!</button>
 							    
 						<div class="checkbox mb-3 mt-2">
 							<button type="button" class="btn btn-outline-info" onclick="location.href='/user/findId'">ID찾기</button>
@@ -50,7 +44,7 @@
 						</div>
 					</div>
 				</div>
-			</form:form>
+			</form>
 		</main>
 	</div>
 

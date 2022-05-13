@@ -1,5 +1,7 @@
 package com.pj.pet.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -15,24 +17,50 @@ public class UserService {
 	@Autowired
 	private UserMapper userMapper;
 	
+	//petdelete
+	public int setPetDelete(UserPetVO userPetVO) throws Exception{
+		return userMapper.setPetDelete(userPetVO);
+	}
+	
+	//petdetail
+	public UserPetVO getPetDetail(UserPetVO userPetVO) throws Exception{
+		return userMapper.getPetDetail(userPetVO);
+	}
+	
+	//petupdate
+	public int setPetUpdate(UserPetVO userPetVO) throws Exception{
+		return userMapper.setPetUpdate(userPetVO);
+	}
+	
+	//petlist
+	public List<UserPetVO> getPetList(UserPetVO userPetVO) throws Exception{
+		List<UserPetVO> ar =  userMapper.getPetList(userPetVO);
+		return ar;
+	}
+	
+	//petInsert
+	public int setPetAdd(UserPetVO userPetVO) throws Exception{
+		return userMapper.setPetAdd(userPetVO);
+	}
+	
+	//delete
+	public int setDelete(UserVO userVO) throws Exception{
+		return userMapper.setDelete(userVO);
+	}
+	
+	//Update
+	public int setUpdate(UserVO userVO) throws Exception{
+		return userMapper.setUpdate(userVO);
+	}
+	
+	//mypage
+	public UserVO getDetail(UserVO userVO) throws Exception{
+		return userMapper.getDetail(userVO);
+	}
+	
 	//setResetPw
 	public void setResetPw(UserVO userVO) throws Exception{
 		userMapper.setResetPw(userVO);
-		
-		String newPw = new TempKey().getKey(6, false);
-		userVO.setPw(newPw);
-		 MailUtils sendMail = new MailUtils(null);
-			sendMail.setSubject("[petService 커뮤니티 임시 비밀번호 입니다.]"); //메일제목
-			sendMail.setText(
-					"<h1>임시비밀번호 발급</h1>" +
-							"<br/>비밀번호 찾기를 통한 임시 비밀번호입니다."+
-							"<br/>임시비밀번호 :   <h2>"+userVO.getPw()+"</h2>"+
-							"<br/>로그인 후 비밀번호 변경을 해주세요."+
-							"<a href='http://localhost:80/user/login"+
-							">로그인 페이지</a>");
-			sendMail.setFrom("[보낼이메일]", "petService");
-			sendMail.setTo(userVO.getEmail());
-			sendMail.send();
 	}
 	
 	//getFindPw

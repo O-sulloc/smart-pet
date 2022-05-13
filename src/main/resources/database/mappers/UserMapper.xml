@@ -5,6 +5,43 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.pj.pet.user.UserMapper">
+	<delete id="setPetDelete" parameterType="UserPetVO">
+		DELETE FROM USERPET WHERE PETNUM=#{petNum} 
+	</delete>
+
+	<select id="getPetDetail" parameterType="UserPetVO" resultType="UserPetVO">
+		SELECT PETNUM, PETNAME, PETKIND, PETBIRTH, PETSEX FROM USERPET
+		WHERE PETNUM=#{petNum}
+	</select>
+
+	<update id="setPetUpdate" parameterType="UserPetVO">
+		UPDATE USERPET SET PETNAME=#{petName}, PETKIND=#{petKind}, PETBIRTH=#{petBirth}, PETSEX=#{petSex}
+		WHERE PETNUM=#{petNum}
+	</update>
+
+	<select id="getPetList" parameterType="UserPetVO" resultType="UserPetVO">
+		SELECT PETNUM ,PETNAME, PETKIND, PETBIRTH, PETSEX FROM USERPET
+		WHERE ID=#{id}
+	</select>
+
+	<insert id="setPetAdd" parameterType="UserPetVO">
+		INSERT INTO USERPET(PETNUM, ID, PETKIND, PETNAME, PETBIRTH, PETSEX)
+		VALUES(NULL, #{id}, #{petKind}, #{petName}, #{petBirth}, #{petSex})
+	</insert>
+
+	<delete id="setDelete" parameterType="UserVO">
+		DELETE FROM USER WHERE ID=#{id}
+	</delete>
+
+	<update id="setUpdate" parameterType="UserVO">
+		UPDATE USER SET EMAIL=#{email}, PHONE=#{phone}, ADDRESS=#{address}
+		WHERE ID=#{id}
+	</update>
+
+	<select id="getDetail" parameterType="UserVO" resultType="UserVO">
+		SELECT ID, NAME, EMAIL, PHONE, ADDRESS FROM USER WHERE ID=#{id} 
+	</select>
+
 	<update id="setResetPw" parameterType="UserVO">
 		UPDATE USER SET PW = #{pw} WHERE ID=#{id} AND EMAIL=#{email}
 	</update>

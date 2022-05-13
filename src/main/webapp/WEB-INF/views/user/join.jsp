@@ -15,7 +15,7 @@
 	<div class="container mt-3">
 		<main>
 			<div class="py-5 text-center">
-				<h2>Welcome to join us!</h2>
+				<h2>Welcome to join us</h2>
 			</div>
 			
 			<div class="row justify-content-center">
