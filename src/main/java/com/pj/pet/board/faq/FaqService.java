@@ -15,11 +15,19 @@ public class FaqService {
 	@Autowired
 	private FaqMapper faqMapper;
 	
+	
+	//FAQKEYWORD
+	//key list 출력시 필요
+	public List<FaqKeyVO> getKeyList() throws Exception{
+		return faqMapper.getKeyList();
+	}
+	
+	
+	
 	//TITLE 중복체크
 	public int getTitleCount(FaqVO faqVO) throws Exception{
 		return faqMapper.getTitleCount(faqVO);
 	}
-	
 	
 	
 	//FAQCATE

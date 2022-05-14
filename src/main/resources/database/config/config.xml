@@ -10,6 +10,7 @@
 		<typeAlias type="com.pj.pet.board.notice.NoticeCateVO" alias="NoticeCateVO"/>
 		<typeAlias type="com.pj.pet.board.faq.FaqVO" alias="FaqVO"/>
 		<typeAlias type="com.pj.pet.board.faq.FaqCateVO" alias="FaqCateVO"/>
+		<typeAlias type="com.pj.pet.board.faq.FaqKeyVO" alias="FaqKeyVO"/>
 		<typeAlias type="com.pj.pet.util.Pager" alias="Pager"/>
 	
 		<typeAlias type="java.util.Map" alias="Map"/>

@@ -6,12 +6,25 @@
     
 <mapper namespace="com.pj.pet.board.faq.FaqMapper">
 
+
+	<!-- keyWord -->
+	<select id="getKeyList" resultType="FaqKeyVO">
+		SELECT * FROM KEYWORD
+	</select>
+	
+	<insert id="setKeyAdd" parameterType="FaqKeyVO" useGeneratedKeys="true" keyProperty="num">
+		INSERT INTO KEYWORD(NUM, KEYNAME) VALUES(#{num}, #{keyName})
+	</insert>
+	
+	<delete id="setKeyDelete" parameterType="FaqKeyVO">
+		DELETE FROM KEYWORD WHERE NUM = #{num}
+	</delete>
+
+
 	<!-- TITLECHECK -->
 	<select id="getTitleCount" resultType="int" parameterType="FaqVO">
 		SELECT COUNT(TITLE) FROM FAQ WHERE TITLE=#{title}
 	</select>
-
-
 
 
 	<!-- FAQCATE -->

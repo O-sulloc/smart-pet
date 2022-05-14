@@ -12,5 +12,6 @@ ul{
 .hidden_col {display:none;}
 
 .text-red {
-    color: red;
+   color: #4a4aff;
+   font-weight: 700;
 }

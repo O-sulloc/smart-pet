@@ -58,12 +58,18 @@ public class FaqController {
 			pager.setGrade(grade);
 		}
 		
-		List<FaqVO> ar = faqService.getList(pager);
+		//faq 전체 리스트
+		List<FaqVO> list = faqService.getList(pager);
+		//faq 카테고리 리스트
+		List<FaqCateVO> cate = faqService.getCateList(gradeRef);
+		//faq 키워드 리스트
+		List<FaqKeyVO> key = faqService.getKeyList();
 		
-		List<FaqCateVO> ar1 = faqService.getCateList(gradeRef);
 		
-		mv.addObject("list", ar);
-		mv.addObject("cate", ar1);
+		mv.addObject("list", list);
+		mv.addObject("cate", cate);
+		mv.addObject("key", key);
+		
 		//그냥 보내버림
 		//System.out.println(gradeRef);
 		

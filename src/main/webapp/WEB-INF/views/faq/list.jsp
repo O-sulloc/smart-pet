@@ -46,25 +46,21 @@
 	<br>
 	
 	<div class="col-5">
-		<form class="d-flex" action="./list" method="get">
+		<form class="d-flex searchFrm" action="./list" method="get">
 			<div class="col-6 me-2"> 
 				<input type="hidden" name="kind" value="col1">
 	        	<input value="${pager.search}" id="search" name="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
 	        </div>
 	        <div class="col-2">
-	        	<button class="btn btn-outline-success" type="submit">Search</button>
+	        	<button class="btn btn-outline-success searchBtn" type="button">Search</button>
 	        </div>
         </form>
         <div>
         	<span id="keyWord">인기키워드</span>
         	<div>
-        		<a>sadfs</a>
-        		<a>sadfs</a>
-        		<a>sadfs</a>
-        		<a>sadfs</a>
-        		<a>sadfs</a>
-        		<a>sadfs</a>
-        		
+        	<c:forEach items="${key}" var="key">
+        		<a href="javascript:void(0);" onclick="searchKey(this);">${key.keyName}</a>
+        	</c:forEach>
         	</div>
         </div>
 	</div>
@@ -103,7 +99,7 @@
 		        <i class="bi bi-award"></i>
 		        
 				<strong>${vo.faqCateVO.cateName}</strong>
-				<div id="title">${vo.title}</div>
+				<div class="title">${vo.title}</div>
 		     
 		      </button>
 		    </h2>

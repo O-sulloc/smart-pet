@@ -9,6 +9,9 @@ import com.pj.pet.util.Pager;
 @Mapper
 public interface FaqMapper{
 	
+	//FAQKEYWORD
+	//key list 출력시 필요
+	public List<FaqKeyVO> getKeyList() throws Exception;
 	
 	//titleCount 중복체크
 	public int getTitleCount(FaqVO faqVO) throws Exception;
