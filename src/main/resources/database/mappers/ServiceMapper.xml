@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.pj.pet.service.ServiceMapper">
+<!-- add service -->
+<insert id="setService" parameterType="ServiceVO">
+	INSERT into SERVICE
+	values(NULL,#{serName},#{serTel},#{serAddress},#{hospitalField},#{homepage},#{serKind},#{id},#{serTime})
+</insert>
+
+
+<!-- mypage detail -->
+<select id="getDetail" parameterType="ServiceVO" resultType="ServiceVO">
+	select * from SERVICE S 
+		 LEFT JOIN
+			 MEMBERFILES F
+			 USING (ID)
+	 WHERE ID=#{id}
+</select>
+
+
+<!-- 병원/샵 삭제 -->
+<delete id="setDelete" parameterType="ServiceVO">
+	DELETE FROM SERVICE WHERE ID=#{id} and SNUM=#{sNum}
+</delete>
+
+<!--병원/샵 정보 업데이트  -->
+	<update id="setUpdate" parameterType="ServiceVO">
+		UPDATE SERVICE SET 
+			SERNAME=#{serName},
+			SERTEL=#{serTel},
+			SERADDRESS=#{serAddress},
+			HOMEPAGE=#{homepage},
+			SERTIME=#{serTime},
+			HOSPITALFIELD=#{hospitalField}
+		WHERE ID = #{id}  and SNUM=#{sNum}
+	</update>
+</mapper>

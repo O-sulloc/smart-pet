@@ -4,4 +4,10 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
-<configuration></configuration>
+<configuration>
+  	<typeAliases>
+		<typeAlias type="com.pj.pet.service.ServiceVO" alias="ServiceVO"/>
+		<typeAlias type="com.pj.pet.service.ServiceFileVO" alias="ServiceFileVO"/>
+		<typeAlias type="com.pj.pet.reservation.ReservationVO" alias="ReservationVO"/>
+  	</typeAliases>
+</configuration>
