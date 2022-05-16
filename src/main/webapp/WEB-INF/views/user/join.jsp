@@ -9,6 +9,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <title>Insert title here</title>
+<style type="text/css">
+	.id_input1{
+		color:green; 
+		display: none;
+	}
+	.id_input2{
+		color:red;
+		display: none; 
+	}
+</style>
 </head>
 <body>
 	
@@ -24,7 +34,7 @@
 						Enter your information
 					</div>
 					
-					<form:form modelAttribute="userVO" method="post">
+					<form:form modelAttribute="userVO" method="post" id="frm">
 						<div class="row g-3 justify-content-center">
 							<div>
 								<div class="col-sm-6">
@@ -92,21 +102,21 @@
 								
 								<div class="form-check">
 						            <input type="checkbox" class="form-check-input ch" id="check1">
-						            <label class="form-check-label" for="check1">terms and conditions</label>
+						            <label class="form-check-label" for="check1">terms and conditions(필수)</label>
 								</div>
 								
 								<div class="form-check">
 						            <input type="checkbox" class="form-check-input ch" id="check2">
-						            <label class="form-check-label" for="check2">terms and conditions</label>
+						            <label class="form-check-label" for="check2">terms and conditions(필수)</label>
 								</div>
 								
 								<div class="form-check">
 						            <input type="checkbox" class="form-check-input ch" id="check3">
-						            <label class="form-check-label" for="check3">terms and conditions</label>
+						            <label class="form-check-label" for="check3">terms and conditions(필수)</label>
 								</div>
 							<hr class="my-4">
 							
-							<button class="w-100 btn btn-success btn-lg mb-5" type="submit">Join!</button>
+							<button class="w-100 btn btn-success btn-lg mb-5" type="submit" id="btn">Join!</button>
 						</div>
 					</form:form>
 				</div>

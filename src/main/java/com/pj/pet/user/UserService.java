@@ -48,6 +48,11 @@ public class UserService {
 		return userMapper.setDelete(userVO);
 	}
 	
+	//pwUpdate
+	public int setPwUpdate(UserVO userVO) throws Exception{
+		return userMapper.setPwUpdate(userVO);
+	}
+	
 	//Update
 	public int setUpdate(UserVO userVO) throws Exception{
 		return userMapper.setUpdate(userVO);
@@ -85,9 +90,17 @@ public class UserService {
 		
 		check=bindingResult.hasErrors();
 		
+		//pw=checkpw
 		if(!userVO.getPw().equals(userVO.getCheckPw())) {
 			check=true;
 			bindingResult.rejectValue("checkPw", "user.pw.notEqual");
+		}
+		
+		//id중복검사
+		UserVO idCheck=userMapper.getId(userVO);
+		if(idCheck != null) {
+			check = true;
+			bindingResult.rejectValue("id", "user.id.equal");
 		}
 		
 		return check;

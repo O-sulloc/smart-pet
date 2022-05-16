@@ -1,3 +1,7 @@
+const btn = document.getElementById("btn");
+const check = document.getElementsByClassName("form-check-input ch");
+const frm = document.getElementById("frm");
+
 window.onload=function(){
 	document.getElementById("address").addEventListener("click", function(){
 		new daum.Postcode({
@@ -29,4 +33,20 @@ $(".ch").on("click",function(){
 	$("#all").prop("checked", check);
 	//checkAll에 check의 값을 넣는다.(true or false)
 
+});
+
+btn.addEventListener("click", function(){
+	let termsCheck = true;
+	for(ch of check){
+		if(!ch.checked){
+			termsCheck=false;
+		}
+	}
+
+	if(termsCheck){
+		frm.onsubmit();
+	}else{
+		alert("약관에 동의해주세요.");
+		return false
+	}
 });

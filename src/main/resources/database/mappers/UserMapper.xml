@@ -5,6 +5,11 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.pj.pet.user.UserMapper">
+	<select id="getId" resultType="UserVO" parameterType="UserVO">
+		SELECT ID FROM USER
+			WHERE ID = #{id}
+	</select>
+
 	<delete id="setPetDelete" parameterType="UserPetVO">
 		DELETE FROM USERPET WHERE PETNUM=#{petNum} 
 	</delete>
@@ -32,6 +37,11 @@
 	<delete id="setDelete" parameterType="UserVO">
 		DELETE FROM USER WHERE ID=#{id}
 	</delete>
+
+	<update id="setPwUpdate" parameterType="UserVO">
+		UPDATE USER SET PW=#{pw}
+		WHERE ID=#{id}
+	</update>
 
 	<update id="setUpdate" parameterType="UserVO">
 		UPDATE USER SET EMAIL=#{email}, PHONE=#{phone}, ADDRESS=#{address}
