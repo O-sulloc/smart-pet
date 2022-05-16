@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', function(){
 		var search = $('#search').val();
 		$(".title:contains('"+search+"')").each(function () {
 			var regex = new RegExp(search,'gi');
-			$(this).html($(this).text().replace(regex, "<span class='text-red'>"+search+"</span>") );
+			$(this).html($(this).text().replace(regex, "<span class='text-blue'>"+search+"</span>") );
 		});
 	}
 });

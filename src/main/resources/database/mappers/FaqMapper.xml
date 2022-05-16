@@ -148,7 +148,7 @@
 
 	<!-- FAQ 수정 -->
 	<update id="setUpdate" parameterType="FaqVO">
-		UPDATE FAQ SET TITLE = #{title}, CONTENTS = #{contents}, GRADE = #{grade} WHERE ID = #{id}
+		UPDATE FAQ SET TITLE = #{title}, CONTENTS = #{contents}, GRADE = #{grade} WHERE NUM = #{num}
 	</update>
 	
 	

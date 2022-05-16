@@ -33,6 +33,14 @@ public class Pager {
 	private String grade;
 	private String gradeRef;
 	
+	
+	//리스트에 뿌려주는 총 갯수 가져오려고 생성
+	private Long totalCountC;
+		
+	
+	
+	
+	
 	public String getGrade() {
 		if(this.grade == "") {
 			this.grade = null;
@@ -83,6 +91,9 @@ public class Pager {
 	//startNum, lastNum 만들어주는 식
 	public void makeNum(Long totalCount) {
 		//전체 row 갯수는 위 매개변수
+		
+		//위 선언 변수에 대입
+		totalCountC = totalCount;
 		
 		//전체 page 갯수
 		Long totalPage = totalCount/this.getPerPage();

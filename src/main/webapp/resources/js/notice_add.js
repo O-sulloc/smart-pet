@@ -72,6 +72,7 @@ let typeCheck1 = false;
 let typeCheck2 = false;
 let writerCheck = false;
 let titleCheck = false;
+let checkTitle = false; //중복
 let contentsCheck = false;
 
 
@@ -91,6 +92,7 @@ function totalCheck(){
 				if(result == 0){
 					$("#checkTitle").html('사용할 수 있는 제목입니다.');
 					$("#checkTitle").attr('color','green');
+					checkTitle = true;
 				}else{
 					$("#checkTitle").html('사용할 수 없는 제목입니다.');
 					$("#checkTitle").attr('color','red');
@@ -197,6 +199,12 @@ function totalCheck(){
 		
 		if(!titleCheck){
 			alert("제목을 입력해주세요");
+			$('#title').focus();
+			return;
+		}
+
+		if(!checkTitle){
+			alert("다른 제목을 입력해주세요");
 			$('#title').focus();
 			return;
 		}

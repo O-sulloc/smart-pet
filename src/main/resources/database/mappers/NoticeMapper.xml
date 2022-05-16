@@ -85,7 +85,7 @@
 
 	<!-- 공지사항 수정 -->
 	<update id="setUpdate" parameterType="NoticeVO">
-		UPDATE NOTICE SET TITLE = #{title}, CONTENTS = #{contents}, GRADE = #{grade} WHERE ID = #{id}
+		UPDATE NOTICE SET TITLE = #{title}, CONTENTS = #{contents}, GRADE = #{grade} WHERE NUM = #{num}
 	</update>
 	
 	

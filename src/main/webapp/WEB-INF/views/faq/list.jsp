@@ -8,7 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <c:import url="../temp/header_css.jsp"></c:import>
   <link href="../resources/css/notice_list.css" rel="styleSheet" />
-  
+  <!-- modal 되는지 보려고 위로 올림 -->
+  <c:import url="../temp/header_script.jsp"></c:import>
 <title>Insert title here</title>
 
 </head>
@@ -65,18 +66,25 @@
         </div>
 	</div>
 		
-	<br>
-	<hr>
-	<br>
 	
 	<div class="table_total">
-		<ul>
-			<li><a class="btn btn-primary" href="./list?gradeRef=400">가장 궁금해 하시는 질문 10개</a></li>
-			<li><a class="btn btn-primary" href="./list?gradeRef=100">홈페이지</a></li>
-			<li><a class="btn btn-primary" href="./list?gradeRef=200">상품</a></li>
-			<li><a class="btn btn-primary" href="./list?gradeRef=300">예약서비스</a></li>
-		</ul>
-		
+		<!-- search로 검색할땐 안보이게 -->
+		<c:choose>
+			<c:when test="${empty search}">
+				<br>
+				<hr>
+				<br>
+				<ul>
+					<li><a class="btn btn-primary" href="./list?gradeRef=400">가장 궁금해 하시는 질문 10개</a></li>
+					<li><a class="btn btn-primary" href="./list?gradeRef=100">홈페이지</a></li>
+					<li><a class="btn btn-primary" href="./list?gradeRef=200">상품</a></li>
+					<li><a class="btn btn-primary" href="./list?gradeRef=300">예약서비스</a></li>
+				</ul>
+			</c:when>
+			<c:otherwise>
+				<h1><span class="text-blue">${search}</span> 검색결과 총 <span class="text-blue">${pager.totalCountC}</span>개</h1>
+			</c:otherwise>
+		</c:choose>
 		<!-- gradeRef=99이면 미출력, total empty면 미출력 -->
 		<c:if test="${total ne 400 && not empty total}">
 			<ul>			
@@ -112,9 +120,46 @@
 					</button>
 				</p>
 				<%-- <c:if test=""> 멤버들어오면 작성 --%>
-					<div>
-						<a href="./update?num=${vo.num}" role="button" class="btn btn-success mx-1">수정하기</a>	
-						<a href="./delete?num=${vo.num}" role="button" class="btn btn-danger mx-1">삭제하기</a>
+					<div class="modalTotal">
+						<!-- modal  테스트 -->
+						<button class="btn btn-success mx-1" id="modifyBtn${vo.num}">수정하기</button>
+						
+						<%-- <a href="./update?num=${vo.num}" role="button" class="btn btn-success mx-1">수정하기</a> --%>
+						
+						<!-- FAQ 수정 Modal-->
+						<div class="modal fade" id="modify${vo.num}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">FAQ 수정하기</h5>
+										<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">X</span>
+										</button>
+									</div>
+									
+									<!-- CSS 넣기 -->
+									<h3>${vo.faqCateVO.cateName}</h3>
+									
+									
+									<div class="modal-body">
+										<label for="title" class="col-sm-2 col-form-label">Title</label>
+										<input type="text" class="form-control title_check" data-title="${vo.title}" id="title" name="title" value="${vo.title}">
+									</div>
+									<div class="modal-body">
+										<label for="contents" class="col-sm-2 col-form-label">Contents</label>
+										<textarea class="form-control" id="contents" name="contents">${vo.contents}</textarea>
+									</div>
+									<input type="hidden" name="num" value="${vo.num}" id="num">
+									<input type="hidden" name="grade" value="${vo.grade}" id="grade">
+									<div class="modal-footer">
+										<button type="button" class="btn btn-outline-success close" data-dismiss="modal">취소</button>
+										<button type="button" class="btn btn-success" id="modifyBtn">수정</button>
+									</div>
+								</div>
+							</div>
+						</div>	
+						<%-- <a href="./delete?num=${vo.num}" role="button" class="btn btn-danger mx-1">삭제하기</a> --%>
+						<button type="button" class="btn btn-danger mx-1 deleteBtn" data-num="${vo.num}">삭제하기</button>
 					</div>
 				<%-- </c:if> --%>
 		    </div>
@@ -171,10 +216,10 @@
 </div>
 
 
-<br><br>
 
-<c:import url="../temp/header_script.jsp"></c:import>
 <script type="text/javascript" src="../resources/js/notice_list.js"></script>
+<script type="text/javascript" src="../resources/js/notice_ajax.js"></script>
+
 
 </body>
 </html>

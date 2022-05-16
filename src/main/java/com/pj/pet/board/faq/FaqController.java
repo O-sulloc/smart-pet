@@ -40,7 +40,7 @@ public class FaqController {
 		}
 		
 		mv.addObject("result", result);
-		mv.setViewName("common/result");
+		mv.setViewName("common/ajaxResult");
 		return mv;
 	}
 	
@@ -70,12 +70,17 @@ public class FaqController {
 		mv.addObject("cate", cate);
 		mv.addObject("key", key);
 		
-		//그냥 보내버림
-		//System.out.println(gradeRef);
-		
+		//그냥 보내버림(파라미터 값 유무 확인)
 		if(gradeRef != null) {
 			mv.addObject("total", gradeRef);
 		}
+		
+		//search 값 유무 확인
+		if(pager.getSearch() != null) {
+			mv.addObject("search", pager.getSearch());
+		}
+		
+		
 		mv.setViewName("faq/list");
 		
 		return mv;
@@ -152,9 +157,15 @@ public class FaqController {
 	@PostMapping("update")
 	public ModelAndView setUpdate(FaqVO faqVO, ModelAndView mv) throws Exception{
 		
+		System.out.println("update에 들어왔음");
+		
 		int result = faqService.setUpdate(faqVO);
 		
-		mv.setViewName("redirect:./list?gradeRef="+faqVO.getGrade().substring(0,2)+"0");
+		//mv.setViewName("redirect:./list?gradeRef="+faqVO.getGrade().substring(0,2)+"0");
+		
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		
 		
 		return mv;
 	}
@@ -165,9 +176,17 @@ public class FaqController {
 		
 		ModelAndView mv = new ModelAndView();
 		
+		//redirect에 grade가지고 오려고 씀
+		//faqVO = faqService.getDetail(faqVO);
+		//비동기면 redirect 설정이 아니고 common/ajaxResult로 보내서 삭제가 됐을때 그냥 페이지에서 리로딩하면 끝
+		//mv.setViewName("redirect:./list?gradeRef="+faqVO.getGrade().substring(0,2)+"0");
+		
+		
+		//faq 삭제 코드
 		int result = faqService.setDelete(faqVO);
 		
-		mv.setViewName("redirect:./list");
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
 		
 		return mv;
 	}
