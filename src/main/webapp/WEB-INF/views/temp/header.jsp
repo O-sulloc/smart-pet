@@ -22,7 +22,7 @@
           <a class="nav-link active" aria-current="page" href="#">병원조회</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">상품조회</a>
+          <a class="nav-link active" aria-current="page" href="#">미용조회</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -50,7 +50,7 @@
 			<li class="nav-item dropdown">
 	        	<i class="nav-link dropdown fa-regular fa-circle-user fa-2x" onclick="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
 	          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-	            <li><a class="dropdown-item" href="/user/myPage">내 프로필</a></li>
+	            <li><a class="dropdown-item" href="/user/loginCheck">내 프로필</a></li>
 	            <li><a class="dropdown-item" href="/user/petList">반려동물 관리</a></li>
 	            <li><hr class="dropdown-divider"></li>
 	            <li><a class="dropdown-item" href="#">장바구니</a></li>

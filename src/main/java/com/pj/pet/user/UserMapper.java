@@ -8,7 +8,10 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface UserMapper {
-
+	
+	//가입시 아이디 중복 확인
+	public UserVO getId(UserVO userVO) throws Exception;
+	
 	//petdelete
 	public int setPetDelete(UserPetVO userPetVO) throws Exception;
 	
@@ -26,6 +29,9 @@ public interface UserMapper {
 	
 	//delete
 	public int setDelete(UserVO userVO) throws Exception;
+	
+	//pwupdate
+	public int setPwUpdate(UserVO userVO) throws Exception;
 	
 	//update
 	public int setUpdate(UserVO userVO) throws Exception;

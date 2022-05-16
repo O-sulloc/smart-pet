@@ -39,6 +39,29 @@ public class UserController {
 		return "user";
 	}
 	
+	@PostMapping("loginCheck")
+	public String loginCheck(UserVO userVO) throws Exception {
+		userVO= userService.getLogin(userVO);
+
+		String path = "redirect:./loginCheck"; // login failed
+
+		if (userVO != null) {
+			path = "redirect:./myPage"; // login success
+		}
+
+		return path;
+	}
+
+	@GetMapping("loginCheck")
+	public ModelAndView loginCheck(HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		UserVO userVO = (UserVO) session.getAttribute("user");
+		
+		mv.addObject("vo",userVO);
+		mv.setViewName("user/loginCheck");
+		return mv;
+	}
+	
 	@GetMapping("petDelete")
 	public String setPetDelete(UserPetVO userPetVO) throws Exception{
 		userService.setPetDelete(userPetVO);
@@ -98,6 +121,19 @@ public class UserController {
 		mv.setViewName("redirect:/");
 		return mv;
 	}
+
+	@PostMapping("pwUpdate")
+	public ModelAndView setPwUpdate(HttpSession session,UserVO userVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		UserVO vo = (UserVO) session.getAttribute("user");
+		userVO.setId(vo.getId());
+		userService.setPwUpdate(userVO);
+		mv.setViewName("redirect:./myPage");
+		return mv;
+	}
+	
+	@GetMapping("pwUpdate")
+	public void setPwUpdate() throws Exception{}
 	
 	@PostMapping("update")
 	public ModelAndView setUpdate(UserVO userVO, HttpSession session) throws Exception{
@@ -137,14 +173,19 @@ public class UserController {
 		int result=userService.getFindPw(userVO);
 		
 		if(result == 0) {
-			mv.addObject("msg", "아이디와 이메일을 확인해주세요");
-			mv.setViewName("/user/findPw");
+			mv.addObject("msg", "일치하는 정보가 없습니다. 아이디와 이메일을 확인해주세요");
+			mv.addObject("path", "./findPw");
+			mv.setViewName("common/pwResult");
 		}else if(result==1) {
 			String newPw = new TempKey().getKey(6, false);
+			// 임시비밀번호 발급
+			
 			userVO.setPw(newPw);
-
+			// db에서도 비번 수정
+			
 			userService.setResetPw(userVO);
-			mailService.sendMail();
+			mailService.sendMail(userVO.getEmail(), "임시비밀번호: "+newPw);
+			
 			mv.setViewName("/user/findPwResult");
 		}
 		
