@@ -13,6 +13,7 @@ public class ReservationService {
 
 	public int setAdd(ReservationVO reservationVO) throws Exception{
 		int result= reservationMapper.setAdd(reservationVO);
+		
 		return result;
 	}
 }
