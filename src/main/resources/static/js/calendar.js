@@ -9,7 +9,7 @@ let selectCk = 0;
 let buildcalendar = function(){
 	let htmlDates = ''; 
 	let prevLast = new Date(CDate.getFullYear(), CDate.getMonth(), 0); //지난 달의 마지막 날 
-	let thisFirst = new Date(CDate.getFullYear(), CDate.getMonth(), 1); //이번 달의 첫쨰 날
+	let thisFirst = new Date(CDate.getFullYear(), CDate.getMonth(), 1); //이번 달의 첫째날
 	let thisLast = new Date(CDate.getFullYear(), CDate.getMonth() + 1, 0); //이번 달의 마지막 날
 	document.querySelector(".year").innerHTML = CDate.getFullYear() + "년";  // year에 년도 출력
 	document.querySelector(".month").innerHTML = (CDate.getMonth() + 1) + "월";  //month에 월 출력
@@ -90,3 +90,25 @@ function fn_selectDate(date){
 }
 
 buildcalendar();
+
+
+ 
+ $("#reservation").click(function(){
+	let serNum = $(this).attr("data-sn");
+	console.log(serNum);
+	let resDate=year+"-"+month+"-"+d;
+	$.ajax({
+		type:"POST",
+		url:"../reservation/add/"+serNum+"/"+resDate,
+		success:function(data){
+			console.log("Data:",data);
+			if(data!=''){
+				let check = confirm("예약 완료");
+				
+			}else{
+				alert("예약 실패");
+			}
+		}
+	})
+	
+})
