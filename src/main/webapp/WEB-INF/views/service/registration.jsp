@@ -13,9 +13,12 @@
 <body>
 <h1>서비스 등록 페이지</h1>
 
-
 </div>
 <form action="./registration" method="post" enctype="multipart/form-data">
+
+    <input type="hidden"  name="id" value="${user.id}">
+ 
+
   <div class="form-check">
   <input class="form-check-input" type="radio" name="serKind" id="flexRadioDefault1" value="1" checked>
   <label class="form-check-label" for="flexRadioDefault1">
@@ -50,13 +53,15 @@
     <input type="text" class="form-control" name="serTime">
     <div  class="form-text">ex) 평일 9:00~6:00 토요일:9~2시 매주 수요일 휴무 </div>
   </div>
-  <div class="mb-3" id="hospital">
+  <div class="mb-3">
     <label for="hospitalField" class="form-label">진료과목</label>
-    <input type="text" name="hospitalField" class="form-control" value="">
+    <input type="text" name="hospitalField" class="form-control">
     <div  class="form-text">ex)고양이전문, 노령동물 관리 </div>
   </div>
- 
-    <input type="hidden"  name="id" value="">
+  <div class="mb-3">
+    <label for="hospitalField" class="form-label">대표 이미지</label>
+    <input type="file" name="file" class="form-control">
+  </div>  
 
   <button type="submit" class="btn btn-primary">등록</button>
 </form>

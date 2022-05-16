@@ -13,9 +13,6 @@ public class ReservationService {
 	@Autowired
 	ReservationMapper reservationMapper;
 
-	public List<ReservationVO> getList(ServiceVO serviceVO)throws Exception{
-		
-		return reservationMapper.getList(serviceVO);
-	}
+
 	
 }

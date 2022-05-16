@@ -7,8 +7,11 @@ import lombok.Data;
 @Data
 public class ReservationTimeVO {
 
+	private Long setNum;
 	private Long serNum;
-	private Long timeCase;
-	private Time openTime;
-	private Time closeTime;
+	private Long timecase;
+	private String openTime;
+	private String closeTime;
 }
+
+

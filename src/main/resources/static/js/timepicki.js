@@ -577,4 +577,8 @@ $(document).ready(function() {
  $ ('#timepicker3'). timepicki (); 
  
  $ ('#timepicker4'). timepicki (); 
+ 
+ $ ('#timepicker5'). timepicki (); 
+ 
+ $ ('#timepicker6'). timepicki (); 
 })

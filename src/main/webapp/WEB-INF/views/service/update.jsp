@@ -1,65 +1,85 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<c:import url="../temp/header_css.jsp"></c:import>
 <title>Insert title here</title>
 </head>
 <body>
-<h1>update page</h1>
-
-<h1>mypage</h1>
-<h3>홈페이지:${vo.homepage}</h3>
-<h3>진료과목:${vo.hospitalField}</h3>
-<h3>전화번호:${vo.serTel}</h3>
-
 
 	<div class="container mt-4">
 		<div class="row mt-4">
 			<div class="alert alert-light" role="alert">
-				<h4 style="text-transform: uppercase;">${board} Update</h4>
+				<h4 style="text-transform: uppercase;"> Update</h4>
 			</div>
 		</div>
 
 
 		<div class="row mt-4">
-			<form action="update" method="post" enctype="multipart/form-data">
+			<form action="./update" method="post" enctype="multipart/form-data">
+				
+				<input type="hidden" name="id" value="${user.id}">
 				
 				<div class="row mb-3">
 					<label for="name" class="col-sm-2 col-form-label">Name</label>
 					<div class="col-sm-10">
-						<input type="text" value="${vo.serName}" name="name" class="form-control" id="name">
+						<input type="text" value="${vo.serName}" name="serName" class="form-control" readonly>
 					</div>
 				</div>
 
 				<div class="row mb-3">
-					<label for="text" class="col-sm-2 col-form-label">Hompage</label>
+					<label for="serAddress" class="col-sm-2 col-form-label">Address</label>
 					<div class="col-sm-10">
-						<input type="email" value="${vo.homepage}" name="email" class="form-control" id="email">
+						<input type="text" value="${vo.serAddress}" name="serAddress" class="form-control" >
+					</div>
+				</div>
+				
+				<div class="row mb-3">
+					<label for="hospitalField" class="col-sm-2 col-form-label">진료과목 </label>
+					<div class="col-sm-10">
+						<input type="text" value="${vo.hospitalField}" name="hospitalField" class="form-control" >
+					</div>
+				</div>
+				
+
+				<div class="row mb-3">
+					<label for="Email" class="col-sm-2 col-form-label">homepage</label>
+					<div class="col-sm-10">
+						<input type="text" value="${vo.homepage}" name="homepage" class="form-control" >
 					</div>
 				</div>
 				
 				<div class="row mb-3">
 					<label for="phone" class="col-sm-2 col-form-label">Phone</label>
 					<div class="col-sm-10">
-						<input type="text" value="${vo.serTel}" name="phone" class="form-control" id="phone">
+						<input type="text" value="${vo.serTel}" name="serTel" class="form-control">
 					</div>
 				</div>				
 
-				<div class="row mb-3">
+<!-- 				<div class="row mb-3">
 					<label for="files" class="col-sm-2 col-form-label">File</label>
 					<div class="col-sm-10">
-						<input type="file" name="files" class="form-control" id="files">
+						<input type="file" name="files" class="form-control">
 					</div>
-				</div>
+				</div> -->
 
-				<button type="submit" class="btn btn-primary">Join</button>
+				<button type="submit" class="btn btn-primary">수정</button>
 			</form>
 
 		</div>
 
 
 	</div>
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+
 </body>
 </html>

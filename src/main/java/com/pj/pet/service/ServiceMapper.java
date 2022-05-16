@@ -1,13 +1,40 @@
 package com.pj.pet.service;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
+
+import com.pj.pet.reservation.ReservationVO;
+import com.pj.pet.user.UserVO;
 
 @Mapper
 public interface ServiceMapper {
 
-	public ServiceVO getDetail(ServiceVO serviceVO)throws Exception;
 	
+	
+	public ServiceVO getDetail(ServiceVO serviceVO)throws Exception;
+
+	//서비스 디테일 
+	public ServiceVO getService(ServiceVO serviceVO)throws Exception;
+	
+	//예약세팅 모음 select
+	public ReservationSettingVO getAllReservationSetting(ServiceVO serviceVO)throws Exception;
+	
+	//예약세팅 등록
+	public int setReservationSetting(ReservationSettingVO reservationSettingVO)throws Exception;
+	
+	//운영시간 등록
+	public int setReservationTime(ReservationTimeVO reservationTimeVO)throws Exception;
+	
+	//서비스 등록 
+	public int setService(ServiceVO serviceVO)throws Exception;
+	
+	//서비스 정보 수정 
 	public int setUpdate(ServiceVO serviceVO)throws Exception;
 	
-	public int setService(ServiceVO serviceVO)throws Exception;
+	//서비스 대표 파일 추가
+	public int setFileAdd(ServiceFileVO serviceFileVO)throws Exception;
+	
+	//예약 리스트 
+	public List<ReservationVO> getList(ServiceVO serviceVO)throws Exception;
 }

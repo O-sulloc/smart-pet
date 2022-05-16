@@ -12,14 +12,51 @@
 <body>
 <c:import url="../temp/header.jsp"></c:import>
 
+<div class="container">
+	<h1>Mypage</h1>
+	${vo.serviceFileVO.fileName}
 
-<h1>mypage</h1>
-<h3>홈페이지:${vo.homepage}</h3>
-<h3>진료과목:${vo.hospitalField}</h3>
-<h3>전화번호:${vo.serTel}</h3>
+	
+	<div class="row">
+		<div class="card">
+			    	
+	    	<hr class="my-6">
+	    		<h6>Photo</h6>
+	    	
+				<ul class="list-group list-group-flush">
+				   	<li class="list-group-item">
+				   		<img alt="" src="../resources/upload/service/${vo.serviceFileVO.fileName}">
+				   	</li>
+				</ul>
+		
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">${vo.serName}</li>
+		   		<li class="list-group-item">${vo.serAddress} </li>
+		   		<li class="list-group-item">${vo.hospitalField} </li>
+		   		<li class="list-group-item">${vo.serTel} </li>
+			   	<li class="list-group-item">${vo.homepage}</li>
+			</ul>
+		  
+		
 
-<a href="./update"><button type="button" >정보 수정</button></a>
-<a href="../reservationManage/manage"><button type="button" >예약 관리 페이지</button></a>
+    	 
+		</div>
+	
+	</div>
+	
+</div>
+	<div class="container my-4">
+		<div class="col-2 d-flex">
+			<a href="update" role="button" class="btn btn-success mx-1">Update</a>
+			<a href="delete" role="button" class="btn btn-danger mx-1">Delete</a>
+		</div>
+	</div>
+	
+	
+	
+
+
+<a href="../service/manage"><button type="button" >예약 관리 페이지</button></a>
 <!-- <img alt="" src="../resources/upload/service/$"> -->
 
 

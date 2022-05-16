@@ -14,6 +14,9 @@
 	WHERE SERNUM=
 		(SELECT SERNUM from SERVICE WHERE ID=#{id})
 </select>
+
+
+
 <!-- <select id="getList" parameterType="ServiceVO" resultType="ReservationVO">
 	SELECT  RESNUM,RESDATE,RESMEMO,RESSTATE,RESTIME,NAME,PHONE,EMAIL
 	from RESERVATION R

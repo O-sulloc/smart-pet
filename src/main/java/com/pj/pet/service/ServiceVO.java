@@ -1,5 +1,6 @@
 package com.pj.pet.service;
 
+
 import lombok.Data;
 
 @Data
@@ -14,4 +15,6 @@ public class ServiceVO {
 	private String hospitalField;
 	private String homepage;
 	private Long serKind;//0:병원 1:샵 
+	
+	private ServiceFileVO serviceFileVO;
 }

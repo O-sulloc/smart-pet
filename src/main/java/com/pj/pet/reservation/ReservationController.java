@@ -19,12 +19,7 @@ public class ReservationController {
 	@Autowired
 	private ReservationService reservationService;
 	
-	@GetMapping("reservationSetting")
-	public ModelAndView setReservationSetting()throws Exception{
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("reservationManage/reservationSetting");
-		return mv;
-	}
+
 	
 	@GetMapping("calendar")
 	public ModelAndView setCalendar()throws Exception{
@@ -32,25 +27,6 @@ public class ReservationController {
 		mv.setViewName("reservationManage/calendar");
 		return mv;
 	}
+
 	
-	@GetMapping("manage")
-	public ModelAndView manage()throws Exception{
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("reservationManage/manage");
-		return mv;
-	}
-	
-	//예약 현황 
-	@GetMapping("list")
-	public ModelAndView getList(HttpSession session)throws Exception{
-		ModelAndView mv = new ModelAndView();
-		//session에서 id 빼와서 넣어 
-		ServiceVO serviceVO= new ServiceVO();
-		serviceVO.setId("id1");
-		List<ReservationVO> ar=reservationService.getList(serviceVO);
-		
-		mv.addObject("list", ar);
-		mv.setViewName("reservationManage/list");
-		return mv;
-	}
 }
