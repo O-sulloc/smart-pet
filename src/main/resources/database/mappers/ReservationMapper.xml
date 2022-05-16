@@ -6,13 +6,10 @@
     
 <mapper namespace="com.pj.pet.reservation.ReservationVO">
 
-	<insert id="serviceAdd" parameterType="ServiceVO">
-		INSERT INTO SERVICE()
-	</insert>
-
+	
 	<insert id="setAdd" parameterType="ReservationVO" useGeneratedKeys="true" keyProperty="resNum">
 		INSERT INTO RESERVATION(RESNUM,ID,SERNUM,RESDATE,RESTIME,RESMEMO,RESSTATE)
-		VALUES (#{resNum},'keem',#{serNum},#{resDate},18,'memo',0)
+		VALUES (#{resNum},#{id},#{serNum},#{resDate},#{resTime},#{resMemo},0)
 	</insert>
 
 </mapper>

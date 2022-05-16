@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>예약완료되었습니다.</h1>
+
 </body>
 </html>

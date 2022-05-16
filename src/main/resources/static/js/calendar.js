@@ -69,13 +69,12 @@ function fn_selectDate(date){
 		$(".date").css("color", "");
 		$("#date_"+date).css("background-color", "red");
 		$("#date_"+date).css("color", "white");
-		
-		$("#period_1").val(year+"-"+month+"-"+date);
-		
+
+		/*$("#period_1").val(year+"-"+month+"-"+date);*/
+
 		selectCk = date;
 		d=date;
-		console.log(selectCk);
-		console.log(year+"-"+month+"-"+date);
+		
 		
 			
 		
@@ -92,11 +91,63 @@ function fn_selectDate(date){
 buildcalendar();
 
 
- 
- $("#reservation").click(function(){
-	let serNum = $(this).attr("data-sn");
-	console.log(serNum);
+const order_btn=document.querySelector(".order_btn");
+const calendar=document.querySelector(".calendar");
+
+calendar.addEventListener("click",function(){
+	let order_btn=event.target.getAttribute("data-d")
+	
+})
+
+ /*order_btn.addEventListener("click",function(){
 	let resDate=year+"-"+month+"-"+d;
+	if(resDate.value==''){
+		alert("날짜를 선택해주세요.");
+		return;
+	}
+	alert("예약되었습니다.");
+	
+})*/
+ 
+ calendar.addEventListener("click",function(event){
+	let order_btn = event.target;
+	
+	if(order_btn.classList.contains("dates")){
+		
+	let serNum = $(this).attr("data-sn");
+	let resDate=year+"-"+month+"-"+d;
+	let resTime="9:00";
+	console.log(resDate);
+	const xhttp = new XMLHttpRequest();
+	
+	xhttp.open("POST","../reservation/add");
+	xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhttp.send("serNum="+serNum+"&resDate="+resDate+"&resTime"+resTime);
+	
+	
+	xhttp.onreadystatechange=function(){
+		if(this.readyState==4&&this.status==200){
+			console(this.responseText);
+			let result=this.responseText.trim();
+			
+			if(result=='1'){
+				alert("예약 되었습니다.");
+			}else if(result=='0'){
+				alert("로그인이 필요합니다.");
+			}else{
+				alert("예약실패");
+			}
+		}
+	}
+	
+	}
+	
+});
+/*$("#reservation").click(function(){
+	
+	let serNum = $(this).attr("data-sn");
+	let resDate=year+"-"+month+"-"+d;
+	console.log(resDate);
 	$.ajax({
 		type:"POST",
 		url:"../reservation/add/"+serNum+"/"+resDate,
@@ -111,4 +162,4 @@ buildcalendar();
 		}
 	})
 	
-})
+});*/

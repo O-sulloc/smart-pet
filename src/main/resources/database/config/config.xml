@@ -9,7 +9,6 @@
 
 		<typeAlias type="com.pj.pet.user.UserVO" alias="UserVO"/>
 		<typeAlias type="com.pj.pet.user.UserPetVO" alias="UserPetVO"/>
-	</typeAliases>
 
 		<typeAlias type="java.lang.Long" alias="Long"/>
 		<typeAlias type="com.pj.pet.util.Pager" alias="Pager"/>
