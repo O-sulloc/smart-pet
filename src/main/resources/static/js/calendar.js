@@ -70,7 +70,7 @@ function fn_selectDate(date){
 		$("#date_"+date).css("background-color", "red");
 		$("#date_"+date).css("color", "white");
 
-		/*$("#period_1").val(year+"-"+month+"-"+date);*/
+		$("#resDate").val(year+"-"+month+"-"+date);
 
 		selectCk = date;
 		d=date;
@@ -91,13 +91,13 @@ function fn_selectDate(date){
 buildcalendar();
 
 
-const order_btn=document.querySelector(".order_btn");
+/*const order_btn=document.querySelector(".order_btn");
 const calendar=document.querySelector(".calendar");
 
 calendar.addEventListener("click",function(){
 	let order_btn=event.target.getAttribute("data-d")
 	
-})
+})*/
 
  /*order_btn.addEventListener("click",function(){
 	let resDate=year+"-"+month+"-"+d;
@@ -109,7 +109,7 @@ calendar.addEventListener("click",function(){
 	
 })*/
  
- calendar.addEventListener("click",function(event){
+/*order_btn.addEventListener("click",function(event){
 	let order_btn = event.target;
 	
 	if(order_btn.classList.contains("dates")){
@@ -142,24 +142,24 @@ calendar.addEventListener("click",function(){
 	
 	}
 	
-});
-/*$("#reservation").click(function(){
+});*/
+$("#reservation").click(function(){
 	
 	let serNum = $(this).attr("data-sn");
 	let resDate=year+"-"+month+"-"+d;
 	console.log(resDate);
 	$.ajax({
 		type:"POST",
-		url:"../reservation/add/"+serNum+"/"+resDate,
+		url:"../reservation/add",
 		success:function(data){
 			console.log("Data:",data);
-			if(data!=''){
-				let check = confirm("예약 완료");
-				
+			if(data.trim()=='1'){
+				alert("예약완료");
+						
 			}else{
 				alert("예약 실패");
 			}
 		}
 	})
 	
-});*/
+});

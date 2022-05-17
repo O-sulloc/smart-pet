@@ -13,7 +13,7 @@
 </head>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
-	<input type="hidden" readonly="readonly" id="serNum" data-sn="${vo.serNum}">
+	
 	<ul class="list-group">
 		<li class="list-group-item">${vo.serName }</li>
 		<li class="list-group-item">${vo.serTel }</li>
@@ -36,7 +36,7 @@
 			});
 		</script>
 	</div>
-	<form fole="form" method="post" auto>
+	
 	<div class="container my-4">
 		<div class="calendar">
 			<div class="header">
@@ -81,28 +81,29 @@
  	<input type="text" aria-label="Last name" class="form-control">
 </div>
 	</div>
-	
 	<div class="inputArea">
-			<label for="">배송메모</label>
-			<input type="text" name="resMemo" id="resMemo" required="required">
+		<form action="../reservation/add" method="post">
+				<input type="hidden" name="serNum" value="${vo.serNum }">
+				<label for="">배송메모</label>
+				<input type="text" name="resMemo" id="resMemo">
+				<input type="hidden" name="resDate" value="" id="resDate">
+				<input type="hidden" name="resTime" value="9:00" id="resTime">
+				<input type="hidden" name="resState" value="0">
+				<button type="submit" class="btn btn-outline-success res_btn">예약진행</button>
+		</form>
 	</div>
 				
-	<input type="hidden" name="resState" value="0">
-	<div class="container my-4">
-		<div class="col-2 d-flex">
-			<button type="button" class="reservation" data-serNum="${vo.serNum }">예약진행</button>
-		</div>
-	</div>
+	
 	<script>
-		$(".reservation").click(function(){
+		 $(".res_btn").click(function(){
 			
 			let confirm_val=confirm("예약하시겠습니까?");
 			
 	
 			
-		})
+		}) 
 	</script>
-	</form>
+	
 	<script type="text/javascript" src="../js/calendar.js"></script>
 	<script type="text/javascript" src="../js/reservation.js"></script>
 

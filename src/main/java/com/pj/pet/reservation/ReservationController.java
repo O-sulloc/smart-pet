@@ -27,7 +27,7 @@ public class ReservationController {
 	@Autowired
 	private ReservationService reservationService;
 	
-	@ResponseBody
+//	@ResponseBody
 	@PostMapping(value="add")
 	public ModelAndView add(HttpSession session,ReservationVO reservationVO) throws Exception{
 		
@@ -38,7 +38,7 @@ public class ReservationController {
 			reservationVO.setId(userVO.getId());
 			int result= reservationService.setAdd(reservationVO);
 			mv.addObject("vo",reservationVO);
-			mv.setViewName("../reservation/add");
+			mv.setViewName("./reservation/confirm");
 			System.out.println("========예약완료============");
 		}else {
 			int result =0;
