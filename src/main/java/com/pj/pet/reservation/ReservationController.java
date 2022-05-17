@@ -28,7 +28,7 @@ public class ReservationController {
 	private ReservationService reservationService;
 	
 //	@ResponseBody
-	@PostMapping(value="add")
+	@PostMapping(value="confirm")
 	public ModelAndView add(HttpSession session,ReservationVO reservationVO) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
@@ -42,7 +42,11 @@ public class ReservationController {
 			System.out.println("========예약완료============");
 		}else {
 			int result =0;
+			
+			mv.setViewName("./user/login");
+			
 			System.out.println("예약 실패");
+			
 			
 		}
 		
@@ -50,7 +54,7 @@ public class ReservationController {
 	}
 	
 	
-	@GetMapping(value="add")
+	@GetMapping(value="confirm")
 	public void setAdd(ReservationVO reservationVO, Model model, ServiceVO serviceVO) throws Exception{
 		List<ReservationVO> ar = new ArrayList<>();
 		
@@ -58,4 +62,22 @@ public class ReservationController {
 //		reservationVO=reservationService.detail(reservationVO);// serviceService.detail(serviceVO);
 		model.addAttribute("vo",reservationVO);
 	}
+	
+	@GetMapping(value="confirmDetail")
+	public ModelAndView confirmDetail(HttpSession session,ReservationVO reservationVO,ServiceVO serviceVO )throws Exception{
+		ModelAndView mv = new ModelAndView();
+		UserVO userVO= (UserVO)session.getAttribute("user");
+		String id=userVO.getId();
+		
+		reservationVO.setId(id);
+		
+		if(serviceVO.getSerNum()==reservationVO.getSerNum()) {
+		reservationVO=reservationService.confirmDetail(reservationVO);
+		mv.addObject("vo",reservationVO);
+		mv.setViewName("./reservation/confirmDetail");
+		}
+		return mv;
+	}
+	
+	
 }

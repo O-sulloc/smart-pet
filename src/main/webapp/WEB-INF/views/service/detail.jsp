@@ -82,7 +82,7 @@
 </div>
 	</div>
 	<div class="inputArea">
-		<form action="../reservation/add" method="post">
+		<form action="../reservation/confirm" method="post">
 				<input type="hidden" name="serNum" value="${vo.serNum }">
 				<label for="">배송메모</label>
 				<input type="text" name="resMemo" id="resMemo">

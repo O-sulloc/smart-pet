@@ -14,14 +14,36 @@
 <div class="container mt-4">
 	<div class="row mt-4">
 		<div class="alert alert-primary" role="alert">
-	  		<h4 class="text-center" style="text-transform: uppercase;">예약 확인</h4>
+	  		<h4 class="text-center" style="text-transform: uppercase;">${board} List</h4>
 		</div>
 	</div>
 	
+	<div class="row mt-4">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>글번호</th>
+					<th>상호명</th>
+					<th>전화번호</th>
+					<th>주소</th>
+					<th>영업시간</th>
+				</tr>
+			</thead>
+			<tbody>
+		
+				<tr>
+					<td>${vo.serNum}</td>
+					<td><a class="link-success text-decoration-none" href="./detail?serNum=${vo.serNum}">${vo.serName}</a></td>
+					<td>${vo.serTel}</td>
+					<td>${vo.serAddress}</td>
+					<td>${vo.serTime}</td>
+				</tr>
+			</tbody>
+			
+		</table>
+	</div>
 	
-	<h4>예약을 확인해주세요.</h4>
- 	<a href="./confirmDetail">예약확인</a>
-</div>
+	
 
 
 

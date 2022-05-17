@@ -12,8 +12,11 @@ public class ReservationService {
 	private ReservationMapper reservationMapper;
 
 	public int setAdd(ReservationVO reservationVO) throws Exception{
-		int result= reservationMapper.setAdd(reservationVO);
 		
-		return result;
+		return  reservationMapper.setAdd(reservationVO);
+	}
+	
+	public ReservationVO confirmDetail(ReservationVO reservationVO) throws Exception{
+		return reservationMapper.confirmDetail(reservationVO);
 	}
 }

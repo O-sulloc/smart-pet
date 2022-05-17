@@ -6,4 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface ReservationMapper {
 
 	public int setAdd(ReservationVO reservationVO) throws Exception;
+	
+	public ReservationVO confirmDetail(ReservationVO reservationVO) throws Exception;
 }
