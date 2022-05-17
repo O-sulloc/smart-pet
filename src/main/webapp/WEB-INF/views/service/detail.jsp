@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- split -->
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,29 +26,33 @@
 		<li class="list-group-item">${seviceVO.homepage }</li>
 	</ul>
 
+<input type="hidden" id="term" value="${settingVO.term}">
+<input type="hidden" id="capacity" value="${settingVO.capacity}">
+<input type="hidden" id="holiday" value="${settingVO.holiday}">
 
-${settingVO.term}
-${settingVO.capacity}
-${settingVO.holiday}
 
 
 <hr>
 <c:forEach items="${settingVO.reservationTimeVO}" var="vo">
 	<c:choose>
 		<c:when test="${vo.timecase eq 0}"> <!-- 평일 -->
-			<c:set var="openTime0" value="${vo.openTime}"></c:set>
-			<c:set var="closeTime0" value="${vo.closeTime}"></c:set>
+			<%-- <c:set var="openTime0" value="${vo.openTime}"></c:set> --%>
+			<%-- <c:set var="closeTime0" value="${vo.closeTime}"></c:set> --%>
+			<input type="hidden" id="openTime0" value="${vo.openTime}">
+			<input type="hidden" id="closeTime0" value="${vo.closeTime}">
 		</c:when>
 		<c:otherwise> <!-- 주말 -->
-			<c:set var="openTime1" value="${vo.openTime}"></c:set>
-			<c:set var="closeTime1" value="${vo.closeTime}"></c:set>
+		<input type="hidden" id="openTime1" value="${vo.openTime}">
+			<%-- <c:set var="openTime1" value="${vo.openTime}"></c:set> --%>
+			<%-- <c:set var="closeTime1" value="${vo.closeTime}"></c:set> --%>
+			<input type="hidden" id="openTime1" value="${vo.openTime}">
+			<input type="hidden" id="closeTime1" value="${vo.closeTime}">
+			
 		</c:otherwise>
 	</c:choose>
 </c:forEach>
 
-<h5>test</h5>
-${openTime0} ${closeTime0}
-${openTime1} ${closeTime1}
+
 
 	<div class="order">
 		<button type="button" class="btn btn-outline-success dateInfo_btn">예약날짜
@@ -83,31 +89,24 @@ ${openTime1} ${closeTime1}
 		</div>
 	</div>
 	<!-- <input type="time" value="09:00" min="09:00" max="18:00"> -->
-	
-	
- 	
+	!!! 
 
+<%-- 	<c:forEach begin="${openTime0.substring(0,2)}" end="${closeTime0.substring(0,2)}" var="i" >
+		<c:out value="${i}"/> 
+	<c:forEach begin="0" step="${settingVO.term}" end="59" var="m">
+	<c:out value="${i}"/> :<c:out value="${m}"/>
+	</c:forEach>
+	 
 	
-	<div class="container my-4">
-		<button type="button" name="resTime" class="btn btn-outline-primary">09:30</button>
-		<button type="button" name="resTime" class="btn btn-outline-primary">10:00</button>
-		<button type="button" class="btn btn-outline-primary">10:30</button>
-		<button type="button" class="btn btn-outline-primary">11:00</button>
-		<button type="button" class="btn btn-outline-primary">11:30</button>
-		<div>
-			<button type="button" class="btn btn-outline-primary">13:00</button>
-			<button type="button" class="btn btn-outline-primary">13:30</button>
-			<button type="button" class="btn btn-outline-primary">14:00</button>
-			<button type="button" class="btn btn-outline-primary">14:30</button>
-			<button type="button" class="btn btn-outline-primary">15:00</button>
-			<button type="button" class="btn btn-outline-primary">15:30</button>
-		</div>
-		
-		<div class="input-group">
-  	<input type="text" aria-label="First name" class="form-control" name="resTime" value="9:00" readonly="readonly"> 
- 	<input type="text" aria-label="Last name" class="form-control">
-</div>
+
+	</c:forEach> --%>
+	
+	
+	
+	<!-- js로 시간 받아옴 -->
+	<div class="container my-4" id="buttons">
 	</div>
+
 	
 	<div class="container my-4">
 		<div class="col-2 d-flex">
