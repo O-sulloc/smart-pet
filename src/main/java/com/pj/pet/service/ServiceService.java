@@ -16,7 +16,20 @@ public class ServiceService {
 	@Autowired
 	private ServiceMapper serviceMapper;
 	@Autowired
-	private FileManager fileManger;
+	private FileManager fileManager;
+	
+//	public ServiceFileVO getFileDetail(ServiceVO serviceVO) throws Exception{
+//		return serviceMapper.getFileDetail(serviceVO);
+//	}
+	
+	public int setDelete(ServiceVO serviceVO)throws Exception{
+		ServiceFileVO serviceFileVO= serviceMapper.getFileDetail(serviceVO);
+		int result = serviceMapper.setDelete(serviceVO);
+		
+		boolean fileResult= fileManager.fileDelete(serviceFileVO.getFileName(), "resources/upload/service/");
+		
+		return result;
+	}
 	
 	public ServiceVO getService(ServiceVO serviceVO)throws Exception{
 		return serviceMapper.getService(serviceVO);
@@ -40,15 +53,30 @@ public class ServiceService {
 		return serviceMapper.getDetail(serviceVO);
 	}
 	
-	public int setUpdate(ServiceVO serviceVO)throws Exception{
-		return serviceMapper.setUpdate(serviceVO);
+	//service update 
+	public int setUpdate(ServiceVO serviceVO,MultipartFile file)throws Exception{
+		int result= serviceMapper.setUpdate(serviceVO);
+		System.out.println("file?:"+file.isEmpty());
+		System.out.println("file:"+file);
+		if(!file.isEmpty()) {
+			
+			String fileName = fileManager.fileSave(file, "resources/upload/service/");
+			ServiceFileVO serviceFileVO = new ServiceFileVO();
+			serviceFileVO.setSerNum(serviceVO.getSerNum());
+			serviceFileVO.setFileName(fileName);
+			serviceFileVO.setOriName(file.getOriginalFilename());
+			int fileResult= serviceMapper.setUpdateFile(serviceFileVO);
+			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			System.out.println(fileResult);
+		}
+		return result;
 	}
 	
 	public int setService(ServiceVO serviceVO, MultipartFile file)throws Exception{
 		int result= serviceMapper.setService(serviceVO);
 		
 		if(!file.isEmpty()) {
-			String fileName = fileManger.fileSave(file, "resources/upload/service/");
+			String fileName = fileManager.fileSave(file, "resources/upload/service/");
 			
 			ServiceFileVO serviceFileVO = new ServiceFileVO();
 			serviceFileVO.setSerNum(serviceVO.getSerNum());
@@ -61,8 +89,7 @@ public class ServiceService {
 		return result;
 	}
 	
-	public List<ReservationVO> getList(ServiceVO serviceVO)throws Exception{
-		
-		return serviceMapper.getList(serviceVO);
+	public List<ReservationVO> getList(UserVO userVO)throws Exception{
+		return serviceMapper.getList(userVO);
 	}
 }

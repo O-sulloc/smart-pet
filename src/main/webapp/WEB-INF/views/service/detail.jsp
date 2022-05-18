@@ -88,20 +88,6 @@
 			
 		</div>
 	</div>
-	<!-- <input type="time" value="09:00" min="09:00" max="18:00"> -->
-	!!! 
-
-<%-- 	<c:forEach begin="${openTime0.substring(0,2)}" end="${closeTime0.substring(0,2)}" var="i" >
-		<c:out value="${i}"/> 
-	<c:forEach begin="0" step="${settingVO.term}" end="59" var="m">
-	<c:out value="${i}"/> :<c:out value="${m}"/>
-	</c:forEach>
-	 
-	
-
-	</c:forEach> --%>
-	
-	
 	
 	<!-- js로 시간 받아옴 -->
 	<div class="container my-4" id="buttons">

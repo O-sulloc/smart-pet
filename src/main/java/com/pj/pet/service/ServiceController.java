@@ -164,9 +164,6 @@ public class ServiceController {
 		mv.addObject("vo",serviceVO);
 		mv.setViewName("service/mypage");
 		return mv;
-		
-		
-		
 	}
 	//service mypage update form 
 	@GetMapping("update")
@@ -183,11 +180,28 @@ public class ServiceController {
 	}
 	//service mypage update db전송 
 	@PostMapping("update")
-	public ModelAndView setUpdate(ServiceVO serviceVO)throws Exception{
+	public ModelAndView setUpdate(ServiceVO serviceVO,MultipartFile file)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		int result=serviceService.setUpdate(serviceVO);
+		int result=serviceService.setUpdate(serviceVO,file);
 		mv.setViewName("redirect:./mypage");
+		return mv;
+	}
+	
+	@GetMapping("delete")
+	public ModelAndView setDelete(ServiceVO serviceVO)throws Exception{
+		ModelAndView mv= new ModelAndView();
+		
+		int result=serviceService.setDelete(serviceVO);
+		if(result>0) {
+			mv.setViewName("common/getResult");
+			mv.addObject("msg", "삭제 완료되었습니다.");
+			mv.addObject("path", "../");
+		}else {
+			mv.setViewName("common/getResult");
+			mv.addObject("msg", "삭제 실패하였습니다..");
+			mv.addObject("path", "#");
+		}
 		return mv;
 	}
 	
@@ -198,10 +212,7 @@ public class ServiceController {
 		ModelAndView mv = new ModelAndView();
 		ServiceVO serviceVO= new ServiceVO();
 		UserVO userVO=(UserVO) session.getAttribute("user");
-		serviceVO.setId(userVO.getId());
-		serviceVO= serviceService.getDetail(serviceVO);
-		
-		List<ReservationVO> ar=serviceService.getList(serviceVO);
+		List<ReservationVO> ar=serviceService.getList(userVO);
 		
 		mv.addObject("list", ar);
 		mv.setViewName("service/reservationList");

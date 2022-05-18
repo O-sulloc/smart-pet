@@ -23,6 +23,7 @@
 			<form action="./update" method="post" enctype="multipart/form-data">
 				
 				<input type="hidden" name="id" value="${user.id}">
+				<input type="hidden" name="serNum" value="${vo.serNum}">
 				
 				<div class="row mb-3">
 					<label for="name" class="col-sm-2 col-form-label">Name</label>
@@ -59,13 +60,14 @@
 						<input type="text" value="${vo.serTel}" name="serTel" class="form-control">
 					</div>
 				</div>				
-
-<!-- 				<div class="row mb-3">
+				<img alt="" src="../resources/upload/service/${vo.serviceFileVO.fileName}">
+			
+ 				<div class="row mb-3">
 					<label for="files" class="col-sm-2 col-form-label">File</label>
 					<div class="col-sm-10">
-						<input type="file" name="files" class="form-control">
+						<input type="file" name="file" class="form-control">
 					</div>
-				</div> -->
+				</div> 
 
 				<button type="submit" class="btn btn-primary">수정</button>
 			</form>

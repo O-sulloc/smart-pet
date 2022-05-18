@@ -14,6 +14,12 @@ public interface ServiceMapper {
 	
 	public ServiceVO getDetail(ServiceVO serviceVO)throws Exception;
 
+	//서비스 파일 업데이트
+	public int setUpdateFile(ServiceFileVO serviceFileVO)throws Exception;
+	
+	//서비스 파일 디테일
+	public ServiceFileVO getFileDetail(ServiceVO serviceVO)throws Exception;
+	
 	//서비스 디테일 
 	public ServiceVO getService(ServiceVO serviceVO)throws Exception;
 	
@@ -35,6 +41,9 @@ public interface ServiceMapper {
 	//서비스 대표 파일 추가
 	public int setFileAdd(ServiceFileVO serviceFileVO)throws Exception;
 	
+	//서비스 삭제
+	public int setDelete(ServiceVO serviceVO)throws Exception;
+	
 	//예약 리스트 
-	public List<ReservationVO> getList(ServiceVO serviceVO)throws Exception;
+	public List<ReservationVO> getList(UserVO userVO)throws Exception;
 }

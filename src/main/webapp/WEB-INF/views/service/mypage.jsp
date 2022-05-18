@@ -6,6 +6,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  
 <c:import url="../temp/header_css.jsp"></c:import>
 <title>Insert title here</title>
 </head>
@@ -14,7 +16,6 @@
 
 <div class="container">
 	<h1>Mypage</h1>
-	${vo.serviceFileVO.fileName}
 
 	
 	<div class="row">
@@ -48,18 +49,21 @@
 	<div class="container my-4">
 		<div class="col-2 d-flex">
 			<a href="update" role="button" class="btn btn-success mx-1">Update</a>
-			<a href="delete" role="button" class="btn btn-danger mx-1">Delete</a>
+			<a href="delete?serNum=${vo.serNum}" role="button" class="btn btn-danger mx-1" id="delete">delete</a>
+		
 		</div>
+		<a href="../service/manage"  class="btn btn-success mx-1">예약 관리 페이지</a>
 	</div>
 	
 	
 	
+	
 
 
-<a href="../service/manage"><button type="button" >예약 관리 페이지</button></a>
+
 <!-- <img alt="" src="../resources/upload/service/$"> -->
 
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script type="text/javascript" src="../js/mypage.js"></script>
 </body>
 </html>

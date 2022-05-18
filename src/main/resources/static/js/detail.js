@@ -42,12 +42,13 @@ function hy(time){ //Date Type으로 변환 후  HH:mm 형식으로 변환
 
     return HH+':'+mm;
 }
+//순서 주의 
 // console.log(getFormatTime(getDate(openTime0))) 
 // console.log(getDate(openTime0).setMinutes(30)) //1652747400579
 // console.log(getDate(openTime0).getMinutes()+70) //30
 
 
-//term 만큼 더해주는 함수(매개변수는 Stirng )
+//term 만큼 더해주는 함수(매개변수는 Stirng)
 function plusTerm(time){
     var time = new Date(getDate(time).setMinutes(getDate(time).getMinutes()+term))
     time=getFormatTime(time)
@@ -63,7 +64,7 @@ function plusTerm(time){
 
 // 평일일 경우 예약시간 뿌리기 
 let result=openTime0; //09:00:00
-for(let i=0;i<30;i++){
+for(let i=0;i<40;i++){
     if(i==0){
         // <button type="button" name="resTime" class="btn btn-outline-primary">09:30</button>
        
