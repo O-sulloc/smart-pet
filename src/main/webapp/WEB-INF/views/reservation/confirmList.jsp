@@ -31,13 +31,15 @@
 			</thead>
 			<tbody>
 		
+			<c:forEach items="${confirmList}" var="cl">
 				<tr>
-					<td>${vo.serNum}</td>
-					<td><a class="link-success text-decoration-none" href="./detail?serNum=${vo.serNum}">${vo.serName}</a></td>
-					<td>${vo.serTel}</td>
-					<td>${vo.serAddress}</td>
-					<td>${vo.serTime}</td>
+					<td>${cl.serNum}</td>
+					<td><a class="link-success text-decoration-none" href="../service/detail?serNum=${cl.serNum}">${cl.serName}</a></td>
+					<td>${cl.serTel}</td>
+					<td>${cl.serAddress}</td>
+					<td>${cl.serTime}</td>
 				</tr>
+			</c:forEach>
 			</tbody>
 			
 		</table>

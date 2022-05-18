@@ -1,6 +1,7 @@
 package com.pj.pet.reservation;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.pj.pet.service.ServiceVO;
 
@@ -17,7 +18,14 @@ public class ReservationVO {
 	 private String resMemo;
 	 private Long resState;
 	 
-	 private ServiceVO serviceVO;
+	 private List<ServiceVO> serviceVOs;
+	 
+	 private String serName;
+	 private String serTel;
+	 private String serAddress;
+	 private String serTime;
+	 private String hospitalField;
+	 private String homepage;
 	 
 	 
 }

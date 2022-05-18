@@ -53,7 +53,7 @@
 	            <li><a class="dropdown-item" href="/user/petList">반려동물 관리</a></li>
 	            <li><hr class="dropdown-divider"></li>
 	            <li><a class="dropdown-item" href="#">장바구니</a></li>
-	            <li><a class="dropdown-item" href="#">예약</a></li>
+	            <li><a class="dropdown-item" href="/reservation/confirmList">예약</a></li>
 	            <li><hr class="dropdown-divider"></li>
 	            <li><a class="dropdown-item" href="/user/logout">로그아웃</a></li>
 	          </ul>

@@ -63,19 +63,18 @@ public class ReservationController {
 		model.addAttribute("vo",reservationVO);
 	}
 	
-	@GetMapping(value="confirmDetail")
-	public ModelAndView confirmDetail(HttpSession session,ReservationVO reservationVO,ServiceVO serviceVO )throws Exception{
+	@GetMapping(value="confirmList")
+	public ModelAndView confirmList(HttpSession session,ReservationVO reservationVO,ServiceVO serviceVO )throws Exception{
 		ModelAndView mv = new ModelAndView();
 		UserVO userVO= (UserVO)session.getAttribute("user");
 		String id=userVO.getId();
 		
 		reservationVO.setId(id);
 		
-		if(serviceVO.getSerNum()==reservationVO.getSerNum()) {
-		reservationVO=reservationService.confirmDetail(reservationVO);
-		mv.addObject("vo",reservationVO);
-		mv.setViewName("./reservation/confirmDetail");
-		}
+		List<ReservationVO> confirmList = reservationService.confirmList(reservationVO);
+		mv.addObject("confirmList",confirmList);
+		mv.setViewName("./reservation/confirmList");
+		
 		return mv;
 	}
 	

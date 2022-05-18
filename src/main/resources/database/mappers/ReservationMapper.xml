@@ -12,7 +12,7 @@
 		VALUES (#{resNum},#{id},#{serNum},#{resDate},#{resTime},#{resMemo},0)
 	</insert>
 	
-	<select id="confirmDetail" resultType="ReservationVO" resultMap="serviceConfirm">
+	<select id="confirmList" resultType="ReservationVO" resultMap="serviceConfirm">
 		SELECT ROW_NUMBER() OVER(ORDER BY R.RESNUM DESC) AS NUM, 
 		R.*,
 		S.SERNUM,S.SERNAME,S.SERTEL,S.SERADDRESS,S.HOSPITALFIELD,S.HOMEPAGE,S.SERTIME  
@@ -30,7 +30,8 @@
 		<result column="resTime" property="resTime"/>
 		<result column="resMemo" property="resMemo"/>
 		<result column="resState" property="resState"/>
-		<association property="serviceVO" javaType="ServiceVO">
+		
+		<collection property="serviceVOs" javaType="List" ofType="ServiceVO">
 			<id column="serNum" property="serNum"/>
 			<result column="serName" property="serName"/>
 			<result column="serTel" property="serTel"/>
@@ -38,7 +39,7 @@
 			<result column="hospitalField" property="hospitalField"/>
 			<result column="homepage" property="homepage"/>
 			<result column="serTime" property="serTime"/>
-		</association>
+		</collection>
 	</resultMap>
 
 </mapper>

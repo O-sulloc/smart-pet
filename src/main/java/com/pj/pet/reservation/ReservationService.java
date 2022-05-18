@@ -1,5 +1,7 @@
 package com.pj.pet.reservation;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +18,8 @@ public class ReservationService {
 		return  reservationMapper.setAdd(reservationVO);
 	}
 	
-	public ReservationVO confirmDetail(ReservationVO reservationVO) throws Exception{
-		return reservationMapper.confirmDetail(reservationVO);
+	public List<ReservationVO> confirmList(ReservationVO reservationVO) throws Exception{
+		
+		return reservationMapper.confirmList(reservationVO);
 	}
 }
