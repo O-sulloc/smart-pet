@@ -102,7 +102,7 @@
 		  <div class="accordion-item">
 			<c:forEach items="${list}" var="vo">
 		    <h2 class="accordion-header" id="flush-headingOne">
-		      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${vo.rowNum}" aria-controls="flush-collapse${vo.rowNum}" aria-expanded="false" >
+		      <button class="accordion-button collapsed numCatch" data-num="${vo.num}" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${vo.rowNum}" aria-controls="flush-collapse${vo.rowNum}" aria-expanded="false" >
 		      
 		        <i class="bi bi-award"></i>
 		        
@@ -122,10 +122,10 @@
 				<%-- <c:if test=""> 멤버들어오면 작성 --%>
 					<div class="modalTotal">
 						<!-- modal  테스트 -->
-						<button class="btn btn-success mx-1" id="modifyBtn${vo.num}">수정하기</button>
-						
-						<%-- <a href="./update?num=${vo.num}" role="button" class="btn btn-success mx-1">수정하기</a> --%>
-						
+						<button class="btn btn-success mx-1" id="modifyTotal${vo.num}">수정하기</button>
+					
+						<input type="hidden" name="num" value="${vo.num}" id="num${vo.num}">
+						<input type="hidden" name="grade" value="${vo.grade}" id="grade${vo.num}">
 						<!-- FAQ 수정 Modal-->
 						<div class="modal fade" id="modify${vo.num}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog" role="document">
@@ -143,17 +143,16 @@
 									
 									<div class="modal-body">
 										<label for="title" class="col-sm-2 col-form-label">Title</label>
-										<input type="text" class="form-control title_check" data-title="${vo.title}" id="title" name="title" value="${vo.title}">
+										<input type="text" class="form-control title_check" data-title="${vo.title}" id="title${vo.num}" name="title" value="${vo.title}">
 									</div>
 									<div class="modal-body">
 										<label for="contents" class="col-sm-2 col-form-label">Contents</label>
-										<textarea class="form-control" id="contents" name="contents">${vo.contents}</textarea>
+										<textarea class="form-control" id="contents${vo.num}" name="contents">${vo.contents}</textarea>
 									</div>
-									<input type="hidden" name="num" value="${vo.num}" id="num">
-									<input type="hidden" name="grade" value="${vo.grade}" id="grade">
+									
 									<div class="modal-footer">
 										<button type="button" class="btn btn-outline-success close" data-dismiss="modal">취소</button>
-										<button type="button" class="btn btn-success" id="modifyBtn">수정</button>
+										<button type="button" class="btn btn-success" id="modifyBtn${vo.num}"">수정</button>
 									</div>
 								</div>
 							</div>

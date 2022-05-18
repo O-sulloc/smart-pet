@@ -7,6 +7,11 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<c:import url="../temp/header_css.jsp"></c:import>
+	<c:import url="../temp/header_script.jsp"></c:import>
+	<!-- include summernote css/js -->
+	<!-- 위지위그 사용하기 위해 갖고옴 -->
+	<c:import url="../temp/summernote.jsp"></c:import>
+	
 	<title>Insert title here</title>
 </head>
 <body>
@@ -63,10 +68,71 @@
 </div>	
 
 <script type="text/javascript" src="../resources/js/notice_add.js"></script>
-<c:import url="../temp/header_script.jsp"></c:import>
+<!-- <script type="text/javascript" src="../resources/js/summernote.js"></script> -->
 
 <script type="text/javascript">
 	totalCheck();
+	
+
+	
+	$('#contents').summernote({
+		height: 300,                 
+		placeholder: '내용을 입력하세요',
+		callbacks: {
+			onImageUpload: function(files){//onImageUpload 시작
+				//files upload한 이미지 파일객체	
+				let formData = new FormData();
+				formData.append("summerFiles", files[0]);
+				
+				// /board/summerFileUpload
+				$.ajax({
+					type: "POST",
+					url: "../summernote/summerFileUpload",
+					processData: false,
+				    contentType: false,
+					data:formData,
+					
+					success:function(data){
+						//console.log(data.trim());
+						//summernote 자체적으로 만들어주는 클래스라서 성공하면 자동적으로 이 클래스 선택해서 값을 지워주는것을 해줘야함
+						//첨부파일 안넣었을때 없애주는것
+						$(".note-image-input").val('');
+						
+						$('#contents').summernote('editor.insertImage', data.trim());
+						//$('#contents').val($('#contents').summernote('editor.insertImage', data.trim()));
+					}
+
+				});
+				
+			},//onImageUpload 끝
+			
+			onMediaDelete:function(files){//onMediaDelete 시작
+				let fileName = $(files[0]).attr("src");//<img src="">
+				//console.log(fileName);
+				//console.log("deletin");
+				$.ajax({
+					type:"GET",
+					url:"../summernote/summerFileDelete",
+					data:{
+						fileName: fileName
+					},
+					
+					success:function(data){
+						//console.log(data.trim());
+						//$('#contents').val('');
+						
+					},
+					
+					error:function(){
+						alert("서버요청 실패!");
+					}
+					
+				});
+			}//onMediaDelete 끝
+			
+		}
+	});
+	
 </script>
 
 </body>

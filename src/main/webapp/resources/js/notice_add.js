@@ -75,10 +75,9 @@ let titleCheck = false;
 let checkTitle = false; //중복
 let contentsCheck = false;
 
-
-
+	
 function totalCheck(){
-
+	
 	//제목 중복체크
 	$('.title_check').focusout(function(){
 		let title = $(this).val();
@@ -97,7 +96,7 @@ function totalCheck(){
 					$("#checkTitle").html('사용할 수 없는 제목입니다.');
 					$("#checkTitle").attr('color','red');
 				}
-
+	
 			},
 			error : function(){
 				alert("서버 요청 실패");
@@ -168,14 +167,14 @@ function totalCheck(){
 			}
 	});
 
-	$('#contents').blur(function(){
+	/*$('#contents').blur(function(){
 		if($(this).val() == ''){
 			contentsCheck = false;
 		}else{
 			contentsCheck = true;
 		}
 	});
-
+*/
 	//write 버튼 클릭
 	$("#btn").click(function(){
 
@@ -209,11 +208,11 @@ function totalCheck(){
 			return;
 		}
 
-		if(!contentsCheck){
+		/*if(!contentsCheck){
 			alert("내용을 입력해주세요");
 			$('#contents').focus();
 			return;
-		}
+		}*/
 
 		//모두 체크시(카테고리 수정 막아버릴까?)
 		let check = window.confirm("카테고리는 수정이 어렵습니다. 이대로 작성하시겠습니까?"); //check에 boolean 담김

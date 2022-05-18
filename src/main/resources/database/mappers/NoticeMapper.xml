@@ -45,17 +45,33 @@
 		SELECT N.*, NC.CATENAME FROM
 			(SELECT
 			*,
-			(SELECT NUM FROM NOTICE WHERE NUM &lt; #{num} ORDER BY NUM DESC LIMIT 1) prevNum,
-			(SELECT NUM FROM NOTICE WHERE NUM &gt; #{num} ORDER BY NUM LIMIT 1) nextNum,
-			(SELECT TITLE FROM NOTICE WHERE NUM &lt; #{num} ORDER BY NUM DESC LIMIT 1) prevTitle,
-			(SELECT TITLE FROM NOTICE WHERE NUM &gt; #{num} ORDER BY NUM LIMIT 1) nextTitle
-			
+			(SELECT NUM FROM NOTICE WHERE NUM &lt; #{num} 
+				<if test="grade != null">
+	  				AND GRADE = #{grade}
+				</if> 
+			ORDER BY NUM DESC LIMIT 1) prevNum,
+			(SELECT NUM FROM NOTICE WHERE NUM &gt; #{num} 
+				<if test="grade != null">
+	  				AND GRADE = #{grade}
+				</if> 
+			ORDER BY NUM LIMIT 1) nextNum,
+			(SELECT TITLE FROM NOTICE WHERE NUM &lt; #{num} 
+				<if test="grade != null">
+	  				AND GRADE = #{grade}
+				</if> 
+			ORDER BY NUM DESC LIMIT 1) prevTitle,
+			(SELECT TITLE FROM NOTICE WHERE NUM &gt; #{num} 
+				<if test="grade != null">
+	  				AND GRADE = #{grade}
+				</if> 
+			ORDER BY NUM LIMIT 1) nextTitle
 			FROM NOTICE
 			ORDER BY NUM DESC) N
 		 		INNER JOIN
 			NOTICECATE NC
 			USING(GRADE)
 		WHERE NUM = #{num}
+		
 	</select>
 
 	<resultMap type="NoticeVO" id="noticeCateDetail">

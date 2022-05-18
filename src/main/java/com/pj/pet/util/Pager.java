@@ -38,6 +38,9 @@ public class Pager {
 	private Long totalCountC;
 		
 	
+	//상품번호(상품상세, 예약상세 리뷰에서 사용)
+	private Long productNum;
+	
 	
 	
 	

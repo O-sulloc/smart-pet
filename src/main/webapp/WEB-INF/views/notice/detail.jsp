@@ -50,11 +50,22 @@
 					</li>
 				</c:when>
 				<c:otherwise>
-					<li>
-						<button type="button" class="btn btn-warning mr-3 mb-3" onclick="location.href='./detail?num=${vo.nextNum}'"> 
-						<span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>다음글</button>
-						<a href="./detail?num=${vo.nextNum}" style="color: black">${vo.nextTitle}</a>
-					</li>
+					<c:choose>
+						<c:when test="${not empty checkGrade}">
+							<li>
+								<button type="button" class="btn btn-warning mr-3 mb-3" onclick="location.href='./detail?num=${vo.nextNum}&grade=${vo.grade}'"> 
+								<span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>다음글</button>
+								<a href="./detail?num=${vo.nextNum}&grade=${vo.grade}" style="color: black">${vo.nextTitle}</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li>
+								<button type="button" class="btn btn-warning mr-3 mb-3" onclick="location.href='./detail?num=${vo.nextNum}'"> 
+								<span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>다음글</button>
+								<a href="./detail?num=${vo.nextNum}" style="color: black">${vo.nextTitle}</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
@@ -64,11 +75,22 @@
 					</li>
 				</c:when>
 				<c:otherwise>
-					<li>
-						<button type="button" class="btn btn-info mr-3" onclick="location.href='./detail?num=${vo.prevNum}'"> 
-						<span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>이전글</button>
-						<a href="./detail?num=${vo.prevNum}" style="color: black">${vo.prevTitle}</a>
-					</li>
+					<c:choose>
+						<c:when test="${not empty checkGrade}">
+							<li>
+								<button type="button" class="btn btn-info mr-3" onclick="location.href='./detail?num=${vo.prevNum}&grade=${vo.grade}'"> 
+								<span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>이전글</button>
+								<a href="./detail?num=${vo.prevNum}&grade=${vo.grade}" style="color: black">${vo.prevTitle}</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li>
+								<button type="button" class="btn btn-info mr-3" onclick="location.href='./detail?num=${vo.prevNum}'"> 
+								<span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>이전글</button>
+								<a href="./detail?num=${vo.prevNum}" style="color: black">${vo.prevTitle}</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
 				</c:otherwise>
 			</c:choose>
 		</ul>
