@@ -26,7 +26,7 @@ public class ServiceService {
 		ServiceFileVO serviceFileVO= serviceMapper.getFileDetail(serviceVO);
 		int result = serviceMapper.setDelete(serviceVO);
 		
-		boolean fileResult= fileManager.fileDelete(serviceFileVO.getFileName(), "resources/upload/service/");
+		boolean fileResult= fileManager.remove(serviceFileVO.getFileName(), "resources/upload/service/");
 		
 		return result;
 	}
