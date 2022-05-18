@@ -250,7 +250,7 @@ public class ServiceController {
 	      return mv;
 	   }
 	@GetMapping("list")
-	public ModelAndView getListc(Pager pager) throws Exception{
+	public ModelAndView getList(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<ServiceVO> ar = serviceService.getListc(pager);
 		mv.addObject("list",ar);
@@ -259,14 +259,14 @@ public class ServiceController {
 		return mv;
 	
 	}
-	@GetMapping("detail")
-	public ModelAndView getDetailc(ServiceVO serviceVO) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		serviceVO=serviceService.getDetailc(serviceVO);
-		mv.addObject("vo",serviceVO);
-		mv.setViewName("service/detail");
-		return mv;
-	}
+//	@GetMapping("detail")
+//	public ModelAndView getDetail(ServiceVO serviceVO) throws Exception{
+//		ModelAndView mv = new ModelAndView();
+//		serviceVO=serviceService.getDetail(serviceVO);
+//		mv.addObject("vo",serviceVO);
+//		mv.setViewName("service/detail");
+//		return mv;
+//	}
 	
 
 	
