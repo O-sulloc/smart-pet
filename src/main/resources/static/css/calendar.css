@@ -1,17 +1,10 @@
 @charset "UTF-8";
 
-.calendar {
-	width: 400px; 
-	padding: 5px 20px 20px 20px; 
-	box-sizing: border-box;
-	border: 1px solid;
-	}
-.calendar > .header {
-	text-align: center;
-	}
-.calendar > .header > .title {
-	width:50%; display: inline-block;
-	}
+
+.calendar {width: 400px; padding: 5px 20px 20px 20px; box-sizing: border-box; border: 1px solid;}
+.calendar > .header {text-align: center;}
+.calendar > .header > .title {width:50%; display: inline-block;}
+
 .calendar > .header > .calendar_btn {
 	width: 30px;
 	height: 30px;
@@ -26,7 +19,9 @@
 .calendar > .day > div:first-child {color: red;}
 .calendar > .day > div:last-of-type {color: blue;}
 .calendar > .dates {display: flex; flex-wrap: wrap; width: 100%;}
-.calendar > .dates > .date {text-align: center; width: calc(100%/7); height: 50px; box-sizing: border-box;line-height: 3; border-radius: 3px;} 
+
+.calendar > .dates > .date {text-align: center; width: calc(100%/7); height: 50px; box-sizing: border-box;line-height: 3; border-radius: 3px; cursor: pointer;} 
+
 .calendar > .dates > .date:nth-child(7n){color: blue;}
 .calendar > .dates > .date:nth-child(7n+1){color: red;}
 .calendar > .dates > .last {color: #c8c8c8 !important;}

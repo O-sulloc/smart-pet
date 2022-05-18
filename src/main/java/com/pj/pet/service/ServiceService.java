@@ -10,11 +10,19 @@ import com.pj.pet.reservation.ReservationVO;
 import com.pj.pet.user.UserVO;
 import com.pj.pet.util.FileManager;
 
+
+import org.springframework.transaction.annotation.Transactional;
+
+import com.pj.pet.util.Pager;
+
 @Service
+@Transactional(rollbackFor = Exception.class)
+
 public class ServiceService {
 
 	@Autowired
 	private ServiceMapper serviceMapper;
+
 	@Autowired
 	private FileManager fileManager;
 	
@@ -35,6 +43,10 @@ public class ServiceService {
 		return serviceMapper.getService(serviceVO);
 	}
 	
+	public ServiceVO getDetail(ServiceVO serviceVO) throws Exception{
+		return serviceMapper.getDetail(serviceVO);
+	}
+	
 	public ReservationSettingVO getAllReservationSetting(ServiceVO serviceVO)throws Exception{
 		return serviceMapper.getAllReservationSetting(serviceVO);
 	}
@@ -49,9 +61,7 @@ public class ServiceService {
 		return serviceMapper.setReservationTime(reservationTimeVO);
 	}
 	
-	public ServiceVO getDetail(ServiceVO serviceVO)throws Exception{
-		return serviceMapper.getDetail(serviceVO);
-	}
+	
 	
 	//service update 
 	public int setUpdate(ServiceVO serviceVO,MultipartFile file)throws Exception{
@@ -91,5 +101,20 @@ public class ServiceService {
 	
 	public List<ReservationVO> getList(UserVO userVO)throws Exception{
 		return serviceMapper.getList(userVO);
+	}
+
+	
+	public List<ServiceVO> getListc(Pager pager) throws Exception{
+		pager.makeRow();
+		Long totalCount= serviceMapper.total(pager);
+		pager.makeNum(totalCount);
+		List<ServiceVO> ar = serviceMapper.getListc(pager);
+		return ar;
+	}
+	
+
+	
+	public ServiceVO getDetailc(ServiceVO serviceVO)throws Exception{
+		return serviceMapper.getDetailc(serviceVO);
 	}
 }

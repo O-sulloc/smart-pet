@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- split -->
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,7 @@
 </head>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
+
 
 	<input type="hidden" readonly="readonly" id="serNum"
 		data-sn="${seviceVO.serNum}">
@@ -54,6 +56,7 @@
 
 
 
+
 	<div class="order">
 		<button type="button" class="btn btn-outline-success dateInfo_btn">예약날짜
 			확인</button>
@@ -66,6 +69,7 @@
 			});
 		</script>
 	</div>
+
 	<div class="container my-4">
 		<div class="calendar">
 			<div class="header">
@@ -84,23 +88,52 @@
 				<div>금</div>
 				<div>토</div>
 			</div>
+
+
 			<div class="dates"></div>
 			
 		</div>
 	</div>
+
 	
 	<!-- js로 시간 받아옴 -->
 	<div class="container my-4" id="buttons">
 	</div>
 
 	
-	<div class="container my-4">
-		<div class="col-2 d-flex">
-			<button type="button" id="reservation"> 예약진행</button>
-		</div>
+
+	
+	<!-- <input type="time" value="09:00" min="09:00" max="18:00"> -->
+	
+
+	<div class="inputArea">
+		<form action="../reservation/confirm" method="post">
+				<input type="hidden" name="serNum" value="${vo.serNum }">
+				<label for="">배송메모</label>
+				<input type="text" name="resMemo" id="resMemo">
+				<input type="hidden" name="resDate" value="" id="resDate">
+				<input type="hidden" name="resTime" value="9:00" id="resTime">
+				<input type="hidden" name="resState" value="0">
+				<button type="submit" class="btn btn-outline-success res_btn">예약진행</button>
+		</form>
 	</div>
+				
+	
+	<script>
+		 $(".res_btn").click(function(){
+			
+			let confirm_val=confirm("예약하시겠습니까?");
+			
+	
+			
+		}) 
+	</script>
+	
 	<script type="text/javascript" src="../js/calendar.js"></script>
 	<script type="text/javascript" src="../js/detail.js"></script>
+	<script type="text/javascript" src="../js/calendar.js"></script>
+	<script type="text/javascript" src="../js/reservation.js"></script>
+>>>>>>> master_user_service
 
 
 </body>

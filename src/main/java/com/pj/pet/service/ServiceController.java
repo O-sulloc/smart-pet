@@ -1,5 +1,6 @@
 package com.pj.pet.service;
 
+
 import java.beans.PropertyEditorSupport;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +26,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.pj.pet.reservation.ReservationVO;
 import com.pj.pet.user.UserVO;
 import com.pj.pet.util.CalendarTest;
+import com.pj.pet.util.Pager;
+
+
 
 @Controller
 @RequestMapping("service/*")
@@ -31,6 +36,11 @@ public class ServiceController {
 
 	@Autowired
 	private ServiceService serviceService;
+	
+	@ModelAttribute("service")
+	public String getService() {
+		return "service";
+	}
 	
 	//String to Date 
 	@InitBinder // 이렇게 표시를 해야만 프론트 컨트롤러가 요청 핸들러를 호출하기 전에 먼저 이 메서드를호출한다.
@@ -239,5 +249,26 @@ public class ServiceController {
 	      mv.setViewName("service/detail");
 	      return mv;
 	   }
+	@GetMapping("list")
+	public ModelAndView getListc(Pager pager) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<ServiceVO> ar = serviceService.getListc(pager);
+		mv.addObject("list",ar);
+		mv.setViewName("service/list");
+		
+		return mv;
 	
+	}
+	@GetMapping("detail")
+	public ModelAndView getDetailc(ServiceVO serviceVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		serviceVO=serviceService.getDetailc(serviceVO);
+		mv.addObject("vo",serviceVO);
+		mv.setViewName("service/detail");
+		return mv;
+	}
+	
+
+	
+
 }

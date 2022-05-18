@@ -19,7 +19,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">병원조회</a>
+          <a class="nav-link active" href="/service/list">병원/미용샵</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">미용조회</a>
@@ -29,7 +29,6 @@
             제품
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">카테고리</a></li>
             <li><a class="dropdown-item" href="#">카테고리</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">카테고리</a></li>
@@ -54,7 +53,7 @@
 	            <li><a class="dropdown-item" href="/user/petList">반려동물 관리</a></li>
 	            <li><hr class="dropdown-divider"></li>
 	            <li><a class="dropdown-item" href="#">장바구니</a></li>
-	            <li><a class="dropdown-item" href="#">예약</a></li>
+	            <li><a class="dropdown-item" href="/reservation/confirmList">예약</a></li>
 	            <li><hr class="dropdown-divider"></li>
 	            <li><a class="dropdown-item" href="/user/logout">로그아웃</a></li>
 	          </ul>

@@ -4,11 +4,16 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+
 import com.pj.pet.reservation.ReservationVO;
 import com.pj.pet.user.UserVO;
 
+import com.pj.pet.util.Pager;
+
+
 @Mapper
 public interface ServiceMapper {
+
 
 	
 	
@@ -46,4 +51,14 @@ public interface ServiceMapper {
 	
 	//예약 리스트 
 	public List<ReservationVO> getList(UserVO userVO)throws Exception;
+
+	//list : getList
+	public List<ServiceVO> getListc(Pager pager) throws Exception;
+	
+	//detail
+	public ServiceVO getDetailc(ServiceVO serviceVO) throws Exception;
+	
+	//total
+	public Long total(Pager pager) throws Exception;
+
 }
