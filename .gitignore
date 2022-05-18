@@ -5,6 +5,9 @@ target/
 !**/src/test/**/target/
 
 ###email###
+application-oauth.properties
+
+###email###
 application-email.properties
 
 ###mydb###
