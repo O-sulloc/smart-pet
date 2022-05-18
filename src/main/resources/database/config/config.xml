@@ -6,7 +6,22 @@
 
 <configuration>
 	<typeAliases>
+
 		<typeAlias type="com.pj.pet.user.UserVO" alias="UserVO"/>
 		<typeAlias type="com.pj.pet.user.UserPetVO" alias="UserPetVO"/>
+
+		<typeAlias type="com.pj.pet.board.notice.NoticeVO" alias="NoticeVO"/>
+		<typeAlias type="com.pj.pet.board.notice.NoticeCateVO" alias="NoticeCateVO"/>
+		<typeAlias type="com.pj.pet.board.faq.FaqVO" alias="FaqVO"/>
+		<typeAlias type="com.pj.pet.board.faq.FaqCateVO" alias="FaqCateVO"/>
+		<typeAlias type="com.pj.pet.board.faq.FaqKeyVO" alias="FaqKeyVO"/>
+		<!-- <typeAlias type="com.pj.pet.review.product.ProductReviewVO" alias="ProductReviewVO"/> 보류-->
+		<typeAlias type="com.pj.pet.review.ReviewVO" alias="ReviewVO"/>
+		
+		<typeAlias type="com.pj.pet.util.Pager" alias="Pager"/>
+		<typeAlias type="java.util.Map" alias="Map"/>
+  		<typeAlias type="java.util.List" alias="List"/>
+	
+
 	</typeAliases>
 </configuration>

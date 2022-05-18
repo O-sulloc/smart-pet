@@ -5,7 +5,7 @@ import java.sql.Date;
 import lombok.Data;
 
 @Data
-public class BoardDAO {
+public class BoardVO {
 
 	private Long num;
 	private String title;

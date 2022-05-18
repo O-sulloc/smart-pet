@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.pj.pet.review.product.ProductReviewMapper">
+
+	<!-- review -->
+	<insert id="setAdd" parameterType="ReviewVO" useGeneratedKeys="true"  keyProperty="replyNum">
+		INSERT INTO PRODUCTREPLY(REPLYNUM, PRODUCTNUM, ID, CONTENTS, REGDATE, STAR)
+		VALUES(#{replyNum}, #{productNum}, #{id}, #{contents}, now(), #{star})
+	</insert>
+
+
+</mapper>

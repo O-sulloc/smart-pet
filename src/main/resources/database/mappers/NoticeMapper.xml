@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.pj.pet.board.notice.NoticeMapper">
+
+	<!-- TITLECHECK -->
+	<select id="getTitleCount" resultType="int" parameterType="NoticeVO">
+		SELECT COUNT(TITLE) FROM NOTICE WHERE TITLE=#{title}
+	</select>
+
+	
+	<!-- NOTICE -->
+	<!-- 전체 리스트 출력 -->
+	<select id="getList" resultMap="noticeCateDetail" parameterType="Pager">
+		SELECT N.*, NC.* 
+		FROM 
+		(SELECT *, @ROWNUM:=@ROWNUM+1 as ROWNUM FROM NOTICE, (SELECT @ROWNUM:=0) TMP    	
+		WHERE NUM > 0
+			<if test="grade != null">
+	  			AND GRADE = #{grade}
+			</if> 
+   		ORDER BY NUM DESC, ROWNUM DESC 
+   		LIMIT #{startRow}, #{perPage}
+   		) N
+   			LEFT JOIN
+   		NOTICECATE NC
+		USING(GRADE)
+
+	</select>
+
+	<!-- paging 처리시 count -->
+	<select id="getTotalCount" parameterType="Pager" resultType="Long" >
+   		SELECT COUNT(NUM) FROM NOTICE
+   		WHERE NUM>0
+		<if test="grade != null">
+  			AND GRADE = #{grade}
+		</if> 
+   	</select>
+
+	<!-- 세부내용 출력 -->
+	<select id="getDetail" resultMap="noticeCateDetail" parameterType="NoticeVO">
+		SELECT N.*, NC.CATENAME FROM
+			(SELECT
+			*,
+			(SELECT NUM FROM NOTICE WHERE NUM &lt; #{num} 
+				<if test="grade != null">
+	  				AND GRADE = #{grade}
+				</if> 
+			ORDER BY NUM DESC LIMIT 1) prevNum,
+			(SELECT NUM FROM NOTICE WHERE NUM &gt; #{num} 
+				<if test="grade != null">
+	  				AND GRADE = #{grade}
+				</if> 
+			ORDER BY NUM LIMIT 1) nextNum,
+			(SELECT TITLE FROM NOTICE WHERE NUM &lt; #{num} 
+				<if test="grade != null">
+	  				AND GRADE = #{grade}
+				</if> 
+			ORDER BY NUM DESC LIMIT 1) prevTitle,
+			(SELECT TITLE FROM NOTICE WHERE NUM &gt; #{num} 
+				<if test="grade != null">
+	  				AND GRADE = #{grade}
+				</if> 
+			ORDER BY NUM LIMIT 1) nextTitle
+			FROM NOTICE
+			ORDER BY NUM DESC) N
+		 		INNER JOIN
+			NOTICECATE NC
+			USING(GRADE)
+		WHERE NUM = #{num}
+		
+	</select>
+
+	<resultMap type="NoticeVO" id="noticeCateDetail">
+		<id column="num" property="num"/>
+		<result column="id" property="id"/>
+		<result column="grade" property="grade"/>
+		<result column="title" property="title"/>
+		<result column="contents" property="contents"/>
+		<result column="regDate" property="regDate"/>
+		<result column="prevNum" property="prevNum"/>
+		<result column="nextNum" property="nextNum"/>
+		<result column="prevTitle" property="prevTitle"/>
+		<result column="nextTitle" property="nextTitle"/>
+		<result column="rowNum" property="rowNum"/>
+		<association property="noticeCateVO" javaType="NoticeCateVO">
+			<id column="grade" property="grade"/>
+			<result column="cateName" property="cateName"/>
+		</association>	
+	</resultMap>
+
+
+	<!-- 공지사항 등록 -->
+	<insert id="setAdd" parameterType="NoticeVO" useGeneratedKeys="true"  keyProperty="num">
+		INSERT INTO NOTICE(NUM, ID, TITLE, CONTENTS, REGDATE, GRADE)
+		VALUES(#{num}, #{id}, #{title}, #{contents}, now(), #{grade})
+	</insert>
+
+	<!-- 공지사항 수정 -->
+	<update id="setUpdate" parameterType="NoticeVO">
+		UPDATE NOTICE SET TITLE = #{title}, CONTENTS = #{contents}, GRADE = #{grade} WHERE NUM = #{num}
+	</update>
+	
+	
+	<!-- 공지사항 삭제 -->
+	<delete id="setDelete" parameterType="NoticeVO">
+		DELETE FROM NOTICE WHERE NUM=#{num}
+	</delete>	
+	
+
+
+
+</mapper>

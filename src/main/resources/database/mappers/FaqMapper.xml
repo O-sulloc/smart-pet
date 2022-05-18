@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.pj.pet.board.faq.FaqMapper">
+
+
+	<!-- keyWord -->
+	<select id="getKeyList" resultType="FaqKeyVO">
+		SELECT * FROM KEYWORD
+	</select>
+	
+	<insert id="setKeyAdd" parameterType="FaqKeyVO" useGeneratedKeys="true" keyProperty="num">
+		INSERT INTO KEYWORD(NUM, KEYNAME) VALUES(#{num}, #{keyName})
+	</insert>
+	
+	<delete id="setKeyDelete" parameterType="FaqKeyVO">
+		DELETE FROM KEYWORD WHERE NUM = #{num}
+	</delete>
+
+
+	<!-- TITLECHECK -->
+	<select id="getTitleCount" resultType="int" parameterType="FaqVO">
+		SELECT COUNT(TITLE) FROM FAQ WHERE TITLE=#{title}
+	</select>
+
+
+	<!-- FAQCATE -->
+	<!-- 카테고리 별 리스트 출력 -->
+	<select id="getCateList" resultType="FaqCateVO">
+		SELECT * FROM FAQCATE 
+		<if test="gradeRef != null">
+			WHERE GRADEREF=#{gradeRef}
+		</if>
+	</select>
+
+	<!-- FAQ -->
+	<!-- 전체 리스트 출력 -->
+	<select id="getList" resultMap="faqCateDetail" parameterType="Pager">
+		<!-- SELECT F.*, FC.* FROM 
+		(SELECT *, @ROWNUM:=@ROWNUM+1 as ROWNUM FROM FAQ, (SELECT @ROWNUM:=0) TMP    	
+		WHERE NUM > 0
+			<if test="grade != null">
+	  			AND GRADE = #{grade}
+			</if> 
+   		ORDER BY NUM DESC, ROWNUM DESC 
+   		LIMIT #{startRow}, #{perPage}
+   		) F
+   			LEFT JOIN
+   		FAQCATE FC
+		USING(GRADE) -->
+		
+		SELECT F.*, FC.CATENAME, FC.GRADEREF
+		FROM 
+		 (SELECT *, @ROWNUM:=@ROWNUM+1 as ROWNUM FROM FAQ, (SELECT @ROWNUM:=0) TMP    	
+			WHERE NUM > 0
+			
+				<if test="grade != null">
+		  			AND GRADE = #{grade}
+				</if>
+				
+				AND
+				
+		       	<choose>
+			    	<when test="kind == 'col2'">
+			    		CONTENTS
+			    	</when>
+			    	<otherwise>
+			    		TITLE
+			    	</otherwise>
+				</choose>
+				
+    		LIKE CONCAT('%',#{search},'%')
+	   		ORDER BY NUM DESC, ROWNUM DESC 
+	   		LIMIT #{startRow}, #{perPage}
+	   		) F                        
+	     		INNER JOIN
+	     FAQCATE FC   
+	     USING(GRADE)
+		<if test="gradeRef != null">
+			WHERE FC.GRADEREF = #{gradeRef}          
+		</if>
+		<if test="grade != null">
+			AND F.GRADE=#{grade}  
+		</if>
+		ORDER BY ROWNUM DESC
+	</select>
+
+	<!-- paging 처리시 count -->
+	<select id="getTotalCount" parameterType="Pager" resultType="Long" >
+   		SELECT COUNT(NUM) FROM FAQ
+   		WHERE NUM>0
+   		
+		<if test="grade != null">
+  			AND GRADE = #{grade}
+		</if>
+		
+    	AND
+    		
+   		<choose>
+	    	<when test="kind == 'col2'">
+	    		CONTENTS
+	    	</when>
+	    	<otherwise>
+	    		TITLE
+	    	</otherwise>
+		</choose>
+				
+		LIKE CONCAT('%',#{search},'%')
+   	</select>
+
+	<!-- 세부내용 출력 -->
+	<select id="getDetail" resultMap="faqCateDetail" parameterType="FaqVO">
+		SELECT F.*, FC.CATENAME FROM
+			(SELECT
+			*
+			FROM FAQ
+			ORDER BY NUM DESC) F
+		 		INNER JOIN
+			FAQCATE FC
+			USING(GRADE)
+		WHERE NUM = #{num}
+	</select>
+
+	<resultMap type="FaqVO" id="faqCateDetail">
+		<id column="num" property="num"/>
+		<result column="id" property="id"/>
+		<result column="grade" property="grade"/>
+		<result column="title" property="title"/>
+		<result column="contents" property="contents"/>
+		<result column="regDate" property="regDate"/>
+		<result column="rowNum" property="rowNum"/>
+		<association property="faqCateVO" javaType="FaqCateVO">
+			<id column="grade" property="grade"/>
+			<result column="cateName" property="cateName"/>
+			<result column="gradeRef" property="gradeRef"/>
+		</association>	
+	</resultMap>
+
+
+	<!-- FAQ 등록 -->
+	<insert id="setAdd" parameterType="FaqVO" useGeneratedKeys="true"  keyProperty="num">
+		INSERT INTO FAQ(NUM, ID, TITLE, CONTENTS, REGDATE, GRADE)
+		VALUES(#{num}, #{id}, #{title}, #{contents}, now(), #{grade})
+	</insert>
+
+	<!-- FAQ 수정 -->
+	<update id="setUpdate" parameterType="FaqVO">
+		UPDATE FAQ SET TITLE = #{title}, CONTENTS = #{contents}, GRADE = #{grade} WHERE NUM = #{num}
+	</update>
+	
+	
+	<!-- FAQ 삭제 -->
+	<delete id="setDelete" parameterType="NoticeVO">
+		DELETE FROM FAQ WHERE NUM=#{num}
+	</delete>	
+	
+
+
+
+</mapper>
