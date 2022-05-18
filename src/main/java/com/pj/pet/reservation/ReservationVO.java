@@ -18,7 +18,7 @@ public class ReservationVO {
 	 private String resMemo;
 	 private Long resState;
 	 
-	 private List<ServiceVO> serviceVOs;
+	 private ServiceVO serviceVO;
 	 
 	 private String serName;
 	 private String serTel;

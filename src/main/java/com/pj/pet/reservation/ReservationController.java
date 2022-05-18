@@ -64,7 +64,7 @@ public class ReservationController {
 	}
 	
 	@GetMapping(value="confirmList")
-	public ModelAndView confirmList(HttpSession session,ReservationVO reservationVO,ServiceVO serviceVO )throws Exception{
+	public ModelAndView confirmList(HttpSession session,ReservationVO reservationVO )throws Exception{
 		ModelAndView mv = new ModelAndView();
 		UserVO userVO= (UserVO)session.getAttribute("user");
 		String id=userVO.getId();
