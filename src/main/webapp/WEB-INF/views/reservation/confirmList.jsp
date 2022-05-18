@@ -17,7 +17,7 @@
 	  		<h4 class="text-center" style="text-transform: uppercase;">${board} List</h4>
 		</div>
 	</div>
-	<input type="hidden" name="serNum" value="${confirmList.serNum}">
+	
 	
 	<div class="row mt-4">
 		<table class="table table-hover">
@@ -27,9 +27,6 @@
 					<th>전화번호</th>
 					<th>주소</th>
 					<th>영업시간</th>
-					<th>얘약일</th>
-					<th>얘약시간</th>
-					<th>상태</th>
 					
 				</tr>
 			</thead>
@@ -41,9 +38,7 @@
 					<td>${cl.serviceVO.serTel}</td>
 					<td>${cl.serviceVO.serAddress}</td>
 					<td>${cl.serviceVO.serTime}</td>
-					<td>${cl.resDate}</td>
-					<td>${cl.resTime}</td>
-					<td>${cl.resState}</td>
+				
 				</tr>
 			</c:forEach>
 			</tbody>
