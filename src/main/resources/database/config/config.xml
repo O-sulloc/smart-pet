@@ -5,6 +5,7 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+
 	<typeAliases>
 
 		<typeAlias type="com.pj.pet.user.UserVO" alias="UserVO"/>
@@ -27,5 +28,8 @@
 		<typeAlias type="com.pj.pet.user.UserVO" alias="UserVO"/>
 		<typeAlias type="com.pj.pet.user.UserPetVO" alias="UserPetVO"/>
 		<typeAlias type="java.lang.Long" alias="Long" />
-	</typeAliases>
+		<typeAlias type="com.pj.pet.products.ProductVO" alias="ProductVO"/>
+		<typeAlias type="com.pj.pet.products.ProductFileVO" alias="ProductFileVO"/>
+		<typeAlias type="com.pj.pet.category.CategoryVO" alias="CategoryVO"/>
+</typeAliases>
 </configuration>

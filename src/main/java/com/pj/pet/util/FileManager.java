@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class FileManager {
+
    @Autowired
    private ServletContext servletContext;
    

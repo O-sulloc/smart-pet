@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <script>
 	alert('${msg}');
 	location.href="${path}"
@@ -11,4 +12,5 @@
 	//3. HTML에 form 태그
 	//4. JS에서 location 객체의 href 속성
 	//5. ajax 
+
 </script>

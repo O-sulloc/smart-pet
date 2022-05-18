@@ -8,4 +8,5 @@ public class FileVO {
 	private String fileName;
 	private String oriName;
 	
+
 }

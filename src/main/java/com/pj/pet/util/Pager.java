@@ -18,6 +18,7 @@ public class Pager {
 	
 	//검색어(파라미터의 값)
 	private String search;
+	private String subSearch;
 	
 	//검색 종류(파라미터의 값)
 	private String kind;
@@ -30,33 +31,7 @@ public class Pager {
 	private boolean next;
 	
 	//list 가지고 올때 카테고리 명 별 리스트 가지고 오려고 추가
-	private String grade;
-	private String gradeRef;
-	
-	
-	//리스트에 뿌려주는 총 갯수 가져오려고 생성
-	private Long totalCountC;
-		
-	
-	//상품번호(상품상세, 예약상세 리뷰에서 사용)
-	private Long productNum;
-	
-	
-	
-	
-	public String getGrade() {
-		if(this.grade == "") {
-			this.grade = null;
-		}
-		return grade;
-	}
-	
-	public String getGradeRef() {
-		if(this.gradeRef == "") {
-			this.gradeRef = null;
-		}
-		return gradeRef;
-	}
+	private Integer grade;
 	
 	
 	//lombok이 있어도 직접 만들어줌 - 기본값을 부여하기 위해서
@@ -94,9 +69,6 @@ public class Pager {
 	//startNum, lastNum 만들어주는 식
 	public void makeNum(Long totalCount) {
 		//전체 row 갯수는 위 매개변수
-		
-		//위 선언 변수에 대입
-		totalCountC = totalCount;
 		
 		//전체 page 갯수
 		Long totalPage = totalCount/this.getPerPage();
@@ -146,10 +118,14 @@ public class Pager {
 		
 	}
 	
-	
+
+	public String getSubSearch() {
+		if(this.subSearch==null) {
+			this.subSearch="";
+		}
+		
+		return this.subSearch;
+	}
+
 }
-
-
-
-
 

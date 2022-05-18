@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pj.pet.products.ProductMapper">
+
+	<select id="getList" parameterType="Pager" resultMap="productResult">
+		SELECT
+		P.*,PF.*
+		FROM (SELECT * FROM PRODUCTS
+		WHERE PRODUCTNUM>0 AND
+		<choose>
+			<when test="kind=='col1'">
+				PRODUCTNAME
+			</when>
+			<when test="kind=='col2'">
+				PRODUCTPRICE
+			</when>
+			<when test="kind=='pcate'">
+				PCATEGORYNUM
+			</when>
+			<otherwise>
+				PRODUCTDETAIL
+			</otherwise>
+		</choose>
+		LIKE CONCAT('%',#{search},'%')
+		AND CATEGORYNUM LIKE CONCAT('%',#{subSearch},'%')
+		ORDER BY PRODUCTNUM DESC
+		LIMIT #{startRow}, #{perPage}
+		) P
+		LEFT JOIN
+		PRODUCTSFILE PF
+		USING (PRODUCTNUM)
+		
+		ORDER BY PF.FILENUM ASC
+	</select>
+
+	<select id="getTotalCount" parameterType="Pager" resultType="Long">
+		SELECT COUNT(PRODUCTNUM)
+		FROM PRODUCTS
+		WHERE PRODUCTNUM>0 AND
+		<choose>
+			<when test="kind=='col1'">
+				PRODUCTNAME
+			</when>
+			<when test="kind=='col2'">
+				PRODUCTPRICE
+			</when>
+			<when test="kind=='pcate'">
+				PCATEGORYNUM
+			</when>
+			<otherwise>
+				PRODUCTDETAIL
+			</otherwise>
+		</choose>
+		LIKE CONCAT('%', #{search},'%')
+		AND CATEGORYNUM LIKE CONCAT('%',#{subSearch},'%')
+		
+	</select>
+
+	<select id="getDetail" parameterType="ProductVO" resultMap="productResult">
+		SELECT
+		P.PRODUCTNUM,P.CATEGORYNUM,P.PCATEGORYNUM,P.PRODUCTNAME,P.PRODUCTPRICE,P.PRODUCTDETAIL,P.PRODUCTCOUNT,P.RATE,PF.*
+		FROM PRODUCTS P
+		LEFT JOIN
+		PRODUCTSFILE PF
+		USING (PRODUCTNUM)
+		WHERE
+		PRODUCTNUM =#{productNum}
+	</select>
+	<resultMap type="ProductVO" id="productResult">
+		<id column="productNum" property="productNum" />
+		<result column="categoryNum" property="categoryNum" />
+		<result column="pcategoryNum" property="pcategoryNum" />
+		<result column="productName" property="productName" />
+		<result column="productPrice" property="productPrice" />
+		<result column="productCount" property="productCount" />
+		<result column="productDetail" property="productDetail" />
+		<result column="rate" property="rate" />
+		<result column="sales" property="sales" />
+		<result column="regDate" property="regDate" />
+		<result column="writer" property="writer" />
+		<collection property="productFileVOs" javaType="List" ofType="ProductFileVO">
+			<id column="fileNum" property="fileNum" />
+			<result column="fileName" property="fileName" />
+			<result column="oriName" property="oriName" />
+		</collection>
+	</resultMap>
+
+	<insert id="setAdd" parameterType="ProductVO" useGeneratedKeys="true" keyProperty="productNum">
+		INSERT INTO PRODUCTS
+		VALUES(#{productNum},#{categoryNum},#{productName},#{productPrice},#{productDetail},#{productCount},#{rate},0,now(),#{writer},#{pcategoryNum})
+	</insert>
+
+	<update id="setUpdate" parameterType="ProductVO">
+		UPDATE PRODUCTS SET
+		CATEGORYNUM=#{categoryNum},PRODUCTNAME=#{productName},
+		PRODUCTPRICE=#{productPrice},PRODUCTCOUNT=#{productCount},
+		PRODUCTDETAIL=#{productDetail},RATE=#{rate}
+		WHERE
+		PRODUCTNUM=#{productNum}
+	</update>
+
+	<delete id="setDelete" parameterType="ProductVO">
+		DELETE FROM PRODUCTS WHERE
+		PRODUCTNUM=#{productNum}
+	</delete>
+
+	<select id="getFileList" parameterType="ProductVO" resultType="ProductFileVO">
+		SELECT * FROM PRODUCTSFILE WHERE PRODUCTNUM=#{productNum}
+	</select>
+
+	<select id="getFileDetail" parameterType="ProductFileVO"
+		resultType="ProductFileVO">
+		SELECT * FROM PRODUCTSFILE WHERE FILENUM=#{fileNum}
+	</select>
+
+	<insert id="setFileAdd" parameterType="ProductFileVO">
+		INSERT INTO
+		PRODUCTSFILE(FILENUM,PRODUCTNUM,FILENAME,ORINAME)
+		VALUES(NULL,#{productNum},#{fileName}, #{oriName})
+	</insert>
+
+	<delete id="setFileDelete" parameterType="ProductFileVO">
+		DELETE FROM
+		PRODUCTSFILE WHERE FILENUM=#{fileNum}
+	</delete>
+
+<!--  카테고리 -->
+
+	<select id="getCategoryDetail" parameterType="CategoryVO" resultType="CategoryVO">
+	SELECT * FROM CATEGORY WHERE CATEGORYNUM =#{categoryNum}
+	</select>
+
+	<select id="getpCount" resultType="Long">
+		SELECT COUNT(PRODUCTNUM) FROM PRODUCTS
+	</select>	
+	
+		<select id="highPriceList" parameterType="Pager" resultMap="productResult">
+		SELECT
+		P.*,PF.*
+		FROM (SELECT * FROM PRODUCTS
+		WHERE PRODUCTNUM>0 AND
+		<choose>
+			<when test="kind=='col1'">
+				PRODUCTNAME
+			</when>
+			<when test="kind=='col2'">
+				PRODUCTPRICE
+			</when>
+			<when test="kind=='pcate'">
+				PCATEGORYNUM
+			</when>
+			<otherwise>
+				PRODUCTDETAIL
+			</otherwise>
+		</choose>
+		LIKE CONCAT('%',#{search},'%')
+		AND CATEGORYNUM LIKE CONCAT('%',#{subSearch},'%')
+		ORDER BY PRODUCTNUM DESC
+		LIMIT #{startRow}, #{perPage}
+		) P
+		LEFT JOIN
+		PRODUCTSFILE PF
+		USING (PRODUCTNUM)
+		
+		ORDER BY P.PRODUCTPRICE DESC,PF.FILENUM ASC
+
+	</select>
+	
+	<select id="lowPriceList" parameterType="Pager" resultMap="productResult">
+		SELECT
+		P.*,PF.*
+		FROM (SELECT * FROM PRODUCTS
+		WHERE PRODUCTNUM>0 AND
+		<choose>
+			<when test="kind=='col1'">
+				PRODUCTNAME
+			</when>
+			<when test="kind=='col2'">
+				PRODUCTPRICE
+			</when>
+			<when test="kind=='pcate'">
+				PCATEGORYNUM
+			</when>
+			<otherwise>
+				PRODUCTDETAIL
+			</otherwise>
+		</choose>
+		LIKE CONCAT('%',#{search},'%')
+		AND CATEGORYNUM LIKE CONCAT('%',#{subSearch},'%')
+		ORDER BY PRODUCTNUM DESC
+		LIMIT #{startRow}, #{perPage}
+		) P
+		LEFT JOIN
+		PRODUCTSFILE PF
+		USING (PRODUCTNUM)
+		
+		ORDER BY P.PRODUCTPRICE ASC,PF.FILENUM ASC
+
+	</select>
+	
+	<select id="regDateList" parameterType="Pager" resultMap="productResult">
+		SELECT
+		P.*,PF.*
+		FROM (SELECT * FROM PRODUCTS
+		WHERE PRODUCTNUM>0 AND
+		<choose>
+			<when test="kind=='col1'">
+				PRODUCTNAME
+			</when>
+			<when test="kind=='col2'">
+				PRODUCTPRICE
+			</when>
+			<when test="kind=='pcate'">
+				PCATEGORYNUM
+			</when>
+			<otherwise>
+				PRODUCTDETAIL
+			</otherwise>
+		</choose>
+		LIKE CONCAT('%',#{search},'%')
+		AND CATEGORYNUM LIKE CONCAT('%',#{subSearch},'%')
+		ORDER BY PRODUCTNUM DESC
+		LIMIT #{startRow}, #{perPage}
+		) P
+		LEFT JOIN
+		PRODUCTSFILE PF
+		USING (PRODUCTNUM)
+		
+		ORDER BY P.REGDATE DESC,PF.FILENUM ASC
+
+	</select>
+<!--  카테고리끝 -->	
+	
+</mapper>
