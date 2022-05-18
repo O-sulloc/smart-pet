@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.pj.pet.reservation.ReservationMapper">
+
+
+<!-- list -->
+<select id="getList" parameterType="ServiceVO" resultType="ReservationVO">
+	SELECT *
+	from RESERVATION 
+	WHERE SERNUM=
+		(SELECT SERNUM from SERVICE WHERE ID=#{id})
+</select>
+
+
+
+<!-- <select id="getList" parameterType="ServiceVO" resultType="ReservationVO">
+	SELECT  RESNUM,RESDATE,RESMEMO,RESSTATE,RESTIME,NAME,PHONE,EMAIL
+	from RESERVATION R
+	left join USER U 
+	USING(ID)
+	WHERE SERNUM=
+		(SELECT SERNUM from SERVICE WHERE ID=#{id})
+</select> -->
+<!-- 
+<resultMap type="ReservationVO" id="listResult">
+	<id column="resNum" property="resNum" />
+	<result column="RESDATE" property="resDate"/>
+	<result column="RESMEMO" property="resMemo"/>
+	<result column="RESSTATE" property="resState"/>
+	<result column="RESTIME" property="resTime"/>
+	<association property="userVO" javaType="UserVO">
+		<id column="ID" property="id"/>
+		<result column="NAME" property="name"/>
+		<result column="PHONE" property="phone"/>
+		<result column="EMAIL" property="email"/>
+	</association>
+</resultMap> -->
+</mapper>

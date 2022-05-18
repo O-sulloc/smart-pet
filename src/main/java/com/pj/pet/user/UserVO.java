@@ -6,6 +6,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.pj.pet.reservation.ReservationVO;
+
 import lombok.Data;
 
 @Data
@@ -38,4 +40,6 @@ public class UserVO {
 	private Date joinDate;
 	private Long role;
 	private Long point;
+	
+	private ReservationVO reservationVO;
 }

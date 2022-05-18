@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.pj.pet.user.UserVO;
 
-@Service
+//@Service
 public class MailService {
 
 	//@Autowired

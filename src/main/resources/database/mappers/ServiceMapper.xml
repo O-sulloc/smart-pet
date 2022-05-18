@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.pj.pet.service.ServiceMapper">
+	<!-- file update -->
+	<insert id="setUpdateFile" parameterType="ServiceFileVO">
+		update SERVICEFILE 
+		set FILENAME=#{fileName}, ORINAME=#{oriName}
+		where SERNUM=#{serNum}
+	</insert>
+
+	<!-- add reservationTime -->
+	<insert id="setReservationTime" parameterType="ReservationTimeVO">
+		<selectKey resultType="Long" keyProperty="setNum" order="BEFORE">
+			select LAST_INSERT_ID() 
+		</selectKey>
+		insert into RESERVATIONTIME(SERNUM,SETNUM,TIMECASE,OPENTIME,CLOSETIME)
+		values (#{serNum},#{setNum},#{timecase},#{openTime},#{closeTime})
+	</insert>
+	
+	<!-- 예약 세팅 생성 -->
+	<insert id="setReservationSetting">
+		insert into RESERVATIONSETTING (SETNUM,SERNUM,CAPACITY,TERM,HOLIDAY,STARTBREAKTIME,ENDBREAKTIME)
+		values(NULL,#{serNum},#{capacity},#{term},#{holiday},#{startBreaktime},#{endBreaktime})
+	</insert>
+
+	<!-- 파일 추가 -->
+ 	<insert id="setFileAdd" parameterType="ServiceFileVO">
+ 		<selectKey resultType="Long" keyProperty="serNum" order="BEFORE">
+			select LAST_INSERT_ID() 
+		</selectKey>
+ 		INSERT INTO SERVICEFILE (FILENUM, SERNUM, FILENAME, ORINAME)
+ 		VALUES(NULL, #{serNum}, #{fileName}, #{oriName})
+ 	</insert>
+ 	
+ 	<!-- 파일 삭제시  -->
+ 	<select id="getFileDetail" parameterType="ServiceVO" resultType="ServiceFileVO">
+ 		SELECT * FROM SERVICEFILE WHERE SERNUM=#{serNum} 
+ 	</select>
+	
+	<!-- add service -->
+	<insert id="setService" parameterType="ServiceVO">
+		INSERT into SERVICE
+		values(NULL,#{serName},#{serTel},#{serAddress},#{hospitalField},#{homepage},#{serKind},#{id},#{serTime})
+	</insert>
+	
+	<select id="getService" parameterType="ServiceVO" resultType="ServiceVO"> 
+		select * from SERVICE
+		where SERNUM=#{serNum}
+	</select>
+	
+	
+	<!-- service mypage detail -->
+	<select id="getDetail" parameterType="ServiceVO" resultMap="getDetailResult">
+		select * from SERVICE S 
+			 LEFT JOIN
+				 SERVICEFILE F
+				 USING (SERNUM)
+		 WHERE SERNUM=(select SERNUM from SERVICE where ID=#{id})
+	</select>
+	
+	<resultMap type="ServiceVO" id="getDetailResult">
+		<id column="serNum" property="serNum"></id>
+		<result column="id" property="id"/>
+		<result column="serKind" property="serKind"/>
+		<result column="serName" property="serName"/>
+		<result column="homepage" property="homepage"/>
+		<result column="serTel" property="serTel"/>
+		<result column="serTime" property="serTime"/>
+		<result column="hospitalField" property="hospitalField"/>
+		<result column="serAddress" property="serAddress"/>
+		<association property="serviceFileVO" javaType="ServiceFileVO">
+			<id column="fileNum" property="fileNum"/>
+			<result column="serNum" property="serNum"/>
+			<result column="fileName" property="fileName"/>
+			<result column="oriName" property="oriName"/>
+		</association>
+	</resultMap>
+		
+	<!-- 예약 리스트 -->
+	<select id="getList" parameterType="UserVO" resultMap="reservationResult">
+		SELECT R.*,U.NAME,U.EMAIL,U.PHONE
+		from RESERVATION R
+		left join
+		USER U
+		using(ID)
+		WHERE SERNUM=
+			(SELECT SERNUM from SERVICE WHERE ID=#{id})
+	</select>
+	
+	<resultMap type="UserVO" id="reservationResult">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="email" property="email"/>
+		<result column="phone" property="phone"/>
+		<association property="reservationVO" javaType="ReservationVO">
+			<id column="resNum" property="resNum"></id>
+			<result column="id" property="id"/>
+			<result column="serNum" property="serNum"/>
+			<result column="resDate" property="resDate"/>
+			<result column="resMemo" property="resMemo"/>
+			<result column="resState" property="resState"/>
+			<result column="resTime" property="resTime"/>
+		</association>
+	</resultMap>
+	
+	
+	<!--id 받아서 예약세팅 정보 가져오기 (예약시간 띄워주기용)-->
+	<select id="getAllReservationSetting" parameterType="ServiceVO" resultMap="getAllReservationSettingResult">
+		select * from RESERVATIONSETTING S
+			LEFT JOIN
+				RESERVATIONTIME T
+				USING (SETNUM)
+			WHERE S.SERNUM=#{serNum}
+	</select>
+	<resultMap type="ReservationSettingVO" id="getAllReservationSettingResult">
+		<id column="setNum" property="setNum"></id>
+		<result column="serNum" property="serNum"/>
+		<result column="term" property="term"/>
+		<result column="capacity" property="capacity"/>
+		<result column="startBreakTime" property="startBreaktime"/>
+		<result column="endBreakTime" property="endBreaktime"/>
+		<result column="holiday" property="holiday"/>
+		<collection property="reservationTimeVO" ofType="ReservationTimeVO">
+			<result column="serNum" property="serNum"/>
+			<result column="setNum" property="setNum"/>
+			<result column="openTime" property="openTime"/>
+			<result column="closeTime" property="closeTime"/>
+			<result column="timecase" property="timecase"/>
+		</collection>
+	</resultMap>
+	
+	
+	<!-- service my page update-->
+	<update id="setUpdate" parameterType="ServiceVO">
+		update SERVICE set
+		SERTEL=#{serTel},
+		HOSPITALFIELD=#{hospitalField},
+		SERADDRESS=#{serAddress},
+		HOMEPAGE=#{homepage},
+		SERTIME=#{serTime}
+		where id=#{id}
+	</update>
+	
+	
+	<!-- 병원/샵 삭제 -->
+	<delete id="setDelete" parameterType="ServiceVO">
+		DELETE FROM SERVICE WHERE SERNUM=#{serNum}
+	</delete>
+	
+
+</mapper>
