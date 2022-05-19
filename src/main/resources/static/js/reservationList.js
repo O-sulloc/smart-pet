@@ -13,7 +13,42 @@ $('.modalSubmit').click(function(){
 	 $('#myModal').modal('hide')
 })
 
+/*
+getList(1);
+	
+	function getReservationList(pn){
+		console.log("start");
+		$.ajax({
+			type:"GET",
+			url:"./getReservationList",
+			data:{
+				pn:pn,
+				perPage:5
+			},
+			success:function(data){
+				$("#list").html(data.trim());
+			}
+		});
+	}
 
+*/
+$(function() {
+
+		$.ajax({
+			type:"GET",
+			url:"./ajaxReservationList",
+			data:{
+				pn:1,
+				perPage:5
+			},
+			success:function(data){
+				console.log(data)
+				$("#list").html(data.trim());
+				
+			}
+		})	
+
+});
 
 
 
