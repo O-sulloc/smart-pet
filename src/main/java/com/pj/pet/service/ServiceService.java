@@ -104,6 +104,10 @@ public class ServiceService {
 		pager.makeNum(serviceMapper.getTotalCount(pager));
 		return serviceMapper.getReservationList(pager);
 	}
+	
+	public int setUpdateResState(ReservationVO reservationVO)throws Exception{
+		return serviceMapper.setUpdateResState(reservationVO);
+	}
 //----------------------------------------------------------
 	
 	public List<ServiceVO> getListc(Pager pager) throws Exception{

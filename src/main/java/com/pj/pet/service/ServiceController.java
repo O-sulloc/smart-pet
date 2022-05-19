@@ -260,6 +260,17 @@ public class ServiceController {
 	      return mv;
 	   }
 	
+	@PostMapping("setUpdateResState")
+		public ModelAndView setUpdateResState(ReservationVO reservationVO)throws Exception{
+		 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!");
+		ModelAndView mv = new ModelAndView();
+		 int result=serviceService.setUpdateResState(reservationVO);
+			
+		 mv.setViewName("common/result");
+		 mv.addObject("result", result); //0or1 보내 에이작스에 
+		 return mv;
+	}
+	
 	@GetMapping("list")
 	public ModelAndView getList(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();

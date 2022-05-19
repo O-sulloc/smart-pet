@@ -54,6 +54,9 @@ public interface ServiceMapper {
 
 	//get totalCount
 	public Long getTotalCount(Pager pager)throws Exception;
+	
+	//update reservationState
+	public int setUpdateResState(ReservationVO reservationVO)throws Exception;
 	//==
 	
 	//list : getList

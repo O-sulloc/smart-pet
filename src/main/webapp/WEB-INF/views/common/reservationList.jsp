@@ -16,12 +16,12 @@
 			class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
 			<div class="dataTable-top">
 				<div class="dataTable-dropdown">
-					<label><select class="dataTable-selector"><option
-								value="5">5</option>
-							<option value="10" selected="">10</option>
-							<option value="15">15</option>
-							<option value="20">20</option>
-							<option value="25">25</option></select> entries per page</label>
+					<label><select class="dataTable-selector perPage">
+							<option class="option" value="5" selected="">5</option>
+							<option class="option" value="10">10</option>
+							<option class="option" value="15">15</option>
+							<option class="option" value="20">20</option>
+							<option class="option" value="25">25</option></select> entries per page</label>
 				</div>
 				<div class="dataTable-search">
 					<input class="dataTable-input" placeholder="Search..." type="text">
@@ -55,19 +55,19 @@
 							<tr>
 								<td>${vo.name}</td>
 								<td>${vo.reservationVO.resDate}</td>
-								<td>${vo.reservationVO.resTime}</td>
+								<td>${vo.reservationVO.resTime.substring(0,5)}</td>
 								<td><c:choose>
 										<c:when test="${vo.reservationVO.resState==0}">
 											대기 <button type="button" class="btn btn-primary btn-sm modalBtn" data-toggle="modal" data-target="#myModal" data="${vo.reservationVO.resNum}">변경</button>
 										</c:when>
 										<c:when test="${vo.reservationVO.resState==1}">
-								 			승인 <button type="button" class="btn btn-primary btn-sm modalBtn" data-toggle="modal" data-target="#myModal" data="${vo.reservationVO.resNum}"> >변경</button>
+								 			승인 
 										</c:when>
 										<c:when test="${vo.reservationVO.resState==2}">
-											거부 <button type="button" class="btn btn-primary btn-sm modalBtn" data-toggle="modal" data-target="#myModal" data="${vo.reservationVO.resNum}">>변경</button>
+											거부 
 										</c:when>
 										<c:when test="${vo.reservationVO.resState==3}">
-											완료 <button type="button" class="btn btn-primary btn-sm modalBtn" data-toggle="modal" data-target="#myModal" data="${vo.reservationVO.resNum}">변경</button>
+											완료 
 										</c:when>
 									</c:choose></td>
 								<td>${vo.phone}</td>
@@ -79,16 +79,22 @@
 			</div>
 			
 			<div class="dataTable-bottom">
-				<div class="dataTable-info">Showing 1 to 10 of 57 entries</div>
 				<nav class="dataTable-pagination">
-					<ul class="dataTable-pagination-list">
-						<li class="active"><a href="#" data-page="1">1</a></li>
-						<li class=""><a href="#" data-page="2">2</a></li>
-						<li class=""><a href="#" data-page="3">3</a></li>
-						<li class=""><a href="#" data-page="4">4</a></li>
-						<li class=""><a href="#" data-page="5">5</a></li>
-						<li class=""><a href="#" data-page="6">6</a></li>
-						<li class="pager"><a href="#" data-page="2">›</a></li>
+				<ul class="pagination">
+						<li class="page-item"><a data-pn="${pager.pre?pager.startNum-1:0}" class="page-link pager"
+							href="#"
+							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+						</a></li>
+			
+						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+							<li class="page-item"><a data-pn="${i}" class="page-link pager"
+								href="#">${i}</a></li>
+						</c:forEach>
+			
+						<li class="page-item"><a data-pn="${pager.next?pager.lastNum+1:0}" class="page-link pager"
+							href="#"
+							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+						</a></li>
 					</ul>
 				</nav>
 			</div>

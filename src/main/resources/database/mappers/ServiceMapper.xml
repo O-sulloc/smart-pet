@@ -121,6 +121,12 @@
 		ORDER BY RESNUM DESC
 	</select>
 	
+	<!--예약상태 변경하기  -->
+	<update id="setUpdateResState" parameterType="ReservationVO">
+		update RESERVATION 
+		set RESSTATE=#{resState}
+		where RESNUM=#{resNum}
+	</update>
 	
 	<!--id 받아서 예약세팅 정보 가져오기 (예약시간 띄워주기용)-->
 	<select id="getAllReservationSetting" parameterType="ServiceVO" resultMap="getAllReservationSettingResult">
