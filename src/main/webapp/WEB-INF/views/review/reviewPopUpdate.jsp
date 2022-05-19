@@ -15,7 +15,7 @@
 	<!-- 별점(star), 좋았던점(contents), 사진첨부 -->
 	<div class="wrapper_div">
 		<div class="subject_div">
-			리뷰 등록
+			리뷰 수정
 		</div>
 		
 		<div class="input_wrap">			
@@ -24,6 +24,8 @@
 				<!-- 임시값 -->
 				<input type="hidden" class="id" value="${id}">
 				<input type="hidden" class="productInfo" value="${productInfo}">
+				<!-- 업데이트에 새로추가 -->
+				<input type="hidden" class="replyNum" value="${vo.replyNum}">
 				<!-- 여기까지 -->
 			</div>
 			
@@ -55,14 +57,14 @@
 				
 				<div class="content_div">
 					<textarea class="col-auto form-control"  id="contents" name="contents"
-					placeholder="상품을 받아보시고 만족도에 대한 후기를 남겨주세요.(최소 10자 이상)"></textarea>
+					placeholder="상품을 받아보시고 만족도에 대한 후기를 남겨주세요.(최소 10자 이상)">${vo.contents}</textarea>
 				</div>
 			</div>			
 			
 		</div>
 		
 		<div class="btn_wrap">
-			<button class="cancel_btn">취소</button> <button class="add_btn" disabled="true">등록</button>
+			<button class="cancel_btn">취소</button> <button class="update_btn" disabled="true">수정</button>
 		</div>
 
 	</div>
@@ -71,7 +73,47 @@
 <c:import url="../temp/header_script.jsp"></c:import>
 <script type="text/javascript" src="/resources/js/reviewPop.js"></script>
 <script type="text/javascript">
-	check();
+	//기존값 불러오는 코드
+	$(document).ready(function(){
+		//평점부여한값 가져오기
+		let starVal = '${vo.star}';
+		
+		//평점부여한값 checked로 바꾸기
+		$("input[name='reviewStar'][value='" + starVal + "']").attr('checked', true);
+		
+		//리뷰 밑 평점삭제후 재등록
+		$(".textStar").children().remove();
+		
+		//h4태그 삭제후 재등록
+		$("h4").remove(".comment");
+		
+		if(starVal == 1){
+			$(".textStar").append("<span class='text-red'>1점(별로에요)</span>");
+			$(".reviewComment").append("<h4 class='comment'>만족도 1점을 주셨네요</h4>");
+			$(".reviewComment").append("<h4 class='comment'>어떤점이 아쉬웠나요?</h4>");
+		}else if(starVal == 2){
+			$(".textStar").append("<span class='text-red'>2점(그저그래요)</span>");
+			$(".reviewComment").append("<h4 class='comment'>만족도 2점을 주셨네요</h4>");
+			$(".reviewComment").append("<h4 class='comment'>어떤점이 아쉬웠나요?</h4>");
+		}else if(starVal == 3){
+			$(".textStar").append("<span class='text-red'>3점(괜찮아요)</span>");
+			$(".reviewComment").append("<h4 class='comment'>만족도 3점을 주셨네요</h4>");
+			$(".reviewComment").append("<h4 class='comment'>어떤점이 좋았나요?</h4>");
+		}else if(starVal == 4){
+			$(".textStar").append("<span class='text-red'>4점(좋아요)</span>");
+			$(".reviewComment").append("<h4 class='comment'>만족도 4점을 주셨네요</h4>");
+			$(".reviewComment").append("<h4 class='comment'>어떤점이 좋았나요?</h4>");
+		}else{
+			$(".textStar").append("<span class='text-red'>5점(최고에요)</span>");
+			$(".reviewComment").append("<h4 class='comment'>만족도 5점을 주셨네요</h4>");
+			$(".reviewComment").append("<h4 class='comment'>어떤점이 좋았나요?</h4>");
+		}
+	});
+	
+	updateCheck();
 </script>
 </body>
 </html>
+
+
+

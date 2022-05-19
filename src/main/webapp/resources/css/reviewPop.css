@@ -41,7 +41,7 @@ body{
     line-height: 18px;  
 }
 
-.enroll_btn{
+.add_btn{
   	display: inline-block;
     width: 130px;
     background-color:#7b8ed1;
@@ -51,7 +51,21 @@ body{
     line-height: 18px; 
 }
  	
-.enroll_btn:disabled {
+.add_btn:disabled {
+	background-color: rgb(168, 202, 244); /* 흐린 색상의 배경 적용 */
+}
+
+.update_btn{
+  	display: inline-block;
+    width: 130px;
+    background-color:#7b8ed1;
+    height: 50px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 18px; 
+}
+ 	
+.update_btn:disabled {
 	background-color: rgb(168, 202, 244); /* 흐린 색상의 배경 적용 */
 }
 

@@ -47,7 +47,7 @@ $(".cancel_btn").on("click", function(e){
 
 
 
-//버튼 활성화/비활성화 코드
+//버튼 활성화/비활성화 코드(add)
 function check(){
 	
 	let starCheck = false;
@@ -58,9 +58,9 @@ function check(){
 		starCheck = true;
 		
 		if(starCheck && contentsCheck){
-			$(".enroll_btn").attr("disabled", false);
+			$(".add_btn").attr("disabled", false);
 		}else{
-			$(".enroll_btn").attr("disabled", true);
+			$(".add_btn").attr("disabled", true);
 		}
 		
 	});
@@ -75,21 +75,73 @@ function check(){
 		
 			if(starCheck && contentsCheck){
 				console.log("blur");
-				$(".enroll_btn").attr("disabled", false);
+				$(".add_btn").attr("disabled", false);
 			}else{
-				$(".enroll_btn").attr("disabled", true);
+				$(".add_btn").attr("disabled", true);
 			}
 		
 	});
 }
 
+//버튼 활성화/비활성화 코드(update)
+
+function updateCheck(){
+	
+	$("#contents").focus().select();
+	
+	let starCheck = true;
+	let contentsCheck = true;
+	
+	$(".clickStar").on("change",function(){
+		
+		starCheck = true;
+		
+		if(starCheck && contentsCheck){
+			$(".update_btn").attr("disabled", false);
+		}else{
+			$(".update_btn").attr("disabled", true);
+		}
+		
+	});
+	
+	$("#contents").on({
+		
+		keyup: function(){
+			if($(this).val().length > 10){
+				contentsCheck = true;
+			}else{
+				contentsCheck = false;
+			}
+		
+			if(starCheck && contentsCheck){
+				console.log("blur");
+				$(".update_btn").attr("disabled", false);
+			}else{
+				$(".update_btn").attr("disabled", true);
+			}
+		},
+		
+		click: function(){
+			if($(this).val().length > 10){
+				contentsCheck = true;
+			}else{
+				contentsCheck = false;
+			}
+		
+			if(starCheck && contentsCheck){
+				console.log("blur");
+				$(".update_btn").attr("disabled", false);
+			}else{
+				$(".update_btn").attr("disabled", true);
+			}
+		},
+		
+	});
+}
 
 
-
-
-
-/* 등록 버튼 */
-$(".enroll_btn").on("click", function(){
+// 등록 버튼
+$(".add_btn").on("click", function(){
 	
 	let check = window.confirm("이대로 등록하시겠습니까?");
     if(!check){
@@ -129,6 +181,51 @@ $(".enroll_btn").on("click", function(){
 		}
 		
 	});		
+});
+
+
+// 수정 버튼
+$(".update_btn").on("click", function(){
 	
+	let check = window.confirm("이대로 등록하시겠습니까?");
+    if(!check){
+        return;
+    }
 	
+	//let id = $(".id").val();
+	//여기까지
+	//임시로가져옴 update에선 안넣어도 될듯(이거 넣어야 상품 평균 별점 수정가능)
+	//멤버아이디도 넣어야 할수도있음!
+	let productNum = $(".productInfo").val();
+	let star = $('input[name="reviewStar"]:checked').val();
+	let contents = $("#contents").val();
+	let replyNum = $(".replyNum").val();
+	
+	//console.log(productNum);
+	//console.log(id);
+	console.log(star);
+	console.log(contents);
+	
+		
+	$.ajax({
+		type : 'post',
+		url : '/product/review/update',
+		data :{
+/*			id : id,*/
+			productNum : productNum,
+			star : star,
+			contents : contents,
+			replyNum : replyNum
+		},
+		
+		success : function(){
+			alert("등록성공!");
+			window.close();
+		},
+		
+		error : function(){
+			alert("서버요청 실패");
+		}
+		
+	});		
 });

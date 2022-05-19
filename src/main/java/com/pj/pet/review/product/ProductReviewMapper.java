@@ -13,7 +13,7 @@ public interface ProductReviewMapper {
 	public List<ReviewVO> getList(Pager pager) throws Exception;
 	
 	//total(pager에 사용)
-	//public Long getTotalCount(Pager pager) throws Exception;
+	public Long getTotalCount(Pager pager) throws Exception;
 	
 	//detail
 	public ReviewVO getDetail(ReviewVO reviewVO) throws Exception;
@@ -27,4 +27,14 @@ public interface ProductReviewMapper {
 	//delete
 	public int setDelete(ReviewVO reviewVO) throws Exception;
 	
+	//평점 평균 구하기
+	public Double getStarAvg(Long productNum);
+	
+	//평점 평균 넣기
+	public int setUpdateAvg(ProductReviewAvgVO dto);
+	
 }
+
+
+
+

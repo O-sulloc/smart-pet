@@ -32,5 +32,9 @@
 		<typeAlias type="com.pj.pet.products.ProductVO" alias="ProductVO"/>
 		<typeAlias type="com.pj.pet.products.ProductFileVO" alias="ProductFileVO"/>
 		<typeAlias type="com.pj.pet.category.CategoryVO" alias="CategoryVO"/>
+		
+		<!-- 재석 새로추가 -->
+		<typeAlias type="com.pj.pet.review.product.ProductReviewAvgVO" alias="ProductReviewAvgVO"/>
+		
 </typeAliases>
 </configuration>

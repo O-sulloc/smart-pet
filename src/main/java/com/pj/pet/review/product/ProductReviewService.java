@@ -21,6 +21,8 @@ public class ProductReviewService implements ReviewService {
 	
 	@Override
 	public List<ReviewVO> getList(Pager pager) throws Exception {
+		pager.makeRow();
+		pager.makeNum(productReviewMapper.getTotalCount(pager));
 		return productReviewMapper.getList(pager);
 	}
 
@@ -58,14 +60,34 @@ public class ProductReviewService implements ReviewService {
 		
 	}
 
-	@Override
+	@Override//나중에 파일
 	public int setUpdate(ReviewVO reviewVO) throws Exception {
 		return productReviewMapper.setUpdate(reviewVO);
 	}
 
-	@Override
+	@Override//나중에 파일
 	public int setDelete(ReviewVO reviewVO) throws Exception {
 		return productReviewMapper.setDelete(reviewVO);
+	}
+	
+	//star 평균값 구하기
+	public void setRating(Long productNum) {
+		
+		Double starAvg = productReviewMapper.getStarAvg(productNum);
+		
+		if(starAvg == null) {
+			starAvg = 0.0;
+		}	
+		//안되면 이 코드
+		starAvg = (double) (Math.round(starAvg*10));
+		starAvg = starAvg / 10;
+		
+		ProductReviewAvgVO avg = new ProductReviewAvgVO();
+		avg.setProductNum(productNum);
+		avg.setStarAvg(starAvg);	
+
+		productReviewMapper.setUpdateAvg(avg);
+		
 	}
 
 }

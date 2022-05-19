@@ -2,6 +2,8 @@ package com.pj.pet.board.notice;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pj.pet.board.faq.FaqVO;
+import com.pj.pet.products.ProductVO;
+import com.pj.pet.review.ReviewVO;
+import com.pj.pet.review.product.ProductReviewService;
 import com.pj.pet.util.Pager;
 
 @Controller
@@ -28,9 +33,9 @@ public class NoticeController {
 	}
 	
 	//연습용
-	/* 리뷰 쓰기 */
+	//리뷰 쓰기
 	@GetMapping("/reviewAdd/{id}")
-	public ModelAndView replyEnrollWindowGET(@PathVariable("id")String id, Long productNum) {
+	public ModelAndView reviewAdd(@PathVariable("id")String id, Long productNum) {
 		ModelAndView mv = new ModelAndView();
 		//상품들어오면 상품 넣을것
 		//BookVO book = bookService.getBookIdName(bookId);
@@ -40,6 +45,39 @@ public class NoticeController {
 		mv.setViewName("review/reviewPop");
 		return mv;
 	}
+	
+	@Autowired
+	private ProductReviewService productReviewService;
+	
+	//리뷰 수정
+	@GetMapping("reviewUpdate")
+	public ModelAndView reviewUpdate(ReviewVO reviewVO, ModelAndView mv) throws Exception {
+		
+		//ProductVO productVO = 상품번호 가져오기(상품컨트롤러에서 작업)
+		//mv.addObject("productInfo", productNum);
+		mv.addObject("productInfo", 1);
+		reviewVO = productReviewService.getDetail(reviewVO);
+		mv.addObject("vo", reviewVO);
+		//mv.addObject("id", reviewVO.getId());
+		mv.addObject("id", "admin");
+		mv.setViewName("review/reviewPopUpdate");
+		return mv;
+	}
+
+	
+	//list 리뷰 갖고와서 보여주기
+	@GetMapping("reviewList")
+	public ModelAndView getAjaxList(Pager pager) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		//이미 값을 보낼때 pager에 productNum 보냄
+		List<ReviewVO> ar = productReviewService.getList(pager);
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("common/reviewList");
+		return mv;
+	}
+	
+	
 	//연습용 끝
 	
 	

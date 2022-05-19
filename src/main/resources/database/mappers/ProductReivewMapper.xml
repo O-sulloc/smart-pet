@@ -11,6 +11,75 @@
 		INSERT INTO PRODUCTREPLY(REPLYNUM, PRODUCTNUM, ID, CONTENTS, REGDATE, STAR)
 		VALUES(#{replyNum}, #{productNum}, #{id}, #{contents}, now(), #{star})
 	</insert>
+	
+	<update id="setUpdate" parameterType="ReviewVO">
+		UPDATE PRODUCTREPLY
+		SET CONTENTS = #{contents}, STAR = #{star}
+		WHERE REPLYNUM = #{replyNum}
+	</update>
+	
+	<delete id="setDelete" parameterType="ReviewVO">
+		DELETE FROM PRODUCTREPLY
+		WHERE REPLYNUM = #{replyNum}
+	</delete>
+	
+	
+	<select id="getDetail" resultType="ReviewVO" parameterType="ReviewVO">
+		SELECT * FROM PRODUCTREPLY
+		WHERE REPLYNUM = #{replyNum}	
+	</select>
+
+	<select id="getList" resultType="ReviewVO" parameterType="Pager">
+		SELECT * FROM PRODUCTREPLY
+		WHERE
+		REPLYNUM > 0
+		AND
+		PRODUCTNUM = #{productNum}
+		ORDER BY 
+		REPLYNUM DESC
+		LIMIT #{startRow}, #{perPage}
+	
+
+		<!-- SELECT * FROM   나중에 FILE들어오면 위 RESULTMAP쓰고 쓸것
+			(
+				SELECT * FROM PRODUCTREPLY WHERE
+				REPLYNUM > 0
+				AND
+				PRODUCTNUM = #{productNum}
+				
+				ORDER BY REPLYNUM DESC
+				LIMIT #{startRow}, #{perPage}
+			) R
+				LEFT JOIN
+			REPLYFILE RF
+			USING(PRODUCTNUM) -->
+	</select>
+	
+	<select id="getTotalCount" resultType="java.lang.Long" parameterType="Pager">
+    		SELECT COUNT(REPLYNUM) FROM PRODUCTREPLY
+    		WHERE REPLYNUM > 0
+    		AND
+			PRODUCTNUM = #{productNum}
+    </select>
+
+
+	<!-- star Avg 구하기 -->
+	<select id="getStarAvg" resultType="double" parameterType="java.lang.Long">
+  	
+  		SELECT AVG(STAR)
+  		FROM PRODUCTREPLY
+  		WHERE PRODUCTNUM = #{productNum}
+  	
+  	</select>
+
+	<update id="setUpdateAvg" parameterType="ProductReviewAvgVO">
+	
+		UPDATE PRODUCTS
+		SET STARAVG = #{starAvg}
+		WHERE PRODUCTNUM = #{productNum}
+	
+	</update>
+
 
 
 </mapper>

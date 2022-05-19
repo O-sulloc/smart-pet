@@ -35,6 +35,10 @@ public class Pager {
 	private String grade;
 	private String gradeRef;
 	
+	//상품번호(댓글에서 사용)
+	private Long productNum;
+	
+	
 	//lombok이 있어도 직접 만들어줌 - 기본값을 부여하기 위해서
 	public Integer getPerPage() {
 		if(this.perPage == null || this.perPage < 1) {
