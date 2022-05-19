@@ -218,16 +218,26 @@ public class ServiceController {
 	
 	//예약 현황 List
 	@GetMapping("reservationList")
-	public ModelAndView getList(HttpSession session)throws Exception{
+	public ModelAndView getList()throws Exception{
 		ModelAndView mv = new ModelAndView();
-		ServiceVO serviceVO= new ServiceVO();
-		UserVO userVO=(UserVO) session.getAttribute("user");
-		List<ReservationVO> ar=serviceService.getList(userVO);
-		
-		mv.addObject("list", ar);
 		mv.setViewName("service/reservationList");
 		return mv;
 	}
+	
+//	@GetMapping("ajaxReservationList")
+//	public ModelAndView getAjaxReservationList(Pager pager,HttpSession session)throws Exception{
+//		ModelAndView mv = new ModelAndView();
+//		UserVO userVO=(UserVO)session.getAttribute("user");
+//		pager.setId(userVO.getId());
+//		List<ReservationVO> ar=serviceService.getList(pager);
+//		
+//		mv.addObject("list", ar);
+//		mv.addObject("pager", pager);
+//		mv.setViewName("common/reservationList");
+//		return mv;
+//	}
+//	
+	
 	
 	@GetMapping("manage")
 	public ModelAndView manage()throws Exception{
@@ -249,6 +259,7 @@ public class ServiceController {
 	      mv.setViewName("service/detail");
 	      return mv;
 	   }
+	
 	@GetMapping("list")
 	public ModelAndView getList(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();

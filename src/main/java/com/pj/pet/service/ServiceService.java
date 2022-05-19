@@ -99,10 +99,12 @@ public class ServiceService {
 		return result;
 	}
 	
-	public List<ReservationVO> getList(UserVO userVO)throws Exception{
-		return serviceMapper.getList(userVO);
+	public List<ReservationVO> getReservationList(Pager pager)throws Exception{
+		pager.makeRow();
+		pager.makeNum(serviceMapper.getTotalCount(pager));
+		return serviceMapper.getReservationList(pager);
 	}
-
+//----------------------------------------------------------
 	
 	public List<ServiceVO> getListc(Pager pager) throws Exception{
 		pager.makeRow();

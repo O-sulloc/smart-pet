@@ -50,8 +50,12 @@ public interface ServiceMapper {
 	public int setDelete(ServiceVO serviceVO)throws Exception;
 	
 	//예약 리스트 
-	public List<ReservationVO> getList(UserVO userVO)throws Exception;
+	public List<ReservationVO> getReservationList(Pager pager)throws Exception;
 
+	//get totalCount
+	public Long getTotalCount(Pager pager)throws Exception;
+	//==
+	
 	//list : getList
 	public List<ServiceVO> getListc(Pager pager) throws Exception;
 	

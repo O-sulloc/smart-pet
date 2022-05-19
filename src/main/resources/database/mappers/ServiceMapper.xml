@@ -81,8 +81,8 @@
 		</association>
 	</resultMap>
 		
-	<!-- 예약 리스트 -->
-	<select id="getList" parameterType="UserVO" resultMap="reservationResult">
+	<!--판매자측 서비스 예약 리스트 --><!--최신순-->
+	<select id="getReservationList" parameterType="Pager" resultMap="reservationResult">
 		SELECT R.*,U.NAME,U.EMAIL,U.PHONE
 		from RESERVATION R
 		left join
@@ -90,6 +90,8 @@
 		using(ID)
 		WHERE SERNUM=
 			(SELECT SERNUM from SERVICE WHERE ID=#{id})
+		ORDER BY RESNUM DESC
+		LIMIT #{startRow}, #{perPage} 
 	</select>
 	
 	<resultMap type="UserVO" id="reservationResult">
@@ -107,6 +109,17 @@
 			<result column="resTime" property="resTime"/>
 		</association>
 	</resultMap>
+	
+	<select id="getTotalCount" parameterType="Pager" resultType="Long">
+		SELECT COUNT(RESNUM)
+		from RESERVATION R
+		left join
+		USER U
+		using(ID)
+		WHERE SERNUM=
+			(SELECT SERNUM from SERVICE WHERE ID=#{id})
+		ORDER BY RESNUM DESC
+	</select>
 	
 	
 	<!--id 받아서 예약세팅 정보 가져오기 (예약시간 띄워주기용)-->
@@ -133,7 +146,7 @@
 			<result column="timecase" property="timecase"/>
 		</collection>
 	</resultMap>
-	
+
 	
 	<!-- service my page update-->
 	<update id="setUpdate" parameterType="ServiceVO">
@@ -151,6 +164,9 @@
 	<delete id="setDelete" parameterType="ServiceVO">
 		DELETE FROM SERVICE WHERE SERNUM=#{serNum}
 	</delete>
+	
+	
+	<!-- ====================== -->
 	
 
 	<select id="getListc" parameterType="Pager" resultType="ServiceVO">
