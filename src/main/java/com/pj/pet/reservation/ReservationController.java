@@ -30,7 +30,6 @@ import com.pj.pet.service.ServiceVO;
 import com.pj.pet.user.UserVO;
 
 @RestController
-@RequestMapping(value="/reservation/*")
 public class ReservationController {
 
 	@Autowired
@@ -39,7 +38,7 @@ public class ReservationController {
 
 
 	
-	@GetMapping("calendar")
+	@GetMapping("/reservation/calendar")
 	public ModelAndView setCalendar()throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("reservation/calendar");
@@ -48,7 +47,7 @@ public class ReservationController {
 
 
 //	@ResponseBody
-	@PostMapping(value="confirm")
+	@PostMapping(value="/reservation/confirm")
 	public ModelAndView add(HttpSession session,ReservationVO reservationVO) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
@@ -74,7 +73,7 @@ public class ReservationController {
 	}
 	
 	
-	@GetMapping(value="confirm")
+	@GetMapping(value="/reservation/confirm")
 	public void setAdd(ReservationVO reservationVO, Model model, ServiceVO serviceVO) throws Exception{
 		List<ReservationVO> ar = new ArrayList<>();
 		
@@ -83,8 +82,8 @@ public class ReservationController {
 		model.addAttribute("vo",reservationVO);
 	}
 	
-	@GetMapping(value="confirmList")
-	public ModelAndView confirmList(HttpSession session,ReservationVO reservationVO )throws Exception{
+	@GetMapping(value="/user/appointment")
+	public ModelAndView confirmList(HttpSession session,ReservationVO reservationVO,ServiceVO serviceVO )throws Exception{
 		ModelAndView mv = new ModelAndView();
 		UserVO userVO= (UserVO)session.getAttribute("user");
 		String id=userVO.getId();
@@ -93,7 +92,7 @@ public class ReservationController {
 		
 		List<ReservationVO> confirmList = reservationService.confirmList(reservationVO);
 		mv.addObject("confirmList",confirmList);
-		mv.setViewName("./reservation/confirmList");
+		mv.setViewName("./user/appointment");
 		
 		return mv;
 	}

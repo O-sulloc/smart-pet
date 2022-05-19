@@ -108,8 +108,8 @@
 
 	<div class="inputArea">
 		<form action="../reservation/confirm" method="post">
-				<input type="hidden" name="serNum" value="${vo.serNum }">
-				<label for="">배송메모</label>
+				<input type="hidden" name="serNum" value="${seviceVO.serNum }">
+				<label for="">예약메모</label>
 				<input type="text" name="resMemo" id="resMemo">
 				<input type="hidden" name="resDate" value="" id="resDate">
 				<input type="hidden" name="resTime" value="9:00" id="resTime">
@@ -119,21 +119,12 @@
 	</div>
 				
 	
-	<script>
-		 $(".res_btn").click(function(){
-			
-			let confirm_val=confirm("예약하시겠습니까?");
-			
 	
-			
-		}) 
-	</script>
 	
-	<script type="text/javascript" src="../js/calendar.js"></script>
 	<script type="text/javascript" src="../js/detail.js"></script>
 	<script type="text/javascript" src="../js/calendar.js"></script>
 	<script type="text/javascript" src="../js/reservation.js"></script>
->>>>>>> master_user_service
+
 
 
 </body>

@@ -20,7 +20,7 @@
 	
 	
 	<h4>예약을 확인해주세요.</h4>
- 	<a href="./confirmDetail">예약확인</a>
+ 	<a href="../user/appointment">예약확인</a>
 </div>
 
 

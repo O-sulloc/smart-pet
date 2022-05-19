@@ -1,7 +1,6 @@
 /**
  * 
  */
-
 let CDate = new Date(); 
 let today = new Date();
 let selectCk = 0;
@@ -29,7 +28,7 @@ let buildcalendar = function(){
 			 dates.push(i); // 다음 달 날짜 채우기 (나머지 다 채운 다음 출력할 때 42개만 출력함)
 	} 
 	
-	for(let i = 0; i < 42; i++){
+	for(var i = 0; i < 42; i++){
 		if(i < thisFirst.getDay()){
 			htmlDates += '<div class="date last">'+dates[i]+'</div>'; 
 		}else if(today.getDate()==dates[i] && today.getMonth()==CDate.getMonth() && today.getFullYear()==CDate.getFullYear()){
@@ -53,12 +52,11 @@ function nextCal(){
 }
 
 
+
+function fn_selectDate(date){
 	let year = CDate.getFullYear();
 	let month = CDate.getMonth() + 1;
 	let date_txt = "";
-	let d="";
-function fn_selectDate(date){
-	
 	
 	if(CDate.getMonth + 1 < 10){
 		month = "0" + (CDate.getMonth() + 1);
@@ -75,7 +73,9 @@ function fn_selectDate(date){
 
 		$("#resDate").val(year+"-"+month+"-"+date);
 
-		selectCk = date;
+		selectCk = month;
+		console.log(selectCk);
+		
 		d=date;
 		
 		
@@ -85,7 +85,6 @@ function fn_selectDate(date){
 		$("#date_"+date).css("background-color", "white");
 		$("#date_"+date).css("color", "black");		
 	
-		console.log(selectCk);
 		selectCk = 0;
 	}
 	
@@ -97,7 +96,7 @@ buildcalendar();
 
 
 
-$("#reservation").click(function() {
+$(".res_btn").click(function() {
 	let serNum = $(this).attr("data-sn");
 	let resDate = year + "-" + month + "-" + d;
 	
