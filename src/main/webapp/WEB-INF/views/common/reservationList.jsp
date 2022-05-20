@@ -32,17 +32,17 @@
 					<thead>
 						<tr>
 							<th data-sortable="" style="width: 19.1946%;"><a href=""
-								class="dataTable-sorter">예약자명</a></th>
+								class="dataTable">예약자명</a></th>
 							<th data-sortable="" style="width: 15.1275%;"><a href="#"
-								class="dataTable-sorter">예약일</a></th>
+								class="dataTable">예약일</a></th>
 							<th data-sortable="" style="width: 13.8389%;"><a href="#"
-								class="dataTable-sorter">예약시간</a></th>
+								class="dataTable">예약시간</a></th>
 							<th data-sortable="" style="width: 10.85906%;"><a href="#"
-								class="dataTable-sorter">예약상태</a></th>
+								class="dataTable">예약상태</a></th>
 							<th data-sortable="" style="width: 15.0336%;"><a href="#"
-								class="dataTable-sorter">전화번호</a></th>
+								class="dataTable">전화번호</a></th>
 							<th data-sortable="" style="width: 11.9463%;"><a href="#"
-								class="dataTable-sorter">이메일</a></th>
+								class="dataTable">이메일</a></th>
 						</tr>
 					</thead>
 

@@ -1,47 +1,49 @@
 let pn=1;
 let perPage=5;
-
+let resNum=null;
 
 //예약상태 변경 버튼 클릭시 
 $("#list").on("click",".modalBtn",function(){
  	$('#myModal').modal('show')
- 	let resNum=$(this).attr("data");
- 	console.log(resNum)
+ 	resNum=$(this).attr("data");
+ 	console.log("resNum:"+resNum)
+})
 
-		 	//모달창 변경버튼 -> 데이터 보내기 
-		$('.modalSubmit').click(function(){
-		
-			 let resState= $('input[name="resState"]:checked').val()
-			 console.log(resState)
-			 //1:승인 2:거절 
-			 
-				$.ajax({
-					type:"POST",
-					url:"./setUpdateResState",
-					data:{
-						resNum:resNum,
-						resState:resState
-					},
-					success:function(data){
-					if(data.trim()==1){
-						getList(pn,perPage);
-					}else{
-						alert("변경 실패했습니다. 다시 시도해주십시오.")
-					}
-						
-					}
-				})//ajax로 데이터 전송 	 
+
+ //모달창 변경버튼 -> 데이터 보내기 
+$('.modalSubmit').click(function(){
+	 let resState= $('input[name="resState"]:checked').val()
+	 console.log("resState:"+resState)
+	 console.log("resNum:"+resNum)
+	 //1:승인 2:거절 
+	 
+		$.ajax({
+			type:"POST",
+			url:"./setUpdateResState",
+			data:{
+				resNum:resNum,
+				resState:resState
+			},
+			success:function(data){
+			if(data.trim()==1){
+				getList(pn,perPage);
+			}else{
+				alert("변경 실패했습니다. 다시 시도해주십시오.")
+			}
 				
-			$('#myModal').modal('hide')
-			
+			}
+		})//ajax로 데이터 전송 	 
+		
+	$('#myModal').modal('hide')
+	
 
-		})//저장버튼 클릭시 
-})//변경 버튼 클릭시 
+})//저장버튼 클릭시 
 
 //모달창 닫기 
 $('.modalClose').click(function(){
 	 $('#myModal').modal('hide')
 })
+
 
 
 
@@ -71,6 +73,7 @@ $("#list").on("change",".perPage",function(){
 
 getList(1,5);
 
+//최신 추가된순으로 예약리스트 가져오는 ajax 
 	function getList(pn,perPage){
 		$.ajax({
 			type:"GET",
@@ -86,6 +89,27 @@ getList(1,5);
 		})	
 };
 
+// 대기중인 예약 리스트 가져오는ajax 
+	function getResStateIs0List(pn,perPage){
+		$.ajax({
+			type:"GET",
+			url:"./ajaxgetResStateIs0List",
+			data:{
+				pn:pn,
+				perPage:perPage
+			},
+			success:function(data){
+				console.log(data)
+				$("#list").html(data.trim());
+				
+			}
+		})	
+}
+
+$("#resStateIs0").click(function(){
+	console.log("dd")
+	getResStateIs0List(pn,perPage)
+})
 
 
 

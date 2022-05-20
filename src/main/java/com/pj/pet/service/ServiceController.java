@@ -216,7 +216,7 @@ public class ServiceController {
 	}
 	
 	
-	//예약 현황 List
+	//예약 현황 List보여주는 페이지로가 
 	@GetMapping("reservationList")
 	public ModelAndView getList()throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -224,6 +224,7 @@ public class ServiceController {
 		return mv;
 	}
 	
+	//예약리스트 최신순 
 	@GetMapping("ajaxReservationList")
 	public ModelAndView getAjaxReservationList(Pager pager,HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -236,6 +237,20 @@ public class ServiceController {
 		mv.setViewName("common/reservationList");
 		return mv;
 	}
+	
+	@GetMapping("ajaxgetResStateIs0List")
+	public ModelAndView getResStateIs0List(Pager pager,HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		UserVO userVO=(UserVO)session.getAttribute("user");
+		pager.setId(userVO.getId());
+		List<ReservationVO> ar=serviceService.getResStateIs0(pager);
+		
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("common/reservationList");
+		return mv;
+	}
+	
 	
 	
 	

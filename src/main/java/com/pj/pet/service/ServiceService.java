@@ -98,12 +98,20 @@ public class ServiceService {
 		
 		return result;
 	}
-	
+
+	//<!--판매자측 서비스 예약 리스트 --><!--최신순-->
 	public List<ReservationVO> getReservationList(Pager pager)throws Exception{
 		pager.makeRow();
 		pager.makeNum(serviceMapper.getTotalCount(pager));
 		return serviceMapper.getReservationList(pager);
 	}
+//	<!--판매자측 서비스 예약 리스트 --><!-- 대기중인 예약만 -->
+	public List<ReservationVO> getResStateIs0(Pager pager)throws Exception{
+		pager.makeRow();
+		pager.makeNum(serviceMapper.getTotalCount(pager));
+		return serviceMapper.getResStateIs0(pager);
+	}
+	
 	
 	public int setUpdateResState(ReservationVO reservationVO)throws Exception{
 		return serviceMapper.setUpdateResState(reservationVO);

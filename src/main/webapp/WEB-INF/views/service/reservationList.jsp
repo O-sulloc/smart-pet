@@ -20,26 +20,39 @@
 	<c:import url="../temp/header.jsp"></c:import>
 <!-- 사이드바 +모달 +예약리스트ajax (common/reservationList.jsp) -->
 
-	<!-- 사이드바 -->
+
 	<div class="container">
-		<h1>관리자가 보는 예약 리스트 페이지</h1>
+		<h1>판매자가 보는 예약 리스트 페이지</h1>
 	 <div class="row">
 	<!-- side bar -->
-	<div class="d-flex flex-column flex-shrink-0 p-3 bg-light col-md-auto"" style="width: 280px;">
+	<div class="d-flex flex-column flex-shrink-0 p-3 bg-light col-md-auto" style="width: 280px;">
     <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
       <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-      <span class="fs-4">Menu</span>
+      <span class="fs-4">판매자 Menu</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
+        <a href="./mypage" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+         마이 서비스
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+         어쩌고 
+        </a>
+      </li>
+    <li class="border-top my-3"></li>
+      <li class="nav-item">
+        <a href="./reservationList" class="nav-link link-dark" >
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
           예약리스트 
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-dark">
+        <a href="#" class="nav-link link-dark" id="resStateIs0">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
          대기중인 예약 보기 
         </a>
@@ -56,12 +69,15 @@
           월별 예약 현황 보기 
         </a>
       </li>
+      <li class="border-top my-3"></li>
       <li>
-        <a href="#" class="nav-link link-dark">
+        <a href="./reservationSetting" class="nav-link link-dark">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-          또 뭐있냐 
+          예약 시간 설정하기 
         </a>
       </li>
+
+       
       
       
       
@@ -102,12 +118,12 @@
 		
 							<div class="form-check">
 								<input class="form-check-input radio" type="radio"
-									name="resState" id="flexRadioDefault1" value="1"> <label
+									name="resState" id="flexRadioDefault1" value="1" checked> <label
 									class="form-check-label" for="flexRadioDefault1"> 예약 승인  </label>
 							</div>
 							<div class="form-check">
 								<input class="form-check-input radio" type="radio"
-									name="resState" id="flexRadioDefault2" value="2"  checked> <label
+									name="resState" id="flexRadioDefault2" value="2"  > <label
 									class="form-check-label" for="flexRadioDefault2"> 예약 거부 </label>
 							</div>
 		
@@ -122,7 +138,6 @@
 		  </div>
 		</div>
 <!-- Modal 끝 -->
-
 
 
 	<script src="../js/reservationList.js"></script>
