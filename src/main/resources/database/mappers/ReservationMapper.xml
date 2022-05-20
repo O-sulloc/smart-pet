@@ -46,6 +46,7 @@
 		VALUES (#{resNum},#{id},#{serNum},#{resDate},#{resTime},#{resMemo},0)
 	</insert>
 	
+	<!-- 모든 예약확인 List -->
 	<select id="confirmList" parameterType="UserVO" resultMap="serviceConfirm">
 		SELECT ROW_NUMBER() OVER(ORDER BY R.RESNUM DESC) AS NUM, 
 		R.*,
@@ -75,6 +76,25 @@
 			<result column="serTime" property="serTime"/>
 		</association>
 	</resultMap>
+	
+	<!-- 예약 하나 상세 확인 Update때문에 -->
+	<select id="getDetail" parameterType="ReservationVO" resultMap="serviceConfirm">
+		SELECT ROW_NUMBER() OVER(ORDER BY R.RESNUM DESC) AS NUM, 
+		R.*,
+		S.SERNUM,S.SERNAME,S.SERTEL,S.SERADDRESS,S.HOSPITALFIELD,S.HOMEPAGE,S.SERTIME  
+			FROM RESERVATION R 
+			INNER JOIN
+			SERVICE S 
+			ON R.SERNUM=S.SERNUM WHERE R.ID=#{id} AND R.RESNUM=#{resNum}
+	</select>
 
+
+	<update id="setUpdate" parameterType="ReservationVO" >
+		UPDATE RESERVATION set 
+			RESDATE=#{resDate},
+			RESTIME=#{resTime},
+			RESMEMO =#{resMemo}
+		WHERE RESNUM =#{resNum}
+	</update>
 
 </mapper>

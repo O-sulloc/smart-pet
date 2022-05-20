@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -48,7 +49,7 @@ public class ReservationController {
 
 //	@ResponseBody
 	@PostMapping(value="/reservation/confirm")
-	public ModelAndView add(HttpSession session,ReservationVO reservationVO) throws Exception{
+	public ModelAndView setAdd(HttpSession session,ReservationVO reservationVO) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		UserVO userVO= (UserVO)session.getAttribute("user");
@@ -72,15 +73,22 @@ public class ReservationController {
 		return mv;
 	}
 	
-	
-	@GetMapping(value="/reservation/confirm")
-	public void setAdd(ReservationVO reservationVO, Model model, ServiceVO serviceVO) throws Exception{
-		List<ReservationVO> ar = new ArrayList<>();
-		
-		reservationVO.setSerNum(serviceVO.getSerNum());
-//		reservationVO=reservationService.detail(reservationVO);// serviceService.detail(serviceVO);
-		model.addAttribute("vo",reservationVO);
+	@GetMapping("/reservation/confirm")
+	public ModelAndView setAdd(@ModelAttribute ReservationVO reservationVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("./reservation/confirm");
+		return mv;
 	}
+	
+//	@GetMapping(value="/reservation/confirm")
+//	public void setAdd(ReservationVO reservationVO, Model model, ServiceVO serviceVO) throws Exception{
+//		List<ReservationVO> ar = new ArrayList<>();
+//		
+//		reservationVO.setSerNum(serviceVO.getSerNum());
+//		model.addAttribute("vo",reservationVO);
+//	}
+//	
+	
 	
 	@GetMapping(value="/user/appointment")
 	public ModelAndView confirmList(HttpSession session,ReservationVO reservationVO,ServiceVO serviceVO )throws Exception{
@@ -97,5 +105,44 @@ public class ReservationController {
 		return mv;
 	}
 	
+	@GetMapping("/user/appointmentDetail")
+	public ModelAndView getDetail(HttpSession session, ReservationVO reservationVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		UserVO userVO= (UserVO)session.getAttribute("user");
+		String id=userVO.getId();
+		
+		reservationVO.setId(id);
+		reservationVO=reservationService.getDetail(reservationVO);
+		mv.addObject("vo",reservationVO);
+		mv.setViewName("./user/appointmentUpdate");
+		return mv;
+		
+	}
+	
+	@GetMapping("/user/appointmentUpdate")
+	public ModelAndView setUpdate(HttpSession session,ReservationVO reservationVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		UserVO userVO= (UserVO)session.getAttribute("user");
+		String id=userVO.getId();
+		
+		reservationVO.setId(id);
+		reservationVO= reservationService.getDetail(reservationVO);
+		mv.addObject("vo",reservationVO);
+		mv.setViewName("./user/appointmentUpdate");
+		return mv;
+	}
+
+	@PostMapping("/user/appointmentUpdate")
+	public ModelAndView setUpdate(HttpSession session,ReservationVO reservationVO,ModelAndView mv) throws Exception{
+		
+		UserVO userVO= (UserVO)session.getAttribute("user");
+		String id=userVO.getId();
+		
+		reservationVO.setId(id);
+		int reseult= reservationService.setUpdate(reservationVO);
+		mv.addObject("vo",reservationVO);
+		mv.setViewName("./user/appointmentUpdate");
+		return mv;
+	}
 
 }

@@ -29,7 +29,7 @@
 					<th>전화번호</th>
 					<th>주소</th>
 					<th>영업시간</th>
-					
+					<th>선택</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -40,11 +40,23 @@
 					<td><a class="link-success text-decoration-none" href="../service/detail?serNum=${cl.serNum}">${cl.serviceVO.serName}</a></td>
 					<td>${cl.resDate}</td>
 					<td>${cl.resTime}</td>
-					<td>${cl.resState}</td>
+					<td><span>
+						<c:choose>
+							<c:when test="${cl.resState==0}">
+								<span>예약진행중</span> 
+							</c:when>
+							<c:when test="${cl.resState==1}">
+								<span>예약완료</span><</c:when>
+							<c:when test="${cl.resState==2}">
+								<span>예약실패</span><</c:when>
+							<c:when test="${cl.resState==3}">
+								<span>방문완료</span> <</c:when>
+						</c:choose>
+					</span></td>
 					<td>${cl.serviceVO.serTel}</td>
 					<td>${cl.serviceVO.serAddress}</td>
 					<td>${cl.serviceVO.serTime}</td>
-				
+					<td><span><a href="appointmentUpdate?resNum=${cl.resNum }" role="button" class="btn btn-success mx-1">예약수정</a></span></td>
 				</tr>
 			</c:forEach>
 			</tbody>

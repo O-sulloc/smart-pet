@@ -12,7 +12,15 @@ public class ReservationService {
 	
 	@Autowired
 	private ReservationMapper reservationMapper;
+	
+	public int setUpdate(ReservationVO reservationVO) throws Exception{
+		return reservationMapper.setUpdate(reservationVO);
+	}
 
+	public ReservationVO getDetail(ReservationVO reservationVO) throws Exception{
+		return reservationMapper.getDetail(reservationVO);
+	}
+	
 	public int setAdd(ReservationVO reservationVO) throws Exception{
 		
 		return  reservationMapper.setAdd(reservationVO);
