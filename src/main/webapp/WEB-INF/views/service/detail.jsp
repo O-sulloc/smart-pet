@@ -61,13 +61,7 @@
 		<button type="button" class="btn btn-outline-success dateInfo_btn">예약날짜
 			확인</button>
 
-		<!-- $(선택자).동작함수 -->
-		<script>
-			$(".dateInfo_btn").click(function() {
-				$(".calendar").slideToggle();
 
-			});
-		</script>
 	</div>
 
 	<div class="container my-4">
@@ -112,7 +106,7 @@
 				<label for="">예약메모</label>
 				<input type="text" name="resMemo" id="resMemo">
 				<input type="hidden" name="resDate" value="" id="resDate">
-				<input type="hidden" name="resTime" value="9:00" id="resTime">
+				<input type="hidden" name="resTime" value="" id="resTime">
 				<input type="hidden" name="resState" value="0">
 				<button type="submit" class="btn btn-outline-success res_btn">예약진행</button>
 		</form>

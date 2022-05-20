@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <c:import url="../temp/header_css.jsp"></c:import>
 <link href="../css/calendar.css" rel="stylesheet">
+<c:import url="../temp/header_script.jsp"></c:import>
 <title>Insert title here</title>
 </head>
 <body>
@@ -18,15 +19,12 @@
 				<h4 class="text-center" style="text-transform: uppercase;">예약변경</h4>
 			</div>
 		</div>
-
-		<input type="text" readonly="readonly" id="resNum" name="resNum"
-			value="${vo.resNum}">
+	
 		<ul class="list-group">
 			<li class="list-group-item">${vo.serviceVO.serName }</li>
 			<li class="list-group-item">${vo.serviceVO.serTel }</li>
 			<li class="list-group-item">${vo.serviceVO.serAddress }</li>
 			<li class="list-group-item">${vo.serviceVO.serTime }</li>
-			<li class="list-group-item">${vo.serviceVO.homepage }</li>
 		</ul>
 
 
@@ -67,6 +65,7 @@
 					<h4 class="text-center" style="text-transform: uppercase;">변경 전 예약 정보</h4>
 				</div>
 			</div>
+			
 			
 		<div class="row mt-4">
 		<table class="table table-hover">
@@ -143,23 +142,28 @@
 		<!-- <input type="time" value="09:00" min="09:00" max="18:00"> -->
 
 
-		<div class="inputArea">
-			<form action="appointment" method="post">
+				<form action="appointmentUpdate" method="post">
+				<input type="hidden" readonly="readonly" name="resNum" value="${vo.resNum}">
+				<input type="hidden" readonly="readonly" name="serName" value="${vo.serviceVO.serName}">
+				<input type="hidden" readonly="readonly" name="serTel" value="${vo.serviceVO.serTel}">
+				<input type="hidden" readonly="readonly" name="serAddress" value="${vo.serviceVO.serAddress}">
+				<input type="hidden" readonly="readonly" name="serTime" value="${vo.serviceVO.serTime}">
+				<input type="hidden" readonly="readonly" name="homepage" value="${vo.serviceVO.homepage}">
+		
 				<input type="hidden" name="serNum" value="${seviceVO.serNum }">
 				<label for="">예약메모</label> <input type="text" name="resMemo" id="resMemo" value="${vo.resMemo }">
-				<input type="hidden" name="resDate" value="" id="resDate"> 
+				<input type="hidden" name="resDate" value="${vo.resDate}" id="resDate"> 
 				<input type="hidden" name="resTime" value="9:00" id="resTime"> 
 				<input type="hidden" name="resState" value="0">
-				<button type="submit" class="btn btn-outline-success res_btn">예약수정</button>
+				<button type="submit" class="btn btn-outline-success">예약수정</button>
 			</form>
 		</div>
 
 
 
 
-		<script type="text/javascript" src="../js/detail.js"></script>
-		<script type="text/javascript" src="../js/calendar.js"></script>
-		<script type="text/javascript" src="../js/reservation.js"></script>
+			<script type="text/javascript" src="../js/detail.js"></script>
+			<script type="text/javascript" src="../js/calendar.js"></script>
 
 
 

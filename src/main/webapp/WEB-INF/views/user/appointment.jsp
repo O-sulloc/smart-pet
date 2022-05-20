@@ -17,7 +17,7 @@
 	  		<h4 class="text-center" style="text-transform: uppercase;">${board} List</h4>
 		</div>
 	</div>
-	
+	<input type="hidden" name="id" value="${sessionScope.user.id }">
 	<div class="row mt-4">
 		<table class="table table-hover">
 			<thead>

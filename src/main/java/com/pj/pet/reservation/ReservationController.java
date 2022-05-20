@@ -141,7 +141,7 @@ public class ReservationController {
 		reservationVO.setId(id);
 		int reseult= reservationService.setUpdate(reservationVO);
 		mv.addObject("vo",reservationVO);
-		mv.setViewName("./user/appointmentUpdate");
+		mv.setViewName("redirect:./appointment");
 		return mv;
 	}
 

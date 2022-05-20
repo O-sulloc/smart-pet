@@ -94,16 +94,9 @@ function fn_selectDate(date){
 buildcalendar();
 
 
+$(".dateInfo_btn").click(function() {
+		$(".calendar").slideToggle();
 
+			});
 
-$(".res_btn").click(function() {
-	let serNum = $(this).attr("data-sn");
-	let resDate = year + "-" + month + "-" + d;
-	
-	console.log(resDate)
-
-
-}
-
-);
 
