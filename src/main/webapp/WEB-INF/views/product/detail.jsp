@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
 <style type="text/css">
-<style>
+
  div.products div.productsInfo { float:right; width:550px; font-size:22px; }
  div.products div.productsInfo p { margin:0 0 20px 0; }
  div.products div.productsInfo p span { display:inline-block; width:100px; margin-right:15px; }
@@ -28,12 +28,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!--  -->
+
+<!-- 히든 -->
 <input class="pCount_hidden" type="hidden" name=productCount value="${vo.productCount}">
-<input class="oPrice_hidden" type="hidden" name=productPrice value="${vo.productPrice}">
 <input class="tPrice_hidden" type="hidden" name=totalPrice value="${vo.totalPrice}">
-<input class="rate_hidden" type="hidden" name=rate value="${vo.rate}">
-<!--  -->
+
+<!-- 히든 끝 -->
+
 <div class="container">
 <div id="carouselExampleControls" class="carousel slide" style="width: 50%;"
              data-bs-ride="carousel">
@@ -110,18 +111,21 @@ class="number">${vo.rate}</span><span class="percent">% 할인 중</span>
 	<p class="cartCount">
    <span>구입 수량</span>
    <button type="button" class="minus">-</button>  
-   <input type="number" class="numBox"  min="1" max="${vo.productCount}" value="1" readonly="readonly" />
+   <input type="number" class="numBox" value="1" readonly="readonly" />
    <button type="button" class="plus">+</button>
 	</p>
-총 상품금액:<input type="number" class="priceResult" value="${vo.totalPrice}" readonly="readonly" style="border:none" />
-
-	<p class="addToCart">
-   	<button type="button">장바구니</button>
+   총 상품금액:<input type="number" class="priceResult" value="${vo.totalPrice}" readonly="readonly" style="border:none" />
+	<p>
+   	<button type="button" class="addToCart" data-id="${user.id}" data-pNum="${vo.productNum}">장바구니</button>
+	
+	<p>
+   	<button type="button" class="addBuy">바로결제</button>
 	</p>
 	
 </div>
 </div>
 
 <script type="text/javascript" src="../resources/js/productDetail.js"></script>
+
 </body>
 </html>

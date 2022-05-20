@@ -26,16 +26,3 @@ $(".detail").click(function(){
             $('.subMenu2').hide();
         });
     });
-
-    $(".regdate").click(function(){
-        location.href="./regdatelist"
-        $(".allMenu").empty();
-    });
-
-    $(".lowprice").click(function(){
-        location.href="./lowpricelist"
-    });
-
-    $(".highprice").click(function(){
-        location.href="./highpricelist"
-    });

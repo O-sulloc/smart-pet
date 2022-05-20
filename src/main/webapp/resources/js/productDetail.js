@@ -1,8 +1,10 @@
 /**
- *  상품 디테일 관리하는 js
+ *  
  */
-/* 재고 수량 관리*/
+/**/
 
+//재고 수량 관리
+// +
 $(".plus").click(function() {
 	let num = $(".numBox").val();
 	let plusNum = Number(num) + 1;
@@ -13,40 +15,58 @@ $(".plus").click(function() {
 
 	} else {
 		$(".numBox").val(plusNum);
-		if ($('.rate_hidden').val() == 0) {
-
-			sum = plusNum * $('.oPrice_hidden').val()
-			$(".priceResult").val(sum);
-		}
-		else {
-
 			sum = plusNum * $('.tPrice_hidden').val()
 			$(".priceResult").val(sum);
-		}
 	}
 });
 
-
+//  -
 $(".minus").click(function() {
 	let num = $(".numBox").val();
 	let minusNum = Number(num) - 1;
 	let sum = 0;
 
 	if (minusNum <= 0) {
-		alert("한개 이상 구매 가능합니다.")
+		alert("더 이상 수량을 줄일 수 없습니다.")
 		$(".numBox").val(num);
 	} else {
 		$(".numBox").val(minusNum);
-		if ($('.rate_hidden').val() == 0) {
-
-			sum = minusNum * $('.oPrice_hidden').val()
-			$(".priceResult").val(sum);
-		}
-		else {
-
-			sum = minusNum * $('.tPrice_hidden').val()
-			$(".priceResult").val(sum);
-		}
+		sum = minusNum * $('.tPrice_hidden').val()
+		$(".priceResult").val(sum);
+		
 	}
 });
 
+//장바구니 담기
+$(".addToCart").click(function(){
+	let pCount = $(".numBox").val();   
+	let id=$(this).attr("data-id");
+	let pNum=$(this).attr("data-pNum");
+  
+	$.ajax({
+	 url : "../cart/add",
+	 type : "POST",
+	 data:{
+		   id:id,
+			 productNum:pNum,
+			 productAmount:pCount
+	  },
+	 success : function(data){
+		if(data.trim()=='1'){
+		   let check=confirm("장바구니 담기 성공하였습니다. 장바구니로 이동 하겠습니까?")
+		   $(".numBox").val("1");
+		   if(check){
+		   location.href="../cart/list";
+		   }
+		   
+		}else{
+		   alert("로그인이 필요합니다.");
+		   $(".numBox").val("1");
+		   location.href="../user/login";
+		}
+	 },
+	 error : function(){
+	  alert("장바구니 담기 실패하였습니다.");
+	 }
+	});
+   });

@@ -25,8 +25,8 @@
         </li>
       </ul>
       <ul class="subMenu1">  
-        	<li><a class="dropdown-item" href="./list?kind=pcate&search=1&subSearch=100">사료</a></li>
-            <li><a class="dropdown-item" href="./list?kind=pcate&search=1&subSearch=200">간식</a></li>
+        	<li><a class="dropdown-item" href="${pageContext.request.contextPath}?kind=pcate&search=1&subSearch=100">사료</a></li>
+            <li><a class="dropdown-item" href="${pageContext.request.contextPath}?kind=pcate&search=1&subSearch=200">간식</a></li>
             <li><a class="dropdown-item" href="./list?kind=pcate&search=1&subSearch=300">장난감</a></li>
             <li><a class="dropdown-item" href="./list?kind=pcate&search=1&subSearch=400">건강관리</a></li>   
             <li><a class="dropdown-item" href="./list?kind=pcate&search=1&subSearch=500">용품</a></li>
@@ -81,15 +81,15 @@
 
     <div class="container">
         전체 상품 ${count}개
-   
+ 
     <div class="float-end">
-        <p>
-		<button class="regdate">최신순 |</button>
-		<button class="lowprice">낮은가격 |</button>
+         <c:if test="${vo.pcategoryNum ne 0}"><p>
+		<button class="regdate">최신순</button>
+		<button class="lowprice">낮은가격</button>
 		<button class="highprice">높은가격</button>
-		</p>
+		</p></c:if>
 	</div>
-     </div>
+  </div>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
 <c:forEach items="${list}" var="vo">
