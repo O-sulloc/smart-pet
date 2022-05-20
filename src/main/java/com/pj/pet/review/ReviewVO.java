@@ -1,6 +1,9 @@
 package com.pj.pet.review;
 
 import java.sql.Date;
+import java.util.List;
+
+import com.pj.pet.review.product.ProductReviewFilesVO;
 
 import lombok.Data;
 
@@ -9,6 +12,7 @@ public class ReviewVO {
 
 	private Long replyNum;
 	private String id;
+	private String title;
 	private String contents;
 	private Date regDate;
 	private Integer star;
@@ -16,5 +20,7 @@ public class ReviewVO {
 	private Long productNum;
 	//reserve 리뷰
 	private Long resNum;
+	
+	private List<ProductReviewFilesVO> filesVOs;
 	
 }

@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="/resources/css/reviewPop.css">
+	<c:import url="../temp/header_css.jsp"></c:import>
+	<c:import url="../temp/header_script.jsp"></c:import>
 </head>
 <body>
 
@@ -52,26 +54,40 @@
 					<!-- 동적으로 바뀌기 만족도 1점을 주셨네요. --> <!-- 만족도 3점을 주셨네요. --> <!-- 어떤점이 아쉬웠나요? --> <!-- 어떤점이 좋았나요? -->
 					<h4 class="comment">어떤점이 좋았나요?</h4>
 				</div>
+				<br><br>
+				<div class="row mb-3">
+				   	<h6>한줄 리뷰를 작성해주세요!</h6>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="title" name="title"
+				      placeholder="한줄 리뷰 (최소 10자 이상, 최대 20자 이하)">
+				    </div>
+				</div>
 				
 				<div class="content_div">
 					<textarea class="col-auto form-control"  id="contents" name="contents"
-					placeholder="상품을 받아보시고 만족도에 대한 후기를 남겨주세요.(최소 10자 이상)"></textarea>
+					placeholder="만족도 리뷰 추가 작성 (추가 작성 및 사진 파일 첨부 필수 아님)"></textarea>
 				</div>
 			</div>			
 			
 		</div>
 		
-		<div class="btn_wrap">
+		<div>
+			<button type="button" id="fileAdd" class="btn btn-info d-block my-4">사진 추가</button>
+		</div>
+		<div id="fileResult"></div>
+
+	   	<div class="btn_wrap">
 			<button class="cancel_btn">취소</button> <button class="add_btn" disabled="true">등록</button>
 		</div>
 
 	</div>
-
-
-<c:import url="../temp/header_script.jsp"></c:import>
+	
+<c:import url="../temp/header_script.jsp"></c:import>	
 <script type="text/javascript" src="/resources/js/reviewPop.js"></script>
 <script type="text/javascript">
 	check();
+	fileAddInit(0);
 </script>
+
 </body>
 </html>

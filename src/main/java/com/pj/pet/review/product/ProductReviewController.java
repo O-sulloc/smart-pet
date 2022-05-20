@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.pj.pet.review.ReviewVO;
 
 //@Controller//restcontroller를 쓸수있을지 일단 고민해보자
@@ -36,9 +38,9 @@ public class ProductReviewController {
 	
 	//update DB
 	@PostMapping("update")//파일도 있으면 넣어야함
-	public int setUpdate(ReviewVO reviewVO) throws Exception{
+	public int setUpdate(ReviewVO reviewVO, MultipartFile [] files) throws Exception{
 		
-		int result = productReviewService.setUpdate(reviewVO);
+		int result = productReviewService.setUpdate(reviewVO, files);
 		//상품에 별점평균 변경해주는것
 		productReviewService.setRating(reviewVO.getProductNum());
 		
@@ -56,6 +58,20 @@ public class ProductReviewController {
 		return result;
 	}
 	
+	//fileDelete(ajax)
+	@PostMapping("fileDelete")
+	public ModelAndView setFileDelete(ProductReviewFilesVO productReviewFilesVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		//System.out.println(productFilesVO.getFileNum());
+		
+		int result = productReviewService.setFileDelete(productReviewFilesVO);
+		
+		mv.addObject("result", result);
+		mv.setViewName("common/result");
+		
+		return mv;
+	}
 	
 	
 	

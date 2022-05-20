@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.pj.pet.review.ReviewService;
 import com.pj.pet.review.ReviewVO;
+import com.pj.pet.util.FileManager;
 import com.pj.pet.util.Pager;
 
 @Service
@@ -16,8 +17,8 @@ public class ProductReviewService implements ReviewService {
 	@Autowired
 	private ProductReviewMapper productReviewMapper;
 	
-	//@Autowired
-	//private 파일매니저
+	@Autowired
+	private FileManager fileManager;
 	
 	@Override
 	public List<ReviewVO> getList(Pager pager) throws Exception {
@@ -38,21 +39,21 @@ public class ProductReviewService implements ReviewService {
 		
 		if(files != null) {
 
-//			for(MultipartFile f : files) {
-//				
-//				if(f.isEmpty()) {
-//					continue;
-//				}
-//				
-//				String fileName = fileManager.fileSave(f, "/resources/upload/review/product/");
-//				
-//				ProductFilesVO productFilesVO = new ProductFilesVO();
-//				productFilesVO.setProductNum(productVO.getProductNum());
-//				productFilesVO.setFileName(fileName);
-//				productFilesVO.setOriName(f.getOriginalFilename());
-//				productMapper.setFileAdd(productFilesVO);
-//				
-//			}
+			for(MultipartFile f : files) {
+				
+				if(f.isEmpty()) {
+					continue;
+				}
+				
+				String fileName = fileManager.fileSave(f, "/resources/upload/review/product/");
+				
+				ProductReviewFilesVO productReviewFilesVO = new ProductReviewFilesVO();
+				productReviewFilesVO.setReplyNum(reviewVO.getReplyNum());
+				productReviewFilesVO.setFileName(fileName);
+				productReviewFilesVO.setOriName(f.getOriginalFilename());
+				result = productReviewMapper.setFileAdd(productReviewFilesVO);
+				
+			}
 
 		}
 		
@@ -61,15 +62,62 @@ public class ProductReviewService implements ReviewService {
 	}
 
 	@Override//나중에 파일
-	public int setUpdate(ReviewVO reviewVO) throws Exception {
-		return productReviewMapper.setUpdate(reviewVO);
+	public int setUpdate(ReviewVO reviewVO, MultipartFile[] files) throws Exception {
+		
+		int result = productReviewMapper.setUpdate(reviewVO);
+		
+		if(files != null) {
+
+			for(MultipartFile f : files) {
+				
+				if(f.isEmpty()) {
+					continue;
+				}
+				
+				String fileName = fileManager.fileSave(f, "/resources/upload/review/product/");
+				
+				ProductReviewFilesVO productReviewFilesVO = new ProductReviewFilesVO();
+				productReviewFilesVO.setReplyNum(reviewVO.getReplyNum());
+				productReviewFilesVO.setFileName(fileName);
+				productReviewFilesVO.setOriName(f.getOriginalFilename());
+				result = productReviewMapper.setFileAdd(productReviewFilesVO);
+				
+			}
+
+		}
+		return result;
 	}
 
 	@Override//나중에 파일
 	public int setDelete(ReviewVO reviewVO) throws Exception {
-		return productReviewMapper.setDelete(reviewVO);
+		
+		List<ProductReviewFilesVO> ar = productReviewMapper.getFileList(reviewVO);
+		
+		int result = productReviewMapper.setDelete(reviewVO);
+		
+		if(result > 0) {
+			for(ProductReviewFilesVO vo: ar) {
+				boolean check = fileManager.remove("/resources/upload/review/product/", vo.getFileName());
+			}
+		}
+
+		return result;
 	}
 	
+	//파일 db에서 삭제
+	@Override
+	public int setFileDelete(ProductReviewFilesVO productReviewFilesVO) throws Exception {
+		//DB에서 조회
+		productReviewFilesVO = productReviewMapper.getFileDetail(productReviewFilesVO);
+		
+		int check = productReviewMapper.setFileDelete(productReviewFilesVO);
+		if(check > 0) {
+			boolean result = fileManager.remove("/resources/upload/review/product/", productReviewFilesVO.getFileName());
+		}
+		return check;
+	}
+	
+
 	//star 평균값 구하기
 	public void setRating(Long productNum) {
 		

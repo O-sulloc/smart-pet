@@ -22,8 +22,10 @@
 	    border-collapse : collapse;
 	}    
   </style>
+  
 <title>Insert title here</title>
-
+<!-- 상단으로 올림 5.20 -->
+<c:import url="../temp/header_script.jsp"></c:import>
 </head>
 <body>
 <c:import url="../temp/header.jsp"></c:import>
@@ -159,7 +161,7 @@
 	
 	
 
-<c:import url="../temp/header_script.jsp"></c:import>
+
 <script type="text/javascript" src="../resources/js/notice_list.js"></script>
 
 <script type="text/javascript">

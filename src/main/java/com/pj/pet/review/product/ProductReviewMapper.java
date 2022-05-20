@@ -3,6 +3,7 @@ package com.pj.pet.review.product;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+
 import com.pj.pet.review.ReviewVO;
 import com.pj.pet.util.Pager;
 
@@ -32,6 +33,20 @@ public interface ProductReviewMapper {
 	
 	//평점 평균 넣기
 	public int setUpdateAvg(ProductReviewAvgVO dto);
+	
+	//productReviewFile
+	
+	//fileDelete
+	public int setFileDelete(ProductReviewFilesVO productReviewFilesVO) throws Exception;
+	
+	//insert : file
+	public int setFileAdd(ProductReviewFilesVO productReviewFilesVO) throws Exception;
+	
+	//fileList(지우려고) - 전체 지우는 용도
+	public List<ProductReviewFilesVO> getFileList(ReviewVO reviewVO) throws Exception;
+	
+	//fileDetail(지우려고) - HDD에서 하나 지우는 용도(sevice 호출용)
+	public ProductReviewFilesVO getFileDetail(ProductReviewFilesVO productReviewFilesVO) throws Exception;
 	
 }
 
