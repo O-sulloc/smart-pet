@@ -18,10 +18,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div class="container">
 <h1> 예약시간/날짜 설정 페이지 </h1>
+	<!-- side bar -->
+	<c:import url="../service/sellerSidebar.jsp"></c:import>
+	
+		<div class="row col-md-auto" >
+	
 <form action="./reservationSetting" method="post">
 
-<input id="datetimepicker" type="text" >
+<!-- <input id="datetimepicker" type="text" > -->
 
 
 	<h5> 휴무일 </h5>
@@ -93,6 +99,8 @@
 	
 	<button type="submit">설정 </button>
 </form>
+</div>
+</div>
 
 <script type="text/javascript" src="../js/reservationSetting.js"></script>
 </body>

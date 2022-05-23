@@ -2,6 +2,8 @@ let pn=1;
 let perPage=5;
 let resNum=null;
 
+let state=1; //1:예약리스트 2:대기중인예약리스트 
+
 //예약상태 변경 버튼 클릭시 
 $("#list").on("click",".modalBtn",function(){
  	$('#myModal').modal('show')
@@ -16,7 +18,7 @@ $('.modalSubmit').click(function(){
 	 console.log("resState:"+resState)
 	 console.log("resNum:"+resNum)
 	 //1:승인 2:거절 
-	 
+	
 		$.ajax({
 			type:"POST",
 			url:"./setUpdateResState",
@@ -26,13 +28,19 @@ $('.modalSubmit').click(function(){
 			},
 			success:function(data){
 			if(data.trim()==1){
-				getList(pn,perPage);
+				if(state==1){		//예약리스트 화면이였다면 
+					getList(pn,perPage);
+				}else if(state==2){ //대기중인 예약 화면이였다면
+					getResStateIs0List(pn,perPage)
+				}
 			}else{
 				alert("변경 실패했습니다. 다시 시도해주십시오.")
 			}
 				
 			}
 		})//ajax로 데이터 전송 	 
+		
+	
 		
 	$('#myModal').modal('hide')
 	
@@ -44,8 +52,10 @@ $('.modalClose').click(function(){
 	 $('#myModal').modal('hide')
 })
 
-
-
+//사이드바에서 예약리스트 눌렀을때 상태1로 변경하기 
+$('#reservationList').click(function(){
+	state=1;
+})
 
 //=======================================================
 //pager
@@ -73,6 +83,7 @@ $("#list").on("change",".perPage",function(){
 
 getList(1,5);
 
+//common/reservationList.jsp에 table생성 
 //최신 추가된순으로 예약리스트 가져오는 ajax 
 	function getList(pn,perPage){
 		$.ajax({
@@ -109,6 +120,7 @@ getList(1,5);
 $("#resStateIs0").click(function(){
 	console.log("dd")
 	getResStateIs0List(pn,perPage)
+	state=2;
 })
 
 

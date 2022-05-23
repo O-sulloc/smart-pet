@@ -80,6 +80,15 @@
 			<result column="oriName" property="oriName"/>
 		</association>
 	</resultMap>
+	
+
+	<select id="getResStateCount" parameterType="ServiceVO" resultType="Long">
+		select 
+		(select COUNT(RESNUM)  from RESERVATION where RESSTATE=0 and SERNUM =#{serNum}) AS s0,
+		(select COUNT(RESNUM)  from RESERVATION where RESSTATE=1 and SERNUM =#{serNum}) AS s1,
+		(select COUNT(RESNUM)  from RESERVATION where RESSTATE=2 and SERNUM =#{serNum}) AS s2,
+		(select COUNT(RESNUM)  from RESERVATION where RESSTATE=3 and SERNUM =#{serNum}) AS s3
+	</select>
 		
 	<!--판매자측 서비스 예약 리스트 --><!--최신순-->
 	<select id="getReservationList" parameterType="Pager" resultMap="reservationResult">
@@ -123,6 +132,7 @@
 			<result column="resTime" property="resTime"/>
 		</association>
 	</resultMap>
+
 	
 	<select id="getTotalCount" parameterType="Pager" resultType="Long">
 		SELECT COUNT(RESNUM)
