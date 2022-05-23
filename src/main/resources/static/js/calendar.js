@@ -77,15 +77,13 @@ function fn_selectDate(date){
 
 		selectCk = date;
 		d=date;
-		
-		
-			
+			console.log("1은"+selectCk);
 		
 	}else{
 		$("#date_"+date).css("background-color", "white");
 		$("#date_"+date).css("color", "black");		
 	
-		console.log(selectCk);
+		console.log("2는"+date);
 		selectCk = 0;
 	}
 	

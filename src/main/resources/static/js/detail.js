@@ -90,6 +90,7 @@ for(let i=0;i<40;i++){
         button.setAttribute("type","button")
         button.setAttribute("name","resTime")
         button.setAttribute("class","btn btn-outline-primary")
+        button.setAttribute("id","timeButton")
         button.innerHTML=result;
         $("#buttons").append(button) 
 
@@ -103,6 +104,11 @@ for(let i=0;i<40;i++){
         break;
     }
 }
+
+
+$("#buttons").on("click","#timeButton",function(){
+	console.log($(this).html())
+})
 
 
 

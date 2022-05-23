@@ -30,6 +30,8 @@ public class ServiceService {
 //		return serviceMapper.getFileDetail(serviceVO);
 //	}
 	
+	
+	
 	public int setDelete(ServiceVO serviceVO)throws Exception{
 		ServiceFileVO serviceFileVO= serviceMapper.getFileDetail(serviceVO);
 		int result = serviceMapper.setDelete(serviceVO);
@@ -98,14 +100,21 @@ public class ServiceService {
 		
 		return result;
 	}
-
+	
+	//<!--판매자측 서비스 예약 리스트 --><!--날짜별-->
+	public List<ReservationVO> getDayReservationList(Pager pager)throws Exception{
+		pager.makeRow();
+		pager.makeNum(serviceMapper.getTotalCount(pager));
+		return serviceMapper.getDayReservationList(pager);
+	}
+	
 	//<!--판매자측 서비스 예약 리스트 --><!--최신순-->
 	public List<ReservationVO> getReservationList(Pager pager)throws Exception{
 		pager.makeRow();
 		pager.makeNum(serviceMapper.getTotalCount(pager));
 		return serviceMapper.getReservationList(pager);
 	}
-//	<!--판매자측 서비스 예약 리스트 --><!-- 대기중인 예약만 -->
+	//<!--판매자측 서비스 예약 리스트 --><!-- 대기중인 예약만 -->
 	public List<ReservationVO> getResStateIs0(Pager pager)throws Exception{
 		pager.makeRow();
 		pager.makeNum(serviceMapper.getTotalCount(pager));

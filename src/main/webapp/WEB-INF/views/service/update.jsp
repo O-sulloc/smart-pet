@@ -11,15 +11,14 @@
 </head>
 <body>
 
-	<div class="container mt-4">
-		<div class="row mt-4">
-			<div class="alert alert-light" role="alert">
-				<h4 style="text-transform: uppercase;"> Update</h4>
-			</div>
-		</div>
+	<div class="container">
+			<h1>update</h1>
+	<!-- side bar -->
+	<c:import url="../service/sellerSidebar.jsp"></c:import>
 
+	
 
-		<div class="row mt-4">
+		<div class="row col-md-auto">
 			<form action="./update" method="post" enctype="multipart/form-data">
 				
 				<input type="hidden" name="id" value="${user.id}">
@@ -39,13 +38,14 @@
 					</div>
 				</div>
 				
+				<c:if test="${vo.serKind==1}">
 				<div class="row mb-3">
 					<label for="hospitalField" class="col-sm-2 col-form-label">진료과목 </label>
 					<div class="col-sm-10">
 						<input type="text" value="${vo.hospitalField}" name="hospitalField" class="form-control" >
 					</div>
 				</div>
-				
+				</c:if>
 
 				<div class="row mb-3">
 					<label for="Email" class="col-sm-2 col-form-label">homepage</label>

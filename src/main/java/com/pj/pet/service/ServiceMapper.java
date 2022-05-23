@@ -55,6 +55,9 @@ public interface ServiceMapper {
 	//예약 리스트 _대기중인예약만 
 	public List<ReservationVO> getResStateIs0(Pager pager)throws Exception;
 	
+	//예약 리스트 _날짜별 
+	public List<ReservationVO> getDayReservationList(Pager pager)throws Exception;
+	
 	//get totalCount
 	public Long getTotalCount(Pager pager)throws Exception;
 	

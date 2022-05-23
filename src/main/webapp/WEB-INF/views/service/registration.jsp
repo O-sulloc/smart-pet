@@ -53,9 +53,9 @@
     <input type="text" class="form-control" name="serTime">
     <div  class="form-text">ex) 평일 9:00~6:00 토요일:9~2시 매주 수요일 휴무 </div>
   </div>
-  <div class="mb-3">
+  <div class="mb-3" id="hospital">
     <label for="hospitalField" class="form-label">진료과목</label>
-    <input type="text" name="hospitalField" class="form-control">
+    <input type="text" name="hospitalField" class="form-control" >
     <div  class="form-text">ex)고양이전문, 노령동물 관리 </div>
   </div>
   <div class="mb-3">

@@ -224,6 +224,29 @@ public class ServiceController {
 		return mv;
 	}
 	
+	//예약리스트 날짜별 
+	@GetMapping("ajaxDayReservationList")
+	public ModelAndView getAjaxDayReservationList(Pager pager,HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		UserVO userVO=(UserVO)session.getAttribute("user");
+		pager.setId(userVO.getId());
+		List<ReservationVO> ar=serviceService.getDayReservationList(pager);
+		
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("common/reservationList");
+		return mv;
+	}
+	
+	//예약리스트 날짜별 페이지 이동 
+	@GetMapping("getDayReservationList")
+	public ModelAndView getDayReservationList(Pager pager,HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+
+		mv.setViewName("service/dayReservationList");
+		return mv;
+	}
+	
 	//예약리스트 최신순 
 	@GetMapping("ajaxReservationList")
 	public ModelAndView getAjaxReservationList(Pager pager,HttpSession session)throws Exception{

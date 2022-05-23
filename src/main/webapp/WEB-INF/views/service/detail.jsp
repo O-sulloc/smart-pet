@@ -131,7 +131,6 @@
 	
 	<script type="text/javascript" src="../js/calendar.js"></script>
 	<script type="text/javascript" src="../js/detail.js"></script>
-	<script type="text/javascript" src="../js/calendar.js"></script>
 	<script type="text/javascript" src="../js/reservation.js"></script>
 >>>>>>> master_user_service
 

@@ -35,6 +35,9 @@ public class Pager {
 	private String grade;
 	private String gradeRef;
 	
+	//판매자측 reservationList 날짜별로 가지고 오려고 추가
+	private String resDate;
+	
 	//lombok이 있어도 직접 만들어줌 - 기본값을 부여하기 위해서
 	public Integer getPerPage() {
 		if(this.perPage == null || this.perPage < 1) {
