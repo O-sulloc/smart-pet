@@ -81,14 +81,29 @@
 		</association>
 	</resultMap>
 	
-
-	<select id="getResStateCount" parameterType="ServiceVO" resultType="Long">
-		select 
-		(select COUNT(RESNUM)  from RESERVATION where RESSTATE=0 and SERNUM =#{serNum}) AS s0,
-		(select COUNT(RESNUM)  from RESERVATION where RESSTATE=1 and SERNUM =#{serNum}) AS s1,
-		(select COUNT(RESNUM)  from RESERVATION where RESSTATE=2 and SERNUM =#{serNum}) AS s2,
-		(select COUNT(RESNUM)  from RESERVATION where RESSTATE=3 and SERNUM =#{serNum}) AS s3
+	<!-- 월별 resState count-->
+	<!-- reservationVO에 아이디랑resDate 둘 다 있어서 이걸로 담아오늘걸로 -->
+	<select id="getResStateCount" parameterType="ReservationVO" resultType="ReservationVO">
+		select RESSTATE,count(RESNUM) AS COUNT 
+		from RESERVATION
+		WHERE SERNUM=(SELECT SERNUM from SERVICE WHERE ID=#{id})
+		and RESDATE LIKE CONCAT('%',#{resDate},'%')
+		group by RESSTATE 
 	</select>
+
+	<!-- 판매자측 서비스 예약 리스트 --><!-- 월별 -->
+	<select id="getMonthReservationList" parameterType="Pager" resultMap="reservationResult">
+		SELECT R.*,U.NAME,U.EMAIL,U.PHONE
+		from RESERVATION R
+		left join
+		USER U
+		using(ID)
+		WHERE SERNUM=
+			(SELECT SERNUM from SERVICE WHERE ID=#{id})
+		and RESDATE LIKE CONCAT('%',#{resDate},'%')
+		order by RESDATE DESC
+		LIMIT #{startRow}, #{perPage}
+		</select>
 	
 	<!--판매자측 서비스 예약 리스트 --><!--날짜별-->
 	<select id="getDayReservationList" parameterType="Pager" resultMap="reservationResult">
@@ -100,7 +115,7 @@
 		WHERE SERNUM=
 			(SELECT SERNUM from SERVICE WHERE ID=#{id})
 		and RESDATE =#{resDate} 
-		order by RESTIME ASC
+		order by RESTIME DESC
 		LIMIT #{startRow}, #{perPage}
 	</select>
 		

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.pj.pet.reservation.ReservationVO;
 import com.pj.pet.util.Pager;
 
 @SpringBootTest
@@ -18,6 +19,18 @@ class ServiceMapperTest {
 	private ServiceMapper serviceMapper;
 	
 	@Test
+	void getCount() throws Exception{
+		ReservationVO reservationVO=new ReservationVO();
+		reservationVO.setId("id1");
+		reservationVO.setResDate("2022-05");
+		List<ReservationVO> ar= serviceMapper.getResStateCount(reservationVO);
+		
+		assertEquals(0, ar.size());
+	}
+	
+	
+	
+	//@Test
 	void getListc() throws Exception {
 		Pager pager = new Pager();
 		pager.makeRow();
@@ -26,7 +39,7 @@ class ServiceMapperTest {
 		assertEquals(3, ar.size());
 	}
 	
-	@Test
+	//@Test
 	void getDetailc() throws Exception{
 		ServiceVO serviceVO = new ServiceVO();
 		serviceVO.setSerNum(3L);
@@ -36,5 +49,6 @@ class ServiceMapperTest {
 		
 
 	}
+	
 
 }

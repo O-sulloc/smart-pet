@@ -2,6 +2,27 @@
 var CDate = new Date(); 
 var today = new Date();
 var selectCk = 0;
+let resDate="";
+
+
+//날짜별 예약 리스트 가져오기 
+function getDayList(resDate){
+	$.ajax({
+			type:"GET",
+			url:"./ajaxDayReservationList",
+			data:{
+				resDate:resDate
+			},
+			success:function(data){
+				$("#list").html(data.trim());
+			
+			},
+			error:function(){
+				alert('실패')
+			}
+		})//ajax로 데이터 전송 	 
+}
+
 
 var buildcalendar = function(){
 	var htmlDates = ''; 
@@ -57,7 +78,27 @@ function fn_selectDate(date){
 	if(date < 10){
 		date_txt = "0" + date;
 	}
+	if(selectCk == 0){
+		$(".date").css("background-color", "");
+		$(".date").css("color", "");
+		$("#date_"+date).css("background-color", "red");
+		$("#date_"+date).css("color", "white");
+
+		$("#resDate").val(year+"-"+month+"-"+date);
+
+		selectCk = date;
+		    resDate=year+"-"+month+"-"+date
+		getDayList(resDate)
+
+		selectCk = 0;
+	}else{
+		$("#date_"+date).css("background-color", "white");
+		$("#date_"+date).css("color", "black");		
 	
+	
+		
+	}
+	/*
 	if(selectCk == 0){
 		$("#date_"+date).css("background-color", "red");
 		$("#date_"+date).css("color", "white");
@@ -70,30 +111,70 @@ function fn_selectDate(date){
 		if(date<10){
 			date="0"+date
 		}
-		let resDate=year+"-"+month+"-"+date
-		console.log(resDate)
-		$.ajax({
-			type:"GET",
-			url:"./ajaxDayReservationList",
-			data:{
-				resDate:resDate
-			},
-			success:function(data){
-				$("#list").html(data.trim());
-			
-			},
-			error:function(){
-				alert('실패')
-			}
-		})//ajax로 데이터 전송 	 
+	    resDate=year+"-"+month+"-"+date
+		getDayList(resDate)
 	}else{
 		selectCk = 0;
 		$(".date").css("background-color", "");
 		$(".date").css("color", "");
 	
 	}
-	
+	*/
 }
 
 buildcalendar();
+
+
+
+
+
+//예약상태 변경 버튼 클릭시 
+$("#list").on("click",".modalBtn",function(){
+ 	$('#myModal').modal('show')
+ 	resNum=$(this).attr("data");
+ 	console.log("resNum:"+resNum)
+})
+
+
+ //모달창 변경버튼 -> 데이터 보내기 
+$('.modalSubmit').click(function(){
+	 let resState= $('input[name="resState"]:checked').val()
+	 console.log("resState:"+resState)
+	 console.log("resNum:"+resNum)
+	 //1:승인 2:거절 
+	
+		$.ajax({
+			type:"POST",
+			url:"./setUpdateResState",
+			data:{
+				resNum:resNum,
+				resState:resState
+			},
+			success:function(data){
+			if(data.trim()==1){
+				getDayList(resDate)
+			}else{
+				alert("변경 실패했습니다. 다시 시도해주십시오.")
+			}
+				
+			}
+		})//ajax로 데이터 전송 	 
+		
+	
+		
+	$('#myModal').modal('hide')
+	
+
+})//저장버튼 클릭시 
+
+//모달창 닫기 
+$('.modalClose').click(function(){
+	 $('#myModal').modal('hide')
+})
+
+//사이드바에서 예약리스트 눌렀을때 상태1로 변경하기 
+$('#reservationList').click(function(){
+	state=1;
+})
+
 

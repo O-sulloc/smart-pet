@@ -101,6 +101,18 @@ public class ServiceService {
 		return result;
 	}
 	
+	//<!--판매자측 서비스 예약 리스트 --><!--월별 resState Count-->
+	public List<ReservationVO> getResStateCount(ReservationVO reservationVO)throws Exception{
+		return serviceMapper.getResStateCount(reservationVO);
+	}
+	
+	//<!--판매자측 서비스 예약 리스트 --><!--월별-->
+	public List<ReservationVO> getMonthReservationList(Pager pager)throws Exception{
+		pager.makeRow();
+		pager.makeNum(serviceMapper.getTotalCount(pager));
+		return serviceMapper.getMonthReservationList(pager);
+	}
+	
 	//<!--판매자측 서비스 예약 리스트 --><!--날짜별-->
 	public List<ReservationVO> getDayReservationList(Pager pager)throws Exception{
 		pager.makeRow();

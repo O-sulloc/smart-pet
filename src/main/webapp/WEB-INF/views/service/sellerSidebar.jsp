@@ -50,7 +50,7 @@
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-dark">
+        <a href="./monthListPage" class="nav-link link-dark">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
           월별 예약 현황 보기 
         </a>

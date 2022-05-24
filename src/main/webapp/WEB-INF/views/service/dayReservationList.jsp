@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
 <!DOCTYPE html>
 <html>
@@ -51,10 +51,44 @@
 		</div><!-- 달력 끝 -->
  		
  		<div id="list"></div>
- 
+ <!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		         <h4 class="modal-title" id="myModalLabel">예약 상태 변경 </h4>
+		      </div>
+		      <div class="modal-body">
+		
+							<div class="form-check">
+								<input class="form-check-input radio" type="radio"
+									name="resState" id="flexRadioDefault1" value="1" checked> <label
+									class="form-check-label" for="flexRadioDefault1"> 예약 승인  </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input radio" type="radio"
+									name="resState" id="flexRadioDefault2" value="2"  > <label
+									class="form-check-label" for="flexRadioDefault2"> 예약 거부 </label>
+							</div>
+		
+							
+		
+			</div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary modalClose" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary modalSubmit">Save changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+
+<!-- Modal 끝 -->
 	</div><!-- 컨테이너 끝 -->
 	
 	</div><!-- col-md-auto -->
+	
+	
 		<script type="text/javascript" src="../js/dayReservationList.js"></script>
 </body>
 </html>

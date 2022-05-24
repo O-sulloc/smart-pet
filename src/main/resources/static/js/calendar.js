@@ -5,6 +5,8 @@
 let CDate = new Date(); 
 let today = new Date();
 let selectCk = 0;
+console.log(CDate)
+CDate.getDate
 
 let buildcalendar = function(){
 	let htmlDates = ''; 
@@ -14,7 +16,6 @@ let buildcalendar = function(){
 	let thisLast = new Date(CDate.getFullYear(), CDate.getMonth() + 1, 0); //이번 달의 마지막 날
 	document.querySelector(".year").innerHTML = CDate.getFullYear() + "년";  // year에 년도 출력
 	document.querySelector(".month").innerHTML = (CDate.getMonth() + 1) + "월";  //month에 월 출력
-
 
 	const dates = []; 
 	if(thisFirst.getDay()!=0){ 

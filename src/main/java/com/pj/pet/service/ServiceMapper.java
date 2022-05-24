@@ -49,6 +49,12 @@ public interface ServiceMapper {
 	//서비스 삭제
 	public int setDelete(ServiceVO serviceVO)throws Exception;
 	
+	//예약 리스트 _월별 _resState Count
+	public List<ReservationVO> getResStateCount(ReservationVO reservationVO)throws Exception;
+	
+	//예약 리스트 _월별 
+	public List<ReservationVO> getMonthReservationList(Pager pager)throws Exception;
+	
 	//예약 리스트 _최신순 
 	public List<ReservationVO> getReservationList(Pager pager)throws Exception;
 

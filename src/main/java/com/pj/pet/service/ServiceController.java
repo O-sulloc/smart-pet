@@ -215,6 +215,40 @@ public class ServiceController {
 		return mv;
 	}
 	
+	//예약리스트 월별 카운트 
+	@GetMapping("ajaxMonthCountList")
+	public ModelAndView getAjaxMonthCountList(ReservationVO reservationVO,HttpSession session)throws Exception{		
+		ModelAndView mv = new ModelAndView();
+		UserVO userVO=(UserVO)session.getAttribute("user");
+		reservationVO.setId(userVO.getId());
+		
+		List<ReservationVO> ar=serviceService.getResStateCount(reservationVO);
+		System.out.println(ar.size());
+		mv.addObject("list", ar);
+		mv.setViewName("common/resStateCount");
+		return mv;
+	}
+	
+	//예약리스트 월별
+	@GetMapping("ajaxMonthReservationList")
+	public ModelAndView getAjaxMonthReservationList(Pager pager,HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		UserVO userVO=(UserVO)session.getAttribute("user");
+		pager.setId(userVO.getId());
+		List<ReservationVO> ar=serviceService.getMonthReservationList(pager);
+		
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("common/reservationList");
+		return mv;
+	}
+	
+	@GetMapping("monthListPage")
+	public ModelAndView monthListPage()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("service/monthListPage");
+		return mv;
+	}
 	
 	//예약 현황 List보여주는 페이지로가 
 	@GetMapping("reservationList")
