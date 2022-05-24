@@ -40,14 +40,14 @@ $(".minus").click(function() {
 //장바구니 담기
 $(".addToCart").click(function(){
 	let pCount = $(".numBox").val();   
-	let id=$(this).attr("data-id");
+	let userid=$(this).attr("data-id");
 	let pNum=$(this).attr("data-pNum");
   
 	$.ajax({
 	 url : "../cart/add",
 	 type : "POST",
 	 data:{
-		   id:id,
+		   	 id:userid,
 			 productNum:pNum,
 			 productAmount:pCount
 	  },
@@ -59,10 +59,12 @@ $(".addToCart").click(function(){
 		   location.href="../cart/list";
 		   }
 		   
-		}else{
+		}else if(data.trim()=='2'){
 		   alert("로그인이 필요합니다.");
 		   $(".numBox").val("1");
 		   location.href="../user/login";
+		}else if(data.trim()=='3'){
+			alert("이미 장바구니에 추가되었습니다.");
 		}
 	 },
 	 error : function(){

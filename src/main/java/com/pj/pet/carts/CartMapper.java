@@ -19,5 +19,5 @@ public interface CartMapper {
 	
 	public int cartDelete(CartVO cartVO)throws Exception;
 
-	
+	public CartVO cartCheck(CartVO cartVO)throws Exception;
 }

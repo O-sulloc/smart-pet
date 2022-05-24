@@ -2,6 +2,7 @@ package com.pj.pet.carts;
 
 import java.util.List;
 
+import com.pj.pet.products.ProductFileVO;
 import com.pj.pet.products.ProductVO;
 
 
@@ -15,4 +16,6 @@ public class CartVO {
 	private Long productAmount;
 	private int payCheck;
 	private ProductVO productVO;
+	private List<ProductFileVO> productFileVOs;
+	
 }

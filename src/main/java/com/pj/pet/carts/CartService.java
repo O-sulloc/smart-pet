@@ -12,6 +12,10 @@ public class CartService {
 	@Autowired CartMapper cartMapper;
 	
 	public int cartAdd(CartVO cartVO)throws Exception{
+		CartVO cartCheck=cartMapper.cartCheck(cartVO);
+		if(cartCheck !=null) {
+			return 3;
+		}
 		return cartMapper.cartAdd(cartVO);
 	}
 	
@@ -26,4 +30,5 @@ public class CartService {
 	public int cartDelete(CartVO cartVO)throws Exception{
 		return cartMapper.cartDelete(cartVO);
 	}
+	
 }

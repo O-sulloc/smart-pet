@@ -6,29 +6,42 @@
     
 <mapper namespace="com.pj.pet.carts.CartMapper">
 
- 	<select id="cartList" parameterType="UserVO" resultMap="cartResult">
-	SELECT C.*,P.PRODUCTNAME,P.PRODUCTPRICE,P.RATE,P.PRODUCTCOUNT
+ 	<select id="cartList" parameterType="UserVO" resultMap="cartListResult">
+	SELECT C.*,P.PRODUCTNAME,P.PRODUCTPRICE,P.RATE,P.PRODUCTCOUNT,PF.*
 	FROM CARTS C
-	LEFT JOIN
+	LEFT OUTER JOIN
 	PRODUCTS P
 	ON(C.PRODUCTNUM=P.PRODUCTNUM)
+	LEFT OUTER JOIN 
+	PRODUCTSFILE PF
+	ON(P.PRODUCTNUM=PF.PRODUCTNUM)
 	WHERE ID =#{id}
 	</select>
 
-	<resultMap type="CartVO" id="cartResult">
+	<resultMap type="CartVO" id="cartListResult">
 		<id column="cartNum" property="cartNum" />
 		<result column="id" property="id" />
 		<result column="productNum" property="productNum" />
 		<result column="productAmount" property="productAmount" />
 		<result column="payCheck" property="payCheck" />
-		<collection property="productVO" javaType="ProductVO" ofType="ProductVO">
-			<id column="productNum" property="productNum" />
-			<result column="productPrice" property="productPrice" />
-			<result column="productName" property="productName" />
-			<result column="productCount" property="productCount" />
-			<result column="rate" property="rate" />
-		</collection>
+		<collection property="productVO" resultMap="ProductVO"/>
+		<collection property="productFileVOs" resultMap="ProductFileVO"/>
 	</resultMap> 
+	
+	<resultMap type="ProductVO" id="ProductVO">
+	<id column="productNum" property="productNum" />
+		<result column="productPrice" property="productPrice" />
+		<result column="productName" property="productName" />
+		<result column="productCount" property="productCount" />
+		<result column="rate" property="rate" />
+	</resultMap>
+	
+	<resultMap type="ProductFileVO" id="ProductFileVO">
+		<id column="fileNum" property="fileNum" />
+		<result column="productNum" property="productNum" />
+		<result column="fileName" property="fileName" />
+		<result column="oriName" property="oriName" />
+	</resultMap>
 	
 	<insert id="cartAdd" parameterType="CartVO">
 		INSERT INTO CARTS(CARTNUM,ID,PRODUCTNUM,PRODUCTAMOUNT,PAYCHECK)
@@ -42,5 +55,10 @@
 	<delete id="cartDelete" parameterType="CartVO">
 		DELETE FROM CARTS WHERE CARTNUM=#{cartNum}
 	</delete>
+	
+	<!-- 카트 담기 1아이디 1상품 -->
+	<select id="cartCheck" resultType="CartVO" parameterType="CartVO">
+		SELECT * FROM CARTS WHERE ID=#{id} AND PRODUCTNUM=#{productNum} AND PAYCHECK=0
+	</select>
 
 </mapper>
