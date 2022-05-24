@@ -8,6 +8,11 @@ import com.pj.pet.review.product.ProductReviewFilesVO;
 import com.pj.pet.util.Pager;
 
 public interface ReviewService {
+	
+	
+	//replyNum 조회 만들기
+	public ReviewVO getReplyNum(ReviewVO reviewVO) throws Exception;
+	
 
 	//list
 	public List<ReviewVO> getList(Pager pager) throws Exception;

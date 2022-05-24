@@ -8,6 +8,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="/resources/css/reviewPop.css">
+	<c:import url="../temp/header_css.jsp"></c:import>
+	<c:import url="../temp/header_script.jsp"></c:import>
 </head>
 <body>
 
@@ -22,7 +24,7 @@
 			<div class="productName_div">
 				<h2>${productInfo}</h2>
 				<!-- 임시값 -->
-				<input type="hidden" class="id" value="${id}">
+				<input type="hidden" class="id" value="${vo.id}">
 				<input type="hidden" class="productInfo" value="${productInfo}">
 				<!-- 업데이트에 새로추가 -->
 				<input type="hidden" class="replyNum" value="${vo.replyNum}">
@@ -55,22 +57,45 @@
 					<h4 class="comment">어떤점이 좋았나요?</h4>
 				</div>
 				
+				<br><br>
+				<div class="row mb-3">
+				   	<h6>한줄 리뷰를 작성해주세요!</h6>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="title" name="title" value="${vo.title}"
+				      placeholder="한줄 리뷰 (최소 10자 이상, 최대 20자 이하)">
+				    </div>
+				</div>
+				
 				<div class="content_div">
 					<textarea class="col-auto form-control"  id="contents" name="contents"
-					placeholder="상품을 받아보시고 만족도에 대한 후기를 남겨주세요.(최소 10자 이상)">${vo.contents}</textarea>
+					placeholder="만족도 리뷰 추가 작성 (추가 작성 및 사진 파일 첨부 필수 아님)">${vo.contents}</textarea>
 				</div>
 			</div>			
-			
 		</div>
 		
+		<div>
+			<button type="button" id="fileAdd" class="btn btn-info d-block my-4">사진 추가</button>
+		</div>
+		
+		 <div id="fileResult"></div>
+		  <div>
+			<c:forEach items="${vo.filesVOs}" var="f">
+				<div>
+					<img alt="" width="100px" height="100px" src="../resources/upload/review/product/${f.fileName}" class="img">${f.oriName}
+					<button class="del" type="button" data-num="${f.fileNum}">X</button>
+				</div>
+			</c:forEach>
+		  </div>
+		  
+		 
+		
 		<div class="btn_wrap">
-			<button class="cancel_btn">취소</button> <button class="update_btn" disabled="true">수정</button>
+			<button class="cancel_btn">취소</button> <button class="update_btn">수정</button>
 		</div>
 
 	</div>
 
 
-<c:import url="../temp/header_script.jsp"></c:import>
 <script type="text/javascript" src="/resources/js/reviewPop.js"></script>
 <script type="text/javascript">
 	//기존값 불러오는 코드
@@ -111,6 +136,9 @@
 	});
 	
 	updateCheck();
+	
+	fileAddInit(${vo.filesVOs.size()})		//원래 있던 파일 갯수 매개변수로 넘겨줌
+	fileDeleteInit();
 </script>
 </body>
 </html>

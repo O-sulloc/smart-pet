@@ -207,10 +207,12 @@ $(".add_btn").on("click", function(){
 // 수정 버튼
 $(".update_btn").on("click", function(){
 	
-	let check = window.confirm("이대로 등록하시겠습니까?");
+	let check = window.confirm("이대로 수정하시겠습니까?");
     if(!check){
         return;
     }
+    
+    let formData = new FormData();
 	
 	//let id = $(".id").val();
 	//여기까지
@@ -218,28 +220,46 @@ $(".update_btn").on("click", function(){
 	//멤버아이디도 넣어야 할수도있음!
 	let productNum = $(".productInfo").val();
 	let star = $('input[name="reviewStar"]:checked').val();
+	let title = $("#title").val();
 	let contents = $("#contents").val();
 	let replyNum = $(".replyNum").val();
 	
+	$(".files").each(function(idx, item) {
+		if(item.files.length > 0){//length가 있는것들, file이 들어온것들 선택
+			//formData.append("파라미터명", 값);
+			formData.append("files", item.files[0]);
+		}
+	});//each 끝
+
+	formData.append('productNum',  productNum);
+	//formData.append('id', id);
+	formData.append('star', star);
+	formData.append('title', title);
+	formData.append('contents', contents);	
+	formData.append('replyNum', replyNum);
+	
+	
 	//console.log(productNum);
 	//console.log(id);
-	console.log(star);
-	console.log(contents);
+	//console.log(star);
+	//console.log(contents);
 	
 		
 	$.ajax({
 		type : 'post',
 		url : '/product/review/update',
-		data :{
-/*			id : id,*/
-			productNum : productNum,
-			star : star,
-			contents : contents,
-			replyNum : replyNum
-		},
+		processData: false,
+		contentType: false,
+		data : formData,
 		
 		success : function(){
 			alert("등록성공!");
+			$("#productNum").val("");
+			$("#id").val("");
+			$("#star").val("");
+			$("#title").val("");
+			$("#contents").val("");
+			$("#fileResult").empty();
 			window.close();
 		},
 		
@@ -304,7 +324,7 @@ function fileDeleteInit(){
 		
 		$.ajax({
 			type:"POST",
-			url: "./fileDelete",
+			url: "../product/review/fileDelete",
 			
 			data:{
 				fileNum:fileNum

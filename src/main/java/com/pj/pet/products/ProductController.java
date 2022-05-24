@@ -1,13 +1,15 @@
 package com.pj.pet.products;
 
+import java.util.Collections;
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.pj.pet.category.CategoryVO;
+import com.pj.pet.review.ReviewVO;
+import com.pj.pet.review.product.ProductReviewService;
 import com.pj.pet.util.Pager;
 
 @Controller
@@ -154,4 +158,51 @@ public class ProductController {
 		mv.setViewName("product/list");
 		return mv;
 	}
+	
+	
+	
+	
+	//재석추가
+	
+	@Autowired
+	private ProductReviewService productReviewService;
+
+	//list 리뷰 갖고와서 보여주기
+	@GetMapping("reviewList")
+	public ModelAndView getAjaxList(Pager pager, Double starAvg) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<ReviewVO> ar = productReviewService.getList(pager);
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		mv.addObject("starAvg", starAvg);//detail에서 값 받아옴
+		Map<String, Integer> starCount = productReviewService.getStarCount(pager);//별 각각 비율
+		mv.addObject("starCount", starCount);
+		Long total = productReviewService.getStarTotal(pager); //별 총갯수
+		mv.addObject("total", total);
+		mv.setViewName("common/reviewList");
+		return mv;
+	}
+	
+	//list 리뷰 분류별로 보여주기
+	@GetMapping("reviewSort")
+	public ModelAndView getAjaxListSort(Pager pager) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		//이미 값을 보낼때 pager에 productNum 보냄
+		List<ReviewVO> ar = productReviewService.getList(pager);
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("common/reviewSort");
+		return mv;
+	}
+	
+	//재석추가 끝
+
+	
+	
+	
+	
+	
+	
+	
+	
 }

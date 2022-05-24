@@ -108,5 +108,7 @@ public class ProductService {
 		pager.makeNum(productMapper.getTotalCount(pager));
 		return productMapper.regDateList(pager);
 	}
+	
+
 }
 

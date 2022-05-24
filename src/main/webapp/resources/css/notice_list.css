@@ -20,10 +20,10 @@ ul{
 
 /* 일단 넣어봄 - 마이페이지로 옮길것! */
 /* 리뷰쓰기 버튼 */
-  .reply_button_wrap{
+  .add_reply_wrap{
   	padding : 10px;
   }
-  .reply_button_wrap button{
+  .add_reply_wrap button{
 	background-color: #365fdd;
     color: white;
     font-weight: bold;
@@ -31,7 +31,7 @@ ul{
     padding: 5px 12px;
     cursor: pointer;  
   }
-  .reply_button_wrap button:hover{
+  .add_reply_wrap button:hover{
   	background-color: #1347e7;
   }
   

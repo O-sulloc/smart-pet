@@ -6,6 +6,15 @@
     
 <mapper namespace="com.pj.pet.review.product.ProductReviewMapper">
 
+	<!-- reviewNum 조회 -->
+	<select id="getReplyNum" parameterType="ReviewVO" resultType="ReviewVO">
+		SELECT REPLYNUM 
+		FROM PRODUCTREPLY 
+		WHERE ID=#{id} AND PRODUCTNUM=#{productNum}
+	</select>
+
+
+
 	<!-- review -->
 	<insert id="setAdd" parameterType="ReviewVO" useGeneratedKeys="true"  keyProperty="replyNum">
 		INSERT INTO PRODUCTREPLY(REPLYNUM, PRODUCTNUM, ID, TITLE, CONTENTS, REGDATE, STAR)
@@ -51,8 +60,27 @@
 			REPLYNUM > 0
 			AND
 			PRODUCTNUM = #{productNum}
+			<if test="dataNum != null">
+		  		<choose>
+					<when test="dataNum == 1">
+			    		ORDER BY REGDATE DESC
+			    	</when>
+			    	<when test="dataNum == 2">
+			    		ORDER BY STAR DESC
+			    	</when>
+			    	<when test="dataNum == 3">
+			    		ORDER BY STAR ASC
+			    	</when>
+			    	<otherwise>
+			    		ORDER BY REPLYNUM DESC
+			    	</otherwise>
+				</choose>
+			</if>
+			<if test="dataNum == null">
+				ORDER BY REPLYNUM DESC
+			</if>
 			
-			ORDER BY REPLYNUM DESC
+			<!-- if문써서 1,2,3 정렬따로 -->
 			LIMIT #{startRow}, #{perPage}
 		) PR
 			LEFT JOIN
@@ -113,13 +141,28 @@
    	</delete>
    	
     <select id="getFileList" parameterType="ReviewVO" resultType="ProductReviewFilesVO">
-   		SELECT * FROM REPLYFILE WHERE PRODUCTNUM = #{productNum}
+   		SELECT * FROM REPLYFILE WHERE REPLYNUM = #{replyNum}
    	</select>
    	
    	<select id="getFileDetail" parameterType="ProductReviewFilesVO" resultType="ProductReviewFilesVO">
    		SELECT * FROM REPLYFILE WHERE FILENUM = #{fileNum}
    	</select>
 	
+	
+	<!-- 별점 갯수 별점 별 확인 -->
+	<select id="getStarCount" parameterType="Pager" resultType="Map">
+		SELECT * FROM
+		(SELECT (SELECT COUNT(STAR) FROM PRODUCTREPLY WHERE PRODUCTNUM = #{productNum} AND STAR=5)/COUNT(STAR)*100 AS A  FROM PRODUCTREPLY) A,
+		(SELECT (SELECT COUNT(STAR) FROM PRODUCTREPLY WHERE PRODUCTNUM = #{productNum} AND STAR=4)/COUNT(STAR)*100 AS B FROM PRODUCTREPLY) B,
+		(SELECT (SELECT COUNT(STAR) FROM PRODUCTREPLY WHERE PRODUCTNUM = #{productNum} AND STAR=3)/COUNT(STAR)*100 AS C FROM PRODUCTREPLY) C,
+		(SELECT (SELECT COUNT(STAR) FROM PRODUCTREPLY WHERE PRODUCTNUM = #{productNum} AND STAR=2)/COUNT(STAR)*100 AS D FROM PRODUCTREPLY) D,
+		(SELECT (SELECT COUNT(STAR) FROM PRODUCTREPLY WHERE PRODUCTNUM = #{productNum} AND STAR=1)/COUNT(STAR)*100 AS E FROM PRODUCTREPLY) E
+	</select>
+	
+	<!-- 별점 총 갯수 확인 -->
+	<select id="getStarTotal" parameterType="Pager" resultType="Long">
+		SELECT COUNT(STAR) FROM PRODUCTREPLY WHERE PRODUCTNUM = #{productNum}
+	</select>
 
 
 

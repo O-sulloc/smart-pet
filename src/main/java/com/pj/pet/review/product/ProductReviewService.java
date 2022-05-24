@@ -1,11 +1,13 @@
 package com.pj.pet.review.product;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.pj.pet.products.ProductVO;
 import com.pj.pet.review.ReviewService;
 import com.pj.pet.review.ReviewVO;
 import com.pj.pet.util.FileManager;
@@ -19,6 +21,16 @@ public class ProductReviewService implements ReviewService {
 	
 	@Autowired
 	private FileManager fileManager;
+	
+	
+	
+	//조회문을 만들어야할듯(replyNum을 갖고오는것)
+	@Override
+	public ReviewVO getReplyNum(ReviewVO reviewVO) throws Exception {
+		
+		return productReviewMapper.getReplyNum(reviewVO);
+	}
+	
 	
 	@Override
 	public List<ReviewVO> getList(Pager pager) throws Exception {
@@ -136,6 +148,17 @@ public class ProductReviewService implements ReviewService {
 
 		productReviewMapper.setUpdateAvg(avg);
 		
+	}
+	
+	//별갯수확인(각각)
+	public Map<String, Integer> getStarCount(Pager pager) throws Exception{
+		System.out.println("sevice 진입!!");
+		return productReviewMapper.getStarCount(pager);
+	}
+	
+	//별갯수확인(총)
+	public Long getStarTotal(Pager pager) throws Exception{
+		return productReviewMapper.getStarTotal(pager);
 	}
 
 }

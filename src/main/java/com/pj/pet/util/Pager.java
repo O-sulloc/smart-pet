@@ -39,6 +39,10 @@ public class Pager {
 	private Long productNum;
 	
 	
+	//reviewList 분류별(최신순, 별점높은순, 낮은순)
+	private Integer dataNum;
+	
+	
 	//lombok이 있어도 직접 만들어줌 - 기본값을 부여하기 위해서
 	public Integer getPerPage() {
 		if(this.perPage == null || this.perPage < 1) {

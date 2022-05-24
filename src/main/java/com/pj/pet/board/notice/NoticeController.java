@@ -32,55 +32,6 @@ public class NoticeController {
 		return "notice";
 	}
 	
-	//연습용
-	//리뷰 쓰기
-	@GetMapping("/reviewAdd/{id}")
-	public ModelAndView reviewAdd(@PathVariable("id")String id, Long productNum) {
-		ModelAndView mv = new ModelAndView();
-		//상품들어오면 상품 넣을것
-		//BookVO book = bookService.getBookIdName(bookId);
-		//넣는값도 고쳐야함
-		mv.addObject("productInfo", productNum);
-		mv.addObject("id", id);
-		mv.setViewName("review/reviewPop");
-		return mv;
-	}
-	
-	@Autowired
-	private ProductReviewService productReviewService;
-	
-	//리뷰 수정
-	@GetMapping("reviewUpdate")
-	public ModelAndView reviewUpdate(ReviewVO reviewVO, ModelAndView mv) throws Exception {
-		
-		//ProductVO productVO = 상품번호 가져오기(상품컨트롤러에서 작업)
-		//mv.addObject("productInfo", productNum);
-		mv.addObject("productInfo", 1);
-		reviewVO = productReviewService.getDetail(reviewVO);
-		mv.addObject("vo", reviewVO);
-		//mv.addObject("id", reviewVO.getId());
-		mv.addObject("id", "admin");
-		mv.setViewName("review/reviewPopUpdate");
-		return mv;
-	}
-
-	
-	//list 리뷰 갖고와서 보여주기
-	@GetMapping("reviewList")
-	public ModelAndView getAjaxList(Pager pager) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		//이미 값을 보낼때 pager에 productNum 보냄
-		List<ReviewVO> ar = productReviewService.getList(pager);
-		mv.addObject("list", ar);
-		mv.addObject("pager", pager);
-		mv.setViewName("common/reviewList");
-		return mv;
-	}
-	
-	
-	//연습용 끝
-	
-	
 
 	//제목 중복체크
 	@PostMapping("titleCheck")

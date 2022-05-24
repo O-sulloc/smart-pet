@@ -167,14 +167,14 @@ function totalCheck(){
 			}
 	});
 
-	/*$('#contents').blur(function(){
+	$('#contents').blur(function(){
 		if($(this).val() == ''){
 			contentsCheck = false;
 		}else{
 			contentsCheck = true;
 		}
 	});
-*/
+
 	//write 버튼 클릭
 	$("#btn").click(function(){
 
@@ -208,11 +208,11 @@ function totalCheck(){
 			return;
 		}
 
-		/*if(!contentsCheck){
+		if(!contentsCheck){
 			alert("내용을 입력해주세요");
 			$('#contents').focus();
 			return;
-		}*/
+		}
 
 		//모두 체크시(카테고리 수정 막아버릴까?)
 		let check = window.confirm("카테고리는 수정이 어렵습니다. 이대로 작성하시겠습니까?"); //check에 boolean 담김
@@ -226,5 +226,6 @@ function totalCheck(){
 	});
 }
 //유효성 검사 끝
+
 
 
