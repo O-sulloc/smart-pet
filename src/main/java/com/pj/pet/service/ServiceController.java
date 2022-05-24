@@ -236,7 +236,7 @@ public class ServiceController {
 		return mv;
 	}
 	
-	// 예약 시간 띄어주기
+	// 예약 시간 띄어주기 (서비스 상세 정보)
 	@GetMapping("detail")
 	   public ModelAndView getAllReservationSetting(ServiceVO serviceVO) throws Exception{
 	      ModelAndView mv = new ModelAndView();
@@ -249,6 +249,8 @@ public class ServiceController {
 	      mv.setViewName("service/detail");
 	      return mv;
 	   }
+	
+	//서비스 목록
 	@GetMapping("list")
 	public ModelAndView getList(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();

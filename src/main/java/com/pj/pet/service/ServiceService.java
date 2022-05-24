@@ -103,7 +103,7 @@ public class ServiceService {
 		return serviceMapper.getList(userVO);
 	}
 
-	
+	// 서비스 목록
 	public List<ServiceVO> getListc(Pager pager) throws Exception{
 		pager.makeRow();
 		Long totalCount= serviceMapper.total(pager);

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +41,9 @@
 				<tr>
 					<td><a class="link-success text-decoration-none" href="../service/detail?serNum=${cl.serNum}">${cl.serviceVO.serName}</a></td>
 					<td>${cl.resDate}</td>
-					<td>${cl.resTime}</td>
+					<td><c:set var="time" value="${cl.resTime}" />
+					${fn:split(time,':')[0]}시 ${fn:split(time,':')[1]}분</td>
+		
 					<td><span>
 						<c:choose>
 							<c:when test="${cl.resState==0}">

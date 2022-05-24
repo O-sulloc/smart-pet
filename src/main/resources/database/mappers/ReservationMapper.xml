@@ -41,6 +41,7 @@
 	</association>
 </resultMap> -->
 
+	<!-- 예약 추가 -->
 	<insert id="setAdd" parameterType="ReservationVO" useGeneratedKeys="true" keyProperty="resNum">
 		INSERT INTO RESERVATION(RESNUM,ID,SERNUM,RESDATE,RESTIME,RESMEMO,RESSTATE)
 		VALUES (#{resNum},#{id},#{serNum},#{resDate},#{resTime},#{resMemo},0)
@@ -77,7 +78,7 @@
 		</association>
 	</resultMap>
 	
-	<!-- 예약 하나 상세 확인 Update때문에 -->
+	<!-- 예약 정보 상세 확인 Update때문에 필요 -->
 	<select id="getDetail" parameterType="ReservationVO" resultMap="serviceConfirm">
 		SELECT ROW_NUMBER() OVER(ORDER BY R.RESNUM DESC) AS NUM, 
 		R.*,
@@ -88,7 +89,7 @@
 			ON R.SERNUM=S.SERNUM WHERE R.ID=#{id} AND R.RESNUM=#{resNum}
 	</select>
 
-
+	<!-- 예약 정보 수정 (날짜,시간,메모) -->
 	<update id="setUpdate" parameterType="ReservationVO" >
 		UPDATE RESERVATION set 
 			RESDATE=#{resDate},
@@ -96,5 +97,35 @@
 			RESMEMO =#{resMemo}
 		WHERE RESNUM =#{resNum}
 	</update>
+	
+	<!-- 예약 삭제 -->
+	<delete id="setDelete" parameterType="ReservationVO">
+		DELETE FROM RESERVATION WHERE RESNUM =#{resNum}
+	</delete>
+
+<!--id 받아서 예약세팅 정보 가져오기 (예약시간 띄워주기용)-->
+	<select id="getAllReservationSetting" parameterType="ReservationVO" resultMap="getAllReservationSettingResult">
+		select * from RESERVATIONSETTING S
+			LEFT JOIN
+				RESERVATIONTIME T
+				USING (SETNUM)
+			WHERE S.SERNUM=#{serNum}
+	</select>
+	<resultMap type="ReservationSettingVO" id="getAllReservationSettingResult">
+		<id column="setNum" property="setNum"></id>
+		<result column="serNum" property="serNum"/>
+		<result column="term" property="term"/>
+		<result column="capacity" property="capacity"/>
+		<result column="startBreakTime" property="startBreaktime"/>
+		<result column="endBreakTime" property="endBreaktime"/>
+		<result column="holiday" property="holiday"/>
+		<collection property="reservationTimeVO" ofType="ReservationTimeVO">
+			<result column="serNum" property="serNum"/>
+			<result column="setNum" property="setNum"/>
+			<result column="openTime" property="openTime"/>
+			<result column="closeTime" property="closeTime"/>
+			<result column="timecase" property="timecase"/>
+		</collection>
+	</resultMap>
 
 </mapper>

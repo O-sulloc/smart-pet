@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,7 +85,8 @@
 					<td>${sessionScope.user.name}</td>
 					<td>${sessionScope.user.phone}</td>
 					<td>${vo.resDate}</td>
-					<td>${vo.resTime}</td>
+					<td><c:set var="time" value="${vo.resTime}" />
+					${fn:split(time,':')[0]}시 ${fn:split(time,':')[1]}분</td>
 					<td><span>
 						<c:choose>
 							<c:when test="${vo.resState==0}">
@@ -153,18 +155,22 @@
 				<input type="hidden" name="serNum" value="${seviceVO.serNum }">
 				<label for="">예약메모</label> <input type="text" name="resMemo" id="resMemo" value="${vo.resMemo }">
 				<input type="hidden" name="resDate" value="${vo.resDate}" id="resDate"> 
-				<input type="hidden" name="resTime" value="9:00" id="resTime"> 
+				<input type="hidden" name="resTime" value="${vo.resTime}" id="resTime"> 
 				<input type="hidden" name="resState" value="0">
-				<button type="submit" class="btn btn-outline-success">예약수정</button>
+				<button type="button" class="btn btn-outline-success res_update" >예약수정</button>
 			</form>
 		</div>
-
+		
+				<!-- 예약 삭제 버튼 -->
+				<div>
+				<a class="btn btn-danger res_delete" href="./appointmentDelete?resNum=${vo.resNum}" role="button">예약취소</a>
+				</div>
 
 
 
 			<script type="text/javascript" src="../js/detail.js"></script>
 			<script type="text/javascript" src="../js/calendar.js"></script>
-
+			<script type="text/javascript" src="../js/reservation.js"></script>
 
 
 

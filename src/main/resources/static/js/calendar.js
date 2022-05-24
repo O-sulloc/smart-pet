@@ -4,6 +4,11 @@
 let CDate = new Date(); 
 let today = new Date();
 let selectCk = 0;
+console.log(today);
+
+let lastday=today.getDate()-1;
+console.log(lastday);
+
 
 let buildcalendar = function(){
 	let htmlDates = ''; 
@@ -28,9 +33,12 @@ let buildcalendar = function(){
 			 dates.push(i); // 다음 달 날짜 채우기 (나머지 다 채운 다음 출력할 때 42개만 출력함)
 	} 
 	
-	for(var i = 0; i < 42; i++){
+	for(let i = 0; i < 42; i++){
 		if(i < thisFirst.getDay()){
 			htmlDates += '<div class="date last">'+dates[i]+'</div>'; 
+		}else if(i<lastday&&today.getMonth()==CDate.getMonth()) {
+			htmlDates += '<div class="date last" disabled>'+dates[i]+'</div>'; 
+		
 		}else if(today.getDate()==dates[i] && today.getMonth()==CDate.getMonth() && today.getFullYear()==CDate.getFullYear()){
 			 htmlDates += '<div id="date_'+dates[i]+'" class="date today" onclick="fn_selectDate('+dates[i]+');">'+dates[i]+'</div>'; 
 		}else if(i >= thisFirst.getDay() + thisLast.getDate()){
@@ -42,18 +50,28 @@ let buildcalendar = function(){
 document.querySelector(".dates").innerHTML = htmlDates; 
 } 
 
+
+
+
+//전달 달력
 function prevCal(){
+	
+	if(CDate.getMonth()>today.getMonth()){
 	 CDate.setMonth(CDate.getMonth()-1); 
 	 buildcalendar(); 
+	 }else{
+		alert("예약은 금일기준 다음날부터 가능합니다.");
+	}
 } 
+
+//다음달 달력
 function nextCal(){
 	 CDate.setMonth(CDate.getMonth()+1);
 	 buildcalendar(); 
 }
 
-
-
 function fn_selectDate(date){
+
 	let year = CDate.getFullYear();
 	let month = CDate.getMonth() + 1;
 	let date_txt = "";
@@ -61,31 +79,30 @@ function fn_selectDate(date){
 	if(CDate.getMonth + 1 < 10){
 		month = "0" + (CDate.getMonth() + 1);
 	}
-	if(date < 10){
+/*	if(date < 0){
 		date_txt = "0" + date;
-	}
+	}*/
 	
 	if(selectCk == 0){
 		$(".date").css("background-color", "");
 		$(".date").css("color", "");
 		$("#date_"+date).css("background-color", "red");
 		$("#date_"+date).css("color", "white");
-
+	
 		$("#resDate").val(year+"-"+month+"-"+date);
-
-		selectCk = month;
+		
+		selectCk = year+"-"+month+"-"+date;
 		console.log(selectCk);
 		
 		d=date;
 		
+		selectCk = 0;
 		
 			
 		
-	}else{
+	}else if(today){
 		$("#date_"+date).css("background-color", "white");
-		$("#date_"+date).css("color", "black");		
-	
-		selectCk = 0;
+		$("#date_"+date).css("color", "gray");		
 	}
 	
 
@@ -100,3 +117,5 @@ $(".dateInfo_btn").click(function() {
 			});
 
 
+
+    

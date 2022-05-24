@@ -4,6 +4,8 @@ import java.sql.Date;
 import lombok.Data;
 
 import java.util.List;
+
+import com.pj.pet.service.ReservationSettingVO;
 import com.pj.pet.service.ServiceVO;
 
 

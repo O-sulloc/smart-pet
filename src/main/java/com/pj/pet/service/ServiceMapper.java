@@ -52,7 +52,7 @@ public interface ServiceMapper {
 	//예약 리스트 
 	public List<ReservationVO> getList(UserVO userVO)throws Exception;
 
-	//list : getList
+	// 고객측 서비스 list : getList
 	public List<ServiceVO> getListc(Pager pager) throws Exception;
 	
 	//detail

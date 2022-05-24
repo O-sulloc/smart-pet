@@ -10,11 +10,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pj.pet.service.ReservationSettingVO;
 import com.pj.pet.service.ServiceVO;
 
 
@@ -46,8 +48,7 @@ public class ReservationController {
 		return mv;
 	}
 
-
-//	@ResponseBody
+	// 서비스 예약 폼 추가
 	@PostMapping(value="/reservation/confirm")
 	public ModelAndView setAdd(HttpSession session,ReservationVO reservationVO) throws Exception{
 		
@@ -73,6 +74,7 @@ public class ReservationController {
 		return mv;
 	}
 	
+	// 서비스 예약 폼
 	@GetMapping("/reservation/confirm")
 	public ModelAndView setAdd(@ModelAttribute ReservationVO reservationVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -89,7 +91,7 @@ public class ReservationController {
 //	}
 //	
 	
-	
+	// 사용자 예약 목록 확인
 	@GetMapping(value="/user/appointment")
 	public ModelAndView confirmList(HttpSession session,ReservationVO reservationVO,ServiceVO serviceVO )throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -97,14 +99,18 @@ public class ReservationController {
 		String id=userVO.getId();
 		
 		reservationVO.setId(id);
-		
 		List<ReservationVO> confirmList = reservationService.confirmList(reservationVO);
+//		confirmList=reservationService.confirmList(reservationVO.getResTime().substring(0, 5));
+//		System.out.println("예약 시간"+reservationVO.getResTime());
+//		reservationVO.setResTime(reservationVO.getResTime().substring(0,5));
+		
 		mv.addObject("confirmList",confirmList);
 		mv.setViewName("./user/appointment");
 		
 		return mv;
 	}
 	
+	// 사용자 예약 수정을 위한 상세 정보
 	@GetMapping("/user/appointmentDetail")
 	public ModelAndView getDetail(HttpSession session, ReservationVO reservationVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -112,13 +118,15 @@ public class ReservationController {
 		String id=userVO.getId();
 		
 		reservationVO.setId(id);
+		//ReservationSettingVO reservationSettingVO= reservationService.getAllReservationSetting(reservationVO);
 		reservationVO=reservationService.getDetail(reservationVO);
 		mv.addObject("vo",reservationVO);
+		//mv.addObject("settingVO",reservationSettingVO);
 		mv.setViewName("./user/appointmentUpdate");
 		return mv;
 		
 	}
-	
+	// 사용자 예약 수정 폼
 	@GetMapping("/user/appointmentUpdate")
 	public ModelAndView setUpdate(HttpSession session,ReservationVO reservationVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -126,12 +134,15 @@ public class ReservationController {
 		String id=userVO.getId();
 		
 		reservationVO.setId(id);
-		reservationVO= reservationService.getDetail(reservationVO);
+		//ReservationSettingVO reservationSettingVO= reservationService.getAllReservationSetting(reservationVO);
+		reservationVO=reservationService.getDetail(reservationVO);
 		mv.addObject("vo",reservationVO);
+		//mv.addObject("settingVO",reservationSettingVO);
 		mv.setViewName("./user/appointmentUpdate");
 		return mv;
 	}
 
+	// 사용자 예약 수정 하기 (수정 후 예약 목록 보여줌)
 	@PostMapping("/user/appointmentUpdate")
 	public ModelAndView setUpdate(HttpSession session,ReservationVO reservationVO,ModelAndView mv) throws Exception{
 		
@@ -145,4 +156,23 @@ public class ReservationController {
 		return mv;
 	}
 
+	// 사용자 예약 취소
+	@GetMapping("/user/appointmentDelete")
+	public ModelAndView setDelete(ReservationVO reservationVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int result=reservationService.setDelete(reservationVO);
+		if(result>0) {
+			mv.setViewName("common/getResult");
+			mv.addObject("msg","예약 취소되었습니다.");
+			mv.addObject("path","./appointment");
+			
+		}else {
+			mv.setViewName("common/getResult");
+			mv.addObject("msg","취소 실패하였습니다.");
+			mv.addObject("path","$");
+		}
+		return mv;
+	}
+	
 }
