@@ -6,11 +6,164 @@
     
 <mapper namespace="com.pj.pet.review.product.ProductReviewMapper">
 
+	<!-- reviewNum 조회 -->
+	<select id="getReplyNum" parameterType="ReviewVO" resultType="ReviewVO">
+		SELECT REPLYNUM 
+		FROM PRODUCTREPLY 
+		WHERE ID=#{id} AND PRODUCTNUM=#{productNum}
+	</select>
+
+
+
 	<!-- review -->
 	<insert id="setAdd" parameterType="ReviewVO" useGeneratedKeys="true"  keyProperty="replyNum">
-		INSERT INTO PRODUCTREPLY(REPLYNUM, PRODUCTNUM, ID, CONTENTS, REGDATE, STAR)
-		VALUES(#{replyNum}, #{productNum}, #{id}, #{contents}, now(), #{star})
+		INSERT INTO PRODUCTREPLY(REPLYNUM, PRODUCTNUM, ID, TITLE, CONTENTS, REGDATE, STAR)
+		VALUES(#{replyNum}, #{productNum}, #{id}, #{title}, #{contents}, now(), #{star})
 	</insert>
+	
+	<update id="setUpdate" parameterType="ReviewVO">
+		UPDATE PRODUCTREPLY
+		SET TITLE = #{title}, CONTENTS = #{contents}, STAR = #{star}
+		WHERE REPLYNUM = #{replyNum}
+	</update>
+	
+	<delete id="setDelete" parameterType="ReviewVO">
+		DELETE FROM PRODUCTREPLY
+		WHERE REPLYNUM = #{replyNum}
+	</delete>
+	
+	
+	<select id="getDetail" resultMap="fileAddResult" parameterType="ReviewVO">
+		SELECT PR.*, PRF.*
+		FROM
+			PRODUCTREPLY PR
+				LEFT JOIN
+			REPLYFILE PRF
+			USING(REPLYNUM)
+		WHERE REPLYNUM = #{replyNum}	
+	</select>
+
+	<select id="getList" resultMap="fileAddResult" parameterType="Pager">
+<!-- 		SELECT * FROM PRODUCTREPLY
+		WHERE
+		REPLYNUM > 0
+		AND
+		PRODUCTNUM = #{productNum}
+		ORDER BY 
+		REPLYNUM DESC
+		LIMIT #{startRow}, #{perPage}
+	
+ -->
+		SELECT PR.*, PRF.* FROM
+		(
+			SELECT * FROM PRODUCTREPLY WHERE
+			REPLYNUM > 0
+			AND
+			PRODUCTNUM = #{productNum}
+			<if test="dataNum != null">
+		  		<choose>
+					<when test="dataNum == 1">
+			    		ORDER BY REGDATE DESC
+			    	</when>
+			    	<when test="dataNum == 2">
+			    		ORDER BY STAR DESC
+			    	</when>
+			    	<when test="dataNum == 3">
+			    		ORDER BY STAR ASC
+			    	</when>
+			    	<otherwise>
+			    		ORDER BY REPLYNUM DESC
+			    	</otherwise>
+				</choose>
+			</if>
+			<if test="dataNum == null">
+				ORDER BY REPLYNUM DESC
+			</if>
+			
+			<!-- if문써서 1,2,3 정렬따로 -->
+			LIMIT #{startRow}, #{perPage}
+		) PR
+			LEFT JOIN
+		REPLYFILE PRF
+		USING(REPLYNUM)
+	</select>
+	
+	<select id="getTotalCount" resultType="java.lang.Long" parameterType="Pager">
+    		SELECT COUNT(REPLYNUM) FROM PRODUCTREPLY
+    		WHERE REPLYNUM > 0
+    		AND
+			PRODUCTNUM = #{productNum}
+    </select>
+    
+    <!-- 상품만 파일쓰고 예약방문후기는 사진 없이 ㄱ -->
+    <resultMap type="ReviewVO" id="fileAddResult">
+		<id column="replyNum" property="replyNum"/>
+		<result column="productNum" property="productNum"/>
+		<result column="id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="contents" property="contents"/>
+		<result column="regDate" property="regDate"/>
+		<result column="star" property="star"/>
+		<collection property="filesVOs" javaType="java.util.List" ofType="ProductReviewFilesVO">
+			<id column="fileNum" property="fileNum"/>
+			<result column="fileName" property="fileName"/>
+			<result column="oriName" property="oriName"/>
+		</collection>
+	</resultMap>
+    
+
+
+	<!-- star Avg 구하기 -->
+	<select id="getStarAvg" resultType="double" parameterType="java.lang.Long">
+  	
+  		SELECT AVG(STAR)
+  		FROM PRODUCTREPLY
+  		WHERE PRODUCTNUM = #{productNum}
+  	
+  	</select>
+
+	<update id="setUpdateAvg" parameterType="ProductReviewAvgVO">
+	
+		UPDATE PRODUCTS
+		SET STARAVG = #{starAvg}
+		WHERE PRODUCTNUM = #{productNum}
+	
+	</update>
+	
+	<!-- productReviewFile -->
+	<insert id="setFileAdd" parameterType="ProductReviewFilesVO">
+   		INSERT INTO REPLYFILE
+   		VALUES(NULL, #{replyNum}, #{fileName}, #{oriName})
+   	</insert>
+   
+   	<delete id="setFileDelete" parameterType="ProductReviewFilesVO">
+   		DELETE FROM REPLYFILE WHERE FILENUM = #{fileNum}
+   	</delete>
+   	
+    <select id="getFileList" parameterType="ReviewVO" resultType="ProductReviewFilesVO">
+   		SELECT * FROM REPLYFILE WHERE REPLYNUM = #{replyNum}
+   	</select>
+   	
+   	<select id="getFileDetail" parameterType="ProductReviewFilesVO" resultType="ProductReviewFilesVO">
+   		SELECT * FROM REPLYFILE WHERE FILENUM = #{fileNum}
+   	</select>
+	
+	
+	<!-- 별점 갯수 별점 별 확인 -->
+	<select id="getStarCount" parameterType="Pager" resultType="Map">
+		SELECT * FROM
+		(SELECT (SELECT COUNT(STAR) FROM PRODUCTREPLY WHERE PRODUCTNUM = #{productNum} AND STAR=5)/COUNT(STAR)*100 AS A  FROM PRODUCTREPLY) A,
+		(SELECT (SELECT COUNT(STAR) FROM PRODUCTREPLY WHERE PRODUCTNUM = #{productNum} AND STAR=4)/COUNT(STAR)*100 AS B FROM PRODUCTREPLY) B,
+		(SELECT (SELECT COUNT(STAR) FROM PRODUCTREPLY WHERE PRODUCTNUM = #{productNum} AND STAR=3)/COUNT(STAR)*100 AS C FROM PRODUCTREPLY) C,
+		(SELECT (SELECT COUNT(STAR) FROM PRODUCTREPLY WHERE PRODUCTNUM = #{productNum} AND STAR=2)/COUNT(STAR)*100 AS D FROM PRODUCTREPLY) D,
+		(SELECT (SELECT COUNT(STAR) FROM PRODUCTREPLY WHERE PRODUCTNUM = #{productNum} AND STAR=1)/COUNT(STAR)*100 AS E FROM PRODUCTREPLY) E
+	</select>
+	
+	<!-- 별점 총 갯수 확인 -->
+	<select id="getStarTotal" parameterType="Pager" resultType="Long">
+		SELECT COUNT(STAR) FROM PRODUCTREPLY WHERE PRODUCTNUM = #{productNum}
+	</select>
+
 
 
 </mapper>

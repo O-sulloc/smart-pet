@@ -26,7 +26,7 @@
 	
 	
 	<div class="row mt-4">
-		<form action="./add" method="post" class="frm">
+		<form action="./add" method="post" class="frm" enctype="multipart/form-data">
 			<div class="form_section">
 				<div class="row">
 					<div class="form_section_content col-lg-12" id="grade">
@@ -60,7 +60,7 @@
 		      <textarea class="form-control" id="contents" name="contents"></textarea>
 		    </div>
 		  </div>
-		  
+
 		  <button type="button" class="btn btn-primary my-4" id="btn">Write</button>
 		</form>
 		
@@ -72,10 +72,9 @@
 
 <script type="text/javascript">
 	totalCheck();
-	
 
 	
-	$('#contents').summernote({
+	/* $('#contents').summernote({ summernote image 수정 에러로 뺌
 		height: 300,                 
 		placeholder: '내용을 입력하세요',
 		callbacks: {
@@ -131,7 +130,7 @@
 			}//onMediaDelete 끝
 			
 		}
-	});
+	}); */
 	
 </script>
 

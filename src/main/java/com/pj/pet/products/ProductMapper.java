@@ -40,4 +40,5 @@ public interface ProductMapper {
 	public List<ProductVO> lowPriceList(Pager pager) throws Exception;
 	
 	public List<ProductVO> regDateList(Pager pager) throws Exception;
+	
 }

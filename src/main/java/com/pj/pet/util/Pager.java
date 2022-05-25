@@ -35,8 +35,21 @@ public class Pager {
 	private String grade;
 	private String gradeRef;
 	
+
 	//판매자측 reservationList 날짜별로 가지고 오려고 추가
 	private String resDate;
+
+	//리스트에 뿌려주는 총 갯수 가져오려고 생성
+	private Long totalCountC;
+	
+	//상품번호(댓글에서 사용)
+	private Long productNum;
+	
+	
+	//reviewList 분류별(최신순, 별점높은순, 낮은순), qnaList(내꺼 확인)
+	private Integer dataNum;
+	
+
 	
 	//lombok이 있어도 직접 만들어줌 - 기본값을 부여하기 위해서
 	public Integer getPerPage() {

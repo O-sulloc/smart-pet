@@ -18,12 +18,12 @@ ul{
 
 
 
-/* 일단 넣어봄 */
+/* 일단 넣어봄 - 마이페이지로 옮길것! */
 /* 리뷰쓰기 버튼 */
-  .reply_button_wrap{
+  .add_reply_wrap{
   	padding : 10px;
   }
-  .reply_button_wrap button{
+  .add_reply_wrap button{
 	background-color: #365fdd;
     color: white;
     font-weight: bold;
@@ -31,9 +31,82 @@ ul{
     padding: 5px 12px;
     cursor: pointer;  
   }
-  .reply_button_wrap button:hover{
+  .add_reply_wrap button:hover{
   	background-color: #1347e7;
   }
+  
+  /* 내 qna 체크 */
+  .my_qna_check{
+  	padding : 10px;
+  }
+  
+  .my_qna_check button{
+	background-color: #365fdd;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 5px 12px;
+    cursor: pointer;  
+  }
+  .my_qna_check button:hover{
+  	background-color: #1347e7;
+  }
+  
+  .total_qna_check{
+ 	 padding : 10px;
+  }
+  
+  .total_qna_check button{
+	background-color: #365fdd;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 5px 12px;
+    cursor: pointer;  
+  }
+  
+  .total_qna_check button:hover{
+  	background-color: #1347e7;
+  }
+  
+  .qna_button_wrap{
+  
+  	display: flex;
+  	
+  }
+  
+  /*리뷰수정 */
+  .update_reply_btn{
+  	padding : 10px;
+  }
+  .update_reply_btn button{
+	background-color: #365fdd;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 5px 12px;
+    cursor: pointer;  
+  }
+  .update_reply_btn button:hover{
+  	background-color: #1347e7;
+  }
+  
+   /*리뷰삭제 CSS 바꿀것 나중에*/
+  .delete_reply_btn{
+  	padding : 10px;
+  }
+  .delete_reply_btn button{
+	background-color: #365fdd;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 5px 12px;
+    cursor: pointer;  
+  }
+  .delete_reply_btn button:hover{
+  	background-color: #1347e7;
+  }
+  
   
   /* 리뷰 영역 */
   	.content_bottom{
@@ -117,7 +190,7 @@ ul{
   }
   
   /* 리뷰 수정 삭제 버튼 */
-  .update_reply_btn{
+  /* .update_reply_btn{
  	font-weight: bold;
     background-color: #b7b399;
     display: inline-block;
@@ -129,8 +202,8 @@ ul{
     border-radius: 6px;
     color: white; 
     cursor: pointer;
-  }
-  .delete_reply_btn{
+  } */
+  /* .delete_reply_btn{
  	font-weight: bold;
     background-color: #e7578f;
     display: inline-block;
@@ -141,4 +214,4 @@ ul{
     border-radius: 6px;
     color: white; 
   	cursor: pointer;
-  }
+  } */

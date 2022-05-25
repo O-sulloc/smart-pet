@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+/*  리스트 뿌려주는곳에 넣을것 */
+
+	.reviewTable {
+	    width:70%; 
+	    margin:auto; /*마진 안먹음 */
+	    border : 1px solid black;
+	    border-collapse : collapse;
+	}
+	
+	.reviewTable tr td{
+	 	border : 1px solid black;
+	    border-collapse : collapse;
+	}   
+	
+	/*여기*/
+	.star-ratings {
+	  color: #aaa9a9; 
+	  position: relative;
+	  unicode-bidi: bidi-override;
+	  width: max-content;
+	  -webkit-text-fill-color: transparent;
+	  -webkit-text-stroke-width: 1.3px;
+	  -webkit-text-stroke-color: #2b2a29;
+	}
+ 
+	.star-ratings-fill {
+	  color: #fff58c;
+	  padding: 0;
+	  position: absolute;
+	  z-index: 1;
+	  display: flex;
+	  top: 0;
+	  left: 1;
+	  overflow: hidden;
+	  -webkit-text-fill-color: red; 
+	  
+	}
+	 
+	.star-ratings-base {
+	  z-index: 0;
+	  padding: 0;
+	} 
+	
+	.parent {
+		display: flex;
+	}
+	.child {
+		flex: 1;
+	}

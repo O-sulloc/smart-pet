@@ -46,6 +46,12 @@
 		          Order List
 		        </a>
 		      </li>
+		      <!-- 재석추가 a태그 주소 수정할것-->
+		      <li>
+		        <a href="/user/reviewListPage" class="nav-link link-dark">
+		          상품리뷰(Order List)
+		        </a>
+		      </li>
 		    </ul>
 	  </div>
 	</main>

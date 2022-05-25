@@ -2,6 +2,8 @@ package com.pj.pet.board.notice;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pj.pet.board.faq.FaqVO;
+import com.pj.pet.products.ProductVO;
+import com.pj.pet.review.ReviewVO;
+import com.pj.pet.review.product.ProductReviewService;
 import com.pj.pet.util.Pager;
 
 @Controller
@@ -26,22 +31,6 @@ public class NoticeController {
 	public String getBoard() {
 		return "notice";
 	}
-	
-	//연습용
-	/* 리뷰 쓰기 */
-	@GetMapping("/reviewAdd/{id}")
-	public ModelAndView replyEnrollWindowGET(@PathVariable("id")String id, Long productNum) {
-		ModelAndView mv = new ModelAndView();
-		//상품들어오면 상품 넣을것
-		//BookVO book = bookService.getBookIdName(bookId);
-		//넣는값도 고쳐야함
-		mv.addObject("productInfo", productNum);
-		mv.addObject("id", id);
-		mv.setViewName("review/reviewPop");
-		return mv;
-	}
-	//연습용 끝
-	
 	
 
 	//제목 중복체크

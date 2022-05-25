@@ -32,7 +32,16 @@
 		<typeAlias type="com.pj.pet.products.ProductVO" alias="ProductVO"/>
 		<typeAlias type="com.pj.pet.products.ProductFileVO" alias="ProductFileVO"/>
 		<typeAlias type="com.pj.pet.category.CategoryVO" alias="CategoryVO"/>
+
 		<typeAlias type="com.pj.pet.carts.CartVO" alias="CartVO"/>
 		<typeAlias type="com.pj.pet.cartrefer.CartReferVO" alias="CartReferVO"/>
+
+		
+		<!-- 재석 새로추가 -->
+		<typeAlias type="com.pj.pet.review.product.ProductReviewAvgVO" alias="ProductReviewAvgVO"/>
+		<typeAlias type="com.pj.pet.review.product.ProductReviewFilesVO" alias="ProductReviewFilesVO"/>
+		<typeAlias type="com.pj.pet.qna.QnaVO" alias="QnaVO"/>
+		
+
 </typeAliases>
 </configuration>

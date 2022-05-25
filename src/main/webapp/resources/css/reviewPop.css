@@ -7,7 +7,7 @@ body{
 
 /* 전체 배경화면 색상 */
 .wrapper_div{
-	background-color: #f5f5f5;
+	background-color: #ffffff;
     height: 100%;  	
 }
 
@@ -41,7 +41,7 @@ body{
     line-height: 18px;  
 }
 
-.enroll_btn{
+.add_btn{
   	display: inline-block;
     width: 130px;
     background-color:#7b8ed1;
@@ -51,9 +51,41 @@ body{
     line-height: 18px; 
 }
  	
-.enroll_btn:disabled {
+.add_btn:disabled {
 	background-color: rgb(168, 202, 244); /* 흐린 색상의 배경 적용 */
 }
+
+.update_btn{
+  	display: inline-block;
+    width: 130px;
+    background-color:#7b8ed1;
+    height: 50px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 18px; 
+}
+ 	
+.update_btn:disabled {
+	background-color: rgb(168, 202, 244); /* 흐린 색상의 배경 적용 */
+}
+
+/*판매자 */
+.seller_add_btn{
+  	display: inline-block;
+    width: 130px;
+    background-color:#7b8ed1;
+    height: 50px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 18px; 
+}
+ 	
+.seller_add_btn {
+	background-color: rgb(168, 202, 244); /* 흐린 색상의 배경 적용 */
+}
+
+
+
 
 /* 상품제목 영역 */
 .productName_div h2{
@@ -70,9 +102,13 @@ body{
 	margin : 0;
 }
 
+.input_bottom{
+	background-color: #f6f6f6;
+}
+
 textarea{
 	width: 100%;
-    height: 100px;
+    height: 200px;
     border: 1px solid #dadada;
     padding: 12px 8px 12px 8px;
     font-size: 15px;
@@ -120,5 +156,6 @@ textarea{
    color: red;
    font-weight: 700;
 }
+
 
 

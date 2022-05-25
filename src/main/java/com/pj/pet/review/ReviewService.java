@@ -4,9 +4,15 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.pj.pet.review.product.ProductReviewFilesVO;
 import com.pj.pet.util.Pager;
 
 public interface ReviewService {
+	
+	
+	//replyNum 조회 만들기
+	public ReviewVO getReplyNum(ReviewVO reviewVO) throws Exception;
+	
 
 	//list
 	public List<ReviewVO> getList(Pager pager) throws Exception;
@@ -18,13 +24,16 @@ public interface ReviewService {
 	public int setAdd(ReviewVO reviewVO, MultipartFile [] files) throws Exception;
 	
 	//update
-	public int setUpdate(ReviewVO reviewVO) throws Exception;
+	public int setUpdate(ReviewVO reviewVO, MultipartFile [] files) throws Exception;
 	
 	//delete
 	public int setDelete(ReviewVO reviewVO) throws Exception;
 	
 	//detailFile(아직 파일 안만듬)
 	//public ReviewFileVO getDetailFile(ReviewFileVO reviewFileVO) throws Exception;
+	
+	//fileDelete
+	public int setFileDelete(ProductReviewFilesVO productReviewFilesVO) throws Exception;
 	
 	
 }

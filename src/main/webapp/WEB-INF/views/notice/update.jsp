@@ -26,7 +26,7 @@
 	
 	
 	<div class="row mt-4">
-		<form action="./update" method="post">
+		<form action="./update" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="num" value="${vo.num}">
 			
 			<!-- 카테고리 변경이 가능하게 할지 아니면 그냥 둘지 고민 -->
@@ -66,7 +66,7 @@
 		      <textarea class="form-control" id="contents" name="contents">${vo.contents}</textarea>
 		    </div>
 		  </div>
-		  
+			
 		  <button type="submit" class="btn btn-primary my-4">Update</button>
 		</form>
 		
@@ -79,7 +79,7 @@
 	totalCheck();
 	
 	
-	$('#contents').summernote({
+	/* $('#contents').summernote({ summernote image 수정 에러로 뺌
 		height: 300,                 
 		placeholder: '내용을 입력하세요',
 		callbacks: {
@@ -132,7 +132,7 @@
 			}//onMediaDelete 끝
 			
 		}
-	});
+	}); */
 	
 	//$('#contents').summernote('code', code);
 </script>

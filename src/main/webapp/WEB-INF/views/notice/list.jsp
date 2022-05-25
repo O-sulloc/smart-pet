@@ -8,8 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <c:import url="../temp/header_css.jsp"></c:import>
   <link href="../resources/css/notice_list.css" rel="styleSheet" />
-
+  <link href="../resources/css/reviewList.css" rel="styleSheet" />
 <title>Insert title here</title>
+<!-- 상단으로 올림 5.20 -->
+<c:import url="../temp/header_script.jsp"></c:import>
 
 </head>
 <body>
@@ -94,7 +96,9 @@
 			
 		</div>
 	</div>
+	
 	<br><br>
+	
 	<div class="position-relative">
 		<div class="position-absolute top-0 start-50 translate-middle">
 			<nav aria-label="Page navigation example">
@@ -120,40 +124,15 @@
 			</nav>
 		</div>
 	</div>
+	
 </div>
 
-	<!-- 리뷰연습 -->
-	<div class="container">
-		<div class="row">
-			<div class="reply_subject">
-				<h2>리뷰</h2>
-			</div>
-			<div class="reply_button_wrap">
-				<button>리뷰 쓰기</button>
-			</div>
-		</div>
-	</div>
-
-<c:import url="../temp/header_script.jsp"></c:import>
-<script type="text/javascript" src="../resources/js/notice_list.js"></script>
-
-<script type="text/javascript">
-	$(".reply_button_wrap").on("click", function(e){
-		
-		e.preventDefault();	
-		
-		const id = 'admin'; //멤버아이디랑
-		const productNum = '1'; //상품번호 갖고와야함
-					//임시로 notice이고 product로 바꿔야함 나중에 들어오면
-		let popUrl = "/notice/reviewAdd/" + id + "?productNum=" + productNum;
-		console.log(popUrl);
-		let popOption = "width = 600px, height=600px, top=400px, left=400px, scrollbars=yes";
-		
-		window.open(popUrl,"리뷰 쓰기",popOption);
-
-	});
 	
-</script>
+	
+	
+
+
+<script type="text/javascript" src="../resources/js/notice_list.js"></script>
 
 </body>
 </html>
