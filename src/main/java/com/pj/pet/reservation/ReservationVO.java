@@ -25,7 +25,7 @@ public class ReservationVO {
 
 	 private ServiceVO serviceVO;
 
-	 
+	 private List<ReservationSettingVO> reservationSettingVO;
 	 
 
 }

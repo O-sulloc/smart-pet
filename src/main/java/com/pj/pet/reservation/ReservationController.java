@@ -112,32 +112,36 @@ public class ReservationController {
 	
 	// 사용자 예약 수정을 위한 상세 정보
 	@GetMapping("/user/appointmentDetail")
-	public ModelAndView getDetail(HttpSession session, ReservationVO reservationVO) throws Exception{
+	public ModelAndView getDetail(HttpSession session, ReservationVO reservationVO,ServiceVO serviceVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		UserVO userVO= (UserVO)session.getAttribute("user");
 		String id=userVO.getId();
 		
 		reservationVO.setId(id);
-		//ReservationSettingVO reservationSettingVO= reservationService.getAllReservationSetting(reservationVO);
+		serviceVO = reservationService.getService(serviceVO);
 		reservationVO=reservationService.getDetail(reservationVO);
+		ReservationSettingVO reservationSettingVO= reservationService.getAllReservationSetting(serviceVO);
+		mv.addObject("vo",serviceVO);
 		mv.addObject("vo",reservationVO);
-		//mv.addObject("settingVO",reservationSettingVO);
+		mv.addObject("settingVO",reservationSettingVO);
 		mv.setViewName("./user/appointmentUpdate");
 		return mv;
 		
 	}
-	// 사용자 예약 수정 폼
+	// 사용자 예약 수정 폼 -상세 정보랑 겹치는건가..? 줄일수 있는지
 	@GetMapping("/user/appointmentUpdate")
-	public ModelAndView setUpdate(HttpSession session,ReservationVO reservationVO) throws Exception{
+	public ModelAndView setUpdate(HttpSession session,ReservationVO reservationVO,ServiceVO serviceVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		UserVO userVO= (UserVO)session.getAttribute("user");
 		String id=userVO.getId();
 		
 		reservationVO.setId(id);
-		//ReservationSettingVO reservationSettingVO= reservationService.getAllReservationSetting(reservationVO);
+		serviceVO = reservationService.getService(serviceVO);
 		reservationVO=reservationService.getDetail(reservationVO);
+		ReservationSettingVO reservationSettingVO= reservationService.getAllReservationSetting(serviceVO);
+		mv.addObject("vo",serviceVO);
 		mv.addObject("vo",reservationVO);
-		//mv.addObject("settingVO",reservationSettingVO);
+		mv.addObject("settingVO",reservationSettingVO);
 		mv.setViewName("./user/appointmentUpdate");
 		return mv;
 	}

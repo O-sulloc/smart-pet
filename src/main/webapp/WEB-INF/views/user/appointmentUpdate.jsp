@@ -29,9 +29,9 @@
 		</ul>
 
 
-		<input type="hidden" id="term" value="${settingVO.term}"> <input
-			type="hidden" id="capacity" value="${settingVO.capacity}"> <input
-			type="hidden" id="holiday" value="${settingVO.holiday}">
+		<input type="hidden" id="term" value="${settingVO.term}"> 
+		<input type="hidden" id="capacity" value="${settingVO.capacity}"> 
+		<input type="hidden" id="holiday" value="${settingVO.holiday}">
 
 
 
@@ -135,6 +135,7 @@
 		</div>
 
 
+	<form action="appointmentUpdate" method="post">
 		<!-- js로 시간 받아옴 -->
 		<div class="container my-4" id="buttons"></div>
 
@@ -144,7 +145,6 @@
 		<!-- <input type="time" value="09:00" min="09:00" max="18:00"> -->
 
 
-				<form action="appointmentUpdate" method="post">
 				<input type="hidden" readonly="readonly" name="resNum" value="${vo.resNum}">
 				<input type="hidden" readonly="readonly" name="serName" value="${vo.serviceVO.serName}">
 				<input type="hidden" readonly="readonly" name="serTel" value="${vo.serviceVO.serTel}">
@@ -157,9 +157,9 @@
 				<input type="hidden" name="resDate" value="${vo.resDate}" id="resDate"> 
 				<input type="hidden" name="resTime" value="${vo.resTime}" id="resTime"> 
 				<input type="hidden" name="resState" value="0">
-				<button type="button" class="btn btn-outline-success res_update" >예약수정</button>
-			</form>
+				<button type="submit" class="btn btn-outline-success res_update" >예약수정</button>
 		</div>
+	</form>
 		
 				<!-- 예약 삭제 버튼 -->
 				<div>

@@ -60,7 +60,8 @@
 					<td>${cl.serviceVO.serTel}</td>
 					<td>${cl.serviceVO.serAddress}</td>
 					<td>${cl.serviceVO.serTime}</td>
-					<td><span><a href="appointmentUpdate?resNum=${cl.resNum }" role="button" class="btn btn-success mx-1">예약수정</a></span></td>
+					<!-- 예약 수정 버튼 -->
+					<td><span><a href="appointmentUpdate?resNum=${cl.resNum }&serNum=${cl.serviceVO.serNum}" role="button" class="btn btn-success mx-1">예약수정</a></span></td>
 				</tr>
 			</c:forEach>
 			</tbody>

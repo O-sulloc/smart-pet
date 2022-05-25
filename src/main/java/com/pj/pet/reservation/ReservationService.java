@@ -42,7 +42,12 @@ public class ReservationService {
 	}
 	
 	//예약 시간 띄어주기
-	public ReservationSettingVO getAllReservationSetting(ReservationVO reservationVO) throws Exception{
-		return reservationMapper.getAllReservationSettingVO(reservationVO);
+	public ReservationSettingVO getAllReservationSetting(ServiceVO serviceVO) throws Exception{
+		return reservationMapper.getAllReservationSetting(serviceVO);
+	}
+	
+	//예약 시간 띄어주기
+	public ServiceVO getService (ServiceVO serviceVO) throws Exception{
+		return reservationMapper.getService(serviceVO);
 	}
 }

@@ -27,6 +27,8 @@ public interface ReservationMapper {
 	public int setDelete(ReservationVO reservationVO) throws Exception;
 	
 	//예약 시간 띄어주기
-	public ReservationSettingVO getAllReservationSettingVO(ReservationVO reservationVO) throws Exception;
+	public ReservationSettingVO getAllReservationSetting(ServiceVO serviceVO) throws Exception;
 	
+	//예약 시간 띄어주기
+	public ServiceVO getService (ServiceVO serviceVO) throws Exception;
 }

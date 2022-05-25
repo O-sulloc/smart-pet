@@ -103,8 +103,8 @@
 		DELETE FROM RESERVATION WHERE RESNUM =#{resNum}
 	</delete>
 
-<!--id 받아서 예약세팅 정보 가져오기 (예약시간 띄워주기용)-->
-	<select id="getAllReservationSetting" parameterType="ReservationVO" resultMap="getAllReservationSettingResult">
+<!-- id 받아서 예약세팅 정보 가져오기 (update부분에서 예약시간 띄워주기용)-->
+	<select id="getAllReservationSetting" parameterType="ServiceVO" resultMap="getAllReservationSettingResult">
 		select * from RESERVATIONSETTING S
 			LEFT JOIN
 				RESERVATIONTIME T
@@ -128,4 +128,9 @@
 		</collection>
 	</resultMap>
 
+	<!-- update부분에서 시간 띄어주기 -->
+	<select id="getService" parameterType="ServiceVO" resultType="ServiceVO"> 
+		select * from SERVICE
+		where SERNUM=#{serNum}
+	</select>
 </mapper>
