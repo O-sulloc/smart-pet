@@ -10,6 +10,7 @@ let lastday=today.getDate()-1;
 console.log(lastday);
 
 
+console.log($("#holiday").val());
 let buildcalendar = function(){
 	let htmlDates = ''; 
 
@@ -18,6 +19,17 @@ let buildcalendar = function(){
 	let thisLast = new Date(CDate.getFullYear(), CDate.getMonth() + 1, 0); //이번 달의 마지막 날
 	document.querySelector(".year").innerHTML = CDate.getFullYear() + "년";  // year에 년도 출력
 	document.querySelector(".month").innerHTML = (CDate.getMonth() + 1) + "월";  //month에 월 출력
+
+	// 휴일 체크용 여기 하는중
+	function getInputDayLabel() { 
+ 	let week = new Array('일', '월', '화', '수', '목', '금', '토');       
+ 	let today = new Date('year+"-"+month+"-"+date').getDay();    
+	let todayLabel = week[today];        
+	return todayLabel;
+	}
+	
+	
+	//console.log(getInputDayLabel());
 
 
 	const dates = []; 
@@ -48,6 +60,10 @@ let buildcalendar = function(){
 		}
 	 } 
 document.querySelector(".dates").innerHTML = htmlDates; 
+
+
+
+
 } 
 
 
@@ -116,6 +132,18 @@ $(".dateInfo_btn").click(function() {
 
 			});
 
-
-
-    
+//특정날짜 요일 가지고 오기 (휴일 표시용)
+function getInputDayLabel() { 
+ 	let week = new Array('일', '월', '화', '수', '목', '금', '토');       
+ 	let today = new Date('2022-05-28').getDay();    
+	let todayLabel = week[today];        
+	return todayLabel;
+	}  
+	console.log(getInputDayLabel());
+	
+	/*if(getInputDayLabel()==$("#holiday").val()){
+		htmlDates += '<div class="holiday" disabled>'+dates[i]+'</div>'
+		
+		
+	}
+    */
