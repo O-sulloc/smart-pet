@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.pj.pet.products.ProductVO;
+
 import com.pj.pet.review.ReviewService;
 import com.pj.pet.review.ReviewVO;
 import com.pj.pet.util.FileManager;

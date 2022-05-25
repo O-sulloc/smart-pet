@@ -3,17 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<!-- 
-	<div class="star-ratings">
-		<div class="star-ratings-fill space-x-2 text-lg" style="width: 5.5%;">이제는 11퍼가됐네?
-			<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-		</div>
-		<div class="star-ratings-base space-x-2 text-lg">
-			<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-		</div>
-	</div>
-
- -->
 	<hr>
 	<div>
 		<strong>상품리뷰</strong>
@@ -46,7 +35,7 @@
 	    </div>
 	    <div class="child">
 			<strong>평점 비율</strong>
-				<ul>
+				<ul style="padding-left: 0px">
 					<c:forEach items="${starCount}" var="entry">  
 						<li>
 							<div class="star-ratings">

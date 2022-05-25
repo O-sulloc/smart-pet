@@ -11,6 +11,7 @@
   <c:import url="../temp/header_css.jsp"></c:import>
   <link href="../resources/css/notice_list.css" rel="styleSheet" />
   <link href="../resources/css/reviewList.css" rel="styleSheet" />
+  <link href="../resources/css/qnaList.css" rel="styleSheet" />
   <!-- 재석추가 끝 -->
 <style type="text/css">
 <style>
@@ -22,7 +23,7 @@
 
 
  input { pointer-events: none; }
-
+ 
 </style>
 
   <!-- Bootstrap CSS -->
@@ -127,22 +128,35 @@ class="number">${vo.rate}</span><span class="percent">% 할인 중</span>
 </div>
 
 	
-<!-- 재석추가 -->
-	<!-- 리뷰연습 지금 현재 리뷰번호 1번만 가지고 놀게 되어 있다-->
+	<!-- 재석추가 -->
+	<!-- 리뷰 지금 현재 상품번호 1번만 가지고 -->
 	<!-- container 때문인지 옆으로 나옴 --><!-- common폴더 reviewList, reviewTest로 하는중 -->
 	<!-- productNum 사용때문에 가지고옴! -->
 	<input type="hidden" id="productNum" value="${vo.productNum}">
 	<input type="hidden" id="starAvg" value="${vo.starAvg}">
 	<input type="hidden" id="starCount" value="${starCount}">
+	<c:if test="${not empty id}">
+		<input type="hidden" id="id" value="${id}">
+	</c:if>
 	<div class="container">
 		<!-- 리뷰 리스트 ajax -->
 		<div class="row" id="list">
 			
 		</div>
 	</div>
+	
+	<!-- QNA 지금 현재 상품번호 1번만 가지고 -->
+	
+	<div class="container">
+		<!-- 리뷰 리스트 ajax -->
+		<div class="row" id="qnaList">
+			
+		</div>
+	</div>
 
 <script type="text/javascript" src="../resources/js/productDetail.js"></script>
 <script type="text/javascript" src="../resources/js/detailReview.js"></script>
-
+<script type="text/javascript" src="../resources/js/detailQna.js"></script>
+<script type="text/javascript" src="../resources/js/qnaPop.js"></script>
 </body>
 </html>

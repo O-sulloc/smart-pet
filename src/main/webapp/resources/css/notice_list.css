@@ -35,6 +35,46 @@ ul{
   	background-color: #1347e7;
   }
   
+  /* 내 qna 체크 */
+  .my_qna_check{
+  	padding : 10px;
+  }
+  
+  .my_qna_check button{
+	background-color: #365fdd;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 5px 12px;
+    cursor: pointer;  
+  }
+  .my_qna_check button:hover{
+  	background-color: #1347e7;
+  }
+  
+  .total_qna_check{
+ 	 padding : 10px;
+  }
+  
+  .total_qna_check button{
+	background-color: #365fdd;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 5px 12px;
+    cursor: pointer;  
+  }
+  
+  .total_qna_check button:hover{
+  	background-color: #1347e7;
+  }
+  
+  .qna_button_wrap{
+  
+  	display: flex;
+  	
+  }
+  
   /*리뷰수정 */
   .update_reply_btn{
   	padding : 10px;
@@ -66,7 +106,7 @@ ul{
   .delete_reply_btn button:hover{
   	background-color: #1347e7;
   }
- 
+  
   
   /* 리뷰 영역 */
   	.content_bottom{

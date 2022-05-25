@@ -39,7 +39,7 @@ public class Pager {
 	private Long productNum;
 	
 	
-	//reviewList 분류별(최신순, 별점높은순, 낮은순)
+	//reviewList 분류별(최신순, 별점높은순, 낮은순), qnaList(내꺼 확인)
 	private Integer dataNum;
 	
 	

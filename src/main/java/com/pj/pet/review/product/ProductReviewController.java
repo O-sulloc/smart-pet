@@ -27,11 +27,6 @@ public class ProductReviewController {
 //	}
 //	
 
-	
-	
-	
-	
-	
 	//add DB
 	@PostMapping("add")
 	public int setAdd(ReviewVO reviewVO, MultipartFile [] files) throws Exception{

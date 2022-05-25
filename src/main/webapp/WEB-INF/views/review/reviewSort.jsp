@@ -5,14 +5,20 @@
 
 
 
-<!-- 리뷰가 없는 경우도 구현 ex) list == empty?-->
+		<!-- 리뷰가 없는 경우도 구현 ex) list == empty?-->
+		<c:if test="${empty list}">
+			<div>
+				<span>리뷰가 없습니다</span>
+			</div>
+		</c:if>
 
-<!-- class="table table-dark table-striped" --><!-- 쓰려고 밖으로뺌 -->
+		<!-- class="table table-dark table-striped" --><!-- 쓰려고 밖으로뺌 -->
+		<!-- 보니까 뭐 지우면 작동 더 잘됨 나중 qna 확인! -->
 	 	<div class="accordion accordion-flush" id="accordionFlushExample">
 			<div class="accordion-item">
 				<c:forEach items="${list}" var="vo">
 				<input type="hidden" value="${vo.star}" class="star">
-					<li>
+					<li style="list-style:none;">
 						<div class="comment_wrap">
 							<div class="reply_top">
 								<span class="id_span">${vo.id}</span>

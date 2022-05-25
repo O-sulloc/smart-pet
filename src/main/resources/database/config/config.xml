@@ -36,6 +36,7 @@
 		<!-- 재석 새로추가 -->
 		<typeAlias type="com.pj.pet.review.product.ProductReviewAvgVO" alias="ProductReviewAvgVO"/>
 		<typeAlias type="com.pj.pet.review.product.ProductReviewFilesVO" alias="ProductReviewFilesVO"/>
+		<typeAlias type="com.pj.pet.qna.QnaVO" alias="QnaVO"/>
 		
 </typeAliases>
 </configuration>

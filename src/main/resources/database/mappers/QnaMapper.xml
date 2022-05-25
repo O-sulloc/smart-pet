@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.pj.pet.qna.QnaMapper">
+
+	<!-- REPLY -->
+	<insert id="setReply" parameterType="QnaVO" useGeneratedKeys="true"  keyProperty="num">
+		INSERT INTO QNA(NUM, PRODUCTNUM, id, CONTENTS, REGDATE, REF, STEP, DEPTH, REPLYCHECK)
+		VALUES(NULL, #{productNum}, #{id}, #{contents}, now(), 0, 0, 0, 1)
+	</insert>
+
+	<update id="setStepUpdate" parameterType="QnaVO">
+		UPDATE QNA SET REPLYCHECK=2, STEP=STEP+1
+		WHERE REF=#{ref} AND STEP > #{step} AND NUM=#{num}
+	</update>
+
+	<!-- QNA -->
+	<select id="getList" resultType="QnaVO" parameterType="Pager">
+		SELECT * FROM QNA WHERE
+		NUM > 0 
+		AND
+		PRODUCTNUM = #{productNum}
+		<if test="dataNum != null">
+			AND ID=#{id}
+		</if>
+		ORDER BY NUM DESC
+		LIMIT #{startRow}, #{perPage}
+	</select>
+	
+	<select id="getDetail" resultType="QnaVO" parameterType="QnaVO">
+		SELECT * FROM QNA WHERE NUM = #{num}
+	</select>
+	
+	<select id="getTotalCount" parameterType="Pager" resultType="Long">
+		SELECT COUNT(NUM) FROM QNA
+	</select>
+
+	<insert id="setAdd" parameterType="QnaVO" useGeneratedKeys="true"  keyProperty="num">
+		INSERT INTO QNA(NUM, PRODUCTNUM, id, CONTENTS, REGDATE, REF, STEP, DEPTH, SECRET, REPLYCHECK)
+		VALUES(#{num}, #{productNum}, #{id}, #{contents}, now(), 0, 0, 0, #{secret}, 1)
+	</insert>
+
+	<update id="setUpdate" parameterType="QnaVO">
+		UPDATE QNA SET CONTENTS = #{contents}, SECRET = #{secret}
+		WHERE NUM = #{num}
+	</update>
+	
+	<delete id="setDelete" parameterType="QnaVO">
+		DELETE FROM QNA WHERE NUM=#{num}
+	</delete>	
+
+
+</mapper>
