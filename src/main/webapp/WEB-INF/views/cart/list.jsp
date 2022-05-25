@@ -69,7 +69,7 @@ input {
 				<c:choose>
 				<c:when test="${empty list}">
 					<tr>
-						<td colspan="7" align="center">장바구니에 담긴 상품이 없습니다.</td>
+						<td colspan="7" align="center"><h3>장바구니에 담긴 상품이 없습니다.</h3></td>
 					</tr>
 				<div class="row">
 				<table>
