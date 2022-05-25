@@ -6,6 +6,6 @@ import lombok.Data;
 public class CartReferVO {
 	private Long cartreferNum;
 	private Long cartNum;
-	private Long orderNum;
+	private Long payNum;
 	private Long paymentKind;
 }

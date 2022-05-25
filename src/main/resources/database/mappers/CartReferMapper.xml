@@ -8,8 +8,8 @@
 	
 	<insert id="setReferAdd" parameterType="CartReferVO">
 		INSERT INTO
-		CARTREFER(CARTREFERNUM,CARTNUM,ORDERNUM,PAYMENTKIND)
-		VALUES(NULL,#{cartNum},#{orderNum},0)
+		CARTREFER(CARTREFERNUM,CARTNUM,PAYNUM,PAYMENTKIND)
+		VALUES(NULL,#{cartNum},#{payNum},0)
 	</insert>
 
 </mapper>
