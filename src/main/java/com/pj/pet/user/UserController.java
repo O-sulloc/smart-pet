@@ -31,7 +31,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	//@Autowired
+	@Autowired
 	private MailService mailService;
 	
 	@ModelAttribute("board")
