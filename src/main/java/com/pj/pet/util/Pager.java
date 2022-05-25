@@ -35,6 +35,9 @@ public class Pager {
 	private String grade;
 	private String gradeRef;
 	
+	//리스트에 뿌려주는 총 갯수 가져오려고 생성
+	private Long totalCountC;
+	
 	//상품번호(댓글에서 사용)
 	private Long productNum;
 	
