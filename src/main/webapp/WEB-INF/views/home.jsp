@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="./resources/assets/css/tiny-slider.css" />
     <link rel="stylesheet" href="./resources/assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="./resources/assets/css/main.css" />
+    <script src="https://kit.fontawesome.com/c996879092.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -101,6 +102,28 @@
                                     <li class="nav-item">
                                         <a href="../notice/list" aria-label="Toggle navigation">고객센터</a>
                                     </li>
+                                    <c:if test="${empty user}">
+	                                    <li class="nav-item">
+	                                        <a href="/user/login" aria-label="Toggle navigation">login</a>
+	                                    </li>
+	                                    <li class="nav-item">
+	                                        <a href="/user/join" aria-label="Toggle navigation">join</a>
+	                                    </li>
+                                    </c:if>
+                                    <c:if test="${not empty user}">
+                                    	<li class="nav-item1 dropdown align-self-center">
+								        	<i class="nav-link dropdown fa-regular fa-circle-user fa-2x" onclick="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
+								          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								            <li><a class="dropdown-item" href="/user/loginCheck">Profile</a></li>
+								            <li><a class="dropdown-item" href="/user/petList">Manage Pet Info</a></li>
+								            <li><hr class="dropdown-divider"></li>
+								            <li><a class="dropdown-item" href="#">Cart</a></li>
+								            <li><a class="dropdown-item" href="/reservation/confirmList">Reservation</a></li>
+								            <li><hr class="dropdown-divider"></li>
+								            <li><a class="dropdown-item" href="/user/logout">log out</a></li>
+								          </ul>
+								        </li>
+                                    </c:if>
                                 </ul>
                             </div> <!-- navbar collapse -->
                             <div class="button add-list-button">
@@ -145,7 +168,7 @@
                         </div>
                         <div class="col-lg-6 col-md-12 col-12">
                             <div class="hero-image wow fadeInRight" data-wow-delay=".5s">
-                                <img src="./resources/assets/images/hero/02.png" alt="#">
+                                <img src="./resources/assets/images/hero/bg.png" alt="#">
                             </div>
                         </div>
                     </div>
@@ -174,7 +197,7 @@
                         </div>
                         <div class="col-lg-6 col-md-12 col-12">
                             <div class="hero-image">
-                                <img src="./resources/assets/images/hero/slider-2.png" alt="#">
+                                <img src="./resources/assets/images/hero/bg_1.png" alt="#">
                             </div>
                         </div>
                     </div>

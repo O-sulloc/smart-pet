@@ -1,5 +1,7 @@
 package com.pj.pet.user;
 
+import java.sql.Date;
+
 import lombok.Data;
 
 @Data
@@ -9,6 +11,6 @@ public class UserPetVO {
 	private String id;
 	private Long petKind;
 	private String petName;
-	private String petBirth;
+	private Date petBirth;
 	private Long petSex;
 }
