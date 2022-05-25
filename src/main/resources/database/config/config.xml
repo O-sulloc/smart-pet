@@ -33,7 +33,6 @@
 		<typeAlias type="com.pj.pet.products.ProductFileVO" alias="ProductFileVO"/>
 		<typeAlias type="com.pj.pet.category.CategoryVO" alias="CategoryVO"/>
 		<typeAlias type="com.pj.pet.carts.CartVO" alias="CartVO"/>
-		<typeAlias type="com.pj.pet.order.OrderVO" alias="OrderVO"/>
 		<typeAlias type="com.pj.pet.cartrefer.CartReferVO" alias="CartReferVO"/>
 </typeAliases>
 </configuration>
