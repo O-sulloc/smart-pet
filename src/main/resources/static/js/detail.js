@@ -7,6 +7,8 @@ let capacity=$("#capacity").val();
 let holiday=$("#holiday").val();
 
 
+
+
 //Date타입으로 변환해주는 함수 
 function getDate(time){ 
     let d1 = new Date(); // Creates a Date Object using the clients current time
@@ -70,6 +72,7 @@ for(let i=0;i<40;i++){
        
         let button = document.createElement('button')
         button.setAttribute("type","button")
+        button.setAttribute("id","timeButton")
         button.setAttribute("name","resTime")
         button.setAttribute("class","btn btn-outline-primary")
         button.innerHTML=hy(openTime0);
@@ -88,6 +91,7 @@ for(let i=0;i<40;i++){
         result=plusTerm(result);
         let button = document.createElement('button')
         button.setAttribute("type","button")
+        button.setAttribute("id","timeButton")
         button.setAttribute("name","resTime")
         button.setAttribute("class","btn btn-outline-primary")
         button.setAttribute("id","timeButton")
@@ -112,9 +116,10 @@ $("#buttons").on("click","#timeButton",function(){
 
 
 
-
-
-
-
+$("#buttons").on("click","#timeButton",function(){
+   console.log($(this).html());
+   let time=$(this).html();
+   $("#resTime").val(time);
+})
 
 

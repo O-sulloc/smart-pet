@@ -61,13 +61,7 @@
 		<button type="button" class="btn btn-outline-success dateInfo_btn">예약날짜
 			확인</button>
 
-		<!-- $(선택자).동작함수 -->
-		<script>
-			$(".dateInfo_btn").click(function() {
-				$(".calendar").slideToggle();
 
-			});
-		</script>
 	</div>
 
 	<div class="container my-4">
@@ -96,43 +90,34 @@
 	</div>
 
 	
-	<!-- js로 시간 받아옴 -->
-	<div class="container my-4" id="buttons">
-	</div>
-
+	<form action="../reservation/confirm" method="post">
+		<!-- js로 시간 받아옴 -->
+		<div class="container my-4" id="buttons">
+		</div>
 	
-
+		
 	
-	<!-- <input type="time" value="09:00" min="09:00" max="18:00"> -->
+		
+		<!-- <input type="time" value="09:00" min="09:00" max="18:00"> -->
+		
 	
-
-	<div class="inputArea">
-		<form action="../reservation/confirm" method="post">
-				<input type="hidden" name="serNum" value="${vo.serNum }">
-				<label for="">배송메모</label>
-				<input type="text" name="resMemo" id="resMemo">
-				<input type="hidden" name="resDate" value="" id="resDate">
-				<input type="hidden" name="resTime" value="9:00" id="resTime">
-				<input type="hidden" name="resState" value="0">
-				<button type="submit" class="btn btn-outline-success res_btn">예약진행</button>
-		</form>
-	</div>
+		<div class="inputArea">
+					<input type="hidden" name="serNum" value="${seviceVO.serNum }">
+					<label for="">예약메모</label>
+					<input type="text" name="resMemo" id="resMemo">
+					<input type="hidden" name="resDate" value="" id="resDate">
+					<input type="hidden" name="resTime" value="" id="resTime">
+					<input type="hidden" name="resState" value="0">
+					<button type="submit" class="btn btn-outline-success res_btn">예약진행</button>
+		</div>
+	</form>
 				
 	
-	<script>
-		 $(".res_btn").click(function(){
-			
-			let confirm_val=confirm("예약하시겠습니까?");
-			
 	
-			
-		}) 
-	</script>
 	
-	<script type="text/javascript" src="../js/calendar.js"></script>
 	<script type="text/javascript" src="../js/detail.js"></script>
 	<script type="text/javascript" src="../js/reservation.js"></script>
->>>>>>> master_user_service
+
 
 
 </body>

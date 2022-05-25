@@ -107,6 +107,7 @@ public class ServiceService {
 	public List<ReservationVO> getResStateCount(ReservationVO reservationVO)throws Exception{
 		return serviceMapper.getResStateCount(reservationVO);
 	}
+
 	
 	//<!--판매자측 서비스 예약 리스트 --><!--월별-->
 	public List<ReservationVO> getMonthReservationList(Pager pager)throws Exception{
@@ -141,6 +142,10 @@ public class ServiceService {
 	}
 //----------------------------------------------------------
 	
+
+
+	// 서비스 목록
+
 	public List<ServiceVO> getListc(Pager pager) throws Exception{
 		pager.makeRow();
 		Long totalCount= serviceMapper.total(pager);

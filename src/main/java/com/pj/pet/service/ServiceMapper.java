@@ -58,6 +58,7 @@ public interface ServiceMapper {
 	//예약 리스트 _최신순 
 	public List<ReservationVO> getReservationList(Pager pager)throws Exception;
 
+
 	//예약 리스트 _대기중인예약만 
 	public List<ReservationVO> getResStateIs0(Pager pager)throws Exception;
 	
@@ -72,6 +73,8 @@ public interface ServiceMapper {
 	//==
 	
 	//list : getList
+
+	// 고객측 서비스 list : getList
 	public List<ServiceVO> getListc(Pager pager) throws Exception;
 	
 	//detail

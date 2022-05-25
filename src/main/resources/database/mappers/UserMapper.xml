@@ -66,7 +66,7 @@
 	</select>
 
 	<select id="getLogin" resultType="UserVO" parameterType="UserVO">
-		SELECT NAME, ID FROM USER WHERE ID=#{id} and PW=#{pw}
+		SELECT NAME, ID, PHONE FROM USER WHERE ID=#{id} and PW=#{pw}
 	</select>
 
 	<insert id="setAdd" parameterType="UserVO">

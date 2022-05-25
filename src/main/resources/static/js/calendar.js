@@ -1,13 +1,19 @@
 /**
  * 
  */
-
 let CDate = new Date(); 
 let today = new Date();
 let selectCk = 0;
-console.log(CDate)
-CDate.getDate
 
+
+console.log(today);
+
+
+let lastday=today.getDate()-1;
+console.log(lastday);
+
+
+console.log($("#holiday").val());
 let buildcalendar = function(){
 	let htmlDates = ''; 
 
@@ -16,6 +22,20 @@ let buildcalendar = function(){
 	let thisLast = new Date(CDate.getFullYear(), CDate.getMonth() + 1, 0); //이번 달의 마지막 날
 	document.querySelector(".year").innerHTML = CDate.getFullYear() + "년";  // year에 년도 출력
 	document.querySelector(".month").innerHTML = (CDate.getMonth() + 1) + "월";  //month에 월 출력
+
+
+	// 휴일 체크용 여기 하는중
+	function getInputDayLabel() { 
+ 	let week = new Array('일', '월', '화', '수', '목', '금', '토');       
+ 	let today = new Date('year+"-"+month+"-"+date').getDay();    
+	let todayLabel = week[today];        
+	return todayLabel;
+	}
+	
+	
+	//console.log(getInputDayLabel());
+
+
 
 	const dates = []; 
 	if(thisFirst.getDay()!=0){ 
@@ -33,6 +53,9 @@ let buildcalendar = function(){
 	for(let i = 0; i < 42; i++){
 		if(i < thisFirst.getDay()){
 			htmlDates += '<div class="date last">'+dates[i]+'</div>'; 
+		}else if(i<lastday&&today.getMonth()==CDate.getMonth()) {
+			htmlDates += '<div class="date last" disabled>'+dates[i]+'</div>'; 
+		
 		}else if(today.getDate()==dates[i] && today.getMonth()==CDate.getMonth() && today.getFullYear()==CDate.getFullYear()){
 			 htmlDates += '<div id="date_'+dates[i]+'" class="date today" onclick="fn_selectDate('+dates[i]+');">'+dates[i]+'</div>'; 
 		}else if(i >= thisFirst.getDay() + thisLast.getDate()){
@@ -42,50 +65,68 @@ let buildcalendar = function(){
 		}
 	 } 
 document.querySelector(".dates").innerHTML = htmlDates; 
+
+
+
+
 } 
 
+
+
+
+//전달 달력
 function prevCal(){
+	
+	if(CDate.getMonth()>today.getMonth()){
 	 CDate.setMonth(CDate.getMonth()-1); 
 	 buildcalendar(); 
+	 }else{
+		alert("예약은 금일기준 다음날부터 가능합니다.");
+	}
 } 
+
+//다음달 달력
 function nextCal(){
 	 CDate.setMonth(CDate.getMonth()+1);
 	 buildcalendar(); 
 }
 
+function fn_selectDate(date){
 
 	let year = CDate.getFullYear();
 	let month = CDate.getMonth() + 1;
 	let date_txt = "";
-	let d="";
-function fn_selectDate(date){
-	
 	
 	if(CDate.getMonth + 1 < 10){
 		month = "0" + (CDate.getMonth() + 1);
 	}
-	if(date < 10){
+/*	if(date < 0){
 		date_txt = "0" + date;
-	}
+	}*/
 	
 	if(selectCk == 0){
 		$(".date").css("background-color", "");
 		$(".date").css("color", "");
 		$("#date_"+date).css("background-color", "red");
 		$("#date_"+date).css("color", "white");
-
-		$("#resDate").val(year+"-"+month+"-"+date);
-
-		selectCk = date;
-		d=date;
-			console.log("1은"+selectCk);
-		
-	}else{
-		$("#date_"+date).css("background-color", "white");
-		$("#date_"+date).css("color", "black");		
 	
-		console.log("2는"+date);
+		$("#resDate").val(year+"-"+month+"-"+date);
+		
+		selectCk = year+"-"+month+"-"+date;
+		console.log(selectCk);
+		
+		d=date;
+
+
 		selectCk = 0;
+		
+			
+
+		
+	}else if(today){
+		$("#date_"+date).css("background-color", "white");
+		$("#date_"+date).css("color", "gray");		
+
 	}
 	
 
@@ -94,89 +135,23 @@ function fn_selectDate(date){
 buildcalendar();
 
 
+$(".dateInfo_btn").click(function() {
+		$(".calendar").slideToggle();
 
+			});
 
-$("#reservation").click(function() {
-	let serNum = $(this).attr("data-sn");
-	let resDate = year + "-" + month + "-" + d;
+//특정날짜 요일 가지고 오기 (휴일 표시용)
+function getInputDayLabel() { 
+ 	let week = new Array('일', '월', '화', '수', '목', '금', '토');       
+ 	let today = new Date('2022-05-28').getDay();    
+	let todayLabel = week[today];        
+	return todayLabel;
+	}  
+	console.log(getInputDayLabel());
 	
-	console.log(resDate)
-
-
-}
-
-);
-
-/*const order_btn=document.querySelector(".order_btn");
-const calendar=document.querySelector(".calendar");
-
-calendar.addEventListener("click",function(){
-	let order_btn=event.target.getAttribute("data-d")
-	
-})*/
-
- /*order_btn.addEventListener("click",function(){
-	let resDate=year+"-"+month+"-"+d;
-	if(resDate.value==''){
-		alert("날짜를 선택해주세요.");
-		return;
-	}
-	alert("예약되었습니다.");
-	
-})*/
- 
-/*order_btn.addEventListener("click",function(event){
-	let order_btn = event.target;
-	
-	if(order_btn.classList.contains("dates")){
+	/*if(getInputDayLabel()==$("#holiday").val()){
+		htmlDates += '<div class="holiday" disabled>'+dates[i]+'</div>'
 		
-	let serNum = $(this).attr("data-sn");
-	let resDate=year+"-"+month+"-"+d;
-	let resTime="9:00";
-	console.log(resDate);
-	const xhttp = new XMLHttpRequest();
-	
-	xhttp.open("POST","../reservation/add");
-	xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xhttp.send("serNum="+serNum+"&resDate="+resDate+"&resTime"+resTime);
-	
-	
-	xhttp.onreadystatechange=function(){
-		if(this.readyState==4&&this.status==200){
-			console(this.responseText);
-			let result=this.responseText.trim();
-			
-			if(result=='1'){
-				alert("예약 되었습니다.");
-			}else if(result=='0'){
-				alert("로그인이 필요합니다.");
-			}else{
-				alert("예약실패");
-			}
-		}
+		
 	}
-	
-	}
-	
-});*/
-$("#reservation").click(function(){
-	
-	let serNum = $(this).attr("data-sn");
-	let resDate=year+"-"+month+"-"+d;
-	console.log(resDate);
-	$.ajax({
-		type:"POST",
-		url:"../reservation/add",
-		success:function(data){
-			console.log("Data:",data);
-			if(data.trim()=='1'){
-				alert("예약완료");
-						
-			}else{
-				alert("예약 실패");
-			}
-		}
-	})
-	
-});
-
+    */
