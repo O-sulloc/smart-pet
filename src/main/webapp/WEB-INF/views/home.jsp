@@ -96,7 +96,7 @@
                                         <a href="javascript:void(0)" aria-label="Toggle navigation">Doctors</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="./product/list" aria-label="Toggle navigation">Product</a>
+                                       <a href="javascript:void(0)" aria-label="Toggle navigation">Blog</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="../notice/list" aria-label="Toggle navigation">고객센터</a>
