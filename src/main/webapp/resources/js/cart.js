@@ -33,6 +33,7 @@ $(".minus").click(function() {
 
 		//수량 - 버튼 변동하면 체크된 상품만 총가격 변동
 		let t = 0;
+		let a = 0;
 		if(t==0){
 			$("#totalResult").text("");
 		}
@@ -42,9 +43,12 @@ $(".minus").click(function() {
 				let c = $(item).attr("data-check");
 				t = t + $("#priceResult" + c).val() * 1;
 
+				a = a + $(".numBox" + c).val() * 1;
+				
 			}
 		})
 		$("#totalResult").val(t);
+		$("#amountResult").val(a);
 
 		$.ajax({
 			url: "./update",
@@ -79,16 +83,19 @@ $('.plus').click(function() {
 		$("#priceResult" + cartNum).val(sum);
 		//수량 + 버튼 변동하면 체크된 상품만 총가격 변동
 		let t = 0;
+		let a = 0;
 		$(".check").each(function(idx, item) {
 			if ($(item).prop("checked")) {
 
 				let c = $(item).attr("data-check");
 				t = t + $("#priceResult" + c).val()*1;
 
+				a = a + $(".numBox" + c).val() * 1;
 			}
 		})
-		console.log(t)
+
 		$("#totalResult").val(t);
+		$("#amountResult").val(a);
 
 		$.ajax({
 			url: "./update",
@@ -170,6 +177,7 @@ $("#allBtn").click(function() {
 //전체 선택,해제
 $('.checkAll').click(function() {
 	let totalSum = 0;
+	let totalAmount = 0;
 	$('.check').prop("checked", $('.checkAll').prop("checked"));
 
 	$(".check").each(function(idx, item) {
@@ -178,11 +186,18 @@ $('.checkAll').click(function() {
 			let total = $("#priceResult" + pcartNum).val();
 			totalSum += parseInt(total);
 			$("#totalResult").val(totalSum);
+			//구매하려는 총 수량
+			let c = $(item).attr("data-check");
+			let amount= $(".numBox" + c).val();
+			totalAmount += parseInt(amount);
+			$("#amountResult").val(totalAmount);
 		}
 	});
 	if (!$('.checkAll').prop("checked")) {
 		totalSum = 0;
+		totalAmount = 0;
 		$("#totalResult").val(totalSum);
+		$("#amountResult").val(totalAmount);
 	}
 });
 
@@ -190,17 +205,25 @@ $('.checkAll').click(function() {
 $('.check').on("click", function() {
 	let check = true;
 	let totalSum = 0;
+	let totalAmount = 0;
 	//선택 해제
 	$(".check").each(function(idx, item) {
 		if (!$(item).prop("checked")) {
 			check = false;
 			$("#totalResult").val(totalSum);
+			$("#amountResult").val(totalAmount);
+
 		} //선택한 상품들 총가격 계산
 		if ($(this).prop("checked")) {
 			let pcartNum = $(this).attr("data-check");
 			let total = $("#priceResult" + pcartNum).val();
 			totalSum += parseInt(total);
 			$("#totalResult").val(totalSum);
+			//구매하려는 총 수량
+			let c = $(item).attr("data-check");
+			let amount= $(".numBox" + c).val();
+			totalAmount += parseInt(amount);
+			$("#amountResult").val(totalAmount);
 		}
 	});
 	//전체 선택되면 전체 선택 체크

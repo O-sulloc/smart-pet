@@ -101,7 +101,7 @@ input {
 									class="pPrice${vo.cartNum}" type="hidden"
 									value="${vo.productVO.totalPrice}">
 								<!--히든 끝 -->
-								<input type="number" id="inputnumbox"
+								<input type="number" id="inputnumbox" data-check="${vo.cartNum}"
 									class="col-2 numBox${vo.cartNum}" value="${vo.productAmount}"
 									readonly="readonly" />
 								<button type="button" id="plus" data-num="${vo.cartNum}"
@@ -121,7 +121,8 @@ input {
 					<th></th>
 					<th></th>
 					<th></th>
-					<th>총 상품갯수</th>
+					<th>총 상품수량:<input type="number" id="amountResult" 
+						value="" readonly="readonly" style="border: none" /></th>
 					<th style="text-align: right">총 액</th>
 					<th><input type="number" id="totalResult" class="col-5"
 						value="" readonly="readonly" style="border: none" /></th>
