@@ -1,70 +1,99 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <a class="navbar-brand" href="/">Home</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" href="/service/list">병원/미용샵</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">미용조회</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            제품
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">카테고리</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">카테고리</a></li>
-          </ul>
-        </li>
-      </ul>
+    
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </div>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      	<c:if test="${empty user}">
-	        <li class="nav-item">
-	          <a class="nav-link active" aria-current="page" href="/user/login">로그인</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link active" aria-current="page" href="/user/join">회원가입</a>
-	        </li>
-        </c:if>
-        <c:if test="${not empty user}">
-			<li class="nav-item dropdown">
-	        	<i class="nav-link dropdown fa-regular fa-circle-user fa-2x" onclick="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
-	          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-	            <li><a class="dropdown-item" href="/user/loginCheck">내 프로필</a></li>
-	            <li><a class="dropdown-item" href="/user/petList">반려동물 관리</a></li>
-	            <li><hr class="dropdown-divider"></li>
-	            <li><a class="dropdown-item" href="#">장바구니</a></li>
-	            <li><a class="dropdown-item" href="/reservation/confirmList">예약</a></li>
-	            <li><hr class="dropdown-divider"></li>
-	            <li><a class="dropdown-item" href="/user/logout">로그아웃</a></li>
-	          </ul>
-	        </li>
-        </c:if>
-      </ul>
-  </div>
-</nav>
-
-<script src="https://kit.fontawesome.com/c996879092.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</body>
-</html>
-
+    <!-- /End Preloader -->
+    
+    <!-- Start Header Area -->
+    <header class="header navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="nav-inner">
+                        <!-- Start Navbar -->
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/">
+                                <img src="/resources/assets/images/logo/logo.svg" alt="Logo">
+                            </a>
+                            <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ms-auto">
+                                    <li class="nav-item">
+                                        <a class="page-scroll dd-menu collapsed" href="javascript:void(0)"
+                                            data-bs-toggle="collapse" data-bs-target="#submenu-1-1"
+                                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                                            aria-label="Toggle navigation">상품</a>
+                                        <ul class="sub-menu collapse" id="submenu-1-1">
+                                            <li class="nav-item"><a href="#">강아지 물품</a></li>
+                                            <li class="nav-item"><a href="#">고양이 물품</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll dd-menu collapsed" href="javascript:void(0)"
+                                            data-bs-toggle="collapse" data-bs-target="#submenu-1-2"
+                                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                                            aria-label="Toggle navigation">병원</a>
+                                        <ul class="sub-menu collapse" id="submenu-1-2">
+                                            <li class="nav-item"><a href="about-us.jsp">About Us</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0)" aria-label="Toggle navigation">미용샵</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0)" aria-label="Toggle navigation">관리자페이지</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../notice/list" aria-label="Toggle navigation">고객센터</a>
+                                    </li>
+                                    <c:if test="${empty user}">
+										<li class="nav-item">
+	                                        <a href="/user/login" aria-label="Toggle navigation">login</a>
+	                                    </li>
+	                                    <li class="nav-item">
+	                                        <a href="/user/join" aria-label="Toggle navigation">join</a>
+	                                    </li>
+                                    </c:if>
+                                    <c:if test="${not empty user}">
+                                    	<li class="nav-item">
+	                                        <a class="page-scroll dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	                                        	<img src="/resources/assets/images/logo/user.svg">
+	                                        </a>
+	                                        <ul class="sub-menu collapse" id="submenu-1-2">
+	                                            <li class="nav-item"><a href="/user/loginCheck">내 정보</a></li>
+	                                            <li class="nav-item"><a href="/user/petList">내 펫 관리</a></li>
+	                                            <li class="nav-item"><a href="#">장바구니</a></li>
+	                                            <li class="nav-item"><a href="/reservation/confirmList">예약</a></li>
+	                                            <li class="nav-item"><a href="/user/logout">로그아웃</a></li>
+	                                        </ul>
+                                    	</li>
+                                    </c:if>
+                                </ul>
+                            </div> <!-- navbar collapse -->
+                            <div class="button add-list-button">
+                                <a href="javascript:void(0)" class="btn">Book Appointment</a>
+                            </div>
+                        </nav>
+                        <!-- End Navbar -->
+                    </div>
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </header>
+    <!-- End Header Area -->
+ 

@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>MediGrids - Medical & Hospital</title>
+    <title>MediGrids - Medical & Hospital HTML Template.</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="./resources/assets/images/favicon.svg" />
@@ -40,8 +40,103 @@
         your experience and security.
       </p>
     <![endif]-->
-	
-	<c:import url="./temp/header.jsp"></c:import>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- /End Preloader -->
+
+    <!-- Start Header Area -->
+    <header class="header navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="nav-inner">
+                        <!-- Start Navbar -->
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="index.html">
+                                <img src="/resources/assets/images/logo/logo.svg" alt="Logo">
+                            </a>
+                            <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ms-auto">
+                                    <li class="nav-item">
+                                        <a class="page-scroll active dd-menu collapsed" href="javascript:void(0)"
+                                            data-bs-toggle="collapse" data-bs-target="#submenu-1-1"
+                                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                                            aria-label="Toggle navigation">Home</a>
+                                        <ul class="sub-menu collapse" id="submenu-1-1">
+                                            <li class="nav-item active"><a href="index.jsp">Home Default</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll dd-menu collapsed" href="javascript:void(0)"
+                                            data-bs-toggle="collapse" data-bs-target="#submenu-1-2"
+                                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                                            aria-label="Toggle navigation">Pages</a>
+                                        <ul class="sub-menu collapse" id="submenu-1-2">
+                                            <li class="nav-item"><a href="about-us.jsp">About Us</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0)" aria-label="Toggle navigation">Services</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0)" aria-label="Toggle navigation">Doctors</a>
+                                    </li>
+                                    <li class="nav-item">
+                                       <a href="javascript:void(0)" aria-label="Toggle navigation">Blog</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../notice/list" aria-label="Toggle navigation">고객센터</a>
+                                    </li>
+                                    <c:if test="${empty user}">
+	                                    <li class="nav-item">
+	                                        <a href="/user/login" aria-label="Toggle navigation">login</a>
+	                                    </li>
+	                                    <li class="nav-item">
+	                                        <a href="/user/join" aria-label="Toggle navigation">join</a>
+	                                    </li>
+                                    </c:if>
+                                    <c:if test="${not empty user}">
+                                    	<li class="nav-item1 dropdown align-self-center">
+								        	<i class="nav-link dropdown fa-regular fa-circle-user fa-2x" onclick="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
+								          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								            <li><a class="dropdown-item" href="/user/loginCheck">Profile</a></li>
+								            <li><a class="dropdown-item" href="/user/petList">Manage Pet Info</a></li>
+								            <li><hr class="dropdown-divider"></li>
+								            <li><a class="dropdown-item" href="#">Cart</a></li>
+								            <li><a class="dropdown-item" href="/reservation/confirmList">Reservation</a></li>
+								            <li><hr class="dropdown-divider"></li>
+								            <li><a class="dropdown-item" href="/user/logout">log out</a></li>
+								          </ul>
+								        </li>
+                                    </c:if>
+                                </ul>
+                            </div> <!-- navbar collapse -->
+                            <div class="button add-list-button">
+                                <a href="javascript:void(0)" class="btn">Book Appointment</a>
+                            </div>
+                        </nav>
+                        <!-- End Navbar -->
+                    </div>
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </header>
+    <!-- End Header Area -->
 
     <!-- Start Hero Area -->
     <section class="hero-area ">
@@ -399,8 +494,158 @@
         </div>
     </section>
     <!--/ End Pricing Table Area -->
-    
-    <c:import url="./temp/footer.jsp"></c:import>
+
+    <!-- Start Footer Area -->
+    <footer class="footer overlay">
+        <!-- Start Footer Top -->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="cta">
+                            <h3>Need Help?</h3>
+                            <p>Please feel free to contact our friendly reception staff with any medical enquiry, or
+                                call <a href="javascript:void(0)">+880 12345678901</a></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="form">
+                            <h3>Subscribe Newsletter</h3>
+                            <form action="#" method="get" target="_blank" class="newsletter-form">
+                                <input name="EMAIL" placeholder="Your email address" type="email">
+                                <div class="button">
+                                    <button class="btn">Subscribe<span class="dir-part"></span></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Top -->
+        <!-- Start Footer Middle -->
+        <div class="footer-middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <!-- Single Widget -->
+                        <div class="single-footer f-about">
+                            <div class="logo">
+                                <a href="index.html">
+                                    <img src="./resources/assets/images/logo/white-logo.svg" alt="#">
+                                </a>
+                            </div>
+                            <p>There’s nothing in this story to make us think he was dreaming about riches.</p>
+                            <ul class="social">
+                                <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="lni lni-instagram"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="lni lni-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- End Single Widget -->
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <!-- Single Widget -->
+                        <div class="single-footer f-link">
+                            <h3>Useful Links</h3>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <ul>
+                                        <li><a href="javascript:void(0)">About</a></li>
+                                        <li><a href="javascript:void(0)">Team</a></li>
+                                        <li><a href="javascript:void(0)">Before After</a></li>
+                                        <li><a href="javascript:void(0)">Cost Calculator</a></li>
+                                        <li><a href="javascript:void(0)">Working Hours</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <ul>
+                                        <li><a href="javascript:void(0)">Appointment</a></li>
+                                        <li><a href="javascript:void(0)">Gallery</a></li>
+                                        <li><a href="javascript:void(0)">Timetable</a></li>
+                                        <li><a href="javascript:void(0)">Departments</a></li>
+                                        <li><a href="javascript:void(0)">Contact Us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Widget -->
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <!-- Single Widget -->
+                        <div class="single-footer opening-hours">
+                            <h3>Opening Hours</h3>
+                            <ul>
+                                <li>
+                                    <span class="day"><i class="lni lni-timer"></i> Mon - Tue</span>
+                                    <span class="time">08:30 - 18:30</span>
+                                </li>
+                                <li>
+                                    <span class="day"><i class="lni lni-timer"></i> Wed- Thu</span>
+                                    <span class="time">08:30 - 18:30</span>
+                                </li>
+                                <li>
+                                    <span class="day"><i class="lni lni-timer"></i> Friday</span>
+                                    <span class="time">08:30 - 18:30</span>
+                                </li>
+                                <li>
+                                    <span class="day"><i class="lni lni-timer"></i> Saturday</span>
+                                    <span class="time">08:30 - 18:30</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End Single Widget -->
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <!-- Single Widget -->
+                        <div class="single-footer last f-contact">
+                            <h3>Contact</h3>
+                            <ul>
+                                <li><i class="lni lni-map-marker"></i> 23 New Design Str, Lorem Upsum 10 Hudson Yards,
+                                    USA</li>
+                                <li><i class="lni lni-phone"></i> Tel. +(123) 1800-567-8990 </li>
+                                <li><i class="lni lni-envelope"></i> Mail. support@classigrids.com</li>
+                            </ul>
+                        </div>
+                        <!-- End Single Widget -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ End Footer Middle -->
+        <!-- Start Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="inner">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="content">
+                                <p class="copyright-text">Designed and Developed by <a href="https://graygrids.com/"
+                                        rel="nofollow" target="_blank">GrayGrids</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <ul class="extra-link">
+                                <li><a href="javascript:void(0)">Terms & Conditions</a></li>
+                                <li><a href="javascript:void(0)">FAQ</a></li>
+                                <li><a href="javascript:void(0)">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Middle -->
+    </footer>
+    <!--/ End Footer Area -->
+
+    <!-- ========================= scroll-top ========================= -->
+    <a href="#" class="scroll-top">
+        <i class="lni lni-chevron-up"></i>
+    </a>
 
     <!-- ========================= JS here ========================= -->
     <script src="./resources/assets/js/bootstrap.min.js"></script>
@@ -441,7 +686,7 @@
             }
         });
         //========= testimonial 
-        /* tns({
+        tns({
             container: '.testimonial-slider',
             items: 3,
             slideBy: 'page',
@@ -468,7 +713,7 @@
                     items: 3,
                 }
             }
-        }); */
+        });
 
         //====== counter up 
         var cu = new counterUp({

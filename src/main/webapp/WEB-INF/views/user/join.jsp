@@ -5,29 +5,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<title>Insert title here</title>
-<style type="text/css">
-	.id_input1{
-		color:green; 
-		display: none;
-	}
-	.id_input2{
-		color:red;
-		display: none; 
-	}
-</style>
+	<meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+	<title>MediGrids 회원가입</title>
+	<meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="../resources/assets/images/favicon.svg" />
+    <!-- Place favicon.ico in the root directory -->
+    
+    <c:import url="../temp/header_css.jsp"></c:import>
+    
 </head>
 <body>
 	
-	<div class="container mt-3">
-		<main>
-			<div class="py-5 text-center">
-				<h2>Welcome to join us</h2>
+	<c:import url="../temp/header.jsp"></c:import>
+	
+	<div class="breadcrumbs overlay">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+					<div class="breadcrumbs-content">
+						<h1 class="page-title">Registration</h1>
+					</div>
+					<ul class="breadcrumb-nav">
+						<li><a href="/">Home</a></li>
+						<li>Registration</li>
+					</ul>
+				</div>
 			</div>
-			
+		</div>
+	</div>
+	
+	<div class="container mt-3">
+		<main>		
 			<div class="row justify-content-center">
 				<div class="col-md-7 col-lg-8">
 					<div class="alert alert-success align-items-center" role="alert">
@@ -123,12 +133,15 @@
 			</div>
 		</main>
 	</div>
+
+	<c:import url="../temp/header_script.jsp"></c:import>
+	<c:import url="../temp/footer.jsp"></c:import>
 	
 	<!-- jquery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="../resources/js/join.js"></script>
+	<script src="../resources/js/join.js"></script> -->
 	<!-- bootstrap -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
 </body>
 </html>
