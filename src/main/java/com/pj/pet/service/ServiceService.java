@@ -30,7 +30,9 @@ public class ServiceService {
 //		return serviceMapper.getFileDetail(serviceVO);
 //	}
 	
-	
+	public UserVO sellerInterceptor(UserVO userVO)throws Exception{
+		return serviceMapper.sellerInterceptor(userVO);
+	}
 	
 	public int setDelete(ServiceVO serviceVO)throws Exception{
 		ServiceFileVO serviceFileVO= serviceMapper.getFileDetail(serviceVO);

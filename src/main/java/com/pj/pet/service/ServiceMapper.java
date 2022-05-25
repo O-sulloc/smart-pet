@@ -15,7 +15,7 @@ import com.pj.pet.util.Pager;
 public interface ServiceMapper {
 
 
-	
+	public UserVO sellerInterceptor(UserVO userVO) throws Exception;
 	
 	public ServiceVO getDetail(ServiceVO serviceVO)throws Exception;
 

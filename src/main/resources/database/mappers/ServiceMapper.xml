@@ -6,6 +6,13 @@
 
     
 <mapper namespace="com.pj.pet.service.ServiceMapper">
+	<!-- interceptor 구별 (id로 서비스 serkind 얻어서 1,2면 서비스마이페이지 이용 가) -->
+	<select id="sellerInterceptor" parameterType="UserVO" resultType="UserVO">
+		SELECT ROLE from USER
+		where id=#{id}
+	</select>
+
+
 	<!-- file update -->
 	<insert id="setUpdateFile" parameterType="ServiceFileVO">
 		update SERVICEFILE 
