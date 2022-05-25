@@ -38,7 +38,7 @@
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-dark" id="resStateIs0">
+        <a href="./resState0Page" class="nav-link link-dark" id="resStateIs0">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
          대기중인 예약 보기 
         </a>

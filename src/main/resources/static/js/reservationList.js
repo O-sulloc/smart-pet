@@ -28,11 +28,8 @@ $('.modalSubmit').click(function(){
 			},
 			success:function(data){
 			if(data.trim()==1){
-				if(state==1){		//예약리스트 화면이였다면 
+				//예약리스트 화면이였다면 
 					getList(pn,perPage);
-				}else if(state==2){ //대기중인 예약 화면이였다면
-					getResStateIs0List(pn,perPage)
-				}
 			}else{
 				alert("변경 실패했습니다. 다시 시도해주십시오.")
 			}
@@ -100,28 +97,6 @@ getList(1,5);
 		})	
 };
 
-// 대기중인 예약 리스트 가져오는ajax 
-	function getResStateIs0List(pn,perPage){
-		$.ajax({
-			type:"GET",
-			url:"./ajaxgetResStateIs0List",
-			data:{
-				pn:pn,
-				perPage:perPage
-			},
-			success:function(data){
-				console.log(data)
-				$("#list").html(data.trim());
-				
-			}
-		})	
-}
-
-$("#resStateIs0").click(function(){
-	console.log("dd")
-	getResStateIs0List(pn,perPage)
-	state=2;
-})
 
 
 

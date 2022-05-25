@@ -258,6 +258,14 @@ public class ServiceController {
 		return mv;
 	}
 	
+	//대기중인 예약리스트 보여주는 페이지 
+	@GetMapping("resState0Page")
+	public ModelAndView resState0Page()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("service/resState0Page");
+		return mv;
+	}
+	
 	//예약리스트 날짜별 
 	@GetMapping("ajaxDayReservationList")
 	public ModelAndView getAjaxDayReservationList(Pager pager,HttpSession session)throws Exception{
@@ -295,6 +303,7 @@ public class ServiceController {
 		return mv;
 	}
 	
+	//대기중인 예약리스트 에이작스 
 	@GetMapping("ajaxgetResStateIs0List")
 	public ModelAndView getResStateIs0List(Pager pager,HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
