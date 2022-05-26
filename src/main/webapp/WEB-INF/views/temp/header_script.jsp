@@ -8,14 +8,14 @@
 <!-- ========================= JS here ========================= -->
     <script src="/resources/assets/js/bootstrap.min.js"></script>
     <script src="/resources/assets/js/wow.min.js"></script>
-    <script src="/resources/assets/js/tiny-slider.js"></script>
+    <!-- <script src="/resources/assets/js/tiny-slider.js"></script> home에서만 필요한 js-->
     <script src="/resources/assets/js/glightbox.min.js"></script>
     <script src="/resources/assets/js/count-up.min.js"></script>
     <script src="/resources/assets/js/imagesloaded.min.js"></script>
     <script src="/resources/assets/js/isotope.min.js"></script>
     <script src="/resources/assets/js/main.js"></script>
     <script type="text/javascript">
-	  //======== Hero Slider
+	  /* //======== Hero Slider
 	    var slider = new tns({
 	        container: '.hero-slider',
 	        slideBy: 'page',
@@ -42,7 +42,7 @@
 	            }
 	
 	        }
-	    });
+	    }); */
 	    //========= testimonial 
 	    /* tns({
 	        container: '.testimonial-slider',
@@ -82,14 +82,14 @@
 	        append: " ",
 	    });
 	    cu.start();
-	    //========= glightbox
+	    /* //========= glightbox
 	    GLightbox({
 	        'href': 'https://www.youtube.com/watch?v=r44RKWyfcFw&fbclid=IwAR21beSJORalzmzokxDRcGfkZA1AtRTE__l5N4r09HcGS5Y6vOluyouM9EM',
 	        'type': 'video',
 	        'source': 'youtube', //vimeo, youtube or local
 	        'width': 900,
 	        'autoplayVideos': true,
-	    });
+	    }); */
 	    //============== isotope masonry js with imagesloaded
 	    imagesLoaded('#container', function () {
 	        var elem = document.querySelector('.grid');
