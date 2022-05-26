@@ -31,6 +31,9 @@
 <input type="hidden" id="term" value="${settingVO.term}">
 <input type="hidden" id="capacity" value="${settingVO.capacity}">
 <input type="hidden" id="holiday" value="${settingVO.holiday}">
+<input type="hidden" id="startBreaktime" value="${settingVO.startBreaktime}">
+<input type="hidden" id="endBreaktime" value="${settingVO.endBreaktime}">
+
 
 
 
@@ -116,6 +119,7 @@
 	
 	
 	<script type="text/javascript" src="../js/detail.js"></script>
+	<script type="text/javascript" src="../js/calendar.js"></script>
 	<script type="text/javascript" src="../js/reservation.js"></script>
 
 
