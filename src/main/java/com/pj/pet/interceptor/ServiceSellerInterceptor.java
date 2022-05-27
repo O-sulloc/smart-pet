@@ -22,7 +22,7 @@ public class ServiceSellerInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		// TODO Auto-generated method stub
+		
 		boolean check = false;
 		
 			//로그인 한 사용자의 role이 3이라면 
@@ -38,10 +38,9 @@ public class ServiceSellerInterceptor implements HandlerInterceptor{
 			}
 			
 			if(!check) { //check가 false면 포워드로 보내
-			System.out.println("실행되냐?");
 			//mv.addObject
 			request.setAttribute("msg", "권한이 없습니다.");
-			request.setAttribute("path", "../");
+			request.setAttribute("path", "../user/login");
 			
 			//mv.setViewName();와 같다 
 			//컨트롤러 거치지 않기 때문에 경로 전체 다 써줘야됨 

@@ -5,7 +5,8 @@ let closeTime1=$("#closeTime1").val()
 let term=parseInt($("#term").val())
 let capacity=$("#capacity").val();
 let holiday=$("#holiday").val();
-
+let startBreaktime=$("#startBreaktime").val();
+let endBreaktime=$("#endBreaktime").val();
 
 
 
@@ -108,6 +109,56 @@ for(let i=0;i<40;i++){
         break;
     }
 }
+
+
+
+
+// 주말일 경우 예약시간 뿌리기 
+let result2=openTime1; //09:00:00
+for(let i=0;i<40;i++){
+    if(i==0){
+        // <button type="button" name="resTime" class="btn btn-outline-primary">09:30</button>
+       
+        let button = document.createElement('button')
+        button.setAttribute("type","button")
+        button.setAttribute("id","timeButton")
+        button.setAttribute("name","resTime")
+        button.setAttribute("class","btn btn-outline-primary")
+        button.innerHTML=hy(openTime1);
+
+        $("#buttons2").append(button) 
+        
+    //    console.log(hy(openTime0))
+    //    console.log("=========================")
+    }
+    if(i!=0){
+
+
+        // console.log("result:"+result)
+        // console.log("Date로 변환:"+getDate(result))
+
+        result2=plusTerm(result2);
+        let button = document.createElement('button')
+        button.setAttribute("type","button")
+        button.setAttribute("id","timeButton")
+        button.setAttribute("name","resTime")
+        button.setAttribute("class","btn btn-outline-primary")
+        button.setAttribute("id","timeButton")
+        button.innerHTML=result2;
+        $("#buttons2").append(button) 
+
+        // console.log("plusTerm result:"+result); //09:30
+
+        result2=result2+":00"
+        // console.log("=========================")
+    }
+
+    if(result2==closeTime1){
+        break;
+    }
+}
+
+
 
 
 $("#buttons").on("click","#timeButton",function(){

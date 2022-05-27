@@ -62,6 +62,12 @@
          	예약 시간 설정하기 
         </a>
       </li>
+      <li>
+        <a href="./updateReservationSetting" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+          	예약 시간 변경하기
+        </a>
+      </li>
 
        
       

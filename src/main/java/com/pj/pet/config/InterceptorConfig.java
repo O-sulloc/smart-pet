@@ -6,12 +6,16 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.pj.pet.interceptor.ServiceSellerInterceptor;
+import com.pj.pet.interceptor.reservationSettingInterceptor;
 
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer{
 	
 	@Autowired
 	private ServiceSellerInterceptor serviceSellerInterceptor;
+	
+	@Autowired
+	private reservationSettingInterceptor reservationSettingInterceptor;
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -22,9 +26,14 @@ public class InterceptorConfig implements WebMvcConfigurer{
 				.addPathPatterns("/service/getDayReservationList")	//일별 예약 현황 보기 
 				.addPathPatterns("/service/monthListPage")			//달별 예약 현황 보기
 				.addPathPatterns("/service/reservationSetting")		//예약가능한 시간 세팅하기 
-				.addPathPatterns("/service/registration");			//서비스 등록하기 
-				
+				.addPathPatterns("/service/registration")			//서비스 등록하기 
+				.addPathPatterns("/service/updateReservationSetting"); //서비스 예약정보 등록 업데이트
+			
+		registry.addInterceptor(reservationSettingInterceptor)
+				.addPathPatterns("/service/reservationSetting");
 			
 	}
+	
+
 
 }

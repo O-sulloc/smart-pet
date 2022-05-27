@@ -11,6 +11,12 @@
 		SELECT ROLE from USER
 		where id=#{id}
 	</select>
+	
+	<!-- reservationSetting 등록되어있는지 확인하기 위해 아무거나(setnum)가져옴  -->
+	<select id="getReservationSettingCheck" parameterType="UserVO" resultType="ReservationSettingVO">
+		select SETNUM from RESERVATIONSETTING 
+		WHERE  serNum=(SELECT SERNUM FROM SERVICE where id=#{id})
+	</select>
 
 
 	<!-- file update -->
@@ -29,11 +35,45 @@
 		values (#{serNum},#{setNum},#{timecase},#{openTime},#{closeTime})
 	</insert>
 	
+	<!-- 예약시간 업데이트 -->
+	<update id="updateReservationTime" parameterType="ReservationTimeVO">
+		UPDATE RESERVATIONTIME SET
+			OPENTIME=#{openTime},
+			CLOSETIME=#{closeTime}
+		where TIMECASE=#{timecase} and SERNUM=#{serNum}
+	</update>
+		
+	<!-- 예약세팅 업데이트 -->
+	<update id="updateReservationSetting" parameterType="ReservationSettingVO">
+		update RESERVATIONSETTING SET 
+			CAPACITY=#{capacity}, 
+			TERM=#{term},
+			HOLIDAY=#{holiday} ,
+			STARTBREAKTIME=#{startBreaktime},
+			ENDBREAKTIME=#{endBreaktime}
+		where SERNUM=#{serNum}
+	</update>
+		
+	
+	<!--아이디로 예약세팅정보 가져오기  -->
+	<select id="getReservationSetting" parameterType="UserVO" resultType="ReservationSettingVO">
+		select * from RESERVATIONSETTING 
+		WHERE SERNUM=(SELECT SERNUM from SERVICE WHERE ID=#{id})
+	</select>
+	
+	<!-- 아이디로 예약시간정보 가져오기 -->
+	<select id="getReservationTime" parameterType="UserVO" resultType="ReservationTimeVO">
+		SELECT * from RESERVATIONTIME 
+		WHERE SERNUM =(SELECT SERNUM from SERVICE WHERE ID=#{id})
+	</select>
+	
+	
 	<!-- 예약 세팅 생성 -->
-	<insert id="setReservationSetting">
+	<insert id="setReservationSetting" parameterType="ReservationSettingVO">
 		insert into RESERVATIONSETTING (SETNUM,SERNUM,CAPACITY,TERM,HOLIDAY,STARTBREAKTIME,ENDBREAKTIME)
 		values(NULL,#{serNum},#{capacity},#{term},#{holiday},#{startBreaktime},#{endBreaktime})
 	</insert>
+
 
 	<!-- 파일 추가 -->
  	<insert id="setFileAdd" parameterType="ServiceFileVO">

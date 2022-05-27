@@ -14,7 +14,22 @@ import com.pj.pet.util.Pager;
 @Mapper
 public interface ServiceMapper {
 
-
+	//예약시간 업데이트 
+	public int updateReservationTime(ReservationTimeVO reservationTimeVO)throws Exception;
+	
+	//예약세팅 업데이트
+	public int updateReservationSetting(ReservationSettingVO reservationSettingVO)throws Exception;
+	
+	//아이디로 예약시간정보 가져오기
+	public List<ReservationTimeVO> getReservationTime(UserVO userVO)throws Exception;
+	
+	//아이디로 예약세팅정보 가져오기 
+	public ReservationSettingVO getReservationSetting(UserVO userVO) throws Exception;
+	
+	//예약세팅 페이지 인터셉터 확인용 
+	public ReservationSettingVO getReservationSettingCheck(UserVO userVO)throws Exception;
+	
+	//서비스 판매자 권한 여부 확인 
 	public UserVO sellerInterceptor(UserVO userVO) throws Exception;
 	
 	public ServiceVO getDetail(ServiceVO serviceVO)throws Exception;

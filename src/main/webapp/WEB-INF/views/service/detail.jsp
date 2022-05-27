@@ -24,14 +24,15 @@
 		<li class="list-group-item">${seviceVO.serName }</li>
 		<li class="list-group-item">${seviceVO.serTel }</li>
 		<li class="list-group-item">${seviceVO.serAddress }</li>
-		<li class="list-group-item">${seviceVO.serTime }</li>
+		<li class="list-group-item">${seviceVO.serTime}</li>
 		<li class="list-group-item">${seviceVO.homepage }</li>
 	</ul>
 
 <input type="hidden" id="term" value="${settingVO.term}">
 <input type="hidden" id="capacity" value="${settingVO.capacity}">
 <input type="hidden" id="holiday" value="${settingVO.holiday}">
-
+<input type="hidden" id="startBreaktime" value="${settingVO.startBreaktime}">
+<input type="hidden" id="endBreaktime" value="${settingVO.endBreaktime}">
 
 
 <hr>
@@ -92,8 +93,12 @@
 	
 	<form action="../reservation/confirm" method="post">
 		<!-- js로 시간 받아옴 -->
-		<div class="container my-4" id="buttons">
-		</div>
+		
+			<!-- 평일  -->
+		<div class="container my-4" id="buttons"></div>
+		
+			<!-- 주말  -->
+		<div class="container my-4" id="buttons2"> </div>
 	
 		
 	
@@ -114,7 +119,7 @@
 				
 	
 	
-	
+	<script type="text/javascript" src="../js/calendar.js"></script>
 	<script type="text/javascript" src="../js/detail.js"></script>
 	<script type="text/javascript" src="../js/reservation.js"></script>
 

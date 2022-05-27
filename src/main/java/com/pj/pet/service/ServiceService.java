@@ -30,6 +30,26 @@ public class ServiceService {
 //		return serviceMapper.getFileDetail(serviceVO);
 //	}
 	
+	public int updateReservationSetting(ReservationSettingVO reservationSettingVO)throws Exception{
+		return serviceMapper.updateReservationSetting(reservationSettingVO);
+	}
+	
+	public int updateReservationTime(ReservationTimeVO reservationTimeVO)throws Exception{
+		return serviceMapper.updateReservationTime(reservationTimeVO);
+	}
+	
+	public List<ReservationTimeVO> getReservationTime(UserVO userVO)throws Exception{
+		return serviceMapper.getReservationTime(userVO);
+	}
+	
+	public ReservationSettingVO getReservationSetting(UserVO userVO)throws Exception{
+		return serviceMapper.getReservationSetting(userVO);
+	}
+	
+	public ReservationSettingVO getReservationSettingCheck(UserVO userVO)throws Exception{
+		return serviceMapper.getReservationSettingCheck(userVO);
+	}
+	
 	public UserVO sellerInterceptor(UserVO userVO)throws Exception{
 		return serviceMapper.sellerInterceptor(userVO);
 	}

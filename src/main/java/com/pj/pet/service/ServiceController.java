@@ -92,9 +92,63 @@ public class ServiceController {
 //            
 //         }
 //     });
+		
+
+		
 	}
 	
 	
+	//예약세팅 업데이트 폼 
+	@GetMapping("updateReservationSetting")
+	public ModelAndView UpdateReservationSetting(HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		UserVO userVO=(UserVO)session.getAttribute("user");
+		ReservationSettingVO reservationSettingVO=serviceService.getReservationSetting(userVO);
+		List<ReservationTimeVO> timeList=serviceService.getReservationTime(userVO);
+		
+		mv.addObject("setting", reservationSettingVO);
+		mv.addObject("time", timeList);
+		mv.setViewName("service/updateReservationSetting");
+		return mv;
+	}
+	
+	@PostMapping("updateReservationSetting")
+	public ModelAndView UpdateReservationSetting( HttpSession session,ReservationSettingVO reservationSettingVO,String[] times) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		ServiceVO serviceVO=new ServiceVO();
+		UserVO userVO=(UserVO) session.getAttribute("user");
+		serviceVO.setId(userVO.getId());
+		serviceVO=serviceService.getDetail(serviceVO);
+		reservationSettingVO.setSerNum(serviceVO.getSerNum());
+		int result= serviceService.updateReservationSetting(reservationSettingVO);
+		
+		ReservationTimeVO reservationTimeVO= new ReservationTimeVO();
+		reservationTimeVO.setTimecase((long)0);
+		reservationTimeVO.setOpenTime(times[0]);
+		reservationTimeVO.setCloseTime(times[1]);
+		reservationTimeVO.setSerNum(serviceVO.getSerNum()); 
+		int result2= serviceService.updateReservationTime(reservationTimeVO);
+		System.out.println("1:"+result2);
+		
+		ReservationTimeVO reservationTimeVO2= new ReservationTimeVO();
+		reservationTimeVO2.setTimecase((long)1);
+		reservationTimeVO2.setOpenTime(times[2]);
+		reservationTimeVO2.setCloseTime(times[3]);
+		reservationTimeVO2.setSerNum(serviceVO.getSerNum()); 
+		int result3= serviceService.updateReservationTime(reservationTimeVO2);
+		System.out.println("2:"+result3);
+		
+		if(result>0&&result2>0) {
+			mv.setViewName("common/getResult");
+			mv.addObject("msg", "저장되었습니다.");
+			mv.addObject("path", "./mypage");
+		}else {
+			mv.setViewName("common/getResult");
+			mv.addObject("msg", "실패했습니다.");
+			mv.addObject("path", "#");
+		}
+		return mv;
+	}
 	
 	//예약세팅 등록 폼 
 	@GetMapping("reservationSetting")
@@ -135,7 +189,21 @@ public class ServiceController {
 		reservationTimeVO2.setSerNum(serviceVO.getSerNum()); //지울지 말지 ?
 		int result3= serviceService.setReservationTime(reservationTimeVO2);
 		System.out.println("2:"+result3);
+		
+		
+		
+		if(result>0&&result2>0) {
+			mv.setViewName("common/getResult");
+			mv.addObject("msg", "저장되었습니다.");
+			mv.addObject("path", "./mypage");
+		}else {
+			mv.setViewName("common/getResult");
+			mv.addObject("msg", "실패했습니다.");
+			mv.addObject("path", "#");
+		}
 		return mv;
+		
+		
 	}
 	
 	@GetMapping("reservationManage")
@@ -159,7 +227,7 @@ public class ServiceController {
 	public ModelAndView setService(ServiceVO serviceVO,MultipartFile file)throws Exception{
 		ModelAndView mv= new ModelAndView();
 		int result=serviceService.setService(serviceVO,file);
-		mv.setViewName("service/mypage");
+		mv.setViewName("./mypage");
 		return mv;
 	}
 	//service mypage 
@@ -365,15 +433,6 @@ public class ServiceController {
 		return mv;
 	
 	}
-//	@GetMapping("detail")
-//	public ModelAndView getDetail(ServiceVO serviceVO) throws Exception{
-//		ModelAndView mv = new ModelAndView();
-//		serviceVO=serviceService.getDetail(serviceVO);
-//		mv.addObject("vo",serviceVO);
-//		mv.setViewName("service/detail");
-//		return mv;
-//	}
-	
 
 	
 
