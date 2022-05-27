@@ -35,7 +35,8 @@
 
 		<typeAlias type="com.pj.pet.carts.CartVO" alias="CartVO"/>
 		<typeAlias type="com.pj.pet.cartrefer.CartReferVO" alias="CartReferVO"/>
-
+		<typeAlias type="com.pj.pet.pay.PayVO" alias="PayVO"/>
+		<typeAlias type="com.pj.pet.order.OrderVO" alias="OrderVO"/>
 		
 		<!-- 재석 새로추가 -->
 		<typeAlias type="com.pj.pet.review.product.ProductReviewAvgVO" alias="ProductReviewAvgVO"/>

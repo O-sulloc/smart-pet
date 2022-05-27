@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pj.pet.order.OrderMapper">
+	<select id="orderList" parameterType="UserVO" resultType="OrderVO">
+		SELECT * FROM ORDERS WHERE ID= #{id}
+	</select>
+
+	<insert id="setAdd" parameterType="OrderVO">
+		INSERT INTO ORDERS
+		VALUES(null,#{payNum},#{id},#{orderName},0,now(),0)
+	</insert>
+
+	<select id="getOrderName" resultType="string">
+		select DISTINCT concat(cast(O.ORDERDATE as char), right(concat("00000" ,rowCount+1 ), 6)) as ORDERNUM
+		from ORDERS as OS,
+		(select concat(substr(date_format(now(), '%Y-%m-%d'), 1, 10)) as ORDERDATE,
+		(select ORDERNUM from ORDERS order by ORDERNUM desc limit 1) as
+		rowCount FROM dual) O;
+	</select>
+	
+</mapper>

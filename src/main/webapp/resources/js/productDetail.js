@@ -64,7 +64,10 @@ $(".addToCart").click(function(){
 		   $(".numBox").val("1");
 		   location.href="../user/login";
 		}else if(data.trim()=='3'){
-			alert("이미 장바구니에 추가되었습니다.");
+			let check=confirm("이미 장바구니에 추가되었습니다. 장바구니로 이동 하겠습니까?")
+			if(check){
+			location.href="../cart/list";
+			}
 		}
 	 },
 	 error : function(){

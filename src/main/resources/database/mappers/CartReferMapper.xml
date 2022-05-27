@@ -7,8 +7,7 @@
 <mapper namespace="com.pj.pet.cartrefer.CartReferMapper">
 	
 	<insert id="setReferAdd" parameterType="CartReferVO">
-		INSERT INTO
-		CARTREFER(CARTREFERNUM,CARTNUM,PAYNUM,PAYMENTKIND)
+		INSERT INTO	CARTREFER(CARTREFERNUM,CARTNUM,PAYNUM,PAYMENTKIND)
 		VALUES(NULL,#{cartNum},#{payNum},0)
 	</insert>
 

@@ -1,0 +1,17 @@
+package com.pj.pet.order;
+
+import java.sql.Date;
+
+import lombok.Data;
+
+@Data
+public class OrderVO {
+	private String orderNum;
+	private Long payNum;
+	private String id;
+	private String orderName;
+	private Long shipState;
+	private Date orderDate;
+	private Long refund;
+
+}

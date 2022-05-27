@@ -15,7 +15,7 @@
 	LEFT OUTER JOIN 
 	PRODUCTSFILE PF
 	ON(P.PRODUCTNUM=PF.PRODUCTNUM)
-	WHERE ID =#{id}
+	WHERE ID =#{id} AND PAYCHECK=0
 	</select>
 
 	<resultMap type="CartVO" id="cartListResult">
@@ -60,5 +60,10 @@
 	<select id="cartCheck" resultType="CartVO" parameterType="CartVO">
 		SELECT * FROM CARTS WHERE ID=#{id} AND PRODUCTNUM=#{productNum} AND PAYCHECK=0
 	</select>
+	
+	<update id="cartpayUpdate" parameterType="CartVO">
+		UPDATE CARTS SET PAYCHECK=1 WHERE CARTNUM=#{cartNum}
+	</update>
+	
 
 </mapper>

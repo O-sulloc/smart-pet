@@ -15,6 +15,12 @@ Number.prototype.formatNumber = function() {
 	return nstr;
 
 };
+
+$(".detail").click(function(){
+    let num= $(this).attr("data-num");
+    location.href="../product/detail?productNum="+num
+    });
+
 //수량 변경  '  -  '
 $(".minus").click(function() {
 	let cartNum = $(this).attr("data-num");
@@ -230,3 +236,25 @@ $('.check').on("click", function() {
 	$(".checkAll").prop("checked", check);
 });
 
+//결제 페이지 이동
+$('#orderBtn').click(function(){ 
+    let price=$("#totalResult").val();
+    let cartNum=0;
+    let cn='';
+
+    if(price==0){
+        alert("상품을 선택해주세요.")
+    }else{
+        
+        $(".check").each(function(idx,item){
+            if($(item).prop("checked")){ 
+                            
+                cartNum = $(item).attr("data-check");
+                cn=cn+'&cartNum='+cartNum;
+            }
+        }) 
+        let id = $("#orderBtn").attr("data-id"); 
+        location.href='../pay/pay_form?id='+id+cn;
+       
+    }
+})
