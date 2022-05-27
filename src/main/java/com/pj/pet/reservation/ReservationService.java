@@ -2,12 +2,14 @@ package com.pj.pet.reservation;
 
 import java.util.List;
 
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pj.pet.service.ReservationSettingVO;
 import com.pj.pet.service.ServiceVO;
+import com.pj.pet.user.UserVO;
 
 @Service
 @Transactional(rollbackFor=Exception.class)
@@ -49,5 +51,10 @@ public class ReservationService {
 	//예약 시간 띄어주기
 	public ServiceVO getService (ServiceVO serviceVO) throws Exception{
 		return reservationMapper.getService(serviceVO);
+	}
+	
+	//serviceUserInterceptor user role가져오기
+	public UserVO serviceUserInterceptor(UserVO userVO) throws Exception{
+		return reservationMapper.serviceUserInterceptor(userVO);
 	}
 }

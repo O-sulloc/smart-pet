@@ -6,12 +6,15 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.pj.pet.interceptor.ServiceSellerInterceptor;
+import com.pj.pet.interceptor.ServiceUserInterceptor;
 
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer{
 	
 	@Autowired
 	private ServiceSellerInterceptor serviceSellerInterceptor;
+	@Autowired
+	private ServiceUserInterceptor serviceUserInterceptor;
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -24,7 +27,12 @@ public class InterceptorConfig implements WebMvcConfigurer{
 				.addPathPatterns("/service/reservationSetting")		//예약가능한 시간 세팅하기 
 				.addPathPatterns("/service/registration");			//서비스 등록하기 
 				
-			
+		
+		
+		registry.addInterceptor(serviceUserInterceptor)
+				.addPathPatterns("/reservation/confirm")		//예약 확인
+				.addPathPatterns("/user/appointment")			//유저 예약 목록
+				.addPathPatterns("/user/appointmentUpdate");	//유저 예약 업데이트
 	}
 
 }

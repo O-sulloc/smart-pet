@@ -62,6 +62,8 @@ public class ReservationController {
 			mv.setViewName("./reservation/confirm");
 			System.out.println("========예약완료============");
 		}else {
+			
+			// 로그인이 안되어 있을 경우
 			int result =0;
 			
 			mv.setViewName("./user/login");

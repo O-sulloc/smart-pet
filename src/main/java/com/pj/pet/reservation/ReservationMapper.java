@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.pj.pet.service.ReservationSettingVO;
 import com.pj.pet.service.ServiceVO;
+import com.pj.pet.user.UserVO;
 
 	
 
@@ -31,4 +32,7 @@ public interface ReservationMapper {
 	
 	//예약 시간 띄어주기
 	public ServiceVO getService (ServiceVO serviceVO) throws Exception;
+	
+	//serviceUserInterceptor user role가져오기
+	public UserVO serviceUserInterceptor(UserVO userVO) throws Exception;
 }
