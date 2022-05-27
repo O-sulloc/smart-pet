@@ -111,7 +111,7 @@
 					<input type="hidden" name="resDate" value="" id="resDate">
 					<input type="hidden" name="resTime" value="" id="resTime">
 					<input type="hidden" name="resState" value="0">
-					<button type="submit" class="btn btn-outline-success res_btn">예약진행</button>
+					<button type="submit" class="btn btn-outline-success" id="res_btn">예약진행</button>
 		</div>
 	</form>
 				
