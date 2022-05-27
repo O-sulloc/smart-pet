@@ -17,6 +17,20 @@
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 
+	<!-- 이미지 보여주기 -->
+	<c:choose>
+	<c:when test="${not empty serviceVO.serviceFileVO.fileName}">
+		<div class="card">
+			    
+				<ul class="list-group list-group-flush">
+				   	<li class="list-group-item">
+				   		<h5>대표이미지</h5>
+				   		<img alt="" src="../resources/upload/service/${serviceVO.serviceFileVO.fileName}">
+				   	</li>
+				</ul>
+		</div>
+		</c:when>
+	</c:choose>
 
 	<input type="hidden" readonly="readonly" id="serNum"
 		data-sn="${seviceVO.serNum}">
@@ -28,11 +42,16 @@
 		<li class="list-group-item">${seviceVO.homepage }</li>
 	</ul>
 
-<input type="hidden" id="term" value="${settingVO.term}">
-<input type="hidden" id="capacity" value="${settingVO.capacity}">
-<input type="hidden" id="holiday" value="${settingVO.holiday}">
-<input type="hidden" id="startBreaktime" value="${settingVO.startBreaktime}">
-<input type="hidden" id="endBreaktime" value="${settingVO.endBreaktime}">
+
+
+	<input type="hidden" id="term" value="${settingVO.term}">
+	<input type="hidden" id="capacity" value="${settingVO.capacity}">
+	<input type="hidden" id="holiday" value="${settingVO.holiday}">
+	<input type="hidden" id="startBreaktime" value="${settingVO.startBreaktime}">
+	<input type="hidden" id="endBreaktime" value="${settingVO.endBreaktime}">
+
+
+
 
 
 <hr>
@@ -113,7 +132,7 @@
 					<input type="hidden" name="resDate" value="" id="resDate">
 					<input type="hidden" name="resTime" value="" id="resTime">
 					<input type="hidden" name="resState" value="0">
-					<button type="submit" class="btn btn-outline-success res_btn">예약진행</button>
+					<button type="submit" class="btn btn-outline-success" id="res_btn">예약진행</button>
 		</div>
 	</form>
 				
@@ -121,6 +140,7 @@
 	
 	<script type="text/javascript" src="../js/calendar.js"></script>
 	<script type="text/javascript" src="../js/detail.js"></script>
+	<script type="text/javascript" src="../js/calendar.js"></script>
 	<script type="text/javascript" src="../js/reservation.js"></script>
 
 

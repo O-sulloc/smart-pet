@@ -395,7 +395,7 @@ public class ServiceController {
 		return mv;
 	}
 	
-	// 예약 시간 띄어주기 (서비스 상세 정보)
+	// 예약 시간 띄어주기 (서비스 상세 정보) + 파일정보
 	@GetMapping("detail")
 	   public ModelAndView getAllReservationSetting(ServiceVO serviceVO) throws Exception{
 	      ModelAndView mv = new ModelAndView();

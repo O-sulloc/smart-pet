@@ -133,4 +133,11 @@
 		select * from SERVICE
 		where SERNUM=#{serNum}
 	</select>
+	
+	<!-- ServiceUserInterceptor  -->
+	<select id="serviceUserInterceptor" parameterType="UserVO" resultType="UserVO">
+		SELECT ROLE FROM USER
+		WHERE ID=#{id}
+	</select>
+	
 </mapper>

@@ -7,12 +7,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.pj.pet.interceptor.ServiceSellerInterceptor;
 import com.pj.pet.interceptor.reservationSettingInterceptor;
+import com.pj.pet.interceptor.ServiceUserInterceptor;
 
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer{
 	
 	@Autowired
 	private ServiceSellerInterceptor serviceSellerInterceptor;
+	@Autowired
+	private ServiceUserInterceptor serviceUserInterceptor;
 	
 	@Autowired
 	private reservationSettingInterceptor reservationSettingInterceptor;
@@ -26,12 +29,19 @@ public class InterceptorConfig implements WebMvcConfigurer{
 				.addPathPatterns("/service/getDayReservationList")	//일별 예약 현황 보기 
 				.addPathPatterns("/service/monthListPage")			//달별 예약 현황 보기
 				.addPathPatterns("/service/reservationSetting")		//예약가능한 시간 세팅하기 
+
 				.addPathPatterns("/service/registration")			//서비스 등록하기 
 				.addPathPatterns("/service/updateReservationSetting"); //서비스 예약정보 등록 업데이트
 			
 		registry.addInterceptor(reservationSettingInterceptor)
 				.addPathPatterns("/service/reservationSetting");
 			
+		
+		registry.addInterceptor(serviceUserInterceptor)
+				.addPathPatterns("/reservation/confirm")		//예약 확인
+				.addPathPatterns("/user/appointment")			//유저 예약 목록
+				.addPathPatterns("/user/appointmentUpdate");	//유저 예약 업데이트
+
 	}
 	
 

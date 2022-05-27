@@ -95,9 +95,13 @@
 		values(NULL,#{serName},#{serTel},#{serAddress},#{hospitalField},#{homepage},#{serKind},#{id},#{serTime})
 	</insert>
 	
-	<select id="getService" parameterType="ServiceVO" resultType="ServiceVO"> 
-		select * from SERVICE
-		where SERNUM=#{serNum}
+	<!-- 소비자측 service detail에서 파일이미지 정보 -->
+	<select id="getService" parameterType="ServiceVO" resultMap="getDetailResult"> 
+		select * from SERVICE S 
+			 LEFT JOIN
+				 SERVICEFILE F
+				 USING (SERNUM)
+		 WHERE SERNUM=#{serNum}
 	</select>
 	
 	
@@ -228,7 +232,7 @@
 		where RESNUM=#{resNum}
 	</update>
 	
-	<!--id 받아서 예약세팅 정보 가져오기 (예약시간 띄워주기용)-->
+	<!--id 받아서 예약세팅 정보 가져오기 (예약시간 띄워주기용), 파일보여주기-->
 	<select id="getAllReservationSetting" parameterType="ServiceVO" resultMap="getAllReservationSettingResult">
 		select * from RESERVATIONSETTING S
 			LEFT JOIN

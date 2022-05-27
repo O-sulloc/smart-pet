@@ -161,10 +161,10 @@ for(let i=0;i<40;i++){
 
 
 
-$("#buttons").on("click","#timeButton",function(){
+/*$("#buttons").on("click","#timeButton",function(){
 	console.log($(this).html())
 })
-
+*/
 
 
 $("#buttons").on("click","#timeButton",function(){
