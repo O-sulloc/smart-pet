@@ -3,6 +3,8 @@ package com.pj.pet.service;
 
 import java.util.List;
 
+import com.pj.pet.util.Pager;
+
 import lombok.Data;
 
 @Data
@@ -24,5 +26,7 @@ public class ServiceVO {
 	private ServiceFileVO serviceFileVO;
 	
 	private List<ReservationSettingVO> reservationSettingVOs;
+	
+	//private Pager pager;
 }
 

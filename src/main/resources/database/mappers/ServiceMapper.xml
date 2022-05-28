@@ -278,7 +278,7 @@
 	
 	<!-- ====================== -->
 	
-
+	<!-- serKind 1 병원/ 2 미용실-->
 	<select id="getListc" parameterType="Pager" resultType="ServiceVO">
 		SELECT * FROM SERVICE
 		WHERE SERNUM>0
@@ -299,7 +299,13 @@
 		LIMIT
 		#{startRow},#{perPage}
 	</select>
-
+	
+	<!-- serKind 1 병원/ 2 미용실-->
+	<select id="getServiceKind" parameterType="ServiceVO" resultType="ServiceVO">
+		SELECT * FROM SERVICE WHERE SERKIND=#{serKind}
+	</select> 
+	
+	
 	<select id="total" resultType="Long" parameterType="Pager">
 		SELECT COUNT(SERNUM) FROM SERVICE
 		WHERE SERNUM>0

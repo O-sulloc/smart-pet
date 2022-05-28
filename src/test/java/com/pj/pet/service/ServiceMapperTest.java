@@ -31,13 +31,13 @@ class ServiceMapperTest {
 	
 	
 	//@Test
-	void getListc() throws Exception {
-		Pager pager = new Pager();
-		pager.makeRow();
-		List<ServiceVO> ar = serviceMapper.getListc(pager);
-		System.out.println(ar);
-		assertEquals(3, ar.size());
-	}
+//	void getListc() throws Exception {
+//		Pager pager = new Pager();
+//		pager.makeRow();
+//		List<ServiceVO> ar = serviceMapper.getListc(pager);
+//		System.out.println(ar);
+//		assertEquals(3, ar.size());
+//	}
 	
 	//@Test
 	void getDetailc() throws Exception{

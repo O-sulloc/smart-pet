@@ -1,9 +1,11 @@
 package com.pj.pet.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
-
+import org.apache.ibatis.annotations.Param;
 
 import com.pj.pet.reservation.ReservationVO;
 import com.pj.pet.user.UserVO;
@@ -89,10 +91,16 @@ public interface ServiceMapper {
 	
 	//list : getList
 
-	// 고객측 서비스 list : getList
+	// parameterType HashMap 을 이용해서 여러개 넣기
+	public ServiceVO getSerKindPager(HashMap<String, Object> map);
+	
+	// 고객측 서비스 list : getList serKind 1 병원/ 2 미용실
 	public List<ServiceVO> getListc(Pager pager) throws Exception;
 	
-	//detail
+	public List<ServiceVO> getServiceKind(ServiceVO serviceVO) throws Exception;
+	
+	
+	//detail소비자측 판매자측 detail에 몰았음  - 안쓰는 메서드
 	public ServiceVO getDetailc(ServiceVO serviceVO) throws Exception;
 	
 	//total
