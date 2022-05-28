@@ -54,15 +54,13 @@ let buildcalendar = function(){
 	 	let week = new Array('일', '월', '화', '수', '목', '금', '토');     
 	 	
 	 	let dayCheck = new Date("'"+year+"-"+month+"-"+dates[i]+"'").getDay();  
-	 	/*if(dates[i]==31){
-		month++;
-		}  */
+
 	 	console.log(year+"-"+month+"-"+dates[i]);
 		let todayLabel = week[dayCheck];
 		      
 		return todayLabel;
 		}
-		// console.log(getInputDayLabel());
+
 			
 		
 		if(i < thisFirst.getDay()){
@@ -70,7 +68,7 @@ let buildcalendar = function(){
 		}else if(i<lastday&&today.getMonth()==CDate.getMonth() && today.getFullYear()==CDate.getFullYear()) {  // 당일로부터 지난날 클릭 X 
 			htmlDates += '<div class="date last" disabled>'+dates[i]+'</div>'; 
 		
-		}else if(getInputDayLabel(i)==$("#holiday").val() ){ // 휴무일 지정 클릭 X
+		}else if($("#holiday").val().includes(getInputDayLabel())){ // 휴무일 지정 클릭 X
 			htmlDates += '<div class="date last" disabled>'+dates[i]+'</div>';
 			
 		}else if(today.getDate()==dates[i] && today.getMonth()==CDate.getMonth() && today.getFullYear()==CDate.getFullYear()){ // 오늘 날짜
