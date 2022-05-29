@@ -26,7 +26,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.pj.pet.reservation.ReservationVO;
 import com.pj.pet.user.UserVO;
 import com.pj.pet.util.CalendarTest;
+import com.pj.pet.util.MailService;
 import com.pj.pet.util.Pager;
+import com.pj.pet.util.ReservationMailService;
 
 
 
@@ -36,6 +38,8 @@ public class ServiceController {
 
 	@Autowired
 	private ServiceService serviceService;
+	@Autowired
+	private ReservationMailService reservationMailService;
 	
 	@ModelAttribute("service")
 	public String getService() {
@@ -96,7 +100,16 @@ public class ServiceController {
 
 		
 	}
-	
+	@PostMapping("sendEmail")
+	public void sendEmail(ReservationVO reservationVO)throws Exception{
+		UserVO userVO=serviceService.findEmail(reservationVO);
+		
+		reservationVO=serviceService.getMailData(reservationVO);
+		
+		//이메일주소, 내용 
+		reservationMailService.sendReservationMail(userVO.getEmail(),"["+reservationVO.getSerName()+"]"+ reservationVO.getResDate()+" "+reservationVO.getResTime().substring(0,5)+"에 예약이 승인되었습니다.");
+		
+	}
 	
 	//예약세팅 업데이트 폼 
 	@GetMapping("updateReservationSetting")

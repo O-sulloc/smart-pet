@@ -4,10 +4,13 @@ let resNum=null;
 
 let state=1; //1:예약리스트 2:대기중인예약리스트 
 
+console.log("여기")
+
 //예약상태 변경 버튼 클릭시 
 $("#list").on("click",".modalBtn",function(){
  	$('#myModal').modal('show')
  	resNum=$(this).attr("data");
+ 	
  	console.log("resNum:"+resNum)
 })
 
@@ -28,7 +31,16 @@ $('.modalSubmit').click(function(){
 			},
 			success:function(data){
 			if(data.trim()==1){
-				//예약리스트 화면이였다면 
+				if(resState==1){//승인시에 이메일 보내기 
+					$.ajax({
+						type:"POST",
+						url:"./sendEmail",
+						data:{
+							resNum:resNum,
+						},
+						
+					})
+				}
 					getList(pn,perPage);
 			}else{
 				alert("변경 실패했습니다. 다시 시도해주십시오.")

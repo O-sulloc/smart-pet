@@ -14,6 +14,12 @@ import com.pj.pet.util.Pager;
 @Mapper
 public interface ServiceMapper {
 
+	//예약확인 메일에 들어갈 데이터가져오기 
+	public ReservationVO getMailData(ReservationVO reservationVO)throws Exception;
+	
+	//예약자 이메일 가져오기 
+	public UserVO findEmail(ReservationVO reservationVO)throws Exception;
+	
 	//예약시간 업데이트 
 	public int updateReservationTime(ReservationTimeVO reservationTimeVO)throws Exception;
 	

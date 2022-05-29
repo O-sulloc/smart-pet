@@ -179,7 +179,7 @@ function fn_selectDate(date){
 		const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
 		let week = WEEKDAY[day.getDay()];
 		
-		if(week=="토"){
+		if(week=="토"||week=="일"){
 			$("#buttons").hide();
 			$("#buttons2").show();
 		}else if(week!="토"){
