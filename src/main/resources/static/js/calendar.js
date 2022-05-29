@@ -1,12 +1,14 @@
 /**
  * 
  */
+ $("#buttons").hide();
+ $("#buttons2").hide();
+ 
 let CDate = new Date(); //현재 날짜 및 시간
 let today = new Date(); //현재 날짜 및 시간
 let selectCk = 0;
 // console.log(CDate);
 // console.log(today);
-
 
 //전역
 let year = CDate.getFullYear();
@@ -156,7 +158,8 @@ function fn_selectDate(date){
 		date_txt = "0" + date;
 	}*/
 	
-	if(selectCk == 0){
+	//활성화된 날짜 클릭시 
+	if(selectCk == 0){  
 		$(".date").css("background-color", "");
 		$(".date").css("color", "");
 		$("#date_"+date).css("background-color", "red");
@@ -166,17 +169,28 @@ function fn_selectDate(date){
 		
 		selectCk = year+"-"+month+"-"+date;
 		console.log(selectCk);
-		
+	
 		d=date;
 		
 		selectCk = 0;
 		
-			
+		//토요일 구분 
+		let day=new Date(year,month-1,date);
+		const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
+		let week = WEEKDAY[day.getDay()];
 		
+		if(week=="토"){
+			$("#buttons").hide();
+			$("#buttons2").show();
+		}else if(week!="토"){
+			$("#buttons").show();
+			$("#buttons2").hide();
+		}
 	}/*else if(today){
 		$("#date_"+date).css("background-color", "white");
 		$("#date_"+date).css("color", "gray");		
 	}*/
+
 	
 
 }
