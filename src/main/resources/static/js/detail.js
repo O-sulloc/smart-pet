@@ -108,16 +108,21 @@ for(let i=0;i<40;i++){
 		
       		  result=plusTerm(result);
         
-       			if(!ar.includes(result)){
+       			
 		        let button = document.createElement('button')
 		        button.setAttribute("type","button")
 		        button.setAttribute("id","timeButton")
 		        button.setAttribute("name","resTime")
-		        button.setAttribute("class","btn btn-outline-primary")
+		        if(ar.includes(result)){ //점심시간일경우 회색으로 변경
+		       	 	button.setAttribute("class","btn btn-outline-secondary")
+					console.log(result)
+				}else{
+					button.setAttribute("class","btn btn-outline-primary")
+				}
 		        button.setAttribute("id","timeButton")
-			 button.innerHTML=result;
+			    button.innerHTML=result;
       	 	 $("#buttons").append(button) 
-      	 	 	}
+      	 	 	
 			
        
 
@@ -160,18 +165,22 @@ for(let i=0;i<40;i++){
         // console.log("Date로 변환:"+getDate(result))
 
         result2=plusTerm(result2);
-        if(!ar.includes(result2)){
+    
 	        let button = document.createElement('button')
 	        button.setAttribute("type","button")
 	        button.setAttribute("id","timeButton")
 	        button.setAttribute("name","resTime")
-	        button.setAttribute("class","btn btn-outline-primary")
+	        if(ar.includes(result2)){//점심시간일경우 회색으로 변경
+	       	 	button.setAttribute("class","btn btn-outline-secondary")
+				console.log(result2)
+			}else{
+				button.setAttribute("class","btn btn-outline-primary")
+			}
 	        button.setAttribute("id","timeButton")
 	        button.innerHTML=result2;
 	        $("#buttons2").append(button) 
-		}
+	
         // console.log("plusTerm result:"+result); //09:30
-
         result2=result2+":00"
         // console.log("=========================")
     }
