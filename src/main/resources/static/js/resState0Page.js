@@ -23,6 +23,16 @@ $('.modalSubmit').click(function(){
 			},
 			success:function(data){
 			if(data.trim()==1){
+				if(resState==1){//승인시에 이메일 보내기 
+					$.ajax({
+						type:"POST",
+						url:"./sendEmail",
+						data:{
+							resNum:resNum,
+						},
+						
+					})
+				}
 					getResStateIs0List(pn,perPage)
 			}else{
 				alert("변경 실패했습니다. 다시 시도해주십시오.")
