@@ -43,22 +43,22 @@
 			
 		</table>
 	</div>
-	
+	<!-- serKind 1 병원 -->
 	<div class="row">
 		<nav aria-label="Page navigation example">
 		  <ul class="pagination">
 		    <li class="page-item">
-		      <a class="page-link" href="./hospitalList?pn=${pager.pre?pager.startNum-1:1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
+		      <a class="page-link" href="./hospitalList?serKind=1&pn=${pager.pre?pager.startNum-1:1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		    </li>
 		    
 		    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-		    <li class="page-item"><a class="page-link" href="./hospitalList?pn=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+		    <li class="page-item"><a class="page-link" href="./hospitalList?serKind=1&pn=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
 		    </c:forEach>
 		    
 		    <li class="page-item">
-		      <a class="page-link" href="./hospitalList?pn=${pager.next?pager.lastNum+1:pager.lastNum}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
+		      <a class="page-link" href="./hospitalList?serKind=1&pn=${pager.next?pager.lastNum+1:pager.lastNum}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
 		        <span aria-hidden="true">&raquo;</span>
 		      </a>
 		    </li>
@@ -71,7 +71,10 @@
 	
 	<div class="row justify-content-between">
 		<div class="col-5">
-			<form class="d-flex" action="./list" method="get">
+			<form class="d-flex" action="./hospitalList" method="get">
+				<c:forEach items="${list}" var="vo">
+				<input type="hidden" name="serKind" value="${vo.serKind }">
+				</c:forEach>
 				<div class="col-4 me-2">
 				<select name="kind" class="form-select " aria-label="Default select example">
 				  <option value="col1">상호명</option>
@@ -87,10 +90,7 @@
 	        	</div>
 	      </form>
 		</div>
-		<!-- 관리자만 추가 -->
-		<div class="col-1">
-			<a href="./add" type="button" class="btn btn-outline-primary">WRITE</a>
-		</div>
+		
 		
 	</div>
 
