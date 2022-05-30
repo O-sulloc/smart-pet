@@ -410,52 +410,51 @@ public class ServiceController {
 		return mv;
 	}
 
-	// 서비스 목록 serKind 1 병원/ 2 미용실
-	  @GetMapping("hospitalList") public ModelAndView getListc(Pager pager) throws Exception{
+	// 서비스 목록 serKind 1 병원
+	@GetMapping("hospitalList") 
+	public ModelAndView getListc(Pager pager) throws Exception{
 	  ModelAndView mv = new ModelAndView();
+	  ServiceVO serviceVO = new ServiceVO();
+	  List<ServiceVO> ar=serviceService.getServiceKind(serviceVO);
+	  ar =serviceService.getListc(pager);
 	  
-	  List<ServiceVO> ar =serviceService.getListc(pager);
-	  ServiceVO serviceVO=new ServiceVO();
-	  ar=serviceService.getServiceKind(serviceVO);
 	  for(ServiceVO serviceVOs : ar) {
-		  
 		  if(serviceVOs.getSerKind()==1L) {
+			  
 			  mv.addObject("list",ar);
 			  mv.setViewName("service/hospitalList"); 
 			  return mv;
 		  }
 	  }
-	  
-//	  System.out.println(ar);
-//	  ServiceVO serviceVO = new ServiceVO();
-//	  serviceVO.setSerKind(1L);
-	  
-//	  ar=serviceService.getServiceKind(pager.getServiceVO());
-	  
-//	  System.out.println(ar);
-	  
-	  
 	  return null;
 	  
-	  }
+	}
 	 
-	 
-	  public Model getServiceKind(ServiceVO serviceVO,Model model) throws Exception{
+	// 서비스 목록 serKind 1 병원/ 2 미용실 뿌려줄 때 필요
+	public Model getServiceKind(ServiceVO serviceVO,Model model) throws Exception{
 		  List<ServiceVO> ar = serviceService.getServiceKind(serviceVO);
 		  model.addAttribute("vo",serviceVO);
 		  return model;
 	  }
-//	@GetMapping("shopList")
-//	public ModelAndView getListc(Pager pager,ModelAndView mv) throws Exception{
-//		
-//		
-//		
-//		if() {
-//			List<ServiceVO> ar = serviceService.getListc(pager);
-//			mv.addObject("list",ar);
-//			mv.setViewName("service/shopList");
-//		}
-//		return mv;
-//	}
+	  
+	// 서비스 목록 serKind 2 샵
+	@GetMapping("shopList")
+	public ModelAndView getListc(Pager pager,ModelAndView mv) throws Exception{
+		
+		ServiceVO serviceVO = new ServiceVO();
+		  List<ServiceVO> ar=serviceService.getServiceKind(serviceVO);
+		  ar =serviceService.getListc(pager);
+		  
+		  for(ServiceVO serviceVOs : ar) {
+			  if(serviceVOs.getSerKind()==2L) {
+				  
+				  mv.addObject("list",ar);
+				  mv.setViewName("service/shopList"); 
+				  return mv;
+			  }
+		  }
+		  return null;
+		  
+	}
 
 }

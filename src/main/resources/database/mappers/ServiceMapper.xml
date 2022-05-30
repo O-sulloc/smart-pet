@@ -281,13 +281,13 @@
 	<!-- serKind 1 병원/ 2 미용실-->
 	<select id="getListc" parameterType="Pager" resultType="ServiceVO">
 		SELECT * FROM SERVICE
-		WHERE SERNUM>0
+		WHERE SERKIND=#{serKind} AND SERNUM>0
 		AND
 		<choose>
 			<when test="kind=='col1'">
 				SERNAME
 			</when>
-			<when test="kind =='col2'">
+			<when test="kind=='col2'">
 				SERADDRESS
 			</when>
 			<otherwise>

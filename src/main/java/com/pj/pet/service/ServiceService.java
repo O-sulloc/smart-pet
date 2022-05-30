@@ -166,17 +166,16 @@ public class ServiceService {
 
 	// 서비스 목록
 	public List<ServiceVO> getListc(Pager pager) throws Exception{
-		ServiceVO serviceVO=new ServiceVO();
 		
 		pager.makeRow();
 		Long totalCount= serviceMapper.total(pager);
 		pager.makeNum(totalCount);
-		List<ServiceVO> ar =serviceMapper.getListc(pager);
+		ServiceVO serviceVO= new ServiceVO();
+		List<ServiceVO> ar=serviceMapper.getServiceKind(serviceVO);
+		ar =serviceMapper.getListc(pager);
 //		ar=serviceMapper.getServiceKind(pager.getServiceVO());
 		return ar;
 	}
-	
-
 	
 	
 	// serKind 1 병원 2 미용샵

@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class Pager {
 	
-	private ServiceVO serviceVO;
+	private Long serKind;
 	
 	//멤버변수로 id 추가 하거나 상속받는 클래스 하나 더 생성(참고용으로 생성 해놓음)
 	private String id;
