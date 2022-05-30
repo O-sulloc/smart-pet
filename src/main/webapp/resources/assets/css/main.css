@@ -52,7 +52,95 @@ button:focus,
   box-shadow: none !important;
 }
 
+/* error 404 */
+.error-area {
+    height: 100vh;
+    text-align: center;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url(../images/bread-bg/dog-bg2.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.error-area.overlay::before {
+    background-color: #006838;
+    opacity: .9;
+}
+
+.error-area .error-content h1 {
+    font-size: 100px;
+    color: #fff;
+    margin-bottom: 25px;
+    font-weight: 800;
+    line-height: 100px;
+}
+
+.error-area .error-content h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.error-area .error-content p {
+    font-weight: 400;
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+.error-area .error-content .btn::before {
+    background-color: #fff;
+}
+/* mail success */
+.maill-success {
+    height: 100vh;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.d-table {
+    width: 100%;
+    height: 100%;
+}
+
+.d-table-cell {
+    vertical-align: middle;
+}
+
+.maill-success .success-content i {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #006838;
+}
+
+.maill-success .success-content h1 {
+    font-size: 40px;
+    color: #006838;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.maill-success .success-content h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #081828;
+}
+
+.maill-success .success-content p {
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
 /* login css */
+.login .form-head form .check-and-pass .form-check a {
+    color: #88c250;
+}
+
 .login .form-head {
 	padding: 50px;
     border-radius: 0;

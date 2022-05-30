@@ -1,36 +1,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
-<html>
+<html class="no-js" lang="zxx">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<title>Insert title here</title>
+<meta charset="utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<title>Mail Success - MediGrids Medical & Hospital</title>
+	<meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="../resources/assets/images/favicon.svg" />
+    <!-- Place favicon.ico in the root directory -->
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+	<c:import url="../temp/header_css.jsp"></c:import>
 </head>
-<body>	
-	<div class="container mt-5 text-center">
-		<main>
-			<h1 class="h3 mb-3 fw-normal">PW</h1>
+<body>
+
+	<div class="preloader">
+		<div class="preloader-inner">
+			<div class="preloader-icon">
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+	</div>
 	
-			<div class="row justify-content-center">
-				<div class="col-3">
-					<h2>입력하신 이메일로 임시 비밀번호를 발송했습니다. 해당 임시 비밀번호로 로그인해주시기 바랍니다.</h2>
 	
-						<button class="w-100 btn btn-lg btn-success mb-2 my-4" onclick="location.href='/user/login'" type="button">Login</button>
-						<button class="w-100 btn btn-lg btn btn-outline-danger" onclick="location.href='/user/join'" type="button">Join!</button>
-							    
-						<div class="checkbox mb-3 mt-2">
-							<button type="button" class="btn btn-outline-info" onclick="location.href='/user/findId'">ID찾기</button>
-							<button type="button" class="btn btn-outline-info" onclick="location.href='/user/findPw'">PW찾기</button>
+	<div class="maill-success">
+		<div class="d-table">
+			<div class="d-table-cell">
+				<div class="container">
+					<div class="success-content">
+						<i class="lni lni-thumbs-up"></i>
+						<h1>Voila!</h1>
+						<h2>Your Mail Sent Successfully</h2>
+						<p>Sent a new temporary password to your email. Please check and login again.</p>
+						<div class="button">
+							<a href="/user/login" class="btn">Login</a>
 						</div>
+					</div>
 				</div>
 			</div>
-		</main>
-    </div>
+		</div>
+	</div>
 	
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	
+	<c:import url="../temp/header_script.jsp"></c:import>
+	<script>
+	    window.onload = function () {
+	      window.setTimeout(fadeout, 500);
+	    }
+	
+	    function fadeout() {
+	      document.querySelector('.preloader').style.opacity = '0';
+	      document.querySelector('.preloader').style.display = 'none';
+	    }
+	  </script>
 </body>
 </html>

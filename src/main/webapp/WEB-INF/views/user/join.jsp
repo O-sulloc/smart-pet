@@ -36,103 +36,116 @@
 		</div>
 	</div>
 	
-	<div class="container mt-3">
-		<main>		
-			<div class="row justify-content-center">
-				<div class="col-md-7 col-lg-8">
-					<div class="alert alert-success align-items-center" role="alert">
-						Enter your information
-					</div>
-					
+	<section class="login registration section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
+					<div class="form-head">
+					<h4 class="title">Registration</h4>
 					<form:form modelAttribute="userVO" method="post" id="frm">
-						<div class="row g-3 justify-content-center">
-							<div>
-								<div class="col-sm-6">
-									<label for="id" class="form-label">ID</label>
-	              					<form:input path="id" cssClass="form-control" id="id"/>
-	              					<div>
-										<form:errors path="id"></form:errors>
+						<div class="socila-login">
+							<div class="row">
+							<div class="col-lg-6 col-md-6 col-12">
+								<ul>
+									<li><a href="javascript:void(0)" class="facebook"><i class="lni lni-facebook-original"></i>Import From
+									Facebook</a></li>
+								</ul>
+							</div>
+							<div class="col-lg-6 col-md-6 col-12">
+								<ul>
+									<li><a href="javascript:void(0)" class="google"><i class="lni lni-google"></i>Import From Google
+									Plus</a>
+									</li>
+								</ul>
+							</div>
+							<div class="col-lg-6 col-md-6 col-12">
+								<ul>
+									<li><a href="javascript:void(0)" class="instagram"><i class="lni lni-instagram"></i>Import From
+									Instagram</a></li>
+								</ul>
+							</div>
+							<div class="col-lg-6 col-md-6 col-12">
+								<ul>
+									<li><a href="javascript:void(0)" class="linkedin"><i class="lni lni-linkedin-original"></i>Import From Linkedin</a>
+									</li>
+								</ul>
+							</div>
+							</div>
+						</div>
+						
+						<div class="alt-option">
+							<span>Or</span>
+						</div>
+						
+						<div class="form-group">
+							<form:input path="name" cssClass="form-control" id="name" placeholder="Name"/>
+							<form:errors path="name"></form:errors>
+						</div>
+						<div class="form-group">
+							<form:input path="id" cssClass="form-control" id="id" placeholder="ID"/>
+								<div>
+									<form:errors path="id"></form:errors>
+								</div>
+						</div>
+						<div class="form-group">
+							<form:password path="pw" cssClass="form-control" id="pw" placeholder="Password"/>
+							<form:errors path="pw"></form:errors>
+						</div>
+						<div class="form-group">
+							<form:password path="checkPw" cssClass="form-control" id="checkPw" placeholder="Confirm Password"/>
+							<form:errors path="checkPw"></form:errors>
+						</div>
+						<div class="form-group">
+							<form:input path="email" cssClass="form-control" id="email" placeholder="Email" />
+	              			<form:errors path="email"></form:errors>
+						</div>
+						<div class="form-group">
+							<form:input path="phone" cssClass="form-control" placeholder="Phone"/>
+							<form:errors path="phone"></form:errors>
+						</div>
+						<div class="form-group">
+							<form:input path="address" cssClass="form-control" placeholder="Address"/>
+							<form:errors path="address"></form:errors>
+						</div>
+						
+						<div class="check-and-pass">
+							<div class="row align-items-center">
+								<div class="col-12">
+									<div class="form-check">
+										<input type="checkbox" class="form-check-input width-auto checkAll" id="all">
+										<label class="form-check-label" for="all">Agree to All our <a href="javascript:void(0)">Terms and
+										Conditions</a></label>
+									</div>
+									<div class="form-check col-12">
+										<input type="checkbox" class="form-check-input width-auto ch" id="check1">
+										<label class="form-check-label" for="check1">Agree to our <a href="javascript:void(0)">Terms and
+										Conditions</a></label>
+									</div>
+									<div class="form-check col-12">
+										<input type="checkbox" class="form-check-input width-auto ch" id="check2">
+										<label class="form-check-label" for="check2">Agree to our <a href="javascript:void(0)">Terms and
+										Conditions</a></label>
+									</div>
+									<div class="form-check">
+										<input type="checkbox" class="form-check-input width-auto ch" id="check3">
+										<label class="form-check-label" for="check3">Agree to our <a href="javascript:void(0)">Terms and
+										Conditions</a></label>
 									</div>
 								</div>
 							</div>
-							
-							<div>
-								<div class="col-sm-6">
-									<label for="pw" class="form-label">Password</label>
-									<form:password path="pw" cssClass="form-control" id="pw"/>
-									<form:errors path="pw"></form:errors>
-								</div>
-							</div>
-							
-							<div>
-								<div class="col-sm-6">
-									<label for="checkPw" class="form-label">Password Check</label>
-									<form:password path="checkPw" cssClass="form-control" id="checkPw"/>
-									<form:errors path="checkPw"></form:errors>
-								</div>
-							</div>
-							
-							<div>
-								<div class="col-sm-6">
-									<label for="name" class="form-label">Name</label>
-									<form:input path="name" cssClass="form-control" id="name"/>
-									<form:errors path="name"></form:errors>
-								</div>
-							</div>
-							
-							<div>
-								<div class="col-sm-6">
-									<label for="email" class="form-label">Email <span class="text-muted"></label>
-	              					<form:input path="email" cssClass="form-control" id="email"/>
-	              					<form:errors path="email"></form:errors>
-								</div>
-							</div>
-							
-							<div>
-								<div class="col-sm-6">
-									<label for="phone" class="form-label">Phone<span class="text-muted"></label>
-									<form:input path="phone" cssClass="form-control"/>
-									<form:errors path="phone"></form:errors>
-								</div>
-							</div>
-							
-							<div>
-								<div class="col-sm-6">
-									<label for="address" class="form-label">address<span class="text-muted"></label>
-									<form:input path="address" cssClass="form-control"/>
-									<form:errors path="address"></form:errors>
-								</div>
-							</div>
-							
-							<hr class="my-4">
-								<div class="form-check">
-						            <input type="checkbox" class="form-check-input checkAll" id="all">
-									<label class="form-check-label" for="all">ACCEPT ALL TERMS AND CONDITIONS</label>
-								</div>
-								
-								<div class="form-check">
-						            <input type="checkbox" class="form-check-input ch" id="check1">
-						            <label class="form-check-label" for="check1">terms and conditions(필수)</label>
-								</div>
-								
-								<div class="form-check">
-						            <input type="checkbox" class="form-check-input ch" id="check2">
-						            <label class="form-check-label" for="check2">terms and conditions(필수)</label>
-								</div>
-								
-								<div class="form-check">
-						            <input type="checkbox" class="form-check-input ch" id="check3">
-						            <label class="form-check-label" for="check3">terms and conditions(필수)</label>
-								</div>
-							<hr class="my-4">
-							
-							<button class="w-100 btn btn-success btn-lg mb-5" type="submit" id="btn">Join!</button>
 						</div>
+						<div class="button">
+							<button type="submit" class="btn" id="btn">Registration</button>
+						</div>
+						
+						<p class="outer-link">Already have an account? <a href="/user/login"> Login Now</a>
+						</p>
 					</form:form>
+					</div>
 				</div>
 			</div>
-		</main>
-	</div>
+		</div>
+	</section>
 
 	<c:import url="../temp/header_script.jsp"></c:import>
 	<c:import url="../temp/footer.jsp"></c:import>

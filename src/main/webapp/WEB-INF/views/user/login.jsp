@@ -84,20 +84,21 @@
 									</div>
 									<div class="col-lg-6 col-md-6 col-12">
 										<ul>
-											<li><a href="javascript:void(0)" class="google"><i class="lni lni-google"></i>Login With Google
-											Plus</a>
+											<li><a href="http://localhost/login/oauth2/GOOGLE" class="google"><i class="lni lni-google"></i>Login With 
+											Google</a>
 											</li>
 										</ul>
 									</div>
 									<div class="col-lg-6 col-md-6 col-12">
 										<ul>
-											<li><a href="javascript:void(0)" class="instagram"><i class="lni lni-instagram"></i>Login With
-											Instagram</a></li>
+											<li><a href="http://localhost/login/oauth2/KAKAO" class="instagram"><i class="lni lni-instagram"></i>Login With
+											Kakao</a></li>
 										</ul>
 									</div>
 									<div class="col-lg-6 col-md-6 col-12">
 										<ul>
-											<li><a href="javascript:void(0)" class="linkedin"><i class="lni lni-linkedin-original"></i>Login With Linkedin</a>
+											<li><a href="javascript:void(0)" class="linkedin"><i class="lni lni-linkedin-original"></i>Login With 
+											Naver</a>
 											</li>
 										</ul>
 									</div>
