@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.aop.ThrowsAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -46,23 +47,23 @@ public class ServiceController {
 		return "service";
 	}
 	
-	//String to Date 
-	@InitBinder // 이렇게 표시를 해야만 프론트 컨트롤러가 요청 핸들러를 호출하기 전에 먼저 이 메서드를호출한다.
-	  	public void initBinder(WebDataBinder binder) {
-
-		// 이 메서드는 요청이 들어올 때 마다 파라미터 값을 준비하기 위해 
-		// 파라미터의 개수 만큼 호출된다.
-		System.out.println("파라미터 개수 만큼 호출됨");
-
-		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-		binder.registerCustomEditor(
-				java.sql.Date.class, 
-				
-				
-				new CustomDateEditor(dateFormat, false)
-				
-				);
-		
+//	//String to Date 
+//	@InitBinder // 이렇게 표시를 해야만 프론트 컨트롤러가 요청 핸들러를 호출하기 전에 먼저 이 메서드를호출한다.
+//	  	public void initBinder(WebDataBinder binder) {
+//
+//		// 이 메서드는 요청이 들어올 때 마다 파라미터 값을 준비하기 위해 
+//		// 파라미터의 개수 만큼 호출된다.
+//		System.out.println("파라미터 개수 만큼 호출됨");
+//
+//		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+//		binder.registerCustomEditor(
+//				java.sql.Date.class, 
+//				
+//				
+//				new CustomDateEditor(dateFormat, false)
+//				
+//				);
+//		
 		
 //		// java.lang.String ===> java.sql.Date 변환시켜주는 프로퍼티 에디터 등록
 //		binder.registerCustomEditor(
@@ -99,7 +100,15 @@ public class ServiceController {
 		
 
 		
+//	}
+	@GetMapping("completionCheck")
+	public ModelAndView completionCheck()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("service/completionCheck");
+		return mv;
 	}
+	
 	@PostMapping("sendEmail")
 	public void sendEmail(ReservationVO reservationVO)throws Exception{
 		UserVO userVO=serviceService.findEmail(reservationVO);
@@ -117,11 +126,18 @@ public class ServiceController {
 		ModelAndView mv = new ModelAndView();
 		UserVO userVO=(UserVO)session.getAttribute("user");
 		ReservationSettingVO reservationSettingVO=serviceService.getReservationSetting(userVO);
-		List<ReservationTimeVO> timeList=serviceService.getReservationTime(userVO);
-		
-		mv.addObject("setting", reservationSettingVO);
-		mv.addObject("time", timeList);
-		mv.setViewName("service/updateReservationSetting");
+		if(reservationSettingVO != null) {
+			List<ReservationTimeVO> timeList=serviceService.getReservationTime(userVO);
+			
+			mv.addObject("setting", reservationSettingVO);
+			mv.addObject("time", timeList);
+			mv.setViewName("service/updateReservationSetting");
+		}else {
+			mv.setViewName("common/getResult");
+			mv.addObject("msg", "예약시간 설정 페이지로 이동합니다.");
+			mv.addObject("path", "./reservationSetting");
+		}
+
 		return mv;
 	}
 	
@@ -240,7 +256,7 @@ public class ServiceController {
 	public ModelAndView setService(ServiceVO serviceVO,MultipartFile file)throws Exception{
 		ModelAndView mv= new ModelAndView();
 		int result=serviceService.setService(serviceVO,file);
-		mv.setViewName("./mypage");
+		mv.setViewName("redirect:./mypage");
 		return mv;
 	}
 	//service mypage 
