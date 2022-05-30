@@ -18,7 +18,22 @@ class ServiceMapperTest {
 	@Autowired
 	private ServiceMapper serviceMapper;
 	
+
+	
+	
+	
 	@Test
+	void getMailData()throws Exception{
+		ReservationVO reservationVO=new ReservationVO();
+		reservationVO.setResNum((long)1);
+		
+		reservationVO=serviceMapper.getMailData(reservationVO);
+		
+		assertEquals(reservationVO.getSerName(),"병원1");
+		
+	}
+	
+	//@Test
 	void getCount() throws Exception{
 		ReservationVO reservationVO=new ReservationVO();
 		reservationVO.setId("id1");

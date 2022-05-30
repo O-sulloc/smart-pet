@@ -30,6 +30,7 @@
          어쩌고 
         </a>
       </li>
+      
     <li class="border-top my-3"></li>
       <li class="nav-item">
         <a href="./reservationList" class="nav-link link-dark" id="reservationLIst">
@@ -55,6 +56,13 @@
           월별 예약 현황 보기 
         </a>
       </li>
+      <li>
+        <a href="./completionCheck" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+          	방문 완료 체크하기 
+        </a>
+      </li>
+      
       <li class="border-top my-3"></li>
       <li>
         <a href="./reservationSetting" class="nav-link link-dark">
@@ -68,8 +76,13 @@
           	예약 시간 변경하기
         </a>
       </li>
-
-       
+  	<li class="border-top my-3"></li>
+       <li class="nav-item">
+        <a href="#" class="nav-link link-dark" id="reservationLIst">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+          	how to use 
+        </a>
+      </li>
       
       
       

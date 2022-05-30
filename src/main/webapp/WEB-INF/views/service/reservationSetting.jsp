@@ -59,8 +59,8 @@
 	  <option value="60">1시간</option>
 	  <option value="30">30분</option>
 	  <option value="15">15분</option>
-	  <option value="direct">직접입력(분단위로 숫자를 입력해주세요)</option><input type="number" id="selboxDirect" name="selboxDirect"/>
-	</select>
+	  <!-- <option value="direct">직접입력(분단위로 숫자를 입력해주세요)</option><input type="number" id="selboxDirect" name="selboxDirect"/>
+ -->	</select>
 	
 	<h5> 예약 시간 당 수용인원</h5>
 	<select class="form-select" id="selbox" aria-label="Default select example" name="capacity">
@@ -81,18 +81,18 @@
 	<input id='timepicker6' type='text'name='endBreaktime'/>
 	<hr>
 	<h4> 평일</h4>
-	<h5> 오픈시간 </h5>
+	<h5> 첫 예약 시간 </h5>
 	<input id='timepicker1' type='text'name='times'/>
 	
-	<h5> 마감시간</h5>
+	<h5> 마지막 예약 시간</h5>
 	<input id='timepicker2' type='text'name='times'/>
 	<hr>
 	
 	<h4> 주말</h4>
-	<h5> 오픈시간</h5>
+	<h5> 첫 예약 시간</h5>
 	<input id='timepicker3' type='text'name='times'/>
 	
-	<h5> 마감시간</h5>
+	<h5> 마지막 예약 시간</h5>
 	<input id='timepicker4' type='text'name='times'/>
 	<hr>
 	

@@ -6,12 +6,44 @@
 
     
 <mapper namespace="com.pj.pet.service.ServiceMapper">
+	<!-- 예약승인시 메일 보내기 -->
+	<!-- reservation 테이블에서 setNum이용해서 예약자의 이메일 가져옴 -->
+	<select id="findEmail" parameterType="reservationVO" resultType="userVO">
+		select email from USER
+		where id=(select id from RESERVATION  where RESNUM=#{resNum})	
+	</select>
+	
+	<!-- 메일보낼때 내용에 들어갈 data들  -->
+	<select id="getMailData" parameterType="reservationVO" resultType="reservationVO">
+		select r.RESTIME,r.RESDATE,s.SERNAME from RESERVATION r 
+		left join SERVICE s 
+		using(SERNUM)
+		where RESNUM =#{resNum}
+	</select>
+	
+<!-- 	<resultMap type="ReservationVO" id="getMailData">
+		<id column="resNum" property="resNum"></id>
+		<result column="resTime" property="resTime"/>
+		<result column="resDate" property="resDate"/>
+		<result column="serNum" property="serNum"/>
+		<association property="serviceVO" javaType="ServiceVO">
+			<id column="serNum" property="serNum"/>
+			<result column="serName" property="serName"/>
+		</association>
+	</resultMap> -->
+	
+	<!-- 예약승인시 메일 보내기 -->
+	
+	
+	
+	
+	
 	<!-- interceptor 구별 (id로 서비스 serkind 얻어서 1,2면 서비스마이페이지 이용 가) -->
 	<select id="sellerInterceptor" parameterType="UserVO" resultType="UserVO">
 		SELECT ROLE from USER
 		where id=#{id}
 	</select>
-	
+
 	<!-- reservationSetting 등록되어있는지 확인하기 위해 아무거나(setnum)가져옴  -->
 	<select id="getReservationSettingCheck" parameterType="UserVO" resultType="ReservationSettingVO">
 		select SETNUM from RESERVATIONSETTING 

@@ -30,6 +30,14 @@ public class ServiceService {
 //		return serviceMapper.getFileDetail(serviceVO);
 //	}
 	
+	public ReservationVO getMailData(ReservationVO reservationVO)throws Exception{
+		return serviceMapper.getMailData(reservationVO);
+	}
+	
+	public UserVO findEmail(ReservationVO reservationVO)throws Exception{
+		return serviceMapper.findEmail(reservationVO); 
+	}
+	
 	public int updateReservationSetting(ReservationSettingVO reservationSettingVO)throws Exception{
 		return serviceMapper.updateReservationSetting(reservationSettingVO);
 	}

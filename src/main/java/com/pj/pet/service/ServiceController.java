@@ -11,6 +11,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.aop.ThrowsAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.pj.pet.reservation.ReservationVO;
 import com.pj.pet.user.UserVO;
 import com.pj.pet.util.CalendarTest;
+import com.pj.pet.util.MailService;
 import com.pj.pet.util.Pager;
+import com.pj.pet.util.ReservationMailService;
 
 @Controller
 @RequestMapping("service/*")
@@ -36,72 +39,52 @@ public class ServiceController {
 	@Autowired
 	private ServiceService serviceService;
 
+	@Autowired
+	private ReservationMailService reservationMailService;
+	
+
 	@ModelAttribute("service")
 	public String getService() {
 		return "service";
 	}
 
-	// String to Date
-	@InitBinder // 이렇게 표시를 해야만 프론트 컨트롤러가 요청 핸들러를 호출하기 전에 먼저 이 메서드를호출한다.
-	public void initBinder(WebDataBinder binder) {
 
-		// 이 메서드는 요청이 들어올 때 마다 파라미터 값을 준비하기 위해
-		// 파라미터의 개수 만큼 호출된다.
-		System.out.println("파라미터 개수 만큼 호출됨");
-
-		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-		binder.registerCustomEditor(java.sql.Date.class,
-
-				new CustomDateEditor(dateFormat, false)
-
-		);
-
-//		// java.lang.String ===> java.sql.Date 변환시켜주는 프로퍼티 에디터 등록
-//		binder.registerCustomEditor(
-//				java.util.Date.class, /* 요청 핸들러의 파라미터 타입 */ 
-//				new PropertyEditorSupport() {
-//						@Override
-//						public void setAsText(String text) throws IllegalArgumentException {
-//							System.out.println(text); //14:00
-//							SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-//							Date date=null;
-//							try {
-//								date= format.parse(text);
-//								System.out.println();
-//								setValue(date);
-//							} catch (ParseException e) {
-//								format = new SimpleDateFormat("HH:mm");
-//								try {
-//									date = format.parse(text);
-//								} catch (ParseException e1) {
-//									e1.printStackTrace();
-//								}
-//							}
-//							
-//							
-//							setValue(date);
-//							System.out.println(date); //Thu Jan 01 14:00:00 KST 1970
-//							// "text" 파라미터는 클라이언트가 보낸 데이터이다.
-//							// 이렇게 문자열로 보낸 데이터는 java.sql.Date 객체로 바꿔야 한다.
-////							DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("HH:mm");
-//        	 
-//            
-//         }
-//     });
-
+	@GetMapping("completionCheck")
+	public ModelAndView completionCheck()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("service/completionCheck");
+		return mv;
 	}
-
-	// 예약세팅 업데이트 폼
+	
+	@PostMapping("sendEmail")
+	public void sendEmail(ReservationVO reservationVO)throws Exception{
+		UserVO userVO=serviceService.findEmail(reservationVO);
+		
+		reservationVO=serviceService.getMailData(reservationVO);
+		
+		//이메일주소, 내용 
+		reservationMailService.sendReservationMail(userVO.getEmail(),"["+reservationVO.getSerName()+"]"+ reservationVO.getResDate()+" "+reservationVO.getResTime().substring(0,5)+"에 예약이 승인되었습니다.");
+		
+	}
+	
+	//예약세팅 업데이트 폼 
 	@GetMapping("updateReservationSetting")
 	public ModelAndView UpdateReservationSetting(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		UserVO userVO = (UserVO) session.getAttribute("user");
-		ReservationSettingVO reservationSettingVO = serviceService.getReservationSetting(userVO);
-		List<ReservationTimeVO> timeList = serviceService.getReservationTime(userVO);
-
-		mv.addObject("setting", reservationSettingVO);
-		mv.addObject("time", timeList);
-		mv.setViewName("service/updateReservationSetting");
+		UserVO userVO=(UserVO)session.getAttribute("user");
+		ReservationSettingVO reservationSettingVO=serviceService.getReservationSetting(userVO);
+		if(reservationSettingVO != null) {
+			List<ReservationTimeVO> timeList=serviceService.getReservationTime(userVO);
+			
+			mv.addObject("setting", reservationSettingVO);
+			mv.addObject("time", timeList);
+			mv.setViewName("service/updateReservationSetting");
+		}else {
+			mv.setViewName("common/getResult");
+			mv.addObject("msg", "예약시간 설정 페이지로 이동합니다.");
+			mv.addObject("path", "./reservationSetting");
+		}
 		return mv;
 	}
 
@@ -214,10 +197,10 @@ public class ServiceController {
 
 	// 서비스 등록 DB 전송
 	@PostMapping("registration")
-	public ModelAndView setService(ServiceVO serviceVO, MultipartFile file) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		int result = serviceService.setService(serviceVO, file);
-		mv.setViewName("./mypage");
+	public ModelAndView setService(ServiceVO serviceVO,MultipartFile file)throws Exception{
+		ModelAndView mv= new ModelAndView();
+		int result=serviceService.setService(serviceVO,file);
+		mv.setViewName("redirect:./mypage");
 		return mv;
 	}
 

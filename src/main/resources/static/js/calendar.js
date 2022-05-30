@@ -1,12 +1,14 @@
 /**
  * 
  */
+ $("#buttons").hide();
+ $("#buttons2").hide();
+ 
 let CDate = new Date(); //현재 날짜 및 시간
 let today = new Date(); //현재 날짜 및 시간
 let selectCk = 0;
 // console.log(CDate);
 // console.log(today);
-
 
 //전역
 let year = CDate.getFullYear();
@@ -54,15 +56,13 @@ let buildcalendar = function(){
 	 	let week = new Array('일', '월', '화', '수', '목', '금', '토');     
 	 	
 	 	let dayCheck = new Date("'"+year+"-"+month+"-"+dates[i]+"'").getDay();  
-	 	/*if(dates[i]==31){
-		month++;
-		}  */
+
 	 	console.log(year+"-"+month+"-"+dates[i]);
 		let todayLabel = week[dayCheck];
 		      
 		return todayLabel;
 		}
-		// console.log(getInputDayLabel());
+
 			
 		
 		if(i < thisFirst.getDay()){
@@ -70,7 +70,7 @@ let buildcalendar = function(){
 		}else if(i<lastday&&today.getMonth()==CDate.getMonth() && today.getFullYear()==CDate.getFullYear()) {  // 당일로부터 지난날 클릭 X 
 			htmlDates += '<div class="date last" disabled>'+dates[i]+'</div>'; 
 		
-		}else if(getInputDayLabel(i)==$("#holiday").val() ){ // 휴무일 지정 클릭 X
+		}else if($("#holiday").val().includes(getInputDayLabel())){ // 휴무일 지정 클릭 X
 			htmlDates += '<div class="date last" disabled>'+dates[i]+'</div>';
 			
 		}else if(today.getDate()==dates[i] && today.getMonth()==CDate.getMonth() && today.getFullYear()==CDate.getFullYear()){ // 오늘 날짜
@@ -158,7 +158,8 @@ function fn_selectDate(date){
 		date_txt = "0" + date;
 	}*/
 	
-	if(selectCk == 0){
+	//활성화된 날짜 클릭시 
+	if(selectCk == 0){  
 		$(".date").css("background-color", "");
 		$(".date").css("color", "");
 		$("#date_"+date).css("background-color", "red");
@@ -168,17 +169,28 @@ function fn_selectDate(date){
 		
 		selectCk = year+"-"+month+"-"+date;
 		console.log(selectCk);
-		
+	
 		d=date;
 		
 		selectCk = 0;
 		
-			
+		//토요일 구분 
+		let day=new Date(year,month-1,date);
+		const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
+		let week = WEEKDAY[day.getDay()];
 		
+		if(week=="토"||week=="일"){
+			$("#buttons").hide();
+			$("#buttons2").show();
+		}else if(week!="토"){
+			$("#buttons").show();
+			$("#buttons2").hide();
+		}
 	}/*else if(today){
 		$("#date_"+date).css("background-color", "white");
 		$("#date_"+date).css("color", "gray");		
 	}*/
+
 	
 
 }

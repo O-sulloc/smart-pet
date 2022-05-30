@@ -22,7 +22,9 @@
 
 	
 	<div class="row col-md-auto" >
+	
 		<div class="card">
+		
 			    	
 				<ul class="list-group list-group-flush">
 				   	<li class="list-group-item">
@@ -39,9 +41,9 @@
 					<c:when test="${vo.serKind==1}">
 					병원명:
 					</c:when>
-					<c:otherwise>
+					<c:when test="${vo.serKind==2}">
 					미용샵 이름:
-					</c:otherwise>
+					</c:when>
 				</c:choose>
 				${vo.serName}</li>
 				

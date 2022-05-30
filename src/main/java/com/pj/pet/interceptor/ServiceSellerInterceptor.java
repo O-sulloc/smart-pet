@@ -30,6 +30,9 @@ public class ServiceSellerInterceptor implements HandlerInterceptor{
 			UserVO userVO=(UserVO)session.getAttribute("user");
 			userVO=serviceService.sellerInterceptor(userVO);
 			
+			ServiceVO serviceVO=new ServiceVO();
+			
+			
 			if(userVO !=null) {
 				System.out.println("회원");
 				if(userVO.getRole()==3) {

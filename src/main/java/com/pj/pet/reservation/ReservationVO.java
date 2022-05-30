@@ -24,7 +24,10 @@ public class ReservationVO {
 	 
 	 //월별 예약리스트 정보 확인시 필요해서 추가 
 	 private Long count;
-
+	 //예약승인 메일 보낼때 필요해서 추가 
+	 private String serName;
+	 
+	 
 	 private ServiceVO serviceVO;
 
 	 private List<ReservationSettingVO> reservationSettingVO;

@@ -9,6 +9,25 @@ let startBreaktime=$("#startBreaktime").val();
 let endBreaktime=$("#endBreaktime").val();
 
 
+console.log(startBreaktime)
+console.log(endBreaktime)
+//점심시간 텀단위로 구해서 배열에 집어넣기  -> ar: 점심시간인 예약시간 배열 
+//ex ) 13~14 term:30  13:00,13:30,14:00
+	let ar=[];
+	let brResult=""
+	ar.push(hy(startBreaktime))
+	for(i=0;i<20;i++){
+		let brResult=plusTerm(ar[ar.length-1]+":00");
+			 if(brResult==hy(endBreaktime)){
+				break;
+			 }
+		ar.push(brResult)
+	 }
+
+
+
+
+
 
 //Date타입으로 변환해주는 함수 
 function getDate(time){ 
@@ -84,20 +103,28 @@ for(let i=0;i<40;i++){
     //    console.log("=========================")
     }
     if(i!=0){
-
-
         // console.log("result:"+result)
         // console.log("Date로 변환:"+getDate(result))
-
-        result=plusTerm(result);
-        let button = document.createElement('button')
-        button.setAttribute("type","button")
-        button.setAttribute("id","timeButton")
-        button.setAttribute("name","resTime")
-        button.setAttribute("class","btn btn-outline-primary")
-        button.setAttribute("id","timeButton")
-        button.innerHTML=result;
-        $("#buttons").append(button) 
+		
+      		  result=plusTerm(result);
+        
+       			
+		        let button = document.createElement('button')
+		        button.setAttribute("type","button")
+		        button.setAttribute("id","timeButton")
+		        button.setAttribute("name","resTime")
+		        if(ar.includes(result)){ //점심시간일경우 회색으로 변경
+		       	 	button.setAttribute("class","btn btn-outline-secondary")
+					console.log(result)
+				}else{
+					button.setAttribute("class","btn btn-outline-primary")
+				}
+		        button.setAttribute("id","timeButton")
+			    button.innerHTML=result;
+      	 	 $("#buttons").append(button) 
+      	 	 	
+			
+       
 
         // console.log("plusTerm result:"+result); //09:30
 
@@ -138,17 +165,22 @@ for(let i=0;i<40;i++){
         // console.log("Date로 변환:"+getDate(result))
 
         result2=plusTerm(result2);
-        let button = document.createElement('button')
-        button.setAttribute("type","button")
-        button.setAttribute("id","timeButton")
-        button.setAttribute("name","resTime")
-        button.setAttribute("class","btn btn-outline-primary")
-        button.setAttribute("id","timeButton")
-        button.innerHTML=result2;
-        $("#buttons2").append(button) 
-
+    
+	        let button = document.createElement('button')
+	        button.setAttribute("type","button")
+	        button.setAttribute("id","timeButton")
+	        button.setAttribute("name","resTime")
+	        if(ar.includes(result2)){//점심시간일경우 회색으로 변경
+	       	 	button.setAttribute("class","btn btn-outline-secondary")
+				console.log(result2)
+			}else{
+				button.setAttribute("class","btn btn-outline-primary")
+			}
+	        button.setAttribute("id","timeButton")
+	        button.innerHTML=result2;
+	        $("#buttons2").append(button) 
+	
         // console.log("plusTerm result:"+result); //09:30
-
         result2=result2+":00"
         // console.log("=========================")
     }
