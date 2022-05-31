@@ -91,10 +91,10 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="/service/shopList?serKind=2" aria-label="Toggle navigation">Hair</a>
+                                        <a href="/service/shopList" aria-label="Toggle navigation">Hair</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="/service/hospitalList?serKind=1" aria-label="Toggle navigation">Hospital</a>
+                                        <a href="/service/hospitalList" aria-label="Toggle navigation">Hospital</a>
                                     </li>
                                     <li class="nav-item">
                                        <a href="javascript:void(0)" aria-label="Toggle navigation">Blog</a>

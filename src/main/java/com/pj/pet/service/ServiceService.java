@@ -178,9 +178,7 @@ public class ServiceService {
 		pager.makeRow();
 		Long totalCount= serviceMapper.total(pager);
 		pager.makeNum(totalCount);
-		ServiceVO serviceVO= new ServiceVO();
-		List<ServiceVO> ar=serviceMapper.getServiceKind(serviceVO);
-		ar =serviceMapper.getListc(pager);
+		List<ServiceVO> ar=serviceMapper.getListc(pager);
 //		ar=serviceMapper.getServiceKind(pager.getServiceVO());
 		return ar;
 	}

@@ -396,20 +396,15 @@ public class ServiceController {
 	// 서비스 목록 serKind 1 병원
 	@GetMapping("hospitalList") 
 	public ModelAndView getListc(Pager pager) throws Exception{
-	  ModelAndView mv = new ModelAndView();
-	  ServiceVO serviceVO = new ServiceVO();
-	  List<ServiceVO> ar=serviceService.getServiceKind(serviceVO);
-	  ar =serviceService.getListc(pager);
-	  
-	  for(ServiceVO serviceVOs : ar) {
-		  if(serviceVOs.getSerKind()==1L) {
-			  
-			  mv.addObject("list",ar);
-			  mv.setViewName("service/hospitalList"); 
-			  return mv;
-		  }
-	  }
-	  return null;
+		 ModelAndView mv = new ModelAndView();
+		  
+		 pager.setSerKind(1L);
+		 List<ServiceVO> ar=serviceService.getListc(pager);
+		  
+		 mv.addObject("list",ar);
+		 mv.setViewName("service/hospitalList"); 
+	
+	  return mv;
 	  
 	}
 	 
@@ -424,19 +419,13 @@ public class ServiceController {
 	@GetMapping("shopList")
 	public ModelAndView getListc(Pager pager,ModelAndView mv) throws Exception{
 		
-		ServiceVO serviceVO = new ServiceVO();
-		  List<ServiceVO> ar=serviceService.getServiceKind(serviceVO);
-		  ar =serviceService.getListc(pager);
-		  
-		  for(ServiceVO serviceVOs : ar) {
-			  if(serviceVOs.getSerKind()==2L) {
-				  
-				  mv.addObject("list",ar);
-				  mv.setViewName("service/shopList"); 
-				  return mv;
-			  }
-		  }
-		  return null;
+		  pager.setSerKind(2L);
+		  List<ServiceVO> ar=serviceService.getListc(pager);
+		 
+		  mv.addObject("list",ar);
+		  mv.setViewName("service/shopList"); 
+		
+		  return mv;
 		  
 	}
 

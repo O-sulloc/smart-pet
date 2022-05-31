@@ -46,37 +46,34 @@
 			</table>
 		</div>
 		<!-- serKind 2 미용샵 -->
-		<c:forEach items="${list}" var="vo" begin="0" end="1" step="1">
+		
                <div class="row">
                   <nav aria-label="Page navigation example">
                      <ul class="pagination">
                         <li class="page-item"><a class="page-link"
-                           href="./shopList?serKind=${vo.serKind}&pn=${pager.pre?pager.startNum-1:1}&kind=${pager.kind}&search=${pager.search}"
+                           href="./shopList?pn=${pager.pre?pager.startNum-1:1}&kind=${pager.kind}&search=${pager.search}"
                            aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
                         </a></li>
 
                         <c:forEach begin="${pager.startNum}" end="${pager.lastNum}"
                            var="i">
                            <li class="page-item"><a class="page-link"
-                              href="./shopList?serKind=${vo.serKind}&pn=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+                              href="./shopList?pn=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
                         </c:forEach>
 
                         <li class="page-item"><a class="page-link"
-                           href="./shopList?serKind=${vo.serKind}&pn=${pager.next?pager.lastNum+1:pager.lastNum}&kind=${pager.kind}&search=${pager.search}"
+                           href="./shopList?pn=${pager.next?pager.lastNum+1:pager.lastNum}&kind=${pager.kind}&search=${pager.search}"
                            aria-label="Next"> <span aria-hidden="true">&raquo;</span>
                         </a></li>
        
 							</ul>
 						</nav>
 					</div>
-			</c:forEach>
 
 		<div class="row justify-content-between">
 			<div class="col-5">
 				<form class="d-flex" action="./shopList" method="get">
-					<c:forEach items="${list}" var="vo">
-						<input type="hidden" name="serKind" value="${vo.serKind }">
-					</c:forEach>
+		
 					<div class="col-4 me-2">
 						<select name="kind" class="form-select "
 							aria-label="Default select example">
