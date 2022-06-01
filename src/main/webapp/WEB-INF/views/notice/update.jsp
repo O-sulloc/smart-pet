@@ -63,7 +63,7 @@
 		  <div class="row mb-3">
 		    <label for="contents" class="col-sm-2 col-form-label">Contents</label>
 		    <div class="col-sm-10">
-		      <textarea class="form-control" id="contents" name="contents">${vo.contents}</textarea>
+		      <textarea class="form-control" id="contents" name="contents" rows="20">${vo.contents}</textarea>
 		    </div>
 		  </div>
 			

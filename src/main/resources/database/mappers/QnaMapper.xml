@@ -7,15 +7,26 @@
 <mapper namespace="com.pj.pet.qna.QnaMapper">
 
 	<!-- REPLY -->
-	<insert id="setReply" parameterType="QnaVO" useGeneratedKeys="true"  keyProperty="num">
+	<insert id="setReply" parameterType="QnaVO">
 		INSERT INTO QNA(NUM, PRODUCTNUM, id, CONTENTS, REGDATE, REF, STEP, DEPTH, REPLYCHECK)
-		VALUES(NULL, #{productNum}, #{id}, #{contents}, now(), 0, 0, 0, 1)
+		VALUES(NULL, #{productNum}, #{id}, #{contents}, now(), #{ref}, #{step}, #{depth}, 1)
 	</insert>
-
+	
+	<!-- 여기수정 -->
 	<update id="setStepUpdate" parameterType="QnaVO">
-		UPDATE QNA SET REPLYCHECK=2, STEP=STEP+1
-		WHERE REF=#{ref} AND STEP > #{step} AND NUM=#{num}
+		UPDATE QNA SET STEP=STEP+1
+		WHERE REF=#{ref} AND STEP > #{step}
 	</update>
+	
+	<update id="setCheckUpdate" parameterType="QnaVO">
+		UPDATE QNA SET REPLYCHECK = 2
+		WHERE NUM = #{num}
+	</update>
+	
+	<!-- qna seller -->
+	<select id="getSellerList" resultType="QnaVO">
+		SELECT * FROM QNA WHERE STEP>0
+	</select>
 
 	<!-- QNA -->
 	<select id="getList" resultType="QnaVO" parameterType="Pager">
@@ -26,7 +37,7 @@
 		<if test="dataNum != null">
 			AND ID=#{id}
 		</if>
-		ORDER BY NUM DESC
+		ORDER BY REF DESC, STEP ASC
 		LIMIT #{startRow}, #{perPage}
 	</select>
 	
@@ -38,9 +49,13 @@
 		SELECT COUNT(NUM) FROM QNA
 	</select>
 
-	<insert id="setAdd" parameterType="QnaVO" useGeneratedKeys="true"  keyProperty="num">
+	<insert id="setAdd" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="num">
 		INSERT INTO QNA(NUM, PRODUCTNUM, id, CONTENTS, REGDATE, REF, STEP, DEPTH, SECRET, REPLYCHECK)
-		VALUES(#{num}, #{productNum}, #{id}, #{contents}, now(), 0, 0, 0, #{secret}, 1)
+		VALUES(#{num}, #{productNum}, #{id}, #{contents}, now(), #{num}, 0, 0, #{secret}, 1)
+	</insert>
+	
+	<insert id="setRefUpdate" parameterType="QnaVO">
+		UPDATE QNA SET REF = #{num} WHERE NUM=#{num}
 	</insert>
 
 	<update id="setUpdate" parameterType="QnaVO">

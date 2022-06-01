@@ -7,11 +7,17 @@ import com.pj.pet.util.Pager;
 @Mapper
 public interface QnaMapper {
 	
-	// 응답 객체만들기(qnaDTO로 받는 이유는 boardDTO에 답글관련 자료 안넣었기때문)
+	// 응답 객체만들기
 	public int setReply(QnaVO qnaVO) throws Exception;
 	
-	//부모의 step 업데이트하는것
+	//부모의 replyCheck를 바꿔줘야함
 	public int setStepUpdate(QnaVO qnaVO) throws Exception;
+	
+	//부모의 replyCheck를 바꿔줘야함
+	public int setCheckUpdate(QnaVO qnaVO) throws Exception;
+	
+	//seller list
+	public List<QnaVO> getSellerList() throws Exception;
 	
 	//list
 	public List<QnaVO> getList(Pager pager) throws Exception;
@@ -24,6 +30,9 @@ public interface QnaMapper {
 	
 	//add
 	public int setAdd(QnaVO qnaVO) throws Exception;
+	
+	//refUpdate
+	public int setRefUpdate(QnaVO qnaVO) throws Exception;
 	
 	//update
 	public int setUpdate(QnaVO qnaVO) throws Exception;

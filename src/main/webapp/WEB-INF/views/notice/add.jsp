@@ -40,6 +40,7 @@
 					</div>
 				</div>
 			</div>
+			<br>
 
 		  <div class="row mb-3">
 		    <label for="title" class="col-sm-2 col-form-label">Title</label>
@@ -51,13 +52,13 @@
 		  <div class="row mb-3">
 		    <label for="id" class="col-sm-2 col-form-label">Writer</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="id" name="id">
+		      <input type="text" class="form-control" id="id" name="id" value="${user.id}" readonly>
 		    </div>
 		  </div>
 		  <div class="row mb-3">
 		    <label for="contents" class="col-sm-2 col-form-label">Contents</label>
 		    <div class="col-sm-10">
-		      <textarea class="form-control" id="contents" name="contents"></textarea>
+		      <textarea class="form-control" id="contents" name="contents" rows="20"></textarea>
 		    </div>
 		  </div>
 

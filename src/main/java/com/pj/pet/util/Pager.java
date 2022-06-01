@@ -93,6 +93,8 @@ public class Pager {
 	public void makeNum(Long totalCount) {
 		//전체 row 갯수는 위 매개변수
 		
+		totalCountC = totalCount;
+				
 		//전체 page 갯수
 		Long totalPage = totalCount/this.getPerPage();
 		if(totalCount%this.getPerPage() != 0) {

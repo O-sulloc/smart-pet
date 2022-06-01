@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.pj.pet.qna.reply.QnaReplyMapper">
+
+	<update id="setUpdate" parameterType="QnaReplyVO">
+		UPDATE QNAREPLY SET CONTENTS=#{contents} WHERE REPLYNUM=#{replyNum}  
+	</update>
+
+	<delete id="setDelete" parameterType="QnaReplyVO">
+		DELETE QNAREPLY WHERE REPLYNUM=#{replyNum}
+	</delete>
+	
+	<insert id="setAdd" parameterType="QnaReplyVO" useGeneratedKeys="true"  keyProperty="replyNum">
+		INSERT INTO QNAREPLY(REPLYNUM, NUM, ID, CONTENTS, REGDATE) 
+		VALUES(#{replyNum}, #{num}, #{id}, #{contents}, now())
+	</insert>
+
+	<select id="getList" resultType="QnaReplyVO" parameterType="Pager">
+		SELECT * FROM QNAREPLY
+		WHERE NUM =#{num}
+		ORDER BY REPLYNUM DESC
+	</select>
+
+
+
+</mapper>

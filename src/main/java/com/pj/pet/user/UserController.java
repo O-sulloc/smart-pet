@@ -337,6 +337,47 @@ public class UserController {
 		mv.setViewName("review/reviewPopUpdate");
 		return mv;
 	}
+	
+	
+	
+	//관리자페이지
+	@GetMapping("admin")
+	public ModelAndView myPage() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		List<UserVO> ar = userService.getData();
+		
+		mv.addObject("list", ar);
+		mv.setViewName("admin/myPage");
+		return mv;
+	}
+	
+	//관리자페이지-회원관리 form
+	@GetMapping("admin/userUpdate")
+	public ModelAndView userUpdate() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		List<UserVO> ar = userService.getData();
+		
+		mv.addObject("list", ar);
+		mv.setViewName("admin/userUpdate");
+		return mv;
+	}
+	
+	//관리자페이지-회원관리 DB
+	@PostMapping("admin/userUpdate")
+	public ModelAndView userUpdate(UserVO userVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		System.out.println(userVO);
+		int result = userService.setUserRole(userVO);
+		mv.addObject("result", result);
+		mv.setViewName("common/result");
+		return mv;
+	}
+	
+	
+	
+	
 }
 
 

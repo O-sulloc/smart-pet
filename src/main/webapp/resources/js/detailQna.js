@@ -40,7 +40,7 @@
 	
 	getQnaSort();
 	//1) 분류클릭시(id)
-	function getQnaSort(){
+	function getQnaSort(selector){//여기새로추가해봄
 		$("#qnaList").on("click", ".sort", function(){
 		let dataNum = $(this).attr("data-num");
 			
@@ -49,6 +49,7 @@
 			return;
 		}
 		
+		let num = selector;//여기새로추가해봄
 		let productNum = $('#productNum').val();
 		let id = $('#id').val();
 
@@ -60,7 +61,8 @@
 					perPage:10,
 					productNum:productNum,
 					dataNum:dataNum,
-					id:id
+					id:id,
+					num:num // 여기새로추가해봄
 				},
 				success:function(data){
 					$("#qnaList").find('.listView').html(data.trim());//내용 최신화
@@ -91,6 +93,25 @@
 				$("#qnaList").find('.listView').html(data.trim());//일단 여기 부분 봐야함 나중에 일단 가능함!
 				
 			}
+		});
+	}
+	
+	//getQnaReplyList();
+	//판매자 qnaReply add시 호출 함수 아직안씀
+	function getQnaReplyList(selector){
+		
+		let num = selector;
+		
+		$.ajax({
+			type: "GET",
+			url: "./qnaReplyList",
+			data:{
+				num: num
+			},
+			success:function(data){
+				$("#qnaList").find('.listView').find('.replyResult'+num).html(data.trim());//일단 여기 부분 봐야함 나중에 일단 가능함!
+			}
+		
 		});
 	}
 	

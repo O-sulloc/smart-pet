@@ -18,8 +18,7 @@
 	 	<div class="accordion accordion-flush">
 			<div>
 				<c:forEach items="${list}" var="vo">
-					<input type="hidden" value="${vo.num}" id="num">
-					<input type="hidden" value="${vo.productNum}" id="productNum">
+					<input hidden="num" value="${vo.num}" id="num">
 					<br>
 					<li style="list-style:none;" class="box_top">
 						<c:choose>
@@ -95,34 +94,15 @@
 								</c:if>
 								<!-- 판매자, 관리자 role 들어올때만 보이게 하자 -->
 								<br><br>
+								<div>판매자 글 추가</div><!-- 없애야하고 -->
 								<div class="seller_add_reply_wrap" data-num="${vo.num}">
-									<button>판매자 답글 쓰기</button><!-- 버튼고민 -->
+									<button>답글 쓰기</button><!-- 버튼고민 -->
 								</div>
 								<div class="replyResult${vo.num}" data-num="${vo.num}">
 								<!-- 여기서 덮어씌우는거로 호출해야함 -->
-									<%-- <c:if test="${vo.num == sellerList.ref}"> --%>
-								<%-- 	<table>
-										<tr>
-											<td>${sellerList}</td>
-										</tr>
-										
-											<c:if test="${vo.num == sellerList.ref}">
-												<tr class="bg">
-													<td id="up${i.index}">${dto.contents}</td>
-													<td id="up${sel.replyNum}">${sel.contents}</td>
-													<td>${sel.id}</td>
-													<td>
-													<c:if test="${id eq sel.id}">
-														<button class="update" type="button" data-num="${sel.replyNum}">Update</button>
-														<button class="del" type="button" data-num="${sel.replyNum}">Delete</button>
-													</c:if>
-													</td>
-												</tr>
-											</c:if>
-										
-									</table> --%>
-									
-									
+									<table>
+										<%-- <c:import url="./qnaReplyList.jsp"></c:import> --%>
+									</table>
 						 		</div> 
 								<%-- table id="replyResult">
 									<tr>
