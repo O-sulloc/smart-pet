@@ -23,6 +23,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.pj.pet.category.CategoryVO;
 import com.pj.pet.qna.QnaService;
 import com.pj.pet.qna.QnaVO;
+import com.pj.pet.qna.reply.QnaReplyMapper;
+import com.pj.pet.qna.reply.QnaReplyVO;
 import com.pj.pet.review.ReviewVO;
 import com.pj.pet.review.product.ProductReviewService;
 import com.pj.pet.user.UserVO;
@@ -216,7 +218,6 @@ public class ProductController {
 	//list 리뷰 갖고와서 보여주기
 	@GetMapping("qnaList")
 	public ModelAndView getQnaList(Pager pager, HttpSession session) throws Exception{
-		System.out.println("진입함!!");
 		ModelAndView mv = new ModelAndView();
 		List<QnaVO> ar = qnaService.getList(pager);
 		mv.addObject("list", ar);
@@ -225,6 +226,10 @@ public class ProductController {
 			UserVO userVO = (UserVO)session.getAttribute("user");
 			mv.addObject("id", userVO.getId());
 		}
+		//조회문 하나 더 만들기
+		//List<QnaVO> ar2 = qnaService.getSellerList();
+		//mv.addObject("sellerList", ar2);
+		
 		mv.setViewName("qna/qnaList");
 		return mv;
 	}
@@ -241,6 +246,7 @@ public class ProductController {
 			UserVO userVO = (UserVO)session.getAttribute("user");
 			mv.addObject("id", userVO.getId());
 		}
+		
 		mv.setViewName("qna/qnaSort");
 		return mv;
 	}
@@ -269,12 +275,23 @@ public class ProductController {
 	
 	
 	//판매자(pop 창 이동)
-	@GetMapping("qnaSellerAdd/{id}")
-	public ModelAndView reviewSellerAdd(@PathVariable("id")String id, Long productNum, Long num) {
+//	@GetMapping("qnaSellerAdd/{id}")
+//	public ModelAndView reviewSellerAdd(@PathVariable("id")String id, Long num, Long productNum) {
+//		ModelAndView mv = new ModelAndView();
+//		System.out.println("판매자 pop창 이동" + productNum);
+//		mv.addObject("id", id);
+//		mv.addObject("num", num);
+//		mv.addObject("productNum", productNum);
+//		mv.setViewName("qna/sellerQnaPop");
+//		return mv;
+//	}
+	@GetMapping("qnaSellerAdd")
+	public ModelAndView reviewSellerAdd(QnaVO qnaVO) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("productNum", productNum);
-		mv.addObject("id", id);
-		mv.addObject("num", num);
+		System.out.println("판매자 pop창 이동" + qnaVO);
+		mv.addObject("id", qnaVO.getId());
+		mv.addObject("num", qnaVO.getNum());
+		mv.addObject("productNum", qnaVO.getProductNum());
 		mv.setViewName("qna/sellerQnaPop");
 		return mv;
 	}
@@ -291,7 +308,26 @@ public class ProductController {
 	
 	//판매자(pop 수정 창 이동 reply form)
 	
-
+	
+	//list 안에 내용만 재호출
+	
+	//private QnaReplyMapper qnaReplyMapper;
+	
+//	@GetMapping("qnaReplyList")
+//	public ModelAndView getQnaReplyList(HttpSession session, QnaReplyVO qnaReplyVO) throws Exception{
+//		ModelAndView mv = new ModelAndView();
+//		System.out.println("여기 진입하는지? controller에 qnaReplyList 호출" + qnaReplyVO);
+//		List<QnaReplyVO> ar = qnaReplyMapper.getList(qnaReplyVO);
+//		mv.addObject("list", ar);
+//
+//		if(session.getAttribute("user") != null) {//여긴 아직 불필요 넣어줄지 고민
+//			UserVO userVO = (UserVO)session.getAttribute("user");
+//			mv.addObject("id", userVO.getId());
+//		}
+//		
+//		mv.setViewName("qna/qnaReplyList");
+//		return mv;
+//	}
 	
 	
 	

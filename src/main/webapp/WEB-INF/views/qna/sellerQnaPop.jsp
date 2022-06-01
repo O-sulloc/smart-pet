@@ -20,8 +20,8 @@
 		
 		<div class="input_wrap">	
 			<input type="hidden" class="id" value="${id}">
-			<input type="hidden" class="productNum" value="${productNum}">
 			<input type="hidden" class="num" value="${num}">
+			<input type="hidden" class="productNum" value="${productNum}">
 			<div class="content_div">
 				<textarea class="col-auto form-control contents" id="contents" name="contents"
 				placeholder="답변하실 내용을 입력하세요"></textarea>

@@ -53,4 +53,10 @@ public interface UserMapper {
 	
 	//회원가입
 	public int setAdd(UserVO userVO) throws Exception;
+	
+	//관리자페이지
+	public List<UserVO> getData() throws Exception;
+	
+	//관리자페이지 - 유저 ROLE 변경
+	public int setUserRole(UserVO userVO) throws Exception;
 }

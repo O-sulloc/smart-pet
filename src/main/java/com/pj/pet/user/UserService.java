@@ -111,4 +111,16 @@ public class UserService {
 		return userMapper.setAdd(userVO);
 	}
 	
+	
+	
+	//관리자 페이지
+	public List<UserVO> getData() throws Exception{
+		return userMapper.getData();
+	}
+	
+	//관리자페이지 - 유저 ROLE 변경
+	public int setUserRole(UserVO userVO) throws Exception{
+		return userMapper.setUserRole(userVO);
+	}
+	
 }

@@ -15,6 +15,16 @@ public class QnaController {
 	
 	@Autowired
 	private QnaService qnaService;
+	
+	//reply DB
+	@PostMapping("reply")
+	public int setReply(QnaVO qnaVO) throws Exception{
+		System.out.println("qna reply 진입!" + qnaVO);
+		int result = qnaService.setReply(qnaVO);
+		
+		return result;	
+		
+	}
 
 	//add DB
 	@PostMapping("add")
@@ -45,26 +55,6 @@ public class QnaController {
 		return result;
 	}
 	
-	//판매자(reply 삭제시 삭제하고 부모글의 reply 삭제시도 같이 호출해야함) - 이건 qna controller?
-	//판매자(reply add DB)
-	@PostMapping("reply")
-	public int setReply(QnaVO qnaVO) throws Exception{
-		
-		System.out.println("qna reply 진입!");
-		System.out.println(qnaVO);
-		int result = qnaService.setReply(qnaVO);
-		
-		return result;
-	}
-	
-	//판매자(reply add update)
-//	@PostMapping("reply")
-//	public ModelAndView setReply(QnaVO qnaVO) throws Exception{
-//		ModelAndView mv = new ModelAndView();
-//		int result = qnaService.setReply(qnaVO);
-//		mv.setViewName("redirect:./list");
-//		return mv;
-//	}
 	
 
 }

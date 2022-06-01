@@ -66,11 +66,27 @@
 	</select>
 
 	<select id="getLogin" resultType="UserVO" parameterType="UserVO">
-		SELECT NAME, ID, PHONE FROM USER WHERE ID=#{id} and PW=#{pw}
+		SELECT NAME, ID, PHONE, ROLE FROM USER WHERE ID=#{id} and PW=#{pw}
 	</select>
+	<!-- 재석 ROLE 추가 -->
 
 	<insert id="setAdd" parameterType="UserVO">
 		INSERT INTO USER (ID, PW, NAME, PHONE, EMAIL, ADDRESS, JOINDATE, ROLE, POINT)
 		VALUES (#{id},#{pw},#{name},#{phone}, #{email}, #{address}, NOW(), 2, 0)
 	</insert>
+	
+	
+	<!-- 관리자 페이지 -->
+	<select id="getData" resultType="UserVO">
+		SELECT * FROM USER
+	</select>
+	
+	
+	<update id="setUserRole" parameterType="UserVO">
+		UPDATE USER SET ROLE = #{role} WHERE ID=#{id}
+	</update>
+	
+	
+	
+	
 </mapper>

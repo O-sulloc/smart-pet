@@ -41,6 +41,7 @@
 		<typeAlias type="com.pj.pet.review.product.ProductReviewAvgVO" alias="ProductReviewAvgVO"/>
 		<typeAlias type="com.pj.pet.review.product.ProductReviewFilesVO" alias="ProductReviewFilesVO"/>
 		<typeAlias type="com.pj.pet.qna.QnaVO" alias="QnaVO"/>
+		<typeAlias type="com.pj.pet.qna.reply.QnaReplyVO" alias="QnaReplyVO"/>
 		
 
 </typeAliases>

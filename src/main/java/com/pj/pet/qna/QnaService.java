@@ -21,23 +21,20 @@ public class QnaService {
 		
 		QnaVO parent = qnaMapper.getDetail(qnaVO);
 		
-		System.out.println("parent" + parent);
-		QnaVO child = new QnaVO();
-		
 		System.out.println(parent);
 		//2. 답글의 ref는 부모의 ref값
-		child.setRef(parent.getRef());
+		qnaVO.setRef(parent.getRef());
 		
 		//3. 답글의 step은 부모의 step+1
-		child.setStep(parent.getStep()+1);
+		qnaVO.setStep(parent.getStep()+1);
 		
 		//4. 답글의 depth는 부모의 depth+1
-		child.setDepth(parent.getDepth()+1);
+		qnaVO.setDepth(parent.getDepth()+1);
 		
-		//5. 답글에 id, productNum 넣어주기
-		child.setId(qnaVO.getId());
-		child.setProductNum(qnaVO.getProductNum());
-		child.setContents(qnaVO.getContents());
+		//5. 답글에 id, productNum 넣어주기//child 없애버림
+//		qnaVO.setId(qnaVO.getId());
+//		qnaVO.setProductNum(qnaVO.getProductNum());
+//		qnaVO.setContents(qnaVO.getContents());
 
 		//qnaVO.ref      : 부모의 ref
 		//qnaVO.step     : 부모의 step+1
@@ -46,12 +43,21 @@ public class QnaService {
 		//5. step update
 		int result = qnaMapper.setStepUpdate(parent);
 		
+		//6. setCheckUpdate
+		result = qnaMapper.setCheckUpdate(parent);
+		
 		//6. 답글 insert 비밀글뺌(secret column)
-		result = qnaMapper.setReply(child);
+		result = qnaMapper.setReply(qnaVO);
 		
 		return result;
 	}
 
+	//list(판매자)
+	public List<QnaVO> getSellerList() throws Exception{
+		return qnaMapper.getSellerList();
+	}
+	
+	
 
 	//QNA
 	//list
@@ -60,6 +66,11 @@ public class QnaService {
 		pager.makeRow();
 		pager.makeNum(qnaMapper.getTotalCount(pager));
 	
+		//반목문으로 QNAVO하나를 꺼내서 거기에 해당하는 NUM을꺼냄
+		//그 NUM으로 REPLYLIST각각 호출
+		//이거를 한번에 보내야함
+		
+		
 		return qnaMapper.getList(pager);
 	}
 
@@ -70,7 +81,9 @@ public class QnaService {
 	
 	//add
 	public int setAdd(QnaVO qnaVO) throws Exception{
-		return qnaMapper.setAdd(qnaVO);
+		int result = qnaMapper.setAdd(qnaVO);
+		result = qnaMapper.setRefUpdate(qnaVO);
+		return result;
 	}
 	
 	//update
