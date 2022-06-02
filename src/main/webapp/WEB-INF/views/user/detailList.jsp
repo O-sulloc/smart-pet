@@ -23,7 +23,6 @@
 
 </head>
 <body>
-
 	<c:import url="../temp/header.jsp"></c:import>
 	<div class="container-fluid">
 		<div class="row">
@@ -32,38 +31,34 @@
 			</div>
 			<div class="col-9 container mt-3">
 				<main>
-					<c:forEach items="${olist}" var="ovo">
-						<section id="content">
 
-							<div class="orderInfo">
+					<section id="content">
 
-								<p>
-									<span>주문번호</span><a href="./detailList?payNum=${ovo.payVO.payNum}&id=${ovo.id}">${ovo.orderName}</a>
-								</p>
-								<p>
-									<span>수령인</span>${ovo.payVO.recipient}</p>
-								<p>
-									<span>주소</span>${ovo.payVO.arrive}</p>
-								<p>
-									<span>전화번호</span>${ovo.payVO.recipientPhone}</p>
-								<p>
-									<span>가격</span>${ovo.payVO.totalPrice}원</p>
-								<p>
-									<span>환불</span>
-								</p>
-								<p>
-									<span>배송상태</span>
-								</p>
-								<p>
-									<span>주문날짜</span>${ovo.orderDate}</p>
-
-							</div>
-
-						</section>
-					</c:forEach>
+						<ul class="orderView">
+							<c:forEach items="${plist}" var="pvo">
+								<li>
+									<div class="thumb">
+										<img src="../resources/upload/product/${pvo.productFileVOs[0].fileName}" />
+									</div>
+									<div class="gdsInfo">
+										<p>
+											<span>상품명</span>${pvo.productVO.productName}</p>
+										<p>
+											<span>개당 가격</span>${pvo.productVO.totalPrice}원</p>
+										<p>
+											<span>구입 수량</span>${pvo.productAmount}개</p>
+										<p>
+											<span>최종 가격</span>${pvo.productVO.totalPrice * pvo.productAmount}원</p>
+									</div>
+								</li>
+							</c:forEach>
+						</ul>
+					</section>
 				</main>
 			</div>
 		</div>
 	</div>
+
+
 </body>
 </html>

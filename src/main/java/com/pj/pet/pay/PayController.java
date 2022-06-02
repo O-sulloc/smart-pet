@@ -43,11 +43,11 @@ public class PayController {
 		int result = payService.setAdd(payVO, cartNum);
 		//결제->주문 add
 		OrderVO orderVO =new OrderVO();
-		String orderName= orderService.getOrderName();
-		orderVO.setOrderName(orderName);
 		orderVO.setId(payVO.getId());
 		orderVO.setPayNum(payVO.getPayNum());
 		orderService.setAdd(orderVO);
+		String orderName= orderService.getOrderName();
+		orderService.updateName(orderName);
 
 		mv.addObject("result",result);
 		mv.setViewName("common/result");

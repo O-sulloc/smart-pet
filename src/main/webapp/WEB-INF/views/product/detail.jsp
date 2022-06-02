@@ -124,7 +124,7 @@ class="number">${vo.rate}</span><span class="percent">% 할인 중</span>
    	<button type="button" class="addToCart" data-id="${user.id}" data-pNum="${vo.productNum}">장바구니</button>
 	
 	<p>
-   	<button type="button" class="addBuy">바로결제</button>
+   	<button type="button" class="addBuy" data-id="${user.id}" data-pNum="${vo.productNum}">바로결제</button>
 	</p>
 	
 </div>

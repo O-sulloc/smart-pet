@@ -56,20 +56,17 @@ input {
 						<td>
 							<div class="countBtn" data-pNum="${vo.cartNum}">
 								<!--히든  -->
-								<input class="pCount${vo.cartNum}" type="hidden"
-									value="${vo.productVO.productCount}"> <input
-									class="pPrice${vo.cartNum}" type="hidden"
-									value="${vo.productVO.totalPrice}">
+								<input class="pName${vo.cartNum}" type="hidden" value="${vo.productVO.productName}">
+								<input class="pCount${vo.cartNum}" type="hidden" value="${vo.productVO.productCount}"> 
+								<input class="pPrice${vo.cartNum}" type="hidden" value="${vo.productVO.totalPrice}">
 								<!--히든 끝 -->
 								<input type="number" id="inputnumbox" data-check="${vo.cartNum}"
 									class="col-2 numBox${vo.cartNum}" value="${vo.productAmount}"
 									readonly="readonly" />
 							</div>
 						</td>
-						<td><input type="number" id="priceResult${vo.cartNum}"
-							class="col-4 priceResult"
-							value="${vo.productVO.totalPrice * vo.productAmount}"
-							readonly="readonly" style="border: none" /></td>
+						<td><input type="number" id="priceResult${vo.cartNum}" class="col-4 priceResult"
+							value="${vo.productVO.totalPrice * vo.productAmount}" readonly="readonly" style="border: none" /></td>
 					</tr>
 					<!-- 히든 -->
 					<input type="hidden" value="${vo.cartNum}" class="cartNum">
@@ -102,20 +99,32 @@ input {
 					</select>
 				</div>
 				<div id="payFrm"></div>
+			</div >
+			<c:forEach items="${list}" var="vo">
+			<c:if test="${vo.payCheck eq 2}">
+			<div class="row" style="text-align: center">
+			<p style="padding-top: 50px;"><h2>오늘 안에 결제를 안하시면 결제가 취소됩니다.</h2></p>
 			</div>
-			
+			</c:if>
+			</c:forEach>
 			<div class="d-grid gap-2 col-4 mx-auto" style="padding-top: 50px;">
-				<button type="button" id="payBtn" data-id="${user.id}"
-					class="btn btn-primary">결제</button>
+				<button type="button" id="payBtn" data-id="${user.id}" class="btn btn-primary">결제</button>
+				<button type="button" id="kakaoBtn" data-id="${user.id}"  data-name="${user.name}" class="btn btn-primary">카카오 페이</button>
+				<button type="button" id="tossBtn" data-id="${user.id}"  data-name="${user.name}" class="btn btn-primary">토스 페이</button>
 			</div>
+	
 		</div>
 			<!-- 결제 폼 끝 -->
 
-
 	</div>
-
+	<!-- 결제 api -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	<!-- 결제 api 끝 -->
+	<!-- 주소 api  -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<!-- 주소 api 끝 -->
 	<script type="text/javascript" src="../resources/js/pay.js"></script>
 </body>
 </html>
