@@ -115,6 +115,7 @@ for(let i=0;i<40;i++){
 		        button.setAttribute("name","resTime")
 		        if(ar.includes(result)){ //점심시간일경우 회색으로 변경
 		       	 	button.setAttribute("class","btn btn-outline-secondary")
+		       	 	button.setAttribute("disabled",true)
 					console.log(result)
 				}else{
 					button.setAttribute("class","btn btn-outline-primary")
@@ -170,13 +171,16 @@ for(let i=0;i<40;i++){
 	        button.setAttribute("type","button")
 	        button.setAttribute("id","timeButton")
 	        button.setAttribute("name","resTime")
+	        button.setAttribute("id","timeButton")
 	        if(ar.includes(result2)){//점심시간일경우 회색으로 변경
+	        
 	       	 	button.setAttribute("class","btn btn-outline-secondary")
-				console.log(result2)
+	       	 	button.setAttribute("disabled",true)
 			}else{
 				button.setAttribute("class","btn btn-outline-primary")
+				
 			}
-	        button.setAttribute("id","timeButton")
+	        
 	        button.innerHTML=result2;
 	        $("#buttons2").append(button) 
 	

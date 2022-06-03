@@ -6,6 +6,7 @@
 
     
 <mapper namespace="com.pj.pet.service.ServiceMapper">
+
 	<!-- 예약승인시 메일 보내기 -->
 	<!-- reservation 테이블에서 setNum이용해서 예약자의 이메일 가져옴 -->
 	<select id="findEmail" parameterType="reservationVO" resultType="userVO">
@@ -214,6 +215,27 @@
 		ORDER BY RESNUM DESC
 		LIMIT #{startRow}, #{perPage} 
 	</select>
+	
+	<!--예약날짜,예약시간이 현재시간보다 전인것들-->
+	<!--mysql 현재시간 +9로 계산됨-->
+	  <select id="getOverdue" parameterType="Pager" resultMap="reservationResult">
+		SELECT R.*,U.NAME,U.EMAIL,U.PHONE 
+		from RESERVATION R
+		left join
+		USER U
+		using(ID)
+		where
+			SERNUM= (SELECT SERNUM from SERVICE WHERE ID=#{id})
+			and 
+			 <![CDATA[
+		 		TIMESTAMPDIFF(MINUTE,concat(RESDATE," ",RESTIME),(SELECT DATE_ADD(NOW(), INTERVAL 9 HOUR)))>0
+			]]> 
+			and RESSTATE=1
+		ORDER BY RESNUM DESC
+		LIMIT #{startRow}, #{perPage} 
+	  </select>
+	  	<!-- 
+		and TIMEDIFF(RESTIME,(select DATE_FORMAT(SYSDATE(), '%H:%i:%s')))<=0 -->
 	
 	<!--판매자측 서비스 예약 리스트 --><!-- 대기중인 예약만 -->
 	<select id="getResStateIs0" parameterType="Pager" resultMap="reservationResult">

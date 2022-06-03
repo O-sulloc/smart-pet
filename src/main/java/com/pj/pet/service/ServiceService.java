@@ -30,6 +30,8 @@ public class ServiceService {
 //		return serviceMapper.getFileDetail(serviceVO);
 //	}
 	
+
+	
 	public ReservationVO getMailData(ReservationVO reservationVO)throws Exception{
 		return serviceMapper.getMailData(reservationVO);
 	}
@@ -129,6 +131,13 @@ public class ServiceService {
 		}
 		
 		return result;
+	}
+	
+	//<!--판매자측 서비스 예약 리스트 --><!--방문완료체크용-->
+	public List<ReservationVO> getOverdue(Pager pager)throws Exception{
+		pager.makeRow();
+		pager.makeNum(serviceMapper.getTotalCount(pager));
+		return serviceMapper.getOverdue(pager);
 	}
 	
 	//<!--판매자측 서비스 예약 리스트 --><!--월별 resState Count-->

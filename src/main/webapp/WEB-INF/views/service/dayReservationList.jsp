@@ -49,8 +49,12 @@
 				<div class="dates"></div>
 			</div>
 		</div><!-- 달력 끝 -->
+		
+		  <br>
+		
+		<div id="count"></div><!-- 예약 수 정보 -->
  		
- 		<div id="list"></div>
+ 		<div id="list"></div><!-- 예약 테이블 -->
  <!-- Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">

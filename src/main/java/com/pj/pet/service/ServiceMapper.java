@@ -15,6 +15,9 @@ import com.pj.pet.util.Pager;
 
 @Mapper
 public interface ServiceMapper {
+	
+	//overdue
+	public List<ReservationVO> getOverdue(Pager pager)throws Exception;
 
 	//예약확인 메일에 들어갈 데이터가져오기 
 	public ReservationVO getMailData(ReservationVO reservationVO)throws Exception;

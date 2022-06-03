@@ -48,15 +48,6 @@ public class ServiceController {
 		return "service";
 	}
 
-
-	@GetMapping("completionCheck")
-	public ModelAndView completionCheck()throws Exception{
-		ModelAndView mv = new ModelAndView();
-		
-		mv.setViewName("service/completionCheck");
-		return mv;
-	}
-	
 	@PostMapping("sendEmail")
 	public void sendEmail(ReservationVO reservationVO)throws Exception{
 		UserVO userVO=serviceService.findEmail(reservationVO);
@@ -310,6 +301,30 @@ public class ServiceController {
 		return mv;
 	}
 
+
+	//기한지나고 예약승인한 예약들 리스트 보여주는 페이지로 이동 
+	@GetMapping("completionCheck")
+	public ModelAndView completionCheck()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("service/completionCheck");
+		return mv;
+	}
+	//기한지나고 예약승인한 예약들 리스트 
+	@GetMapping("ajaxOverdueList")
+	public ModelAndView getOverdue(Pager pager, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		UserVO userVO = (UserVO) session.getAttribute("user");
+		pager.setId(userVO.getId());
+		List<ReservationVO> ar = serviceService.getOverdue(pager);
+
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("common/reservationList2");
+		return mv;
+	}
+	
+	
+	
 	// 예약리스트 날짜별
 	@GetMapping("ajaxDayReservationList")
 	public ModelAndView getAjaxDayReservationList(Pager pager, HttpSession session) throws Exception {
