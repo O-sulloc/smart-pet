@@ -12,6 +12,10 @@ import com.pj.pet.user.UserVO;
 
 @Mapper
 public interface ReservationMapper {
+	
+	//예약 중복 방지
+	public Long repetition(ReservationVO reservationVO) throws Exception;
+	
 	// 예약 정보 수정 (날짜,시간,메모 변경)
 	public int setUpdate(ReservationVO reservationVO) throws Exception;
 	

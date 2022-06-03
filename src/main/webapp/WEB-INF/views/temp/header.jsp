@@ -19,10 +19,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" href="/service/list">병원</a>
+          <a class="nav-link active" href="/service/hospitalList">병원</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">미용조회</a>
+          <a class="nav-link active" aria-current="page" href="/service/shopList">미용</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

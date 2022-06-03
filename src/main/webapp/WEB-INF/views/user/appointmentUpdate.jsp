@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +20,7 @@
 				<h4 class="text-center" style="text-transform: uppercase;">예약변경</h4>
 			</div>
 		</div>
-	
+
 		<ul class="list-group">
 			<li class="list-group-item">${vo.serviceVO.serName }</li>
 			<li class="list-group-item">${vo.serviceVO.serTel }</li>
@@ -32,6 +32,9 @@
 		<input type="hidden" id="term" value="${settingVO.term}"> 
 		<input type="hidden" id="capacity" value="${settingVO.capacity}"> 
 		<input type="hidden" id="holiday" value="${settingVO.holiday}">
+		<input type="hidden" id="startBreaktime" value="${settingVO.startBreaktime}">
+		<input type="hidden" id="endBreaktime" value="${settingVO.endBreaktime}">
+			
 
 
 
@@ -63,50 +66,50 @@
 		<div class="order">
 			<div class="row mt-4">
 				<div class="alert alert-primary" role="alert">
-					<h4 class="text-center" style="text-transform: uppercase;">변경 전 예약 정보</h4>
+					<h4 class="text-center" style="text-transform: uppercase;">변경
+						전 예약 정보</h4>
 				</div>
 			</div>
-			
-			
-		<div class="row mt-4">
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th>예약자</th>
-					<th>예약자 연락처</th>
-					<th>예약일</th>
-					<th>예약시간</th>
-					<th>예약상태</th>
-				</tr>
-			</thead>
-			<tbody>
-			
-				<tr>
-					<td>${sessionScope.user.name}</td>
-					<td>${sessionScope.user.phone}</td>
-					<td>${vo.resDate}</td>
-					<td><c:set var="time" value="${vo.resTime}" />
-					${fn:split(time,':')[0]}시 ${fn:split(time,':')[1]}분</td>
-					<td><span>
-						<c:choose>
-							<c:when test="${vo.resState==0}">
-								<span>예약진행중</span> 
-							</c:when>
-							<c:when test="${vo.resState==1}">
-								<span>예약완료</span><</c:when>
-							<c:when test="${vo.resState==2}">
-								<span>예약실패</span><</c:when>
-							<c:when test="${vo.resState==3}">
-								<span>방문완료</span> <</c:when>
-						</c:choose>
-					</span></td>
-				
-				</tr>
-			</tbody>
-			
-		</table>
-		
-	</div>
+
+
+			<div class="row mt-4">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>예약자</th>
+							<th>예약자 연락처</th>
+							<th>예약일</th>
+							<th>예약시간</th>
+							<th>예약상태</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr>
+							<td>${sessionScope.user.name}</td>
+							<td>${sessionScope.user.phone}</td>
+							<td>${vo.resDate}</td>
+							<td><c:set var="time" value="${vo.resTime}" />
+								${fn:split(time,':')[0]}시 ${fn:split(time,':')[1]}분</td>
+							<td><span> <c:choose>
+										<c:when test="${vo.resState==0}">
+											<span>예약진행중</span>
+										</c:when>
+										<c:when test="${vo.resState==1}">
+											<span>예약완료</span><</c:when>
+										<c:when test="${vo.resState==2}">
+											<span>예약실패</span><</c:when>
+										<c:when test="${vo.resState==3}">
+											<span>방문완료</span> <</c:when>
+									</c:choose>
+							</span></td>
+
+						</tr>
+					</tbody>
+
+				</table>
+
+			</div>
 		</div>
 
 		<div class="container my-4">
@@ -135,17 +138,22 @@
 		</div>
 
 
-	<form action="appointmentUpdate" method="post">
-		<!-- js로 시간 받아옴 -->
-		<div class="container my-4" id="buttons"></div>
+		<form action="appointmentUpdate" method="post">
+			<!-- js로 시간 받아옴 -->
+
+			<!-- 평일  -->
+			<div class="container my-4" id="buttons"></div>
+
+			<!-- 주말  -->
+			<div class="container my-4" id="buttons2"></div>
 
 
 
 
-		<!-- <input type="time" value="09:00" min="09:00" max="18:00"> -->
+			<!-- <input type="time" value="09:00" min="09:00" max="18:00"> -->
 
 
-				<input type="hidden" readonly="readonly" name="resNum" value="${vo.resNum}">
+			<input type="hidden" readonly="readonly" name="resNum" value="${vo.resNum}">
 				<input type="hidden" readonly="readonly" name="serName" value="${vo.serviceVO.serName}">
 				<input type="hidden" readonly="readonly" name="serTel" value="${vo.serviceVO.serTel}">
 				<input type="hidden" readonly="readonly" name="serAddress" value="${vo.serviceVO.serAddress}">
@@ -158,19 +166,20 @@
 				<input type="hidden" name="resTime" value="${vo.resTime}" id="resTime"> 
 				<input type="hidden" name="resState" value="0">
 				<button type="submit" class="btn btn-outline-success res_update" >예약수정</button>
-		</div>
-	</form>
+			</div>
+		</form>
 		
-				<!-- 예약 삭제 버튼 -->
-				<div>
-				<a class="btn btn-danger res_delete" href="./appointmentDelete?resNum=${vo.resNum}" role="button">예약취소</a>
-				</div>
+		<!-- 예약 삭제 버튼 -->
+		<div>
+			<a class="btn btn-danger res_delete"
+				href="./appointmentDelete?resNum=${vo.resNum}" role="button">예약취소</a>
+		</div>
 
 
 
-			<script type="text/javascript" src="../js/detail.js"></script>
-			<script type="text/javascript" src="../js/calendar.js"></script>
-			<script type="text/javascript" src="../js/reservation.js"></script>
+		<script type="text/javascript" src="../js/detail.js"></script>
+		<script type="text/javascript" src="../js/calendar.js"></script>
+		<script type="text/javascript" src="../js/reservation.js"></script>
 
 
 

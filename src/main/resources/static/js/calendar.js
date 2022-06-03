@@ -104,18 +104,21 @@ function prevCal(){
 	// 다음 년도에서 전년도로 넘어갈때 
 	if(month==1){
 		year--;
+		CDate.setDate(1)
 		CDate.setFullYear(CDate.getFullYear()-1);
 		CDate.setMonth(12);
 		month=13; //아래에서 한번 차감됨
 		// buildcalendar();
 		}
 	// 년도가 크면 달 비교 x 빌드캘린더, 년도가 같으면 달을 비교 o
-	if(CDate.getFullYear()>today.getFullYear()){ 
+	if(CDate.getFullYear()>today.getFullYear()){
+		 CDate.setDate(1); 
 		 CDate.setMonth(CDate.getMonth()-1);
 		 month--;
 		 buildcalendar(); 
 	}else if(CDate.getFullYear()==today.getFullYear()){
 		if(CDate.getMonth()-1>=today.getMonth()){
+		 CDate.setDate(1); 
 		 CDate.setMonth(CDate.getMonth()-1);
 		 month--;
 		 buildcalendar(); 
@@ -134,8 +137,11 @@ function prevCal(){
 //다음달 달력
 function nextCal(){
 	
+	 //31일이 없는 달이 있기 때문에 1일로 맞춰주고 (이전달 버튼 클릭시에도 마찬가지)
+	 CDate.setDate(1);
+	 
+	 //다음 달 버튼 클릭하면 달이 +1 되도록 
 	 CDate.setMonth(CDate.getMonth()+1);
-	//다음 달 버튼 클릭하면 달이 +1 되도록 
 	 month++;
 	 if(month==13){
 		month=1;
