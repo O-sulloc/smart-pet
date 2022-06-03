@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pj.pet.service.ReservationSettingVO;
+import com.pj.pet.service.ServiceService;
 import com.pj.pet.service.ServiceVO;
 
 
@@ -37,9 +39,8 @@ public class ReservationController {
 
 	@Autowired
 	private ReservationService reservationService;
-	
-
-
+	@Autowired
+	private ServiceService serviceService;
 	
 	@GetMapping("/reservation/calendar")
 	public ModelAndView setCalendar()throws Exception{
@@ -53,32 +54,41 @@ public class ReservationController {
 	public ModelAndView setAdd(HttpSession session,ReservationVO reservationVO) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
-		UserVO userVO= (UserVO)session.getAttribute("user");
 		
-		if(userVO!=null) {
+		UserVO userVO= (UserVO)session.getAttribute("user");
+		//중복 방지
+		reservationVO.setId(userVO.getId());
+		Long count = reservationService.repetition(reservationVO);
+		
+		// 로그인이 되어있고, count가 0이면 중복 x 이므로 예약 완료
+		if(userVO!=null&&count==0) {
 			reservationVO.setId(userVO.getId());
 			int result= reservationService.setAdd(reservationVO);
 			mv.addObject("vo",reservationVO);
 			mv.setViewName("./reservation/confirm");
 			System.out.println("========예약완료============");
+		// 로그인이 되어있지만, count가 0보다 크다면 중복 이므로 예약 불가
+		}else if(userVO!=null&&count>0) {
+			mv.setViewName("common/getResult");
+			mv.addObject("msg","이미 예약한 서비스입니다. 예약목록을 확인해주세요.");
+			mv.addObject("path","../user/appointment");
+			
+			System.out.println("예약 중복");
+		
 		}else {
 			
 			// 로그인이 안되어 있을 경우
 			int result =0;
-			
 			mv.setViewName("./user/login");
-			
 			System.out.println("예약 실패");
 			
-			
 		}
-		
 		return mv;
 	}
 	
 	// 서비스 예약 폼
 	@GetMapping("/reservation/confirm")
-	public ModelAndView setAdd(@ModelAttribute ReservationVO reservationVO) throws Exception{
+	public ModelAndView setAdd(ReservationVO reservationVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("./reservation/confirm");
 		return mv;

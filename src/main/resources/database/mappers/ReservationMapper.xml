@@ -3,141 +3,147 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
+
 <mapper namespace="com.pj.pet.reservation.ReservationMapper">
 
+	<!-- 예약 중복 확인-->
+	<select id="repetition" parameterType="ReservationVO" resultType="Long">
+		SELECT COUNT(*)  FROM RESERVATION WHERE ID=#{id} AND SERNUM=#{serNum}
+	</select>
 
 
-<!-- list -->
-<select id="getList" parameterType="ServiceVO" resultType="ReservationVO">
-	SELECT *
-	from RESERVATION 
-	WHERE SERNUM=
+	<!--list 안쓰는거-->
+	<select id="getList" parameterType="ServiceVO"
+		resultType="ReservationVO">
+		SELECT *
+		from RESERVATION
+		WHERE SERNUM=
 		(SELECT SERNUM from SERVICE WHERE ID=#{id})
-</select>
+	</select>
 
 
 
-<!-- <select id="getList" parameterType="ServiceVO" resultType="ReservationVO">
-	SELECT  RESNUM,RESDATE,RESMEMO,RESSTATE,RESTIME,NAME,PHONE,EMAIL
-	from RESERVATION R
-	left join USER U 
-	USING(ID)
-	WHERE SERNUM=
-		(SELECT SERNUM from SERVICE WHERE ID=#{id})
-</select> -->
-<!-- 
-<resultMap type="ReservationVO" id="listResult">
-	<id column="resNum" property="resNum" />
-	<result column="RESDATE" property="resDate"/>
-	<result column="RESMEMO" property="resMemo"/>
-	<result column="RESSTATE" property="resState"/>
-	<result column="RESTIME" property="resTime"/>
-	<association property="userVO" javaType="UserVO">
-		<id column="ID" property="id"/>
-		<result column="NAME" property="name"/>
-		<result column="PHONE" property="phone"/>
-		<result column="EMAIL" property="email"/>
-	</association>
-</resultMap> -->
+	<!-- <select id="getList" parameterType="ServiceVO" resultType="ReservationVO"> 
+		SELECT RESNUM,RESDATE,RESMEMO,RESSTATE,RESTIME,NAME,PHONE,EMAIL from RESERVATION 
+		R left join USER U USING(ID) WHERE SERNUM= (SELECT SERNUM from SERVICE WHERE 
+		ID=#{id}) </select> -->
+	<!-- <resultMap type="ReservationVO" id="listResult"> <id column="resNum" 
+		property="resNum" /> <result column="RESDATE" property="resDate"/> <result 
+		column="RESMEMO" property="resMemo"/> <result column="RESSTATE" property="resState"/> 
+		<result column="RESTIME" property="resTime"/> <association property="userVO" 
+		javaType="UserVO"> <id column="ID" property="id"/> <result column="NAME" 
+		property="name"/> <result column="PHONE" property="phone"/> <result column="EMAIL" 
+		property="email"/> </association> </resultMap> -->
 
 	<!-- 예약 추가 -->
-	<insert id="setAdd" parameterType="ReservationVO" useGeneratedKeys="true" keyProperty="resNum">
-		INSERT INTO RESERVATION(RESNUM,ID,SERNUM,RESDATE,RESTIME,RESMEMO,RESSTATE)
-		VALUES (#{resNum},#{id},#{serNum},#{resDate},#{resTime},#{resMemo},0)
+	<insert id="setAdd" parameterType="ReservationVO"
+		useGeneratedKeys="true" keyProperty="resNum">
+		INSERT INTO
+		RESERVATION(RESNUM,ID,SERNUM,RESDATE,RESTIME,RESMEMO,RESSTATE)
+		VALUES
+		(#{resNum},#{id},#{serNum},#{resDate},#{resTime},#{resMemo},0)
 	</insert>
-	
+
 	<!-- 모든 예약확인 List -->
-	<select id="confirmList" parameterType="UserVO" resultMap="serviceConfirm">
-		SELECT ROW_NUMBER() OVER(ORDER BY R.RESNUM DESC) AS NUM, 
+	<select id="confirmList" parameterType="UserVO"
+		resultMap="serviceConfirm">
+		SELECT ROW_NUMBER() OVER(ORDER BY R.RESNUM DESC) AS NUM,
 		R.*,
-		S.SERNUM,S.SERNAME,S.SERTEL,S.SERADDRESS,S.HOSPITALFIELD,S.HOMEPAGE,S.SERTIME  
-			FROM RESERVATION R 
-			INNER JOIN
-			SERVICE S 
-			ON R.SERNUM=S.SERNUM WHERE R.ID=#{id}
+		S.SERNUM,S.SERNAME,S.SERTEL,S.SERADDRESS,S.HOSPITALFIELD,S.HOMEPAGE,S.SERTIME
+		FROM RESERVATION R
+		INNER JOIN
+		SERVICE S
+		ON R.SERNUM=S.SERNUM WHERE R.ID=#{id}
 	</select>
-	
+
 	<resultMap type="ReservationVO" id="serviceConfirm">
-		<id column="resNum" property="resNum"/>
-		<result column="serNum" property="serNum"/>
-		<result column="id" property="id"/>
-		<result column="resDate" property="resDate"/>
-		<result column="resTime" property="resTime"/>
-		<result column="resMemo" property="resMemo"/>
-		<result column="resState" property="resState"/>
-		
+		<id column="resNum" property="resNum" />
+		<result column="serNum" property="serNum" />
+		<result column="id" property="id" />
+		<result column="resDate" property="resDate" />
+		<result column="resTime" property="resTime" />
+		<result column="resMemo" property="resMemo" />
+		<result column="resState" property="resState" />
+
 		<association property="serviceVO" javaType="ServiceVO">
-			<id column="serNum" property="serNum"/>
-			<result column="serName" property="serName"/>
-			<result column="serTel" property="serTel"/>
-			<result column="serAddress" property="serAddress"/>
-			<result column="hospitalField" property="hospitalField"/>
-			<result column="homepage" property="homepage"/>
-			<result column="serTime" property="serTime"/>
+			<id column="serNum" property="serNum" />
+			<result column="serName" property="serName" />
+			<result column="serTel" property="serTel" />
+			<result column="serAddress" property="serAddress" />
+			<result column="hospitalField" property="hospitalField" />
+			<result column="homepage" property="homepage" />
+			<result column="serTime" property="serTime" />
 		</association>
 	</resultMap>
-	
+
 	<!-- 예약 정보 상세 확인 Update때문에 필요 -->
-	<select id="getDetail" parameterType="ReservationVO" resultMap="serviceConfirm">
-		SELECT ROW_NUMBER() OVER(ORDER BY R.RESNUM DESC) AS NUM, 
+	<select id="getDetail" parameterType="ReservationVO"
+		resultMap="serviceConfirm">
+		SELECT ROW_NUMBER() OVER(ORDER BY R.RESNUM DESC) AS NUM,
 		R.*,
-		S.SERNUM,S.SERNAME,S.SERTEL,S.SERADDRESS,S.HOSPITALFIELD,S.HOMEPAGE,S.SERTIME  
-			FROM RESERVATION R 
-			INNER JOIN
-			SERVICE S 
-			ON R.SERNUM=S.SERNUM WHERE R.ID=#{id} AND R.RESNUM=#{resNum}
+		S.SERNUM,S.SERNAME,S.SERTEL,S.SERADDRESS,S.HOSPITALFIELD,S.HOMEPAGE,S.SERTIME
+		FROM RESERVATION R
+		INNER JOIN
+		SERVICE S
+		ON R.SERNUM=S.SERNUM WHERE R.ID=#{id} AND R.RESNUM=#{resNum}
 	</select>
 
 	<!-- 예약 정보 수정 (날짜,시간,메모) -->
-	<update id="setUpdate" parameterType="ReservationVO" >
-		UPDATE RESERVATION set 
-			RESDATE=#{resDate},
-			RESTIME=#{resTime},
-			RESMEMO =#{resMemo}
+	<update id="setUpdate" parameterType="ReservationVO">
+		UPDATE
+		RESERVATION set
+		RESDATE=#{resDate},
+		RESTIME=#{resTime},
+		RESMEMO =#{resMemo}
 		WHERE RESNUM =#{resNum}
 	</update>
-	
+
 	<!-- 예약 삭제 -->
 	<delete id="setDelete" parameterType="ReservationVO">
-		DELETE FROM RESERVATION WHERE RESNUM =#{resNum}
+		DELETE FROM RESERVATION
+		WHERE RESNUM =#{resNum}
 	</delete>
 
-<!-- id 받아서 예약세팅 정보 가져오기 (update부분에서 예약시간 띄워주기용)-->
-	<select id="getAllReservationSetting" parameterType="ServiceVO" resultMap="getAllReservationSettingResult">
+	<!-- id 받아서 예약세팅 정보 가져오기 (update부분에서 예약시간 띄워주기용) -->
+	<select id="getAllReservationSetting" parameterType="ServiceVO"
+		resultMap="getAllReservationSettingResult">
 		select * from RESERVATIONSETTING S
-			LEFT JOIN
-				RESERVATIONTIME T
-				USING (SETNUM)
-			WHERE S.SERNUM=#{serNum}
+		LEFT JOIN
+		RESERVATIONTIME T
+		USING (SETNUM)
+		WHERE S.SERNUM=#{serNum}
 	</select>
-	<resultMap type="ReservationSettingVO" id="getAllReservationSettingResult">
+	<resultMap type="ReservationSettingVO"
+		id="getAllReservationSettingResult">
 		<id column="setNum" property="setNum"></id>
-		<result column="serNum" property="serNum"/>
-		<result column="term" property="term"/>
-		<result column="capacity" property="capacity"/>
-		<result column="startBreakTime" property="startBreaktime"/>
-		<result column="endBreakTime" property="endBreaktime"/>
-		<result column="holiday" property="holiday"/>
-		<collection property="reservationTimeVO" ofType="ReservationTimeVO">
-			<result column="serNum" property="serNum"/>
-			<result column="setNum" property="setNum"/>
-			<result column="openTime" property="openTime"/>
-			<result column="closeTime" property="closeTime"/>
-			<result column="timecase" property="timecase"/>
+		<result column="serNum" property="serNum" />
+		<result column="term" property="term" />
+		<result column="capacity" property="capacity" />
+		<result column="startBreakTime" property="startBreaktime" />
+		<result column="endBreakTime" property="endBreaktime" />
+		<result column="holiday" property="holiday" />
+		<collection property="reservationTimeVO"
+			ofType="ReservationTimeVO">
+			<result column="serNum" property="serNum" />
+			<result column="setNum" property="setNum" />
+			<result column="openTime" property="openTime" />
+			<result column="closeTime" property="closeTime" />
+			<result column="timecase" property="timecase" />
 		</collection>
 	</resultMap>
 
 	<!-- update부분에서 시간 띄어주기 -->
-	<select id="getService" parameterType="ServiceVO" resultType="ServiceVO"> 
+	<select id="getService" parameterType="ServiceVO"
+		resultType="ServiceVO">
 		select * from SERVICE
 		where SERNUM=#{serNum}
 	</select>
-	
-	<!-- ServiceUserInterceptor  -->
-	<select id="serviceUserInterceptor" parameterType="UserVO" resultType="UserVO">
+
+	<!-- ServiceUserInterceptor -->
+	<select id="serviceUserInterceptor" parameterType="UserVO"
+		resultType="UserVO">
 		SELECT ROLE FROM USER
 		WHERE ID=#{id}
 	</select>
-	
+
 </mapper>

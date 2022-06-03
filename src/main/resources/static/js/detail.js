@@ -114,7 +114,8 @@ for(let i=0;i<40;i++){
 		        button.setAttribute("id","timeButton")
 		        button.setAttribute("name","resTime")
 		        if(ar.includes(result)){ //점심시간일경우 회색으로 변경
-		       	 	button.setAttribute("class","btn btn-outline-secondary")
+		       	 	button.setAttribute("class","btn btn-outline-secondary lunchTime")
+					button.setAttribute("hidden",true)
 					console.log(result)
 				}else{
 					button.setAttribute("class","btn btn-outline-primary")
@@ -171,6 +172,7 @@ for(let i=0;i<40;i++){
 	        button.setAttribute("id","timeButton")
 	        button.setAttribute("name","resTime")
 	        if(ar.includes(result2)){//점심시간일경우 회색으로 변경
+				button.setAttribute("hidden",true)
 	       	 	button.setAttribute("class","btn btn-outline-secondary")
 				console.log(result2)
 			}else{
@@ -191,7 +193,11 @@ for(let i=0;i<40;i++){
 }
 
 
-
+//점심시간일 경우 값이 들어가지 않도록
+$(".lunchTime").on("click",function(){
+	alert("점심시간은 예약이 불가능합니다. 다른 시간을 선택해주세요.");
+	
+})
 
 /*$("#buttons").on("click","#timeButton",function(){
 	console.log($(this).html())
