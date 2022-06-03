@@ -26,11 +26,9 @@ public class ServiceService {
 	@Autowired
 	private FileManager fileManager;
 	
-//	public ServiceFileVO getFileDetail(ServiceVO serviceVO) throws Exception{
-//		return serviceMapper.getFileDetail(serviceVO);
-//	}
-	
-
+	public int updateOverdue(UserVO userVO)throws Exception{
+		return serviceMapper.updateOverdue(userVO);
+	}
 	
 	public ReservationVO getMailData(ReservationVO reservationVO)throws Exception{
 		return serviceMapper.getMailData(reservationVO);

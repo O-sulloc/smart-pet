@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.aop.ThrowsAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -47,7 +48,10 @@ public class ServiceController {
 	public String getService() {
 		return "service";
 	}
+	
 
+	
+	
 	@PostMapping("sendEmail")
 	public void sendEmail(ReservationVO reservationVO)throws Exception{
 		UserVO userVO=serviceService.findEmail(reservationVO);
@@ -204,6 +208,9 @@ public class ServiceController {
 		serviceVO.setId(userVO.getId());
 		serviceVO = serviceService.getDetail(serviceVO);
 
+		//mypage 접속시 예약시간지났는데 승인/거부 안한 예약들 자동으로 거부 처리 
+		serviceService.updateOverdue(userVO);
+		
 		mv.addObject("vo", serviceVO);
 		mv.setViewName("service/mypage");
 		return mv;
