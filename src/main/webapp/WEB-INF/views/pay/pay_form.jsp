@@ -109,8 +109,7 @@ input {
 			</c:forEach>
 			<div class="d-grid gap-2 col-4 mx-auto" style="padding-top: 50px;">
 				<button type="button" id="payBtn" data-id="${user.id}" class="btn btn-primary">결제</button>
-				<button type="button" id="kakaoBtn" data-id="${user.id}"  data-name="${user.name}" class="btn btn-primary">카카오 페이</button>
-				<button type="button" id="tossBtn" data-id="${user.id}"  data-name="${user.name}" class="btn btn-primary">토스 페이</button>
+				<button type="button" id="kakaoBtn" data-id="${user.id}"  data-name="${user.name}" class="btn btn-warning">카카오 페이</button>
 			</div>
 	
 		</div>

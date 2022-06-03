@@ -19,19 +19,23 @@ public class OrderService {
 		return orderMapper.setAdd(orderVO);
 	}
 	
-	public String getOrderName() throws Exception{
-		return orderMapper.getOrderName();
-	}
-	
 	public List<OrderVO> orderList(OrderVO orderVO)throws Exception{
 		return orderMapper.orderList(orderVO);
 	}
 	
-	public int updateName(String orderName) throws Exception{
-		return orderMapper.updateName(orderName);
+	public int getOrderName(OrderVO orderVO) throws Exception{
+		return orderMapper.getOrderName(orderVO);
 	}
 	
 	public List<CartVO> orderDetailList(PayVO payVO)throws Exception{
 		return orderMapper.orderDetailList(payVO);
+	}
+	
+	public List<OrderVO> sellerOrder()throws Exception{
+		return orderMapper.sellerOrder();
+	}
+	
+	public int shipUpdate(OrderVO orderVO) throws Exception{
+		return orderMapper.shipUpdate(orderVO);
 	}
 }

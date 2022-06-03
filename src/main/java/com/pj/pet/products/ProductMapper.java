@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.pj.pet.carts.CartVO;
 import com.pj.pet.category.CategoryVO;
 import com.pj.pet.util.Pager;
 
@@ -35,10 +36,9 @@ public interface ProductMapper {
 	
 	public Long getpCount()throws Exception;
 	
-	public List<ProductVO> highPriceList(Pager pager) throws Exception;
+	//재고 변경
+	public int countMinus(CartVO cartVO) throws Exception;
 	
-	public List<ProductVO> lowPriceList(Pager pager) throws Exception;
-	
-	public List<ProductVO> regDateList(Pager pager) throws Exception;
-	
+	public int countPlus(CartVO cartVO) throws Exception;
+
 }

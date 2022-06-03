@@ -6,6 +6,7 @@
 
 <mapper namespace="com.pj.pet.order.OrderMapper">
 
+	<!-- 구매자 주문내역 -->
  	<select id="orderList" parameterType="OrderVO" resultMap="orderResult">
 		SELECT P.*,O.*
 		FROM PAY P
@@ -14,6 +15,25 @@
 		ON(P.PAYNUM=O.PAYNUM)
 		WHERE O.ID =#{id}
 	</select>
+	
+	<!-- 판매자 주문목록 -->
+	 <select id="sellerOrder" parameterType="OrderVO" resultMap="orderResult">
+		SELECT P.*,O.*
+		FROM PAY P
+		LEFT OUTER JOIN
+		ORDERS O
+		ON(P.PAYNUM=O.PAYNUM)
+	</select>
+	
+	<!--  배송  -->
+	<update id="shipUpdate" parameterType="OrderVO">
+	 	UPDATE ORDERS SET SHIPSTATE=#{shipState} WHERE ORDERNUM=#{orderNum}
+	</update>
+	
+	<!--  환불  -->
+<!-- 	<update id="refund" parameterType="OrderDTO">
+		UPDATE ORDERS SET REFUND=1 WHERE ORDERNUM=#{orderNum}
+	</update> -->
 	
 	<resultMap type="OrderVO" id="orderResult">
        <id column="orderNum" property="orderNum"/>
@@ -37,17 +57,16 @@
 		VALUES(null,#{payNum},#{id},#{orderName},0,now(),0)
 	</insert>
 
-	<select id="getOrderName" resultType="string">
-		SELECT DISTINCT concat(cast(O.ORDERDATE as char), right(concat("00000" ,rowCount), 6)) as ORDERNAME
-		FROM ORDERS as OS,
+	<!-- 주문번호 만드려면 ORDERNUM이 필요해서 INSERT 후 주문번호 생성 후 UPDATE -->
+ 	<update id="getOrderName" parameterType="OrderVO">
+		UPDATE ORDERS SET ORDERNAME =(SELECT ORDERNAME FROM
+		(SELECT DISTINCT concat(cast(O.ORDERDATE as char), 
+		right(concat("00000" ,rowCount), 6)) as ORDERNAME FROM ORDERS,
 		(SELECT concat(substr(date_format(now(), '%Y-%m-%d'), 1, 10)) as ORDERDATE,
-		(SELECT ORDERNUM FROM ORDERS ORDER BY ORDERNUM DESC limit 1) as
-		rowCount FROM dual) O;
-	</select>
-	
-	<update id="updateName" parameterType="string">
-		UPDATE ORDERS SET ORDERNAME=#{orderName}
-	</update>
+		(SELECT ORDERNUM FROM ORDERS ORDER BY ORDERNUM DESC limit 1) as rowCount FROM dual) O)
+		ORDERS) 
+		WHERE PAYNUM =#{payNum}
+	</update> 
 
 
 	<!-- 결제한 디테일 상품 리스트 -->
@@ -63,7 +82,7 @@
 		LEFT JOIN
 		CARTREFER CR
 		ON(C.CARTNUM=CR.CARTNUM)
-		WHERE ID =#{id} AND PAYCHECK=1 AND CR.PAYNUM =#{payNum}
+		WHERE C.ID =#{id} AND PAYCHECK=1 AND CR.PAYNUM =#{payNum}
 	</select>
 
 	<resultMap type="CartVO" id="cartListResult">

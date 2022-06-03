@@ -16,7 +16,7 @@
  .orderView li::after { content:""; display:block; clear:both; }
  
  .thumb { float:left; width:200px; }
- .thumb img { width:100px; height:100px; }
+ .thumb img { width:100px; height:200px; }
  .gdsInfo { float:right; width:calc(100% - 220px); line-height:2; }
  .gdsInfo span { font-size:20px; font-weight:bold; display:inline-block; width:100px; margin-right:10px; }
 </style>

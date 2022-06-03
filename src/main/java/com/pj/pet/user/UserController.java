@@ -21,10 +21,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pj.pet.category.CategoryVO;
+import com.pj.pet.order.OrderService;
+import com.pj.pet.order.OrderVO;
+import com.pj.pet.products.ProductService;
+import com.pj.pet.products.ProductVO;
 import com.pj.pet.review.ReviewVO;
 import com.pj.pet.review.product.ProductReviewService;
 import com.pj.pet.util.MailService;
 import com.pj.pet.util.MailUtils;
+import com.pj.pet.util.Pager;
 import com.pj.pet.util.TempKey;
 
 @Controller
@@ -36,6 +42,12 @@ public class UserController {
 	
 	@Autowired
 	private MailService mailService;
+	
+	@Autowired
+	private ProductService productService;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	@ModelAttribute("board")
 	public String getBoard() {
@@ -337,6 +349,45 @@ public class UserController {
 		mv.setViewName("review/reviewPopUpdate");
 		return mv;
 	}
+// 판매자 페이지 시작
+	//판매자페이지
+	@GetMapping("sellerList")
+	public ModelAndView getList(ProductVO productVO,Pager pager,HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		UserVO userVO = (UserVO)session.getAttribute("user");
+		pager.setId(userVO.getId());
+		List<ProductVO> ar =productService.getList(pager);
+		Long count = productService.getpCount();
+		mv.addObject("list",ar);
+		mv.addObject("count",count);
+		mv.addObject("pager",pager); 
+		mv.setViewName("seller/sellerList");
+		return mv;
+	}
+	
+	// 판매자페이지 디테일(추가,수정,삭제)
+	@GetMapping("sellerDetail")
+	public ModelAndView getManageDetail(ProductVO productVO,CategoryVO categoryVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		productVO= productService.getDetail(productVO);
+		categoryVO.setCategoryNum(productVO.getCategoryNum());
+		categoryVO  =productService.getCategoryDetail(categoryVO);
+		mv.addObject("vo", productVO);
+		mv.addObject("cvo", categoryVO);
+		mv.setViewName("seller/sellerDetail");
+		return mv;
+	}
+	// 판매자페이지 판매내역
+	@GetMapping("sellerOrder")
+	public ModelAndView sellerOrder() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<OrderVO> ar = orderService.sellerOrder();
+		mv.addObject("olist", ar);
+		mv.setViewName("seller/sellerOrder");
+		return mv;
+	}
+	
+// 판매자 페이지 끝
 }
 
 

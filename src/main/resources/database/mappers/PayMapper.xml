@@ -21,7 +21,7 @@
 		LEFT OUTER JOIN
 		PRODUCTSFILE PF
 		ON(P.PRODUCTNUM=PF.PRODUCTNUM)
-		WHERE ID =#{id} AND CARTNUM=#{cartNum}
+		WHERE C.ID =#{id} AND CARTNUM=#{cartNum}
 	</select>
 
 	<resultMap type="CartVO" id="cartListResult">

@@ -37,7 +37,7 @@ public class PayController {
 	}
 	
 	@PostMapping("pay_form")
-	public ModelAndView setAdd(PayVO payVO, @RequestParam(value = "cartNum[]") Long[] cartNum) throws Exception {
+	public ModelAndView setAdd(PayVO payVO, @RequestParam(value = "cartNum[]") Long[] cartNum, Long payNum) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
 		int result = payService.setAdd(payVO, cartNum);
@@ -46,8 +46,8 @@ public class PayController {
 		orderVO.setId(payVO.getId());
 		orderVO.setPayNum(payVO.getPayNum());
 		orderService.setAdd(orderVO);
-		String orderName= orderService.getOrderName();
-		orderService.updateName(orderName);
+		orderVO.setPayNum(orderVO.getPayNum());
+		orderService.getOrderName(orderVO);
 
 		mv.addObject("result",result);
 		mv.setViewName("common/result");

@@ -1,6 +1,5 @@
 package com.pj.pet.products;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,9 +33,9 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
-
+	//구매자 리스트
 	@GetMapping("list")
-	public ModelAndView getList(ProductVO productVO,Pager pager) throws Exception {
+	public ModelAndView getList(ProductVO productVO,Pager pager,HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<ProductVO> ar =productService.getList(pager);
 		Long count = productService.getpCount();
@@ -46,23 +45,10 @@ public class ProductController {
 		mv.setViewName("product/list");
 		return mv;
 	}
-	
-	@GetMapping("sellerDetail")
-	public ModelAndView getManageDetail(ProductVO productVO,CategoryVO categoryVO)throws Exception{
-		// 판매자가 디테일
-		ModelAndView mv = new ModelAndView();
-		productVO= productService.getDetail(productVO);
-		categoryVO.setCategoryNum(productVO.getCategoryNum());
-		categoryVO  =productService.getCategoryDetail(categoryVO);
-		mv.addObject("vo", productVO);
-		mv.addObject("cvo", categoryVO);
-		mv.setViewName("product/sellerDetail");
-		return mv;
-	}
-	
+	//구매자 디테일
 	@GetMapping("detail")
 	public ModelAndView getDetail(ProductVO productVO,CategoryVO categoryVO, HttpSession session) throws Exception {
-		// 구매자 디테일
+	
 		ModelAndView mv = new ModelAndView();
 		productVO= productService.getDetail(productVO);
 		categoryVO.setCategoryNum(productVO.getCategoryNum());
@@ -136,45 +122,7 @@ public class ProductController {
 		return mv;
 	}
 	
-	@GetMapping("highpricelist")
-	public ModelAndView highPriceList(ProductVO productVO,Pager pager) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		List<ProductVO> ar =productService.highPriceList(pager);
-		Long count = productService.getpCount();
-		mv.addObject("count",count);
-		mv.addObject("list",ar);
-		mv.addObject("pager",pager); 
-		mv.setViewName("product/list");
-		return mv;
-	}
-	
-	@GetMapping("lowpricelist")
-	public ModelAndView lowPriceList(ProductVO productVO,Pager pager) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		List<ProductVO> ar =productService.lowPriceList(pager);
-		Long count = productService.getpCount();
-		mv.addObject("count",count);
-		mv.addObject("list",ar);
-		mv.addObject("pager",pager); 
-		mv.setViewName("product/list");
-		return mv;
-	}
-	
-	@GetMapping("regdatelist")
-	public ModelAndView regDateList(ProductVO productVO,Pager pager) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		List<ProductVO> ar =productService.regDateList(pager);
-		Long count = productService.getpCount();
-		mv.addObject("count",count);
-		mv.addObject("list",ar);
-		mv.addObject("pager",pager); 
-		mv.setViewName("product/list");
-		return mv;
-	}
-	
-	
-	
-	
+
 	//재석추가
 	//리뷰
 	@Autowired

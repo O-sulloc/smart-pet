@@ -17,44 +17,23 @@
 	<main>
 		<div id="sss" class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;" >
 		    <a href="/user/myPage" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-		      <span class="fs-4">마이페이지</span>
+		      <span class="fs-4">판매자페이지</span>
 		    </a>
 		    <hr>
 		    <ul class="nav nav-pills flex-column mb-auto">
 		      <li class="nav-item">
-		        <a href="/user/myPage" class="nav-link active" aria-current="page">
-		          My Page
+		        <a href="/user/sellerList" class="nav-link active" aria-current="page">
+		          상품 목록
 		        </a>
 		      </li>
 		      <li>
-		        <a href="/user/pwUpdate" class="nav-link link-dark">
-		          Change Password
+		        <a href="/product/add" class="nav-link link-dark">
+		          상품 등록
 		        </a>
 		      </li>
 		      <li>
-		        <a href="/user/petList" class="nav-link link-dark">
-		          Pet Manage
-		        </a>
-		      </li>
-		      <li>
-		        <a href="#" class="nav-link link-dark">
-		          Appointment Manage
-		        </a>
-		      </li>
-		      <li>
-		        <a href="/cart/list" class="nav-link link-dark">
-		          Cart List
-		        </a>
-		      </li>
-		      <li>
-		        <a href="/user/orderList" class="nav-link link-dark">
-		          Order List
-		        </a>
-		      </li>
-		      <!-- 재석추가 a태그 주소 수정할것-->
-		      <li>
-		        <a href="/user/reviewListPage" class="nav-link link-dark">
-		          Review List
+		        <a href="/user/sellerOrder" class="nav-link link-dark">
+		          주문 목록
 		        </a>
 		      </li>
 		    </ul>

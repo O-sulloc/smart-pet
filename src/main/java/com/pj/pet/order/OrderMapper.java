@@ -14,12 +14,14 @@ import com.pj.pet.user.UserVO;
 public interface OrderMapper {
 	
 	public int setAdd(OrderVO orderVO) throws Exception;
-	
-	public String getOrderName() throws Exception;
-	
+		
 	public List<OrderVO> orderList(OrderVO orderVO)throws Exception;
 	
-	public int updateName(String orderName) throws Exception;
+	public int getOrderName(OrderVO orderVO) throws Exception;
 	
 	public List<CartVO> orderDetailList(PayVO payVO)throws Exception;
+	
+	public List<OrderVO> sellerOrder()throws Exception;
+	
+	public int shipUpdate(OrderVO orderVO) throws Exception;
 }

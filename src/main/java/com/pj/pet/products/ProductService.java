@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.pj.pet.carts.CartVO;
 import com.pj.pet.category.CategoryVO;
 import com.pj.pet.util.FileManager;
 import com.pj.pet.util.Pager;
@@ -90,24 +91,29 @@ public class ProductService {
 	public Long getpCount()throws Exception{
 		return productMapper.getpCount();
 	}
+	//카테고리 끝
 	
-	public List<ProductVO> highPriceList(Pager pager) throws Exception{
-		pager.makeRow();
-		pager.makeNum(productMapper.getTotalCount(pager));
-		return productMapper.highPriceList(pager);
-	}
-	
-	public List<ProductVO> lowPriceList(Pager pager) throws Exception{
-		pager.makeRow();
-		pager.makeNum(productMapper.getTotalCount(pager));
-		return productMapper.lowPriceList(pager);
-	}
-	
-	public List<ProductVO> regDateList(Pager pager) throws Exception{
-		pager.makeRow();
-		pager.makeNum(productMapper.getTotalCount(pager));
-		return productMapper.regDateList(pager);
-	}
+	//summernote
+	public boolean setSummerFileDelete(String fileName)throws Exception{
+		fileName=fileName.substring(fileName.lastIndexOf("/")+1);
+		   // /resources/upload/board/fb0e1507-652c-4ffd-8d47-795f2ab15f5c_33.jpg
+		   // board/ 뒤에 경로를 짜르기위한 방법 /뒤부분부터 나오게 +1
+		return fileManager.remove("/resources/upload/board/",fileName);
+	   }
+	   
+	   
+	 public String setSummerFileUpload(MultipartFile files)throws Exception{
+		   //file hdd에 저장하고 저장된 파일명을 return
+		 String fileName= fileManager.fileSave(files,"resources/upload/board");
+		   fileName="/resources/upload/board/"+fileName;
+		 return fileName;
+	   }
+	//summernote 끝
+	 
+	 
+	 public int countMinus(CartVO cartVO) throws Exception{
+		 return productMapper.countMinus(cartVO);
+	 }
 	
 
 }

@@ -12,6 +12,7 @@ import com.pj.pet.carts.CartService;
 import com.pj.pet.carts.CartVO;
 import com.pj.pet.order.OrderService;
 import com.pj.pet.order.OrderVO;
+import com.pj.pet.products.ProductMapper;
 
 @Service
 public class PayService {
@@ -21,6 +22,10 @@ public class PayService {
 	private CartReferMapper cartReferMapper;
 	@Autowired
 	private CartService cartService;
+	@Autowired
+	private OrderService orderService;
+	@Autowired
+	private ProductMapper productMapper;
 
 	public List<CartVO> payCartList(CartVO cartVO, Long[] cartNum) throws Exception {
 
@@ -40,7 +45,6 @@ public class PayService {
 
 		int result = payMapper.setAdd(payVO);
 		//결제 -> order add
-
 		
 		for (Long cn : cartNum) {
 			//결제참조 add
@@ -52,7 +56,10 @@ public class PayService {
 			cartVO.setCartNum(cn);
 			result = cartService.cartpayUpdate(cartVO);
 			result = cartReferMapper.setReferAdd(cartReferVO);
+			//결제 -> 재고 마이너스
+			result =productMapper.countMinus(cartVO);
 		}
+		
 
 		return result;
 	}

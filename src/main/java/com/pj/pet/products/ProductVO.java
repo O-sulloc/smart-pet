@@ -20,7 +20,7 @@ public class ProductVO {
 	private Long rate;
 	private Long sales;
 	private Date regDate;
-	private String writer;
+	private String id;
 	private List<ProductFileVO> productFileVOs;
 	public Long totalPrice;
 	private CategoryVO categoryVO;
