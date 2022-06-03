@@ -15,6 +15,12 @@ import com.pj.pet.util.Pager;
 
 @Mapper
 public interface ServiceMapper {
+	
+	//overdue 거부로 자동 update
+	public int updateOverdue(UserVO userVO)throws Exception;
+	
+	//overdue(방문확인 체크용)
+	public List<ReservationVO> getOverdue(Pager pager)throws Exception;
 
 	//예약확인 메일에 들어갈 데이터가져오기 
 	public ReservationVO getMailData(ReservationVO reservationVO)throws Exception;

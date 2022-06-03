@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.aop.ThrowsAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -47,15 +48,9 @@ public class ServiceController {
 	public String getService() {
 		return "service";
 	}
+	
 
-
-	@GetMapping("completionCheck")
-	public ModelAndView completionCheck()throws Exception{
-		ModelAndView mv = new ModelAndView();
-		
-		mv.setViewName("service/completionCheck");
-		return mv;
-	}
+	
 	
 	@PostMapping("sendEmail")
 	public void sendEmail(ReservationVO reservationVO)throws Exception{
@@ -213,6 +208,9 @@ public class ServiceController {
 		serviceVO.setId(userVO.getId());
 		serviceVO = serviceService.getDetail(serviceVO);
 
+		//mypage 접속시 예약시간지났는데 승인/거부 안한 예약들 자동으로 거부 처리 
+		serviceService.updateOverdue(userVO);
+		
 		mv.addObject("vo", serviceVO);
 		mv.setViewName("service/mypage");
 		return mv;
@@ -310,6 +308,30 @@ public class ServiceController {
 		return mv;
 	}
 
+
+	//기한지나고 예약승인한 예약들 리스트 보여주는 페이지로 이동 
+	@GetMapping("completionCheck")
+	public ModelAndView completionCheck()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("service/completionCheck");
+		return mv;
+	}
+	//기한지나고 예약승인한 예약들 리스트 
+	@GetMapping("ajaxOverdueList")
+	public ModelAndView getOverdue(Pager pager, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		UserVO userVO = (UserVO) session.getAttribute("user");
+		pager.setId(userVO.getId());
+		List<ReservationVO> ar = serviceService.getOverdue(pager);
+
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("common/reservationList2");
+		return mv;
+	}
+	
+	
+	
 	// 예약리스트 날짜별
 	@GetMapping("ajaxDayReservationList")
 	public ModelAndView getAjaxDayReservationList(Pager pager, HttpSession session) throws Exception {

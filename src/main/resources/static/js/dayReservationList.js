@@ -3,6 +3,26 @@ var CDate = new Date();
 var today = new Date();
 var selectCk = 0;
 let resDate="";
+let resDate2="";
+
+//예약 종류별 수 가져오기 
+function getStateCountList(resDate2){
+	$.ajax({
+			type:"GET",
+			url:"./ajaxMonthCountList",
+			data:{
+				resDate:resDate2
+			},
+			success:function(data){
+				console.log(data)
+				$("#count").html(data.trim());
+			
+			},
+			error:function(){
+				alert('count 가져오기 실패')
+			}
+		})//ajax로 데이터 전송 	 
+}
 
 
 //날짜별 예약 리스트 가져오기 
@@ -88,8 +108,11 @@ function fn_selectDate(date){
 
 		selectCk = date;
 		    resDate=year+"-"+month+"-"+date
+		    resDate2=year+"-"+(month<10?"0"+month:month)+"-"+(date<10?"0"+date:date)
+		    console.log("!!!!"+resDate2)
+		    
 		getDayList(resDate)
-
+		getStateCountList(resDate2)
 		selectCk = 0;
 	}else{
 		$("#date_"+date).css("background-color", "white");
@@ -98,28 +121,7 @@ function fn_selectDate(date){
 	
 		
 	}
-	/*
-	if(selectCk == 0){
-		$("#date_"+date).css("background-color", "red");
-		$("#date_"+date).css("color", "white");
-		
-		$("#period_1").val(year+"-"+month+"-"+date);
-		selectCk = date;
-		if(month<10){
-			month="0"+month
-		}
-		if(date<10){
-			date="0"+date
-		}
-	    resDate=year+"-"+month+"-"+date
-		getDayList(resDate)
-	}else{
-		selectCk = 0;
-		$(".date").css("background-color", "");
-		$(".date").css("color", "");
 	
-	}
-	*/
 }
 
 buildcalendar();

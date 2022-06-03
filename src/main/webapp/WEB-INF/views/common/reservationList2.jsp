@@ -31,13 +31,13 @@
 				<table id="datatablesSimple" class="dataTable-table">
 					<thead>
 						<tr>
-							<th data-sortable="" style="width: 18.1946%;"><a href=""
+							<th data-sortable="" style="width: 19.1946%;"><a href=""
 								class="dataTable">예약자명</a></th>
 							<th data-sortable="" style="width: 15.1275%;"><a href="#"
 								class="dataTable">예약일</a></th>
 							<th data-sortable="" style="width: 13.8389%;"><a href="#"
 								class="dataTable">예약시간</a></th>
-							<th data-sortable="" style="width: 11.85906%;"><a href="#"
+							<th data-sortable="" style="width: 10.85906%;"><a href="#"
 								class="dataTable">예약상태</a></th>
 							<th data-sortable="" style="width: 15.0336%;"><a href="#"
 								class="dataTable">전화번호</a></th>
@@ -57,20 +57,8 @@
 								<td>${vo.reservationVO.resDate}</td>
 								<td>${vo.reservationVO.resTime.substring(0,5)}</td>
 								<td><c:choose>
-										<c:when test="${vo.reservationVO.resState==0}">
-											대기 <button type="button" class="btn btn-primary btn-sm modalBtn" data-toggle="modal" data-target="#myModal" data="${vo.reservationVO.resNum}">변경</button>
-										</c:when>
 										<c:when test="${vo.reservationVO.resState==1}">
-								 			승인 
-										</c:when>
-										<c:when test="${vo.reservationVO.resState==2}">
-											거부 
-										</c:when>
-										<c:when test="${vo.reservationVO.resState==3}">
-											완료 
-										</c:when>
-										<c:when test="${vo.reservationVO.resState==4}">
-											에약 후 미방문
+											승인 <button type="button" class="btn btn-primary btn-sm modalBtn" data-toggle="modal" data-target="#myModal" data="${vo.reservationVO.resNum}">방문여부</button>
 										</c:when>
 									</c:choose></td>
 								<td>${vo.phone}</td>

@@ -29,7 +29,7 @@ public class InterceptorConfig implements WebMvcConfigurer{
 				.addPathPatterns("/service/getDayReservationList")	//일별 예약 현황 보기 
 				.addPathPatterns("/service/monthListPage")			//달별 예약 현황 보기
 				.addPathPatterns("/service/reservationSetting")		//예약가능한 시간 세팅하기 
-
+				.addPathPatterns("/service/completionCheck")
 				.addPathPatterns("/service/registration")			//서비스 등록하기 
 				.addPathPatterns("/service/updateReservationSetting"); //서비스 예약정보 등록 업데이트
 			

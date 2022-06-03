@@ -6,6 +6,7 @@
 
     
 <mapper namespace="com.pj.pet.service.ServiceMapper">
+
 	<!-- 예약승인시 메일 보내기 -->
 	<!-- reservation 테이블에서 setNum이용해서 예약자의 이메일 가져옴 -->
 	<select id="findEmail" parameterType="reservationVO" resultType="userVO">
@@ -20,23 +21,6 @@
 		using(SERNUM)
 		where RESNUM =#{resNum}
 	</select>
-	
-<!-- 	<resultMap type="ReservationVO" id="getMailData">
-		<id column="resNum" property="resNum"></id>
-		<result column="resTime" property="resTime"/>
-		<result column="resDate" property="resDate"/>
-		<result column="serNum" property="serNum"/>
-		<association property="serviceVO" javaType="ServiceVO">
-			<id column="serNum" property="serNum"/>
-			<result column="serName" property="serName"/>
-		</association>
-	</resultMap> -->
-	
-	<!-- 예약승인시 메일 보내기 -->
-	
-	
-	
-	
 	
 	<!-- interceptor 구별 (id로 서비스 serkind 얻어서 1,2면 서비스마이페이지 이용 가) -->
 	<select id="sellerInterceptor" parameterType="UserVO" resultType="UserVO">
@@ -214,6 +198,42 @@
 		ORDER BY RESNUM DESC
 		LIMIT #{startRow}, #{perPage} 
 	</select>
+	
+	
+	<!--예약시간 지났는데 승인/거절 안한것들 거절로 변경하는 쿼리-->
+	<update id="updateOverdue" parameterType="UserVO">
+		update RESERVATION 
+		SET RESSTATE=2
+		where 
+		SERNUM= (SELECT SERNUM from SERVICE WHERE ID=#{id})
+		and 
+		<![CDATA[
+		TIMEDIFF(concat(RESDATE," ",RESTIME),(SELECT DATE_ADD(NOW(), INTERVAL 9 HOUR)))<0 	
+		]]> 
+		and RESSTATE=0
+	</update>
+	
+	
+	<!--예약날짜,예약시간이 현재시간보다 전이고 예약 승인 된 것들(방문 확인 체크용)-->
+	<!--mysql 현재시간 +9로 계산됨-->
+	  <select id="getOverdue" parameterType="Pager" resultMap="reservationResult">
+		SELECT R.*,U.NAME,U.EMAIL,U.PHONE 
+		from RESERVATION R
+		left join
+		USER U
+		using(ID)
+		where
+			SERNUM= (SELECT SERNUM from SERVICE WHERE ID=#{id})
+			and 
+			 <![CDATA[
+		 		TIMESTAMPDIFF(MINUTE,concat(RESDATE," ",RESTIME),(SELECT DATE_ADD(NOW(), INTERVAL 9 HOUR)))>0
+			]]> 
+			and RESSTATE=1
+		ORDER BY RESNUM DESC
+		LIMIT #{startRow}, #{perPage} 
+	  </select>
+	  	<!-- 
+		and TIMEDIFF(RESTIME,(select DATE_FORMAT(SYSDATE(), '%H:%i:%s')))<=0 -->
 	
 	<!--판매자측 서비스 예약 리스트 --><!-- 대기중인 예약만 -->
 	<select id="getResStateIs0" parameterType="Pager" resultMap="reservationResult">
