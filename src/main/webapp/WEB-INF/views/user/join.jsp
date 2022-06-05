@@ -113,8 +113,7 @@
 								<div class="col-12">
 									<div class="form-check">
 										<input type="checkbox" class="form-check-input width-auto checkAll" id="all">
-										<label class="form-check-label" for="all">Agree to All our <a href="javascript:void(0)">Terms and
-										Conditions</a></label>
+										<label class="form-check-label" for="all">Agree to All</label>
 									</div>
 									<div class="form-check col-12">
 										<input type="checkbox" class="form-check-input width-auto ch" id="check1">
@@ -135,7 +134,7 @@
 							</div>
 						</div>
 						<div class="button">
-							<button type="submit" class="btn" id="btn">Registration</button>
+							<button type="button" class="btn" id="btn">Registration</button>
 						</div>
 						
 						<p class="outer-link">Already have an account? <a href="/user/login"> Login Now</a>

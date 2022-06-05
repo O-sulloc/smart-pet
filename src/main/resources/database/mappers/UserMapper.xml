@@ -5,6 +5,11 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.pj.pet.user.UserMapper">
+	<select id="getEmail" resultType="UserVO" parameterType="UserVO">
+		SELECT EMAIL FROM USER
+			WHERE EMAIL = #{email}
+	</select>
+
 	<select id="getId" resultType="UserVO" parameterType="UserVO">
 		SELECT ID FROM USER
 			WHERE ID = #{id}

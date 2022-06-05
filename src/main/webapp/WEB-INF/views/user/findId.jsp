@@ -41,18 +41,20 @@
 				<div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
 					<div class="form-head">
 					<h4 class="title">Enter Your Name And Email</h4>
-						<form:form modelAttribute="userVO" method="post">
+						<form:form modelAttribute="userVO" method="post" id="frm">
 							<div class="form-group">
 								<form:input path="name" cssClass="form-control" id="name" placeholder="Name"/>
 								<form:errors path="name"></form:errors>
+								<div id="nameResult"></div>
 							</div>
 							<div class="form-group">
 								<form:input path="email" cssClass="form-control" id="email" placeholder="Email"/>
 								<form:errors path="email"></form:errors>
+								<div id="emailResult"></div>
 							</div>
 							<div class="check-and-pass">
-								<div class="row align-items-center">
-									<div class="col-lg-6 col-md-6 col-12">
+								<div class="row align-items-start">
+									<div class="col-lg-6 col-md-6 col-6">
 										<span class="outer-link">Lost your
 											<a href="findPw">password</a>
 											<span>?</span>
@@ -61,7 +63,7 @@
 								</div>
 							</div>
 							<div class="button">
-								<button type="submit" class="btn">Find Id</button>
+								<button type="button" class="btn" id="btn">Find Id</button>
 							</div>
 							
 							<p class="outer-link">Don't have an account? 
@@ -73,7 +75,8 @@
 			</div>	
 		</div>
 	</section>
-
+	
+	<script src="../resources/js/findId.js"></script>
 	<c:import url="../temp/header_script.jsp"></c:import>
 	<c:import url="../temp/footer.jsp"></c:import>
 </body>

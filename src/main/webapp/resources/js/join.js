@@ -2,6 +2,13 @@ const btn = document.getElementById("btn");
 const check = document.getElementsByClassName("form-check-input ch");
 const frm = document.getElementById("frm");
 
+const pw = document.getElementById("pw");
+const pw2 = document.getElementById("checkPw");
+const id = document.getElementById("id");
+const name1 = document.getElementById("name");
+const address = document.getElementById("address");
+const email = document.getElementById("email");
+const phone = document.getElementById("phone");
 
 	document.getElementById("address").addEventListener("click", function(){
 		new daum.Postcode({
@@ -43,7 +50,7 @@ btn.addEventListener("click", function(){
 	}
 
 	if(termsCheck){
-		frm.onsubmit();
+		frm.submit();
 	}else{
 		alert("약관에 동의해주세요.");
 		return false
