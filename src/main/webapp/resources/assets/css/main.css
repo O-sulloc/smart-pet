@@ -52,6 +52,282 @@ button:focus,
   box-shadow: none !important;
 }
 
+/* portfolio*/
+.portfolio-sidebar .single-widget:last-child {
+    margin: 0;
+}
+
+.portfolio-sidebar .single-widget {
+    margin-bottom: 30px;
+    position: relative;
+    padding: 40px;
+    border-radius: 0;
+    background-color: #fff;
+    border-top: 4px solid #006838;
+    -webkit-box-shadow: 0 1px 30px 0 rgb(32 32 32 / 11%);
+    box-shadow: 0 1px 30px 0 rgb(32 32 32 / 11%);
+}
+
+.portfolio-sidebar .single-widget h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #081828;
+    margin-bottom: 30px;
+}
+
+.portfolio-sidebar .single-widget .list-info li {
+    display: block;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    color: #888;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+.portfolio-sidebar .single-widget .list-info li i {
+    color: #006838;
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.portfolio-sidebar .single-widget .list-info li span {
+    display: inline-block;
+    margin-right: 2px;
+}
+
+
+/* error 404 */
+.error-area {
+    height: 100vh;
+    text-align: center;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url(../images/bread-bg/dog-bg2.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.error-area.overlay::before {
+    background-color: #006838;
+    opacity: .9;
+}
+
+.error-area .error-content h1 {
+    font-size: 100px;
+    color: #fff;
+    margin-bottom: 25px;
+    font-weight: 800;
+    line-height: 100px;
+}
+
+.error-area .error-content h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.error-area .error-content p {
+    font-weight: 400;
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+.error-area .error-content .btn::before {
+    background-color: #fff;
+}
+/* mail success */
+.maill-success {
+    height: 100vh;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.d-table {
+    width: 100%;
+    height: 100%;
+}
+
+.d-table-cell {
+    vertical-align: middle;
+}
+
+.maill-success .success-content i {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #006838;
+}
+
+.maill-success .success-content h1 {
+    font-size: 40px;
+    color: #006838;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.maill-success .success-content h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #081828;
+}
+
+.maill-success .success-content p {
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+/* login css */
+.login .form-head form .check-and-pass .form-check a {
+    color: #88c250;
+}
+
+.login .form-head {
+	padding: 50px;
+    border-radius: 0;
+    background-color: #fff;
+    -webkit-box-shadow: 0 1px 30px 0 rgb(124 124 124 / 11%);
+    box-shadow: 0 1px 30px 0 rgb(124 124 124 / 11%);
+    border-top: 5px solid #006838;
+}
+
+.login .form-head .title {
+    font-size: 24px;
+    line-height: 1.42;
+    font-weight: 500;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.login .form-head form .form-group {
+    margin-bottom: 15px;
+}
+
+.login .form-head form .form-group input {
+    width: 100%;
+    min-height: 50px;
+    padding: 3px 20px;
+    color: #081828;
+    border: 1px solid #eee;
+    border-radius: 0;
+    outline: 0;
+    background-color: #fff;
+    font-size: 15px;
+}
+
+.login .form-head form .check-and-pass .form-check {
+    float: left;
+}
+
+.login .form-head form .check-and-pass .lost-pass {
+    float: right;
+    color: #777;
+    position: relative;
+    top: -2px;
+}
+
+.login .form-head form .button {
+    margin-top: 25px;
+}
+
+.login .form-head form .button .btn {
+    width: 100%;
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+}
+
+.login .form-head .alt-option {
+    margin: 30px 0;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+
+.login .form-head .alt-option::before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 1px;
+    width: 100%;
+    background: #eee;
+    content: "";
+    z-index: -1;
+}
+
+.login .form-head .alt-option span {
+    font-size: 15px;
+    background: #fff;
+    color: #888;
+    padding: 5px 15px;
+}
+
+.login .form-head .socila-login ul {
+    margin-bottom: 20px;
+}
+
+.login .form-head .socila-login ul li:last-child {
+    margin: 0;
+}
+.login .form-head .socila-login ul li {
+    display: block;
+}
+
+.login .form-head .socila-login ul li a {
+    padding: 15px 14px;
+    text-align: center;
+    border: 1px solid #eee;
+    border-radius: 0;
+    display: block;
+    color: #555;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.login .form-head .socila-login ul li a i {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 15px;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
+}
+
+.login .form-head .socila-login ul li a.facebook i {
+    color: #3b5999;
+}
+
+.login .form-head .socila-login ul li a.google i {
+    color: #dd4b39;
+}
+
+.login .form-head .socila-login ul li a.instagram i {
+    color: #e4405f;
+}
+
+.login .form-head .socila-login ul li a.linkedin i {
+    color: #0077b5;
+}
+
+.login .form-head form .outer-link {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: #888;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.login .form-head form .outer-link a {
+    color: #006838;
+}
+
+/* end of login css */
+
 .form-check-input:checked {
   background-color: #88C250;
   border-color: #88C250;
@@ -2038,7 +2314,7 @@ ol {
 }
 
 .hero-area .single-slider {
-  height: 750px;
+  height: 650px;
   z-index: 2;
   position: relative;
   overflow: hidden;
@@ -2643,6 +2919,10 @@ ol {
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .section {
     padding: 60px 0px;
+  }
+  
+  .login {
+  	background-color: #f9f9f9;
   }
 
   .section-title {

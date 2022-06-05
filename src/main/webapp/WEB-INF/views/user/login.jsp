@@ -5,50 +5,116 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+	<title>Login - MediGrids</title>
+	<meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="../resources/assets/images/favicon.svg" />
+    <!-- Place favicon.ico in the root directory -->
+
+    <c:import url="../temp/header_css.jsp"></c:import>
 </head>
 <body>
 	
-	<div class="container mt-5 text-center">
-		<main class="form-signin">
-			<form action="login" method="post">
-				<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-				
-				<div class="row justify-content-center">
-					<div class="col-3">
-						<div class="form-floating mt-2">
-							<input type="text" class="form-control" name="id" value="${cookie.remember.value }">
-							<label for=floatingInput>ID</label>
-						</div>
-						
-						<div class="form-floating mt-2">
-							<input type="password" name="pw" class="form-control">
-							<label for=floatingInput>PW</label>
-						</div>
-					
-						<div class="checkbox mb-3 mt-2">
-							<label>
-								<input type="checkbox" value="1" name="remember"> Remember
-							</label>
-						</div>
-						
-						<button class="w-100 btn btn-lg btn-success mb-2" type="submit">Sign In</button>
-						<button class="w-100 btn btn-lg btn btn-outline-danger" onclick="location.href='/user/join'" type="button">Join Now!</button>
-							    
-						<div class="checkbox mb-3 mt-2">
-							<button type="button" class="btn btn-outline-info" onclick="location.href='/user/findId'">ID찾기</button>
-							<button type="button" class="btn btn-outline-info" onclick="location.href='/user/findPw'">PW찾기</button>
-						</div>
+	<c:import url="../temp/header.jsp"></c:import>
+	
+	<div class="breadcrumbs overlay">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+					<div class="breadcrumbs-content">
+						<h1 class="page-title">Login</h1>
+					</div>
+					<ul class="breadcrumb-nav">
+						<li><a href="/">Home</a></li>
+						<li>Login</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<section class="login section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
+					<div class="form-head">
+					<h4 class="title">Login To Your Account</h4>
+						<form action="login" method="post">
+							<div class="form-group">
+								<!-- <input name="email" type="email" placeholder="Email"> -->
+								<input type="text" class="form-control" name="id" value="${cookie.remember.value }" placeholder="ID">
+							</div>
+							<div class="form-group">
+								<!-- <input name="password" type="password" placeholder="Password"> -->
+								<input type="password" name="pw" class="form-control" placeholder="Password">
+							</div>
+							<div class="check-and-pass">
+								<div class="row align-items-center">
+									<div class="col-lg-6 col-md-6 col-12">
+										<div class="form-check">
+											<input type="checkbox" class="form-check-input width-auto" id="exampleCheck1" value="1" name="remember">
+											<label class="form-check-label">Remember me</label>
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-12">
+										<span class="outer-link">Lost your
+												<a href="findId">id</a>
+												<span>or</span>
+												<a href="findPw">password</a>
+												<span>?</span>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="button">
+								<button type="submit" class="btn">Login Now</button>
+							</div>
+							<div class="alt-option">
+								<span>Or</span>
+							</div>
+							<div class="socila-login">
+								<div class="row">
+									<div class="col-lg-6 col-md-6 col-12">
+										<ul>
+											 <li><a href="javascript:void(0)" class="facebook"><i class="lni lni-facebook-original"></i>Login With
+											Facebook</a></li>
+										</ul>
+									</div>
+									<div class="col-lg-6 col-md-6 col-12">
+										<ul>
+											<li><a href="http://localhost/login/oauth2/GOOGLE" class="google"><i class="lni lni-google"></i>Login With 
+											Google</a>
+											</li>
+										</ul>
+									</div>
+									<div class="col-lg-6 col-md-6 col-12">
+										<ul>
+											<li><a href="http://localhost/login/oauth2/KAKAO" class="instagram"><i class="lni lni-instagram"></i>Login With
+											Kakao</a></li>
+										</ul>
+									</div>
+									<div class="col-lg-6 col-md-6 col-12">
+										<ul>
+											<li><a href="javascript:void(0)" class="linkedin"><i class="lni lni-linkedin-original"></i>Login With 
+											Naver</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<p class="outer-link">Don't have an account? 
+								<a href="join">Register here</a>
+							</p>
+						</form>
 					</div>
 				</div>
-			</form>
-		</main>
-	</div>
+			</div>	
+		</div>
+	</section>
 
-	<!-- bootstrap -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<c:import url="../temp/header_script.jsp"></c:import>
+	<c:import url="../temp/footer.jsp"></c:import>
 </body>
 </html>
