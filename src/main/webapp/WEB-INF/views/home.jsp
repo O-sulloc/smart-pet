@@ -65,7 +65,7 @@
                                         building a high-qualities medicals service by MediGrids.</p>
                                     <div class="button wow fadeInLeft" data-wow-delay=".7s">
                                         <a href="appointment.html" class="btn">Book Appointment</a>
-                                        <a href="about-us.html" class="btn">About Us</a>
+                                        <a href="./stores/test?rowNum=12&pageNo=1" class="btn">Find Veterinary</a>
                                     </div>
                                 </div>
                                 <!-- End Hero Text -->
@@ -94,7 +94,7 @@
                                         building a high-qualities medicals service by MediGrids.</p>
                                     <div class="button">
                                         <a href="appointment.jsp" class="btn">Book Appointment</a>
-                                        <a href="about-us.jsp" class="btn">About Us</a>
+                                        <a href="./stores/test?rowNum=12&pageNo=1" class="btn">Find Veterinary</a>
                                     </div>
                                 </div>
                                 <!-- End Hero Text -->

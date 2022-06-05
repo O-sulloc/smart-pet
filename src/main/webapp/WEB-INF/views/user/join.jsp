@@ -104,7 +104,7 @@
 							<form:errors path="phone"></form:errors>
 						</div>
 						<div class="form-group">
-							<form:input path="address" cssClass="form-control" placeholder="Address"/>
+							<form:input path="address" cssClass="form-control" placeholder="Address" id="address"/>
 							<form:errors path="address"></form:errors>
 						</div>
 						
@@ -147,14 +147,12 @@
 		</div>
 	</section>
 
+	<!-- jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="../resources/js/join.js"></script>
+	
 	<c:import url="../temp/header_script.jsp"></c:import>
 	<c:import url="../temp/footer.jsp"></c:import>
-	
-	<!-- jquery -->
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="../resources/js/join.js"></script> -->
-	<!-- bootstrap -->
-	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
 </body>
 </html>
