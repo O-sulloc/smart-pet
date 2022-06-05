@@ -2,7 +2,7 @@ const btn = document.getElementById("btn");
 const check = document.getElementsByClassName("form-check-input ch");
 const frm = document.getElementById("frm");
 
-
+window.onload=function(){
 	document.getElementById("address").addEventListener("click", function(){
 		new daum.Postcode({
 			oncomplete: function(data) {
@@ -12,7 +12,7 @@ const frm = document.getElementById("frm");
 			}
 		}).open();
 	})
-
+}
 
 $("#all").click(function(){
 	$(".ch").prop("checked", $("#all").prop("checked"));
