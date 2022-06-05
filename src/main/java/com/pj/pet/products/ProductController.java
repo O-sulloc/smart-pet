@@ -67,22 +67,19 @@ public class ProductController {
 	}
 	@GetMapping("add")
 	 public ModelAndView setAdd(ProductVO productVO,ModelAndView mv)throws Exception{
-//		ModelAndView mv =new ModelAndView();
 		mv.setViewName("product/add");
 	    return mv;
 	}
 	@PostMapping("add")
-	public ModelAndView setAdd(ProductVO productVO,MultipartFile[] files)throws Exception{
+	public ModelAndView setAdd(ProductVO productVO,MultipartFile[] files,HttpSession session)throws Exception{
 		ModelAndView mv =new ModelAndView();
 //		if(bindingResult.hasErrors()) {
 //			mv.setViewName("product/add");
 //			return mv;
 //		}
-//		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-//		productVO.setWriter(memberVO.getId());
+		UserVO userVO = (UserVO)session.getAttribute("user");
+		productVO.setId(userVO.getId());
 		int result=productService.setAdd(productVO,files);
-//		mv.setViewName("common/result");
-//		mv.addObject("result",result);
 		mv.setViewName("redirect:./list");
 		return mv;
 	}

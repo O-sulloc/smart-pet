@@ -109,12 +109,7 @@ public class ProductService {
 		 return fileName;
 	   }
 	//summernote 끝
-	 
-	 
-	 public int countMinus(CartVO cartVO) throws Exception{
-		 return productMapper.countMinus(cartVO);
-	 }
-	
+	 	
 
 }
 

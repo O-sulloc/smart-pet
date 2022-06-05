@@ -3,7 +3,9 @@ package com.pj.pet.products;
 import java.sql.Date;
 import java.util.List;
 
+import com.pj.pet.carts.CartVO;
 import com.pj.pet.category.CategoryVO;
+import com.pj.pet.order.OrderVO;
 import com.pj.pet.review.ReviewVO;
 
 import lombok.Data;
@@ -24,6 +26,8 @@ public class ProductVO {
 	private List<ProductFileVO> productFileVOs;
 	public Long totalPrice;
 	private CategoryVO categoryVO;
+	private CartVO cartVO;
+	private OrderVO orderVO;
 	
 	//재석추가(별점 평균)
 	private Double starAvg;

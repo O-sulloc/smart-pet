@@ -20,9 +20,8 @@
           		and PRODUCTCOUNT>0
           </otherwise>
           </choose>
-		
 				AND
-		<choose>
+		  <choose>
 			<when test="kind=='col1'">
 				PRODUCTNAME
 			</when>
@@ -92,7 +91,7 @@
 		<result column="rate" property="rate" />
 		<result column="sales" property="sales" />
 		<result column="regDate" property="regDate" />
-		<result column="writer" property="writer" />
+		<result column="id" property="id" />
 		<!-- 재석추가 -->
 		<result column="starAvg" property="starAvg" />
 		<collection property="productFileVOs" javaType="List" ofType="ProductFileVO">
@@ -104,7 +103,7 @@
 
 	<insert id="setAdd" parameterType="ProductVO" useGeneratedKeys="true" keyProperty="productNum">
 		INSERT INTO PRODUCTS
-		VALUES(#{productNum},#{categoryNum},#{productName},#{productPrice},#{productDetail},#{productCount},#{rate},0,now(),#{writer},#{pcategoryNum})
+		VALUES(#{productNum},#{categoryNum},#{productName},#{productPrice},#{productDetail},#{productCount},#{rate},0,now(),#{id},#{pcategoryNum})
 	</insert>
 
 	<update id="setUpdate" parameterType="ProductVO">
@@ -154,17 +153,28 @@
 <!--  카테고리끝 -->
 
 <!--  재고 변경 -->
-	<update id="countMinus" parameterType="CartVO">
+	<update id="countMinus" parameterType="Long">
  		UPDATE PRODUCTS SET 
 		PRODUCTCOUNT = PRODUCTCOUNT-(SELECT PRODUCTAMOUNT FROM CARTS WHERE CARTNUM=#{cartNum})
 		WHERE PRODUCTNUM=(SELECT PRODUCTNUM  FROM CARTS WHERE CARTNUM=#{cartNum})
 	</update>
 	
-	<update id="countPlus" parameterType="CartVO">
+	<update id="countPlus" parameterType="Long">
  		UPDATE PRODUCTS SET 
 		PRODUCTCOUNT = PRODUCTCOUNT+(SELECT PRODUCTAMOUNT FROM CARTS WHERE CARTNUM=#{cartNum})
 		WHERE PRODUCTNUM=(SELECT PRODUCTNUM  FROM CARTS WHERE CARTNUM=#{cartNum})
+	</update>
+	
+	<update id="saleMinus" parameterType="Long">
+ 		UPDATE PRODUCTS SET 
+		SALES = SALES-(SELECT PRODUCTAMOUNT FROM CARTS WHERE CARTNUM=#{cartNum})
+		WHERE PRODUCTNUM=(SELECT PRODUCTNUM  FROM CARTS WHERE CARTNUM=#{cartNum})
+	</update>
+	
+	<update id="salePlus" parameterType="Long">
+ 		UPDATE PRODUCTS SET 
+		SALES = SALES+(SELECT PRODUCTAMOUNT FROM CARTS WHERE CARTNUM=#{cartNum})
+		WHERE PRODUCTNUM=(SELECT PRODUCTNUM  FROM CARTS WHERE CARTNUM=#{cartNum})
 	</update>		
-
 
 </mapper>

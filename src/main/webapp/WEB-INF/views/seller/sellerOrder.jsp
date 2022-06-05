@@ -21,8 +21,7 @@
  .gdsInfo span { font-size:20px; font-weight:bold; display:inline-block; width:100px; margin-right:10px; }
  
  .deliveryChange { text-align:right; }
- .delivery1_btn,
- .delivery2_btn { font-size:16px; background:#fff; border:1px solid #999; margin-left:10px; }
+ .btn-primary { font-size:16px; background:#fff; border:1px solid #999; margin-left:10px; }
 </style>
 
 </head>
@@ -50,27 +49,27 @@
 								<p>
 									<span>결제가격</span>${ovo.payVO.totalPrice}원</p>
 								<p>
-									<span>환불</span>
-								</p>
-								<p>
 									<span>배송상태</span>
 									<c:choose>
 									<c:when test="${ovo.shipState eq 0 }">배송 준비</c:when>
-									<c:when test="${ovo.shipState eq 1 }">배송 중</c:when>
 									<c:otherwise>배송 완료</c:otherwise>
 									</c:choose>
 								</p>
 								<p>
 									<span>주문날짜</span>${ovo.orderDate}</p>
 								<c:choose>
-								<c:when test="${ovo.shipState eq 2 }"></c:when>
+								<c:when test="${ovo.shipState eq 1 }"></c:when>
 								<c:otherwise>
 								<div id="ship" class="deliveryChange">
-   								<button type="button" data-oNum="${ovo.orderNum}" id="ship1btn${ovo.orderNum}" class="delivery1_btn">배송 중</button>
-   								<button type="button" data-oNum="${ovo.orderNum}" id="ship2btn${ovo.orderNum}" class="delivery2_btn">배송 완료</button>
+   								<button type="button" data-oNum="${ovo.orderNum}" id="ship1btn${ovo.orderNum}" class="btn btn-primary">배송</button>
  								</div>
  								</c:otherwise>
  								</c:choose>	
+ 								<c:if test="${ovo.refund eq 1}">
+								<p>
+									<span style="color:red">환불완료</span>
+								</p>
+								</c:if>
 							</div>
 	
 						</section>

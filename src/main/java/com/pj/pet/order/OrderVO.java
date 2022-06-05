@@ -1,7 +1,7 @@
 package com.pj.pet.order;
 
 import java.sql.Date;
-
+import com.pj.pet.carts.CartVO;
 import com.pj.pet.pay.PayVO;
 
 import lombok.Data;
@@ -16,5 +16,6 @@ public class OrderVO {
 	private Date orderDate;
 	private Long refund;
 	private PayVO payVO;
+	private CartVO cartVO;
 
 }

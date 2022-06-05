@@ -10,8 +10,6 @@ import com.pj.pet.cartrefer.CartReferMapper;
 import com.pj.pet.cartrefer.CartReferVO;
 import com.pj.pet.carts.CartService;
 import com.pj.pet.carts.CartVO;
-import com.pj.pet.order.OrderService;
-import com.pj.pet.order.OrderVO;
 import com.pj.pet.products.ProductMapper;
 
 @Service
@@ -22,8 +20,6 @@ public class PayService {
 	private CartReferMapper cartReferMapper;
 	@Autowired
 	private CartService cartService;
-	@Autowired
-	private OrderService orderService;
 	@Autowired
 	private ProductMapper productMapper;
 
@@ -56,8 +52,8 @@ public class PayService {
 			cartVO.setCartNum(cn);
 			result = cartService.cartpayUpdate(cartVO);
 			result = cartReferMapper.setReferAdd(cartReferVO);
-			//결제 -> 재고 마이너스
-			result =productMapper.countMinus(cartVO);
+			//결제 -> 상품 판매량 증가
+			result = productMapper.salePlus(cn);
 		}
 		
 

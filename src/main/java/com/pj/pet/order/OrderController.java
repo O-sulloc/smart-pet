@@ -6,9 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.pj.pet.carts.CartVO;
+import com.pj.pet.pay.PayService;
 import com.pj.pet.pay.PayVO;
+import com.pj.pet.products.ProductService;
+import com.pj.pet.products.ProductVO;
 import com.pj.pet.user.UserVO;
 
 @Controller
@@ -16,6 +20,10 @@ public class OrderController {
 
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private PayService payService;
+	@Autowired
+	private ProductService productService;
 
 	// 주문내역 페이지
 	@GetMapping("/user/orderList")
@@ -41,8 +49,7 @@ public class OrderController {
 		return mv;
 	}
 
-	// 배송 업데이트
-
+	// 배송 
 	@PostMapping("/order/update")
 	public ModelAndView cartUpdate(OrderVO orderVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -52,5 +59,17 @@ public class OrderController {
 
 		return mv;
 	}
+	
+	// 환불
+	@PostMapping("/order/refund")
+	public ModelAndView refund(OrderVO orderVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = orderService.refund(orderVO);		
+		mv.addObject("result", result);
+		mv.setViewName("common/result");
+
+		return mv;
+	}
+	
 
 }

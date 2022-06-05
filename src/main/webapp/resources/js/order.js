@@ -1,6 +1,7 @@
-let ship = $(".orderInfo");
-for (sb of ship) {
-	let onum = sb.getAttribute("data-oNum");
+let order = $(".orderInfo");
+
+for (odn of order) {
+	let onum = odn.getAttribute("data-oNum");
 $("#ship1btn" + onum).click(function() {
 let orderNum = $(this).attr("data-oNum");
 		$.ajax({
@@ -21,26 +22,27 @@ let orderNum = $(this).attr("data-oNum");
 			}
 		});
      });
+            
+         //환불
+         $("#refund"+onum).click(function(){
+            let orderNum = $(this).attr("data-oNum");
 
-
-$("#ship2btn" + onum).click(function() {
-    let orderNum = $(this).attr("data-oNum");
             $.ajax({
-                url: "../order/update",
+                url: "../order/refund",
                 type: "POST",
                 data: {
-                    shipState: 2,
                     orderNum: orderNum
                 },
                 success: function(data) {
                     if (data.trim() == '1') {
-                        alert("배송이 완료됐습니다.")
+                        alert("환불 완료됐습니다.")
                         window.location.reload();
                     }
                 },
                 error: function() {
-                    alert("배송 업데이트 실패했습니다.");
+                    alert("환불 실패했습니다.");
                 }
             });
-         });
+
+        });
     }

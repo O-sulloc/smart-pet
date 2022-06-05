@@ -7,7 +7,7 @@
 <mapper namespace="com.pj.pet.order.OrderMapper">
 
 	<!-- 구매자 주문내역 -->
- 	<select id="orderList" parameterType="OrderVO" resultMap="orderResult">
+	<select id="orderList" parameterType="OrderVO" resultMap="orderResult">
 		SELECT P.*,O.*
 		FROM PAY P
 		LEFT OUTER JOIN
@@ -15,26 +15,46 @@
 		ON(P.PAYNUM=O.PAYNUM)
 		WHERE O.ID =#{id}
 	</select>
-	
+
 	<!-- 판매자 주문목록 -->
-	 <select id="sellerOrder" parameterType="OrderVO" resultMap="orderResult">
+	<select id="sellerOrder" parameterType="OrderVO" resultMap="orderResult">
 		SELECT P.*,O.*
 		FROM PAY P
 		LEFT OUTER JOIN
 		ORDERS O
 		ON(P.PAYNUM=O.PAYNUM)
 	</select>
-	
-	<!--  배송  -->
+
+	<!-- 배송 -->
 	<update id="shipUpdate" parameterType="OrderVO">
-	 	UPDATE ORDERS SET SHIPSTATE=#{shipState} WHERE ORDERNUM=#{orderNum}
+		UPDATE ORDERS SET SHIPSTATE=#{shipState} WHERE ORDERNUM=#{orderNum}
 	</update>
-	
-	<!--  환불  -->
-<!-- 	<update id="refund" parameterType="OrderDTO">
+
+	<!-- 환불 -->
+	<update id="refund" parameterType="OrderVO">
 		UPDATE ORDERS SET REFUND=1 WHERE ORDERNUM=#{orderNum}
-	</update> -->
+	</update>
+		
+	<select id="getOrderCart" parameterType="OrderVO" resultMap="orderCart">
+		SELECT P.PRODUCTNUM,P.PRODUCTCOUNT,C.CARTNUM ,C.PRODUCTAMOUNT 
+		FROM PRODUCTS P
+		LEFT  JOIN
+		CARTS C
+		ON (P.PRODUCTNUM = C.PRODUCTNUM)
+		WHERE C.CARTNUM IN (SELECT CARTNUM FROM CARTREFER WHERE PAYNUM=
+		(SELECT PAYNUM FROM ORDERS WHERE ORDERNUM=#{orderNum}))
+	</select>
 	
+	<resultMap type="ProductVO" id="orderCart">
+		 <id column="productNum" property="productNum" />
+		 <result column="productCount" property="productCount" />
+		<association property="cartVO" javaType="CartVO">
+		 <id column="cartNum" property="cartNum" />
+		 <result column="productAmount" property="productAmount" />		
+		</association>
+	</resultMap>
+	
+
 	<resultMap type="OrderVO" id="orderResult">
        <id column="orderNum" property="orderNum"/>
        <result column="id" property="id"/>
@@ -51,28 +71,34 @@
           <result column="recipientPhone" property="recipientPhone"/>
        </association>
     </resultMap> 
-   
+
 	<insert id="setAdd" parameterType="OrderVO">
 		INSERT INTO ORDERS
 		VALUES(null,#{payNum},#{id},#{orderName},0,now(),0)
 	</insert>
 
 	<!-- 주문번호 만드려면 ORDERNUM이 필요해서 INSERT 후 주문번호 생성 후 UPDATE -->
- 	<update id="getOrderName" parameterType="OrderVO">
-		UPDATE ORDERS SET ORDERNAME =(SELECT ORDERNAME FROM
-		(SELECT DISTINCT concat(cast(O.ORDERDATE as char), 
+	<update id="getOrderName" parameterType="OrderVO">
+		UPDATE ORDERS SET
+		ORDERNAME =(SELECT ORDERNAME FROM
+		(SELECT DISTINCT
+		concat(cast(O.ORDERDATE as char),
 		right(concat("00000" ,rowCount), 6)) as ORDERNAME FROM ORDERS,
-		(SELECT concat(substr(date_format(now(), '%Y-%m-%d'), 1, 10)) as ORDERDATE,
-		(SELECT ORDERNUM FROM ORDERS ORDER BY ORDERNUM DESC limit 1) as rowCount FROM dual) O)
-		ORDERS) 
+		(SELECT
+		concat(substr(date_format(now(), '%Y-%m-%d'), 1, 10)) as ORDERDATE,
+		(SELECT ORDERNUM FROM ORDERS ORDER BY ORDERNUM DESC limit 1) as
+		rowCount FROM dual) O)
+		ORDERS)
 		WHERE PAYNUM =#{payNum}
-	</update> 
+	</update>
 
 
 	<!-- 결제한 디테일 상품 리스트 -->
 	<select id="orderDetailList" parameterType="PayVO" resultMap="cartListResult">
-		SELECT C.*,P.PRODUCTNAME,P.PRODUCTPRICE,P.RATE,P.PRODUCTCOUNT,PF.*,CR.*
-		FROM CARTS C
+		SELECT
+		C.*,P.PRODUCTNAME,P.PRODUCTPRICE,P.RATE,P.PRODUCTCOUNT,PF.*,CR.*
+		FROM
+		CARTS C
 		LEFT JOIN
 		PRODUCTS P
 		ON(C.PRODUCTNUM=P.PRODUCTNUM)
@@ -82,7 +108,8 @@
 		LEFT JOIN
 		CARTREFER CR
 		ON(C.CARTNUM=CR.CARTNUM)
-		WHERE C.ID =#{id} AND PAYCHECK=1 AND CR.PAYNUM =#{payNum}
+		WHERE C.ID =#{id} AND PAYCHECK=1 AND CR.PAYNUM
+		=#{payNum}
 	</select>
 
 	<resultMap type="CartVO" id="cartListResult">
@@ -110,12 +137,12 @@
 		<result column="fileName" property="fileName" />
 		<result column="oriName" property="oriName" />
 	</resultMap>
-	
+
 	<resultMap type="CartReferVO" id="CartReferVO">
 		<id column="cartreferNum" property="cartreferNum" />
 		<result column="cartNum" property="cartNum" />
 		<result column="payNum" property="payNum" />
 		<result column="paymentKind" property="paymentKind" />
 	</resultMap>
-	
+
 </mapper>

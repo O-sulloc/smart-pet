@@ -13,6 +13,9 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <c:import url="../temp/header_script.jsp"></c:import>
+<!--  에디터 -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 <title>Insert title here</title>
 </head>
@@ -40,16 +43,16 @@
 			<label>상품 가격</label> <input name="productPrice" class="form-control productId">
 		</div>
 		<div>
-			<label>상품 설명</label> <input name="productDetail" class="form-control productId">
-		</div>
-		<div>
 			<label>상품 수량</label> <input name="productCount" class="form-control productId">
 		</div>
 		<div>
 			<label>할인율</label> <input name="rate" class="form-control productId">
 		</div>
 		<div>
-			<label>판매자</label> <input name="writer" class="form-control productId">
+			<label>판매자</label> <input name="id" value="${user.id}"  class="form-control productId">
+		</div>
+		<div>
+			<label>상품 설명</label><textarea name="productDetail" class="form-control" id="productDetail"></textarea>
 		</div>
 
 		<div id="fileResult"></div>
@@ -63,10 +66,12 @@
 </div>
 <script type="text/javascript" src="../resources/js/category.js"></script> 
 <script type="text/javascript" src="../resources/js/fileAdd.js"></script> 
+<script type="text/javascript" src="../js/summernote.js"></script>
 
 <script type="text/javascript">
 selectCategory();
 fileAddInit(0);
+summernoteInit("productDetail","");
 </script>
 	
 </body>

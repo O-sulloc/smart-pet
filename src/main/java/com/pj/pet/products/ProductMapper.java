@@ -37,8 +37,13 @@ public interface ProductMapper {
 	public Long getpCount()throws Exception;
 	
 	//재고 변경
-	public int countMinus(CartVO cartVO) throws Exception;
+	public int countMinus(Long cartNum) throws Exception;
 	
-	public int countPlus(CartVO cartVO) throws Exception;
+	public int countPlus(Long cartNum) throws Exception;
+	
+	//판매량 변경
+	public int saleMinus(Long cartNum) throws Exception;
+	
+	public int salePlus(Long cartNum) throws Exception;
 
 }
