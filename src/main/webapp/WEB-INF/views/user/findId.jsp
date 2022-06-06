@@ -16,7 +16,6 @@
     <c:import url="../temp/header_css.jsp"></c:import>
 </head>
 <body>
-	
 	<c:import url="../temp/header.jsp"></c:import>
 	
 	<div class="breadcrumbs overlay">

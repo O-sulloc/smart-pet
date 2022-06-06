@@ -1,4 +1,5 @@
 const frm = document.getElementById("frm");
+const btn = document.getElementById("btn");
 const name = document.getElementById("name");
 const nameResult = document.getElementById("nameResult");
 const email = document.getElementById("email");

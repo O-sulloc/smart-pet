@@ -120,7 +120,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		UserVO userVO=(UserVO) session.getAttribute("user");
 		userService.setDelete(userVO);
-		
+		session.invalidate();
 		mv.setViewName("redirect:/");
 		return mv;
 	}

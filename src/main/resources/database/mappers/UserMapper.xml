@@ -54,7 +54,7 @@
 	</update>
 
 	<select id="getDetail" parameterType="UserVO" resultType="UserVO">
-		SELECT ID, NAME, EMAIL, PHONE, ADDRESS FROM USER WHERE ID=#{id} 
+		SELECT ID, NAME, EMAIL, PHONE, ADDRESS, POINT FROM USER WHERE ID=#{id} 
 	</select>
 
 	<update id="setResetPw" parameterType="UserVO">
