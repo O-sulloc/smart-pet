@@ -49,10 +49,13 @@ function DatetimepickerDefaults(opts) {
 
 //설정버튼 눌렀을시 유효성 체크 후 데이터 전송 
 $('.btn').click(function(){
-	validationCk();
+	if(validationCk()!=false){
+		$("form").submit();
+	}
 })
 
 function validationCk(){
+	
 	if($("#termSelbox option:selected").val()=='예약 시간 단위'){
 		alert("예약시간 단위를 선택해주세요.");
 		$('#termSelbox').focus();

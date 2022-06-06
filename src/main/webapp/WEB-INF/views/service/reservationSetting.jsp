@@ -27,7 +27,7 @@
 	
 		<div class="row col-md-auto" >
 	
-<form action="./reservationSetting" method="post">
+<form action="./reservationSetting" method="post" >
 
 <!-- <input id="datetimepicker" type="text" > -->
 

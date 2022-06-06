@@ -27,6 +27,8 @@ public class reservationSettingInterceptor implements HandlerInterceptor{
 		HttpSession session= request.getSession();
 		UserVO userVO=(UserVO)session.getAttribute("user");
 		
+		
+		
 		ReservationSettingVO reservationSettingVO=serviceService.getReservationSettingCheck(userVO);
 		
 		//reservationSetting이 존재한다면 
