@@ -16,6 +16,9 @@ import com.pj.pet.util.Pager;
 @Mapper
 public interface ServiceMapper {
 	
+	//서비스 등록되어있는지 확인 (registration page 인터셉터 체크용)  
+	public ServiceVO registrationInterceptor(UserVO userVO) throws Exception;
+	
 	//overdue 거부로 자동 update
 	public int updateOverdue(UserVO userVO)throws Exception;
 	

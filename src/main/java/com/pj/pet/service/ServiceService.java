@@ -26,6 +26,12 @@ public class ServiceService {
 	@Autowired
 	private FileManager fileManager;
 	
+	//서비스 등록되어있는지 확인 (registration page 인터셉터 체크용)  
+	public ServiceVO registrationInterceptor(UserVO userVO) throws Exception{
+		return serviceMapper.registrationInterceptor(userVO);
+	}
+	
+	
 	public int updateOverdue(UserVO userVO)throws Exception{
 		return serviceMapper.updateOverdue(userVO);
 	}

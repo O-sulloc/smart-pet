@@ -22,6 +22,11 @@
 		where RESNUM =#{resNum}
 	</select>
 	
+	<!--서비스 등록되어있는지 확인 (registration page 인터셉터 체크용)  -->
+	<select id="registrationInterceptor" parameterType="UserVO" resultType="ServiceVO">
+	select SERNUM from SERVICE where id=#{id}
+	</select>
+	
 	<!-- interceptor 구별 (id로 서비스 serkind 얻어서 1,2면 서비스마이페이지 이용 가) -->
 	<select id="sellerInterceptor" parameterType="UserVO" resultType="UserVO">
 		SELECT ROLE from USER
