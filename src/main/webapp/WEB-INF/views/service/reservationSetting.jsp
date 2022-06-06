@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <c:import url="../temp/header_css.jsp"></c:import>
 <c:import url="../temp/header_script.jsp"></c:import>
 <!-- datetimepicker -->
@@ -13,6 +15,7 @@
 <!-- timepiki -->
 <link rel='stylesheet' type='text/css'href='../css/timepicki.css'/>
 <script type='text/javascript'src='../js/timepicki.js'></script>
+
 </head>
 
 
@@ -54,7 +57,7 @@
 	</div>
 	
 	<h5> 예약시간 단위</h5>
-	<select class="form-select" id="selbox" aria-label="Default select example" name="term">
+	<select class="form-select" id="termSelbox" aria-label="Default select example" name="term">
 	  <option selected>예약 시간 단위</option>
 	  <option value="60">1시간</option>
 	  <option value="30">30분</option>
@@ -63,7 +66,7 @@
  -->	</select>
 	
 	<h5> 예약 시간 당 수용인원</h5>
-	<select class="form-select" id="selbox" aria-label="Default select example" name="capacity">
+	<select class="form-select" id="capacitySelbox" aria-label="Default select example" name="capacity">
 	  <option selected>수용인원</option>
 	  <option value="1">1명</option>
 	  <option value="2">2명</option>
@@ -76,9 +79,9 @@
 	
 	<h4> 점심시간</h4>
 	<h5> 점심시간 시작 </h5>
-	<input id='timepicker5' type='text'name='startBreaktime'/>
+	<input id='timepicker5' type='text' name='startBreaktime'/>
 	<h5> 점심시간 끝  </h5>
-	<input id='timepicker6' type='text'name='endBreaktime'/>
+	<input id='timepicker6' type='text' name='endBreaktime'/>
 	<hr>
 	<h4> 평일</h4>
 	<h5> 첫 예약 시간 </h5>
@@ -96,7 +99,7 @@
 	<input id='timepicker4' type='text'name='times'/>
 	<hr>
 	
-	<button type="submit" class= "btn-primary btn-sm">설정 </button>
+	<button type="button" class= "btn-primary btn-sm btn">설정 </button>
 </form>
 </div>
 </div>
