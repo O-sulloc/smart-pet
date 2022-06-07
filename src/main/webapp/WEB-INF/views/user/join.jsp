@@ -43,40 +43,6 @@
 					<div class="form-head">
 					<h4 class="title">Registration</h4>
 					<form:form modelAttribute="userVO" method="post" id="frm">
-						<div class="socila-login">
-							<div class="row">
-							<div class="col-lg-6 col-md-6 col-12">
-								<ul>
-									<li><a href="javascript:void(0)" class="facebook"><i class="lni lni-facebook-original"></i>Import From
-									Facebook</a></li>
-								</ul>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12">
-								<ul>
-									<li><a href="javascript:void(0)" class="google"><i class="lni lni-google"></i>Import From Google
-									Plus</a>
-									</li>
-								</ul>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12">
-								<ul>
-									<li><a href="javascript:void(0)" class="instagram"><i class="lni lni-instagram"></i>Import From
-									Instagram</a></li>
-								</ul>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12">
-								<ul>
-									<li><a href="javascript:void(0)" class="linkedin"><i class="lni lni-linkedin-original"></i>Import From Linkedin</a>
-									</li>
-								</ul>
-							</div>
-							</div>
-						</div>
-						
-						<div class="alt-option">
-							<span>Or</span>
-						</div>
-						
 						<div class="form-group">
 							<form:input path="name" cssClass="form-control" id="name" placeholder="Name"/>
 							<form:errors path="name"></form:errors>

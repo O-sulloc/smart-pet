@@ -1,70 +1,116 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<title>Insert title here</title>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<title>My Page - MediGrids</title>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="shortcut icon" type="image/x-icon"
+	href="../resources/assets/images/favicon.svg" />
+<!-- Place favicon.ico in the root directory -->
+
+<c:import url="../temp/header_css.jsp"></c:import>
 </head>
 <body>
-	<div class="container mt-3">
-		<main>
-			<div class="py-5 text-center">
-				<h2>반려동물 등록 페이지</h2>
-			</div>
-			
-			<div class="row justify-content-center">
-				<div class="col-md-7 col-lg-8">
-					<div class="alert alert-success align-items-center" role="alert">
-						Enter your pet's information
-					</div>
-					
-					<form action="petAdd" method="post">
-						<div class="row g-3 justify-content-center">							
-							<div>
-								<div class="col-sm-6">
-									<label for="petName" class="form-label">petName</label>
-									<input id="petName" class="form-control" name="petName">
-								</div>
-							</div>
-							
-							<div class="col-sm-12">
-								<div class="form-check form-check-inline">
-									<input type="radio" class="form-check-input" id="petKind" value="0" name="petKind">
-									<label class="form-check-label" for="petKind0">dog</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input type="radio" class="form-check-input" id="petKind" value="1" name="petKind">
-									<label class="form-check-label" for="petKind1">cat</label>
-								</div>
-							</div>
-							<div class="col-sm-12">	
-								<label for="petBirth" class="form-label">PetBirth</label>
-								<input type="date" id="petBirth" name="petBirth" min="2000-01-01" max="">
-							</div>
-							<div class="col-sm-12">	
-								<div class="form-check form-check-inline">
-									<input type="radio" class="form-check-input" id="petSex" value="0" name="petSex">
-									<label class="form-check-label" for="petSex0">여</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input type="radio" class="form-check-input" id="petSex" value="1" name="petSex">
-									<label class="form-check-label" for="petSex1">남</label>
-								</div>
-							</div>
-							
+	<c:import url="../temp/header.jsp"></c:import>
 
-							<hr class="my-4">
-							
-							<button class="w-100 btn btn-success btn-lg mb-5" type="submit">등록</button>
-						</div>
-					</form>
+	<div class="breadcrumbs overlay">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+					<div class="breadcrumbs-content">
+						<h1 class="page-title">My Page</h1>
+					</div>
+					<ul class="breadcrumb-nav">
+						<li><a href="/">Home</a></li>
+						<li>My Page</li>
+					</ul>
 				</div>
 			</div>
-		</main>
+		</div>
 	</div>
+
+	<div class="service-details">
+		<div class="container">
+			<div class="content">
+				<div class="row">
+					<!-- Start Of SideBar -->
+					<c:import url="../temp/sidebar.jsp"></c:import>
+					<!-- End Of SideBar -->
+
+					<div class="col-lg-8 col-md-12 col-12">
+						<!-- section start -->
+						<section class="appointment page">
+							<!-- <section class="appointment page section"> -->
+							<div class="container">
+								<div class="row">
+								
+								<form action="petAdd" method="post">
+									<div class="appointment-form">
+										<div class="row">
+											<div class="col-12">
+												<div class="appointment-title">
+													<h2>Add Your Pet</h2>
+												</div>
+											</div>
+										</div>
+										
+										<div class="row">
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-input">
+													<label for=petName><i class="lni lni-user"></i></label> <input
+														type="text" name="petName" id="petName" placeholder="Pet Name">
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-input">
+													<label for="petKind"><i class="lni lni-notepad"></i></label>
+													<select name="petKind" id="petKind">
+														<option value="none" selected disabled>Dog / Cat</option>
+														<option value="0" id="petKind">Dog</option>
+														<option value="1" id="petKind">Cat</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-input">
+													<label for="petBirth"><i class="lni lni-calendar"></i></label>
+													<input type="date" name="petBirth" id="petBirth" min="2000-01-01" max="">
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-input">
+													<label for="petSex"><i class="lni lni-magnifier"></i></label>
+													<select name="petSex" id="petSex">
+														<option value="none" selected disabled>Girl / Boy</option>
+														<option value="0" id="petSex">Girl</option>
+														<option value="1" id="petSex">Boy</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-btn button">
+													<button class="btn" type="submit">Register</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+
+								</div>
+							</div>
+						</section>
+						<!-- section end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	
 	<script type="text/javascript">
 		let now_utc = Date.now()	//현재 날짜를 밀리초로 반환
@@ -76,8 +122,7 @@
 		document.getElementById("petBirth").setAttribute("max", today);
 		//날짜 지정 max에 today를 넣음으로써 오늘 이후의 날짜는 선택하지 못하게 한다.
 	</script>
-	
-	<!-- bootstrap -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<c:import url="../temp/header_script.jsp"></c:import>
+	<c:import url="../temp/footer.jsp"></c:import>
 </body>
 </html>

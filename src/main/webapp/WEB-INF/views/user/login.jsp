@@ -71,39 +71,6 @@
 							<div class="button">
 								<button type="submit" class="btn">Login Now</button>
 							</div>
-							<div class="alt-option">
-								<span>Or</span>
-							</div>
-							<div class="socila-login">
-								<div class="row">
-									<div class="col-lg-6 col-md-6 col-12">
-										<ul>
-											 <li><a href="javascript:void(0)" class="facebook"><i class="lni lni-facebook-original"></i>Login With
-											Facebook</a></li>
-										</ul>
-									</div>
-									<div class="col-lg-6 col-md-6 col-12">
-										<ul>
-											<li><a href="http://localhost/login/oauth2/GOOGLE" class="google"><i class="lni lni-google"></i>Login With 
-											Google</a>
-											</li>
-										</ul>
-									</div>
-									<div class="col-lg-6 col-md-6 col-12">
-										<ul>
-											<li><a href="http://localhost/login/oauth2/KAKAO" class="instagram"><i class="lni lni-instagram"></i>Login With
-											Kakao</a></li>
-										</ul>
-									</div>
-									<div class="col-lg-6 col-md-6 col-12">
-										<ul>
-											<li><a href="javascript:void(0)" class="linkedin"><i class="lni lni-linkedin-original"></i>Login With 
-											Naver</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
 							<p class="outer-link">Don't have an account? 
 								<a href="join">Register here</a>
 							</p>

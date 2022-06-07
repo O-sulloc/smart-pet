@@ -37,30 +37,22 @@
                                         <a class="page-scroll dd-menu collapsed" href="javascript:void(0)"
                                             data-bs-toggle="collapse" data-bs-target="#submenu-1-1"
                                             aria-controls="navbarSupportedContent" aria-expanded="false"
-                                            aria-label="Toggle navigation">상품</a>
+                                            aria-label="Toggle navigation">product</a>
                                         <ul class="sub-menu collapse" id="submenu-1-1">
-                                            <li class="nav-item"><a href="#">강아지 물품</a></li>
-                                            <li class="nav-item"><a href="#">고양이 물품</a></li>
+                                            <li class="nav-item"><a href="#">dog</a></li>
+                                            <li class="nav-item"><a href="#">cat</a></li>
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll dd-menu collapsed" href="javascript:void(0)"
-                                            data-bs-toggle="collapse" data-bs-target="#submenu-1-2"
-                                            aria-controls="navbarSupportedContent" aria-expanded="false"
-                                            aria-label="Toggle navigation">병원</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-2">
-                                            <li class="nav-item"><a href="about-us.jsp">About Us</a></li>
-                                        </ul>
+                                        <a href="javascript:void(0)" aria-label="Toggle navigation">hospital</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="javascript:void(0)" aria-label="Toggle navigation">미용샵</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="javascript:void(0)" aria-label="Toggle navigation">관리자페이지</a>
+                                        <a href="javascript:void(0)" aria-label="Toggle navigation">salon</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="../notice/list" aria-label="Toggle navigation">고객센터</a>
                                     </li>
+                                    
                                     <c:if test="${empty user}">
 										<li class="nav-item">
 	                                        <a href="/user/login" aria-label="Toggle navigation">login</a>
@@ -69,6 +61,7 @@
 	                                        <a href="/user/join" aria-label="Toggle navigation">join</a>
 	                                    </li>
                                     </c:if>
+                                    
                                     <c:if test="${not empty user}">
 	                                    <li class="nav-item">
 	                                        <a href="/cart/list" aria-label="Toggle navigation"> 
@@ -80,14 +73,39 @@
 	                                        	<img src="/resources/assets/images/logo/user.svg">
 	                                        </a>
 	                                        <ul class="sub-menu collapse" id="submenu-1-2">
-	                                            <li class="nav-item"><a href="/user/loginCheck">내 정보</a></li>
-	                                            <li class="nav-item"><a href="/user/petList">내 펫 관리</a></li>
-	                                            <li class="nav-item"><a href="#">장바구니</a></li>
-	                                            <li class="nav-item"><a href="/reservation/confirmList">예약</a></li>
-	                                            <li class="nav-item"><a href="/user/logout">로그아웃</a></li>
+	                                        	<c:if test="${user.role eq 0}"> <!-- 0 관리자 -->
+		                                            <li class="nav-item"><a href="/user/admin">Admin Page</a></li>
+		                                            <li class="nav-item"><a href="/user/admin/userUpdate">회원 등급 관리</a></li>
+	                                        	</c:if>
+	                                        	
+	                                        	<c:if test="${user.role eq 1}"> <!-- 1 상품 판매자 -->
+		                                            <li class="nav-item"><a href="/user/sellerList">Seller Page</a></li>
+		                                            <li class="nav-item"><a href="/user/sellerDetail">판매자 디테일</a></li>
+		                                            <li class="nav-item"><a href="/product/add">상품 등록</a></li>
+		                                            <li class="nav-item"><a href="/user/sellerOrder">판매 내역</a></li>
+	                                        	</c:if>
+	                                        	
+	                                        	<c:if test="${user.role eq 2}"> <!-- 2 일반 회원 -->
+		                                            <li class="nav-item"><a href="/user/loginCheck">My Profile</a></li>
+		                                            <li class="nav-item"><a href="/user/petList">Pet Profile</a></li>
+		                                            <li class="nav-item"><a href="/reservation/confirmList">Appointment</a></li>
+		                                            <li class="nav-item"><a href="/cart/list">Cart</a></li>
+		                                            <li class="nav-item"><a href="user/reviewListPage">Orders</a></li>
+	                                        	</c:if>
+	                                        	
+	                                        	<c:if test="${user.role eq 3}"> <!-- 3 병원/미용 판매자 -->
+		                                            <li class="nav-item"><a href="/service/mypage">병원/미용 seller page</a></li>
+		                                            <li class="nav-item"><a href="/service/reservationList">예약 리스트</a></li>
+		                                            <li class="nav-item"><a href="/service/resState0Page">대기 중인 예약 보기</a></li>
+		                                            <li class="nav-item"><a href="/service/getDayReservationList">날짜별 예약 현황 보기</a></li>
+		                                            <li class="nav-item"><a href="/service/monthListPage">월별 예약 현황 보기</a></li>
+		                                            <li class="nav-item"><a href="user/reviewListPage">Orders</a></li>
+	                                        	</c:if>
+											<li class="nav-item"><a href="/user/logout">Logout</a></li>
 	                                        </ul>
                                     	</li>
                                     </c:if>
+                                    
                                 </ul>
                             </div> <!-- navbar collapse -->
                             <div class="button add-list-button">

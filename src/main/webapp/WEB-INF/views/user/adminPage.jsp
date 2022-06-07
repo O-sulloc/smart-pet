@@ -23,11 +23,11 @@
 			<div class="row align-items-center">
 				<div class="col-lg-8 offset-lg-2 col-md-12 col-12">
 					<div class="breadcrumbs-content">
-						<h1 class="page-title">Admin Page</h1>
+						<h1 class="page-title">My Page</h1>
 					</div>
 					<ul class="breadcrumb-nav">
 						<li><a href="/">Home</a></li>
-						<li>Admin Page</li>
+						<li>My Page</li>
 					</ul>
 				</div>
 			</div>

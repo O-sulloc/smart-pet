@@ -1,47 +1,107 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<title>Insert title here</title>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<title>My Page - MediGrids</title>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="shortcut icon" type="image/x-icon"
+	href="../resources/assets/images/favicon.svg" />
+<!-- Place favicon.ico in the root directory -->
+
+<c:import url="../temp/header_css.jsp"></c:import>
 </head>
 <body>
-	<div class="container mt-3">
-		<main>
-			<div class="py-5 text-center">
-				<h2>반려동물 관리 페이지</h2>
-			</div>
-			
-			<div class="row mt-4">
-				<c:forEach items="${list}" var="pet" >
-					<div class="card me-3" style="width: 18rem;">
-					  <div class="card-body">
-					    <h5 class="card-title">이름: ${pet.petName}</h5>
-					  </div>
-					  <ul class="list-group list-group-flush">
-					    <li class="list-group-item">${pet.petKind==0?'강아지':'고양이'}</li>
-					    <li class="list-group-item">생년월일: ${pet.petBirth}</li>
-					    <li class="list-group-item">성별: ${pet.petSex==0?'여아':'남아'}</li>
-					  </ul>
-					  <div class="card-body">
-					    <a href="./petUpdate?petNum=${pet.petNum}" class="card-link">수정하기</a>
-					    <a href="./petDelete?petNum=${pet.petNum}" class="card-link">삭제하기</a>
-					  </div>
+	<c:import url="../temp/header.jsp"></c:import>
+
+	<div class="breadcrumbs overlay">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+					<div class="breadcrumbs-content">
+						<h1 class="page-title">Pet Profile</h1>
 					</div>
-				</c:forEach>
+					<ul class="breadcrumb-nav">
+						<li><a href="/">Home</a></li>
+						<li>Pet Profile</li>
+					</ul>
+				</div>
 			</div>
-			
-			<div class="col-1 my-4">
-				<a type="button" class="btn btn-outline-success" href="./petAdd">등록하기</a>
-			</div>
-		</main>
+		</div>
 	</div>
 
-	<!-- bootstrap -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<div class="service-details">
+		<div class="container">
+			<div class="content">
+				<div class="row">
+					<!-- Start Of SideBar -->
+					<c:import url="../temp/sidebar.jsp"></c:import>
+					<!-- End Of SideBar -->
+
+					<div class="col-lg-9 col-md-12 col-12">
+						<!-- section start -->
+						<section class="pricing-table">
+							<div class="container">
+							
+								<div class="row">
+									<div class="col-lg-4 col-md-6 col-12">
+										<div class="single-table wow fadeInUp" data-wow-delay=".2s">
+											<div class="table-x">
+												<a onclick="location.href='./petAdd'" style="cursor: pointer;">
+													<i class="lni lni-circle-plus"></i>
+												</a>
+											</div>
+											<div class="table-head">
+												<h4 class="title"><i class="lni lni-heart-filled"></i></h4>
+											</div>
+											<ul class="table-list">
+												<li>Add</li>
+												<li>Your</li>
+												<li>Pet</li>
+											</ul>
+											<div class="button">
+												<a href="./petAdd" class="btn">Add</a>
+											</div>
+										</div>
+									</div>
+									
+									<c:forEach items="${list}" var="pet" >
+										<div class="col-lg-4 col-md-6 col-12">
+											<div class="single-table wow fadeInUp" data-wow-delay=".2s">
+												<div class="table-x">
+													<a href="./petDelete?petNum=${pet.petNum}" style="cursor: pointer;">
+														<i class="lni lni-close"></i>
+													</a>
+												</div>
+												<div class="table-head">
+													<h4 class="title">${pet.petName}</h4>
+												</div>
+												<ul class="table-list">
+													<li>${pet.petKind==0?'강아지':'고양이'}</li>
+													<li>생년월일: ${pet.petBirth}</li>
+													<li>성별: ${pet.petSex==0?'여아':'남아'}</li>
+												</ul>
+												<div class="button">
+													<a href="./petUpdate?petNum=${pet.petNum}" class="btn">Update</a>
+												</div>
+											</div>
+										</div>
+									</c:forEach>
+								</div>
+							</div>
+						</section>
+						<!-- section end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<c:import url="../temp/header_script.jsp"></c:import>
+	<c:import url="../temp/footer.jsp"></c:import>
 </body>
 </html>

@@ -46,9 +46,9 @@
 						<section class="login">
 							<div class="container">
 								<div class="row">
-									<div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
+									
 										<div class="form-head">
-										<h4 class="title">Enter Your Password</h4>
+										<h4 class="title">Enter Your New Password</h4>
 											<form action="pwUpdate" method="post" id="frm">
 												<div class="form-group">
 													<input type="text" name="id" value="${vo.id}" hidden="">
@@ -57,12 +57,12 @@
 													<input type="password" id="pw" name="pw" class="form-control" placeholder="Password">
 													<div id="pwResult"></div>
 												</div>
-												<div class="button">
-													<button type="button" class="btn" id="btn">update</button>
+												<div class="appointment-btn button">
+													<button type="submit" class="btn" id="btn">update</button>
 												</div>
 											</form>
 										</div>
-									</div>
+									
 								</div>	
 							</div>
 						</section>

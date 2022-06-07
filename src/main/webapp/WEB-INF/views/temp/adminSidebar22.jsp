@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
-<title>My Page - MediGrids</title>
+<title>Admin Page - MediGrids</title>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon"
@@ -21,24 +21,13 @@
 	<div class="col-lg-3 col-md-12 col-12">
 		<div class="service-sidebar">
 			<div class="single-widget service-category">
-				<h3>My Page</h3>
+				<h3>Admin Page</h3>
 				<ul>
-					<li><a href="/user/myPage"> My Profile <i
+					<li><a href="/user/adminPage"> Admin Page <i
 							class="lni lni-user"></i>
 					</a></li>
-					<li><a href="/user/pwUpdate"> Change Password <i
+					<li><a href="/user/admin/userUpdate"> 회원 등급 관리 <i
 							class="lni lni-lock-alt"></i>
-					</a></li>
-					<li><a href="/user/petList"> Pet Profile <i
-							class="lni lni-github"></i>
-					</a></li>
-					<li><a href="#"> Appointment <i class="lni lni-calendar"></i>
-					</a></li>
-					<li><a href="/cart/list"> Cart <i
-							class="lni lni-cart-full"></i>
-					</a></li>
-					<li><a href="/user/reviewListPage"> Orders <i
-							class="lni lni-delivery"></i>
 					</a></li>
 				</ul>
 			</div>
