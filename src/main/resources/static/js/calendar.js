@@ -323,12 +323,12 @@ function capacityCk(resDate,resTime){
 				resTime:resTime
 			},
 			success:function(data){
-				console.log(data.trim())
+		
 				capacityCkReturn=data.trim()
-				console.log(capacityCkReturn)
+
 			}
 		})
-		console.log(capacityCkReturn)
+
 		
 	return capacityCkReturn;
 }
@@ -359,6 +359,7 @@ for(let i=0;i<40;i++){
 
            	if(capacityCk(clickDay,openTime0)>=capacity){
 				button.setAttribute("class","btn btn-outline-secondary")
+					button.setAttribute("disabled",true)
 			}else{
 				 button.setAttribute("class","btn btn-outline-primary")
 			}
@@ -393,7 +394,7 @@ for(let i=0;i<40;i++){
 				}else if(capacityCk(clickDay,result)>=capacity){
 				
 					button.setAttribute("class","btn btn-outline-secondary")
-					
+					button.setAttribute("disabled",true)
 				}else{
 					button.setAttribute("class","btn btn-outline-primary")
 				}
@@ -436,6 +437,7 @@ for(let i=0;i<40;i++){
        	if(capacityCk(clickDay,openTime1)>=capacity){
 	
 				button.setAttribute("class","btn btn-outline-secondary")
+				button.setAttribute("disabled",true)
 			}else{
 				 button.setAttribute("class","btn btn-outline-primary")
 			}
@@ -459,11 +461,17 @@ for(let i=0;i<40;i++){
 	        button.setAttribute("id","timeButton")
 	        button.setAttribute("name","resTime")
 	        button.setAttribute("id","timeButton")
+	        
+	        
 	        if(ar.includes(result2)){//점심시간일경우 회색으로 변경
 	       	 	button.setAttribute("class","btn btn-outline-secondary")
 				button.setAttribute("hidden",true)
 	       	 
-			}else{
+			
+			}else if(capacityCk(clickDay,result2)>=capacity){
+				button.setAttribute("class","btn btn-outline-secondary")
+				button.setAttribute("disabled",true)
+ 			}else{
 				button.setAttribute("class","btn btn-outline-primary")
 				
 			}
