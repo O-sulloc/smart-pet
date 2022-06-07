@@ -7,6 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <c:import url="../temp/header_css.jsp"></c:import>
+<link href="../resources/css/serviceList.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <body>
@@ -16,42 +17,40 @@
          <div class="row align-items-center">
             <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
                <div class="breadcrumbs-content">
-                  <h1 class="page-title">Registration</h1>
+                  <h1 class="page-title">Hospital</h1>
                </div>
                <ul class="breadcrumb-nav">
                   <li><a href="/">Home</a></li>
-                  <li>Registration</li>
+                  <li>Hospital</li>
                </ul>
             </div>
          </div>
       </div>
    </div>
 <div class="container mt-4">
-	<div class="row mt-4">
-		<div class="alert alert-primary" role="alert">
-	  		<h4 class="text-center" style="text-transform: uppercase;">${board} List</h4>
-		</div>
-	</div>
+	
 	
 	<div class="row mt-4">
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>글번호</th>
-					<th>상호명</th>
-					<th>전화번호</th>
-					<th>주소</th>
-					<th>영업시간</th>
+					<th><p class="text-center">글번호</p></th>
+					<th><p class="text-center">상호명</p></th>
+					<th><p class="text-center">진료과목</p></th>
+					<th><p class="text-center">전화번호</p></th>
+					<th><p class="text-center">주소</p></th>
+					<th><p class="text-center">진료시간</p></th>
 				</tr>
 			</thead>
 			<tbody>
 			<c:forEach items="${list}" var="vo">
 				<tr>
-					<td>${vo.serNum}</td>
-					<td><a class="link-success text-decoration-none" href="./detail?serNum=${vo.serNum}">${vo.serName}</a></td>
-					<td>${vo.serTel}</td>
-					<td>${vo.serAddress}</td>
-					<td>${vo.serTime}</td>
+					<td><p class="text-center">${vo.serNum}</p></td>
+					<td><p class="text-center"><a class="link-success text-decoration-none" href="./detail?serNum=${vo.serNum}">${vo.serName}</a></p></td>
+					<td><p class="text-center">${vo.hospitalField}</p></td>
+					<td><p class="text-center">${vo.serTel}</p></td>
+					<td><p class="text-center">${vo.serAddress}</p></td>
+					<td><p class="text-center">${vo.serTime}</p></td>
 				</tr>
 			</c:forEach>	
 			</tbody>
@@ -59,47 +58,45 @@
 		</table>
 	</div>
 	<!-- serKind 1 병원 -->
-	<div class="row">
+
 		<nav aria-label="Page navigation example">
 		  <ul class="pagination">
 		    <li class="page-item">
-		      <a class="page-link" href="./pn=${pager.pre?pager.startNum-1:1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
+		      <a class="page-link" href="./hospitalList?pn=${pager.pre?pager.startNum-1:1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		    </li>
 		    
 		    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-		    <li class="page-item"><a class="page-link" href="./pn=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+		    <li class="page-item">
+		    		<a class="page-link" href="./hospitalList?pn=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
 		    </c:forEach>
 		    
 		    <li class="page-item">
-		      <a class="page-link" href="./pn=${pager.next?pager.lastNum+1:pager.lastNum}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
+		      <a class="page-link" href="./hospitalList?pn=${pager.next?pager.lastNum+1:pager.lastNum}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
 		        <span aria-hidden="true">&raquo;</span>
 		      </a>
 		    </li>
 		  </ul>
 		</nav>
 	
-	</div>
-	
-	
 	
 	<div class="row justify-content-between">
 		<div class="col-5">
 			<form class="d-flex" action="./hospitalList" method="get">
 	
-				<div class="col-4 me-2">
-				<select name="kind" class="form-select " aria-label="Default select example">
+				<div class="col-2 me-2">
+				<select name="kind" class="searchoption" aria-label="Default select example">
 				  <option value="col1">상호명</option>
 				  <option value="col2">지역</option>
 				  <option value="col3">전화번호</option>
 				</select>
 				</div>
-				<div class="col-6 me-2">
-	        	<input name="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+				<div class="col-6 me-2 searchdiv">
+	        	<input name="search" class="searchform" type="search" placeholder="Search" aria-label="Search">
 	        	</div>
 	        	<div class="col-2">
-	        	<button class="btn btn-outline-success" type="submit">Search</button>
+	        	<button class="btn btn-outline-success btn-sm" type="submit">Search</button>
 	        	</div>
 	      </form>
 		</div>

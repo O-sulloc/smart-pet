@@ -43,17 +43,11 @@
                                             <li class="nav-item"><a href="#">고양이 물품</a></li>
                                         </ul>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="page-scroll dd-menu collapsed" href="javascript:void(0)"
-                                            data-bs-toggle="collapse" data-bs-target="#submenu-1-2"
-                                            aria-controls="navbarSupportedContent" aria-expanded="false"
-                                            aria-label="Toggle navigation">병원</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-2">
-                                            <li class="nav-item"><a href="about-us.jsp">About Us</a></li>
-                                        </ul>
+                                     <li class="nav-item">
+                                        <a href="/service/hospitalList" aria-label="Toggle navigation">병원</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="javascript:void(0)" aria-label="Toggle navigation">미용샵</a>
+                                        <a href="/service/shopList" aria-label="Toggle navigation">미용샵</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="javascript:void(0)" aria-label="Toggle navigation">관리자페이지</a>
@@ -83,7 +77,7 @@
 	                                            <li class="nav-item"><a href="/user/loginCheck">내 정보</a></li>
 	                                            <li class="nav-item"><a href="/user/petList">내 펫 관리</a></li>
 	                                            <li class="nav-item"><a href="#">장바구니</a></li>
-	                                            <li class="nav-item"><a href="/reservation/confirmList">예약</a></li>
+	                                            <li class="nav-item"><a href="/user/appointment">예약</a></li>
 	                                            <li class="nav-item"><a href="/user/logout">로그아웃</a></li>
 	                                        </ul>
                                     	</li>
@@ -91,7 +85,7 @@
                                 </ul>
                             </div> <!-- navbar collapse -->
                             <div class="button add-list-button">
-                                <a href="javascript:void(0)" class="btn">Book Appointment</a>
+                                <a href="/user/appointment" class="btn">Book Appointment</a>
                             </div>
                         </nav>
                         <!-- End Navbar -->

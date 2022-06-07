@@ -406,7 +406,9 @@ public class ServiceController {
 
 		serviceVO = serviceService.getService(serviceVO);
 		ReservationSettingVO reservationSettingVO = serviceService.getAllReservationSetting(serviceVO);
-
+		System.out.println("File!!!!!!!!"+serviceVO.getServiceFileVO().getFileName());
+		
+		mv.addObject("file",serviceVO.getServiceFileVO().getFileName());
 		mv.addObject("seviceVO", serviceVO);
 		mv.addObject("settingVO", reservationSettingVO);
 		mv.setViewName("service/detail");

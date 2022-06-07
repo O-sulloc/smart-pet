@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+/* 예약 버튼 */
+#res_btn{
+	display: inline-block;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 15px 30px;
+    background-color: #88C250;
+    color: #fff;
+    border: none;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    border-radius: 0;
+    position: relative;
+    z-index: 1;
+    margin-right: 7px;
+    
+}
+#res_btn{
+    padding: 12px 25px;
+    font-size: 14px;
+    font-weight: 500;
+}
+#res_btn::before {
+	height: 100%;
+    width: 0%;
+    background-color: #fff;
+    left: 0;
+    top: 0;
+    position: absolute;
+    content: "";
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    z-index: -1;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}

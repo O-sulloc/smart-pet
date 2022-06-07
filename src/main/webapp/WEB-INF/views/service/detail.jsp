@@ -11,29 +11,45 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <c:import url="../temp/header_css.jsp"></c:import>
 <link href="../css/calendar.css" rel="stylesheet">
+<link href="../resources/css/serviceDetail.css" rel="stylesheet">
 <c:import url="../temp/header_script.jsp"></c:import>
 <title>Insert title here</title>
 </head>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
+	<div class="breadcrumbs overlay">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+               <div class="breadcrumbs-content">
+                  <h1 class="page-title">Reservation</h1>
+               </div>
+               <ul class="breadcrumb-nav">
+                  <li><a href="/">Home</a></li>
+                  <li>Reservation</li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+	
 
 	<!-- 이미지 보여주기 -->
 	<c:choose>
-	<c:when test="${not empty serviceVO.serviceFileVO.fileName}">
+	<c:when test="${not empty file}"> 
 		<div class="card">
 			    
 				<ul class="list-group list-group-flush">
 				   	<li class="list-group-item">
-				   		<h5>대표이미지</h5>
-				   		<img alt="" src="../resources/upload/service/${serviceVO.serviceFileVO.fileName}">
+						<input type="hidden" readonly="readonly" id="serNum" data-sn="${seviceVO.serNum}">
+				   		<!-- <h5>대표이미지</h5> -->
+				   		<img alt="대표이미지" width="500px" height="500px" src="../resources/upload/service/${file}">
 				   	</li>
 				</ul>
 		</div>
-		</c:when>
-	</c:choose>
+	</c:when>
+	</c:choose> 
 
-	<input type="hidden" readonly="readonly" id="serNum"
-		data-sn="${seviceVO.serNum}">
 	<ul class="list-group">
 		<li class="list-group-item">${seviceVO.serName }</li>
 		<li class="list-group-item">${seviceVO.serTel }</li>
@@ -109,7 +125,7 @@
 	</div>
 
 	
-	<form action="../reservation/confirm" method="post">
+	<form action="../reservation/confirm" method="post" id="frm">
 		<!-- js로 시간 받아옴 -->
 		
 			<!-- 평일  -->
@@ -131,7 +147,7 @@
 					<input type="hidden" name="resDate" value="" id="resDate">
 					<input type="hidden" name="resTime" value="" id="resTime">
 					<input type="hidden" name="resState" value="0">
-					<button type="submit" class="btn btn-outline-success" id="res_btn">예약진행</button>
+					<button type="button" id="res_btn">예약진행</button>
 		</div>
 	</form>
 				
@@ -142,7 +158,11 @@
 	<script type="text/javascript" src="../js/calendar.js"></script>
 	<script type="text/javascript" src="../js/reservation.js"></script>
 
-
+   <!-- jquery -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   
+   <c:import url="../temp/header_script.jsp"></c:import>
+   <c:import url="../temp/footer.jsp"></c:import>
 
 </body>
 </html>

@@ -240,6 +240,15 @@ let holiday=$("#holiday").val();
 let startBreaktime=$("#startBreaktime").val();
 let endBreaktime=$("#endBreaktime").val();
 
+//현재시간
+let thours = ('0' + today.getHours()).slice(-2); 
+let tminutes = ('0' + today.getMinutes()).slice(-2);
+let tseconds = ('0' + today.getSeconds()).slice(-2); 
+
+let timeString = thours + ':' + tminutes  + ':' + tseconds;
+
+console.log("현재시간"+timeString);
+
 
 
 //점심시간 텀단위로 구해서 배열에 집어넣기  -> ar: 점심시간인 예약시간 배열 
@@ -498,10 +507,10 @@ for(let i=0;i<40;i++){
 }
 
 //점심시간일 경우 값이 들어가지 않도록
-$(".lunchTime").on("click",function(){
+/*$(".lunchTime").on("click",function(){
 	alert("점심시간은 예약이 불가능합니다. 다른 시간을 선택해주세요.");
 	
-})
+})*/
 
 
 

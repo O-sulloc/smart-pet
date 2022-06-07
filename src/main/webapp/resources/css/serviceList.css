@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+/* 페이징 처리 하는 부분 */
+.page-item{
+	 display: inline-block;
+	 margin-bottom: 20px;
+	 
+}
+
+span{
+	color:#198754;
+}
+
+option{
+	font-size: 14px;
+	font: normal normal normal 1em/1 'LineIcons';
+}
+.searchdiv{
+ 	width:200px;
+    height:40px;
+}
+.searchform {
+ 	background-color: white;
+ 	width:200px;
+    height: 40px;
+    border: 0.3px green solid;
+}
+.searchoption{
+	
+	background-color: white;
+ 	width:100px;
+    height: 40px;
+    border: 1px green solid;
+}
