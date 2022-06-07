@@ -98,14 +98,14 @@ public class ProductService {
 		fileName=fileName.substring(fileName.lastIndexOf("/")+1);
 		   // /resources/upload/board/fb0e1507-652c-4ffd-8d47-795f2ab15f5c_33.jpg
 		   // board/ 뒤에 경로를 짜르기위한 방법 /뒤부분부터 나오게 +1
-		return fileManager.remove("/resources/upload/board/",fileName);
+		return fileManager.remove("/resources/upload/product/",fileName);
 	   }
 	   
 	   
 	 public String setSummerFileUpload(MultipartFile files)throws Exception{
 		   //file hdd에 저장하고 저장된 파일명을 return
-		 String fileName= fileManager.fileSave(files,"resources/upload/board");
-		   fileName="/resources/upload/board/"+fileName;
+		 String fileName= fileManager.fileSave(files,"resources/upload/product");
+		   fileName="/resources/upload/product/"+fileName;
 		 return fileName;
 	   }
 	//summernote 끝

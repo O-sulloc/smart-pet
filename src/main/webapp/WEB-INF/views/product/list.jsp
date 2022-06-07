@@ -25,8 +25,8 @@
         </li>
       </ul>
       <ul class="subMenu1">  
-        	<li><a class="dropdown-item" href="${pageContext.request.contextPath}?kind=pcate&search=1&subSearch=100">사료</a></li>
-            <li><a class="dropdown-item" href="${pageContext.request.contextPath}?kind=pcate&search=1&subSearch=200">간식</a></li>
+        	<li><a class="dropdown-item" href="./list?kind=pcate&search=1&subSearch=100">사료</a></li>
+            <li><a class="dropdown-item" href="./list?kind=pcate&search=1&subSearch=200">간식</a></li>
             <li><a class="dropdown-item" href="./list?kind=pcate&search=1&subSearch=300">장난감</a></li>
             <li><a class="dropdown-item" href="./list?kind=pcate&search=1&subSearch=400">건강관리</a></li>   
             <li><a class="dropdown-item" href="./list?kind=pcate&search=1&subSearch=500">용품</a></li>
@@ -91,7 +91,7 @@
       <div class="card-body">
 
        <h5 class="card-title">${vo.productName}</h5>
-       <p class="card-text">${vo.productDetail}</p>
+     
        <p class="card-text">${vo.id}</p>
       </div>
       <div class="card-footer">

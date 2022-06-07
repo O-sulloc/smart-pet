@@ -103,7 +103,7 @@
 
 	<insert id="setAdd" parameterType="ProductVO" useGeneratedKeys="true" keyProperty="productNum">
 		INSERT INTO PRODUCTS
-		VALUES(#{productNum},#{categoryNum},#{productName},#{productPrice},#{productDetail},#{productCount},#{rate},0,now(),#{id},#{pcategoryNum})
+		VALUES(#{productNum},#{categoryNum},#{productName},#{productPrice},#{productDetail},#{productCount},#{rate},0,now(),#{id},#{pcategoryNum},0)
 	</insert>
 
 	<update id="setUpdate" parameterType="ProductVO">

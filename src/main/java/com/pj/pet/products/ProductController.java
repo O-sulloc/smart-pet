@@ -30,9 +30,31 @@ import com.pj.pet.util.Pager;
 @Controller
 @RequestMapping("product/*")
 public class ProductController {
-
 	@Autowired
 	private ProductService productService;
+	
+	//summernote
+	   @GetMapping("summerFileDelete")
+	   public ModelAndView setSummerFileDelete(String fileName)throws Exception{
+		   ModelAndView mv =new ModelAndView();
+		   System.out.println(fileName);
+		   boolean result = productService.setSummerFileDelete(fileName);
+		  mv.setViewName("common/result");
+		  mv.addObject("result",result);
+		  return mv;
+		  
+	   }
+	   
+	   @PostMapping("summerFileUpload")
+	   public ModelAndView setSummerFileUpload(MultipartFile files)throws Exception{
+		   ModelAndView mv =new ModelAndView();
+		   String fileName= productService.setSummerFileUpload(files);
+		   System.out.println(fileName);
+		   mv.setViewName("common/result");
+		   mv.addObject("result",fileName);
+		   return mv;
+	   }
+	
 	//구매자 리스트
 	@GetMapping("list")
 	public ModelAndView getList(ProductVO productVO,Pager pager,HttpSession session) throws Exception {
@@ -241,7 +263,7 @@ public class ProductController {
 	
 	
 	//재석추가 끝
-
+	
 	
 	
 	

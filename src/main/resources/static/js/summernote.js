@@ -45,3 +45,4 @@
    $("#"+selector).summernote("code",code);
    //$('#detail').summernote("code","${vo.productDetail}");  //textarea태그안에 써도되고 , 이렇게써도 됨  
 }
+

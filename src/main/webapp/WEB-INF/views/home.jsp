@@ -111,8 +111,7 @@
 	                                    </li>
                                     </c:if>
                                     <c:if test="${not empty user}">
-                                    <c:choose>
-                                    <c:when test="${user.role eq 2 }">  
+                                  
                                     	<li class="nav-item1 dropdown align-self-center">
 								        	<i class="nav-link dropdown fa-regular fa-circle-user fa-2x" onclick="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
 								          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -125,26 +124,6 @@
 								            <li><a class="dropdown-item" href="/user/logout">log out </a></li>
 								          </ul>
 								        </li>
-								    </c:when>
-								    <c:when test="${user.role eq 1 }">
-								    	<li class="nav-item1 dropdown align-self-center">
-								            <i class="nav-link dropdown fa-regular fa-circle-user fa-2x" onclick="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
-								          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								            <li><a class="dropdown-item" href="/user/sellerList">판매자 페이지</a></li>
-								            <li><a class="dropdown-item" href="/user/logout">log out </a></li>
-								          </ul>
-								        </li>
-								    </c:when>
-								    <c:otherwise>
-								    	<li class="nav-item1 dropdown align-self-center">
-								       	    <i class="nav-link dropdown fa-regular fa-circle-user fa-2x" onclick="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
-								         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								            <li><a class="dropdown-item" href="/user/sellerList">관리자 페이지</a></li>
-								            <li><a class="dropdown-item" href="/user/logout">log out </a></li>
-								          </ul>
-								        </li>
-								    </c:otherwise>
-								    </c:choose>  
                                     </c:if>
                                 </ul>
                             </div> <!-- navbar collapse -->

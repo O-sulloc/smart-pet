@@ -42,19 +42,14 @@
 		        </a>
 		      </li>
 		      <li>
-		        <a href="/cart/list" class="nav-link link-dark">
-		          Cart List
-		        </a>
-		      </li>
-		      <li>
-		        <a href="/user/orderList" class="nav-link link-dark">
+		        <a href="#" class="nav-link link-dark">
 		          Order List
 		        </a>
 		      </li>
 		      <!-- 재석추가 a태그 주소 수정할것-->
 		      <li>
 		        <a href="/user/reviewListPage" class="nav-link link-dark">
-		          Review List
+		          상품리뷰(Order List)
 		        </a>
 		      </li>
 		    </ul>
