@@ -4,26 +4,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Service Mypage</title>
   <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon"
+	href="../resources/assets/images/favicon.svg" />
 <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
   
 <c:import url="../temp/header_css.jsp"></c:import>
-<title>Insert title here</title>
 </head>
 <body>
 
 <c:import url="../temp/header.jsp"></c:import>
+
    <div class="breadcrumbs overlay">
       <div class="container">
          <div class="row align-items-center">
             <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
                <div class="breadcrumbs-content">
-                  <h1 class="page-title">Registration</h1>
+                  <h1 class="page-title">My Service Page</h1>
                </div>
                <ul class="breadcrumb-nav">
                   <li><a href="/">Home</a></li>
-                  <li>Registration</li>
+                  <li>My Service Page</li>
                </ul>
             </div>
          </div>
@@ -31,7 +35,7 @@
    </div>
 
 <div class="container">
-	<h1>Mypage</h1>
+
 	
 	<!-- side bar -->
 	<c:import url="../service/sellerSidebar.jsp"></c:import>
@@ -44,7 +48,7 @@
 			    	
 				<ul class="list-group list-group-flush">
 				   	<li class="list-group-item">
-				   		<h5>대표이미지</h5>
+				  
 				   		<img alt="" src="../resources/upload/service/${vo.serviceFileVO.fileName}">
 				   	</li>
 				</ul>
