@@ -9,6 +9,9 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper {
 	
+	//가입시 이메일 중복 확인
+	public UserVO getEmail(UserVO userVO) throws Exception;
+	
 	//가입시 아이디 중복 확인
 	public UserVO getId(UserVO userVO) throws Exception;
 	

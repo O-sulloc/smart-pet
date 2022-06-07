@@ -100,7 +100,14 @@ public class UserService {
 		UserVO idCheck=userMapper.getId(userVO);
 		if(idCheck != null) {
 			check = true;
-			bindingResult.rejectValue("id", "user.id.equal");
+			bindingResult.rejectValue("id", "user.id.exist");
+		}
+		
+		//email 중복검사
+		UserVO emailCheck = userMapper.getEmail(userVO);
+		if(emailCheck != null) {
+			check = true;
+			bindingResult.rejectValue("email", "user.email.exist");
 		}
 		
 		return check;

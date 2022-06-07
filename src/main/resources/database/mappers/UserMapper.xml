@@ -5,6 +5,11 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.pj.pet.user.UserMapper">
+	<select id="getEmail" resultType="UserVO" parameterType="UserVO">
+		SELECT EMAIL FROM USER
+			WHERE EMAIL = #{email}
+	</select>
+
 	<select id="getId" resultType="UserVO" parameterType="UserVO">
 		SELECT ID FROM USER
 			WHERE ID = #{id}
@@ -49,7 +54,7 @@
 	</update>
 
 	<select id="getDetail" parameterType="UserVO" resultType="UserVO">
-		SELECT ID, NAME, EMAIL, PHONE, ADDRESS FROM USER WHERE ID=#{id} 
+		SELECT ID, NAME, EMAIL, PHONE, ADDRESS, POINT FROM USER WHERE ID=#{id} 
 	</select>
 
 	<update id="setResetPw" parameterType="UserVO">

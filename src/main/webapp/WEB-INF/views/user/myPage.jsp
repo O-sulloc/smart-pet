@@ -1,72 +1,119 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<title>My Page - MediGrids</title>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="shortcut icon" type="image/x-icon"
+	href="../resources/assets/images/favicon.svg" />
+<!-- Place favicon.ico in the root directory -->
+
+<c:import url="../temp/header_css.jsp"></c:import>
 </head>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-3">
-				<c:import url="../temp/sidebar.jsp"></c:import>
-			</div>
-		
-			<div class="col-9 container mt-3">
-				<main>
-					<div class="py-5 text-center">
-						<h2>My Page</h2>
+	<div class="breadcrumbs overlay">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+					<div class="breadcrumbs-content">
+						<h1 class="page-title">My Page</h1>
 					</div>
-					
-					<div class="row justify-content-center">
-						<div class="col-md-7 col-lg-8">
-							<div class="row g-3">
-								<div class="col-sm-6">
-									<label for="name" class="form-label">Name</label>
-									<input type="text" class="form-control" value="${vo.name}" id="name" readonly="readonly">
-								</div>
-								
-								<div class="col-sm-6">
-									<label for="id" class="form-label">Id</label>
-									<input type="text" class="form-control" value="${vo.id}" id="id" readonly="readonly">
-								</div>
-								
-								<div class="col-sm-6">
-									<label for="email" class="form-label">Email</label>
-									<input type="email" class="form-control" value="${vo.email}" id="email" readonly="readonly">
-								</div>
-								
-								<div class="col-sm-6">
-									<label for="phone" class="form-label">Phone</label>
-									<input type="text" class="form-control" value="${vo.phone}" id="phone" readonly="readonly">
-								</div>
-								
-								<div class="col-sm-6">
-									<label for="address" class="form-label">Address</label>
-									<input type="text" class="form-control" value="${vo.address}" id="address" readonly="readonly">
-								</div>
-								
-								<hr class="my-4">
-								<div class="container my-2">
-									<div class="col-3 d-flex">
-										<a href="update" role="button" class="btn btn-outline-success mx-1" onclick="location.href='/user/update'">수정</a>
-										<a href="delete" role="button" class="btn btn-outline-danger mx-1" onclick="location.href='/user/delete'">탈퇴</a>
-									</div>
-						        </div>
-							</div>
-						</div>
-					</div>
-				</main>
+					<ul class="breadcrumb-nav">
+						<li><a href="/">Home</a></li>
+						<li>My Page</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<div class="service-details">
+		<div class="container">
+			<div class="content">
+				<div class="row">
+					<!-- Start Of SideBar -->
+					<c:import url="../temp/sidebar.jsp"></c:import>
+					<!-- End Of SideBar -->
+
+					<div class="col-lg-8 col-md-12 col-12">
+						<!-- section start -->
+						<section class="appointment page">
+							<!-- <section class="appointment page"> -->
+							<div class="container">
+								<div class="row">
+									<div class="appointment-form">
+										<div class="row">
+											<div class="col-12">
+												<div class="appointment-title">
+													<h2>My Profile</h2>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-input">
+													<label for="name"><i class="lni lni-user"></i></label> <input
+														type="text" name="name" value="${vo.name}" id="name" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-input">
+													<label for="id"><i class="lni lni-star-filled"></i></label> <input
+														type="text" name="id" value="${vo.id}" id="id" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-input">
+													<label for="email"><i class="lni lni-envelope"></i></label>
+													<input type="email" name="email" id="email" value="${vo.email}" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-input">
+													<label for="phone"><i class="lni lni-phone-set"></i></label>
+													<input type="text" name="phone" id="phone" value="${vo.phone}" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-input">
+													<label for="address"><i class="lni lni-map-marker"></i></label>
+													<input type="text" name="address" value="${vo.address}" id="address" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-input">
+													<label for="point"><i class="lni lni-coin"></i></label>
+													<input type="text" name="point" value="${vo.point}" id="point" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-btn button">
+													<button class="btn" onclick="location.href='/user/update'">Update</button>
+													<button class="btn" onclick="location.href='/user/delete'">Delete account</button>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+								</div>
+							</div>
+						</section>
+						<!-- section end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<c:import url="../temp/header_script.jsp"></c:import>
+	<c:import url="../temp/footer.jsp"></c:import>
 </body>
 </html>
