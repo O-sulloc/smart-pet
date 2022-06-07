@@ -84,9 +84,31 @@ function plusTerm(time){
 }
 
 
+//수용인원 체크
+function capacityCk(resDate,resTime){
+	
+		
+		$.ajax({
+			type:"GET",
+			url:"./resCount",
+			data:{
+				resNum:resDate,
+				resState:resTime
+			},
+			success:function(data){
+				console.log(data.trim())
+				return data.trim();
+			}
+		})
+	
+}
+
+
+
 // 평일일 경우 예약시간 뿌리기 
 let result=openTime0; //09:00:00
 for(let i=0;i<40;i++){
+	
     if(i==0){
         // <button type="button" name="resTime" class="btn btn-outline-primary">09:30</button>
        
@@ -107,17 +129,18 @@ for(let i=0;i<40;i++){
         // console.log("Date로 변환:"+getDate(result))
 		
       		  result=plusTerm(result);
-        
+        	
        			
 		        let button = document.createElement('button')
 		        button.setAttribute("type","button")
 		        button.setAttribute("id","timeButton")
 		        button.setAttribute("name","resTime")
-		        if(ar.includes(result)){ //점심시간일경우 회색으로 변경
+		        //점심시간일경우 안보이게 
+		        if(ar.includes(result)){ 
 		       	 	button.setAttribute("class","btn btn-outline-secondary lunchTime")
 					button.setAttribute("hidden",true)
-
 					console.log(result)
+				//아니면 추가 
 				}else{
 					button.setAttribute("class","btn btn-outline-primary")
 				}

@@ -16,6 +16,9 @@ import com.pj.pet.util.Pager;
 @Mapper
 public interface ServiceMapper {
 	
+	//시간 당 예약한 사람 수
+	public Long ResCount(ReservationVO reservationVO)throws Exception;
+	
 	//서비스 등록되어있는지 확인 (registration page 인터셉터 체크용)  
 	public ServiceVO registrationInterceptor(UserVO userVO) throws Exception;
 	
