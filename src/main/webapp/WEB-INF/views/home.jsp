@@ -429,7 +429,6 @@
                 0: {
                     items: 1,
                 }
-
             }
         });
         //========= testimonial 
@@ -461,7 +460,6 @@
                 }
             }
         }); */
-
         //====== counter up 
         var cu = new counterUp({
             start: 0,
@@ -490,11 +488,9 @@
                     columnWidth: '.grid-item'
                 }
             });
-
             let filterButtons = document.querySelectorAll('.portfolio-btn-wrapper button');
             filterButtons.forEach(e =>
                 e.addEventListener('click', () => {
-
                     let filterValue = event.target.getAttribute('data-filter');
                     iso.arrange({
                         filter: filterValue

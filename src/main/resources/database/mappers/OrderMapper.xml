@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pj.pet.order.OrderMapper">
+
+	<!-- 구매자 주문내역 -->
+	<select id="orderList" parameterType="OrderVO" resultMap="orderResult">
+		SELECT P.*,O.*
+		FROM PAY P
+		LEFT OUTER JOIN
+		ORDERS O
+		ON(P.PAYNUM=O.PAYNUM)
+		WHERE O.ID =#{id}
+	</select>
+
+	<!-- 판매자 주문목록 -->
+	<select id="sellerOrder" parameterType="OrderVO" resultMap="orderResult">
+		SELECT P.*,O.*
+		FROM PAY P
+		LEFT OUTER JOIN
+		ORDERS O
+		ON(P.PAYNUM=O.PAYNUM)
+	</select>
+
+	<!-- 배송 -->
+	<update id="shipUpdate" parameterType="OrderVO">
+		UPDATE ORDERS SET SHIPSTATE=#{shipState} WHERE ORDERNUM=#{orderNum}
+	</update>
+
+	<!-- 환불 -->
+	<update id="refund" parameterType="OrderVO">
+		UPDATE ORDERS SET REFUND=1 WHERE ORDERNUM=#{orderNum}
+	</update>
+		
+	<select id="getOrderCart" parameterType="OrderVO" resultMap="orderCart">
+		SELECT P.PRODUCTNUM,P.PRODUCTCOUNT,C.CARTNUM ,C.PRODUCTAMOUNT 
+		FROM PRODUCTS P
+		LEFT  JOIN
+		CARTS C
+		ON (P.PRODUCTNUM = C.PRODUCTNUM)
+		WHERE C.CARTNUM IN (SELECT CARTNUM FROM CARTREFER WHERE PAYNUM=
+		(SELECT PAYNUM FROM ORDERS WHERE ORDERNUM=#{orderNum}))
+	</select>
+	
+	<resultMap type="ProductVO" id="orderCart">
+		 <id column="productNum" property="productNum" />
+		 <result column="productCount" property="productCount" />
+		<association property="cartVO" javaType="CartVO">
+		 <id column="cartNum" property="cartNum" />
+		 <result column="productAmount" property="productAmount" />		
+		</association>
+	</resultMap>
+	
+
+	<resultMap type="OrderVO" id="orderResult">
+       <id column="orderNum" property="orderNum"/>
+       <result column="id" property="id"/>
+       <result column="orderName" property="orderName"/>
+       <result column="shipState" property="shipState"/>
+       <result column="orderDate" property="orderDate"/>
+       <result column="refund" property="refund"/>
+       <association property="payVO" javaType="PayVO">
+          <id column="payNum" property="payNum"/>
+          <result column="totalPrice" property="totalPrice"/>
+          <result column="totalCount" property="totalCount"/>
+          <result column="arrive" property="arrive"/>
+          <result column="recipient" property="recipient"/>
+          <result column="recipientPhone" property="recipientPhone"/>
+       </association>
+    </resultMap> 
+
+	<insert id="setAdd" parameterType="OrderVO">
+		INSERT INTO ORDERS
+		VALUES(null,#{payNum},#{id},#{orderName},0,now(),0)
+	</insert>
+
+	<!-- 주문번호 만드려면 ORDERNUM이 필요해서 INSERT 후 주문번호 생성 후 UPDATE -->
+	<update id="getOrderName" parameterType="OrderVO">
+		UPDATE ORDERS SET
+		ORDERNAME =(SELECT ORDERNAME FROM
+		(SELECT DISTINCT
+		concat(cast(O.ORDERDATE as char),
+		right(concat("00000" ,rowCount), 6)) as ORDERNAME FROM ORDERS,
+		(SELECT
+		concat(substr(date_format(now(), '%Y-%m-%d'), 1, 10)) as ORDERDATE,
+		(SELECT ORDERNUM FROM ORDERS ORDER BY ORDERNUM DESC limit 1) as
+		rowCount FROM dual) O)
+		ORDERS)
+		WHERE PAYNUM =#{payNum}
+	</update>
+
+
+	<!-- 결제한 디테일 상품 리스트 -->
+	<select id="orderDetailList" parameterType="PayVO" resultMap="cartListResult">
+		SELECT
+		C.*,P.PRODUCTNAME,P.PRODUCTPRICE,P.RATE,P.PRODUCTCOUNT,PF.*,CR.*
+		FROM
+		CARTS C
+		LEFT JOIN
+		PRODUCTS P
+		ON(C.PRODUCTNUM=P.PRODUCTNUM)
+		LEFT JOIN
+		PRODUCTSFILE PF
+		ON(P.PRODUCTNUM=PF.PRODUCTNUM)
+		LEFT JOIN
+		CARTREFER CR
+		ON(C.CARTNUM=CR.CARTNUM)
+		WHERE C.ID =#{id} AND PAYCHECK=1 AND CR.PAYNUM
+		=#{payNum}
+	</select>
+
+	<resultMap type="CartVO" id="cartListResult">
+		<id column="cartNum" property="cartNum" />
+		<result column="id" property="id" />
+		<result column="productNum" property="productNum" />
+		<result column="productAmount" property="productAmount" />
+		<result column="payCheck" property="payCheck" />
+		<collection property="productVO" resultMap="ProductVO" />
+		<collection property="productFileVOs" resultMap="ProductFileVO" />
+		<collection property="cartReferVO" resultMap="CartReferVO" />
+	</resultMap>
+
+	<resultMap type="ProductVO" id="ProductVO">
+		<id column="productNum" property="productNum" />
+		<result column="productPrice" property="productPrice" />
+		<result column="productName" property="productName" />
+		<result column="productCount" property="productCount" />
+		<result column="rate" property="rate" />
+	</resultMap>
+
+	<resultMap type="ProductFileVO" id="ProductFileVO">
+		<id column="fileNum" property="fileNum" />
+		<result column="productNum" property="productNum" />
+		<result column="fileName" property="fileName" />
+		<result column="oriName" property="oriName" />
+	</resultMap>
+
+	<resultMap type="CartReferVO" id="CartReferVO">
+		<id column="cartreferNum" property="cartreferNum" />
+		<result column="cartNum" property="cartNum" />
+		<result column="payNum" property="payNum" />
+		<result column="paymentKind" property="paymentKind" />
+	</resultMap>
+
+</mapper>

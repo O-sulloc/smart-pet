@@ -9,15 +9,21 @@ import com.pj.pet.user.UserVO;
 @Mapper
 public interface CartMapper {
 
-	public List<CartVO> getCartList(CartVO cartVO)throws Exception;
-	
-	public int cartAdd(CartVO cartVO)throws Exception;
-	
-	public List<CartVO> cartList(UserVO userVO)throws Exception;
-	
-	public int cartUpdate(CartVO cartVO)throws Exception;
-	
-	public int cartDelete(CartVO cartVO)throws Exception;
+	public List<CartVO> getCartList(CartVO cartVO) throws Exception;
 
-	public CartVO cartCheck(CartVO cartVO)throws Exception;
+	public int cartAdd(CartVO cartVO) throws Exception;
+
+	public List<CartVO> cartList(UserVO userVO) throws Exception;
+
+	public int cartUpdate(CartVO cartVO) throws Exception;
+
+	public int cartDelete(CartVO cartVO) throws Exception;
+
+	public CartVO cartCheck(CartVO cartVO) throws Exception;
+
+	public int cartpayUpdate(CartVO cartVO) throws Exception;
+
+	public int buyDelete(CartVO cartVO) throws Exception;
+
+	public List<CartVO> buyCheck(CartVO cartVO) throws Exception;
 }

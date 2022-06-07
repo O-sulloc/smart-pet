@@ -6,7 +6,7 @@
  $("#pcategoryNum").change(function(){
 	if(this.value==1){
 	$("#cResult").empty();
-	let f='<div class="mb-3" style="width:200px">';
+	let f='<div class="cate2">';
 	f=f+'<label>카테고리 분류</label> <select name="categoryNum" class="form-control empty" id="categoryNum">';
 	f=f+'<option value="">선택해주세요.</option>';
 	f=f+'<option value="100">사료</option>';
@@ -23,7 +23,7 @@
 }
 if(this.value==2){
 	$("#cResult").empty();
-	let f='<div class="mb-3" style="width:200px">';
+	let f='<div class="cate2">';
 	f=f+'<label>카테고리 분류</label> <select name="categoryNum" class="form-control empty" id="categoryNum">';
 	f=f+'<option value="">선택해주세요.</option>';
 	f=f+'<option value="100">사료</option>';

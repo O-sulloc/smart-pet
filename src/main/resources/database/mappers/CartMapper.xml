@@ -15,7 +15,7 @@
 	LEFT OUTER JOIN 
 	PRODUCTSFILE PF
 	ON(P.PRODUCTNUM=PF.PRODUCTNUM)
-	WHERE ID =#{id}
+	WHERE C.ID =#{id} AND PAYCHECK=0
 	</select>
 
 	<resultMap type="CartVO" id="cartListResult">
@@ -43,9 +43,9 @@
 		<result column="oriName" property="oriName" />
 	</resultMap>
 	
-	<insert id="cartAdd" parameterType="CartVO">
+	<insert id="cartAdd" parameterType="CartVO" useGeneratedKeys="true" keyProperty="cartNum">
 		INSERT INTO CARTS(CARTNUM,ID,PRODUCTNUM,PRODUCTAMOUNT,PAYCHECK)
-		VALUES(null,#{id},#{productNum},#{productAmount},0)
+		VALUES(#{cartNum},#{id},#{productNum},#{productAmount},#{payCheck})
 	</insert>
 		
 	<update id="cartUpdate" parameterType="CartVO">
@@ -60,5 +60,21 @@
 	<select id="cartCheck" resultType="CartVO" parameterType="CartVO">
 		SELECT * FROM CARTS WHERE ID=#{id} AND PRODUCTNUM=#{productNum} AND PAYCHECK=0
 	</select>
+	
+	<!-- 결제하면 payCheck 1로 업데이트 -->
+	<update id="cartpayUpdate" parameterType="CartVO">
+		UPDATE CARTS SET PAYCHECK=1 WHERE CARTNUM=#{cartNum}
+	</update>
+	
+	<!-- 바로결제에서 결제안하고 넘어가면 스캐쥴 걸어서 삭제 -->
+	
+	<select id="buyCheck" resultType="CartVO">
+		SELECT * FROM CARTS WHERE PAYCHECK =2
+	</select>
+	
+	<delete id="buyDelete" parameterType="CartVO">
+		DELETE FROM CARTS WHERE PAYCHECK=2
+	</delete>
+	
 
 </mapper>

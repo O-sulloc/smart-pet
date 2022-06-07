@@ -10,8 +10,18 @@
 		SELECT
 		P.*,PF.*
 		FROM (SELECT * FROM PRODUCTS
-		WHERE PRODUCTNUM>0 AND
-		<choose>
+		WHERE PRODUCTNUM>0 
+		<!-- 판매자가 등록한 상품만 보이게// 구매자는 COUNT1이상 상품 보기 -->
+		  <choose>
+          <when test="id !=null">
+          		and ID=#{id}
+          </when>
+          <otherwise>
+          		and PRODUCTCOUNT>0
+          </otherwise>
+          </choose>
+				AND
+		  <choose>
 			<when test="kind=='col1'">
 				PRODUCTNAME
 			</when>
@@ -81,7 +91,7 @@
 		<result column="rate" property="rate" />
 		<result column="sales" property="sales" />
 		<result column="regDate" property="regDate" />
-		<result column="writer" property="writer" />
+		<result column="id" property="id" />
 		<!-- 재석추가 -->
 		<result column="starAvg" property="starAvg" />
 		<collection property="productFileVOs" javaType="List" ofType="ProductFileVO">
@@ -93,7 +103,7 @@
 
 	<insert id="setAdd" parameterType="ProductVO" useGeneratedKeys="true" keyProperty="productNum">
 		INSERT INTO PRODUCTS
-		VALUES(#{productNum},#{categoryNum},#{productName},#{productPrice},#{productDetail},#{productCount},#{rate},0,now(),#{writer},#{pcategoryNum})
+		VALUES(#{productNum},#{categoryNum},#{productName},#{productPrice},#{productDetail},#{productCount},#{rate},0,now(),#{id},#{pcategoryNum},0)
 	</insert>
 
 	<update id="setUpdate" parameterType="ProductVO">
@@ -133,109 +143,38 @@
 <!--  카테고리 -->
 
 	<select id="getCategoryDetail" parameterType="CategoryVO" resultType="CategoryVO">
-	SELECT * FROM CATEGORY WHERE CATEGORYNUM =#{categoryNum}
+		SELECT * FROM CATEGORY WHERE CATEGORYNUM =#{categoryNum}
 	</select>
 
 	<select id="getpCount" resultType="Long">
 		SELECT COUNT(PRODUCTNUM) FROM PRODUCTS
 	</select>	
+
+<!--  카테고리끝 -->
+
+<!--  재고 변경 -->
+	<update id="countMinus" parameterType="Long">
+ 		UPDATE PRODUCTS SET 
+		PRODUCTCOUNT = PRODUCTCOUNT-(SELECT PRODUCTAMOUNT FROM CARTS WHERE CARTNUM=#{cartNum})
+		WHERE PRODUCTNUM=(SELECT PRODUCTNUM  FROM CARTS WHERE CARTNUM=#{cartNum})
+	</update>
 	
-		<select id="highPriceList" parameterType="Pager" resultMap="productResult">
-		SELECT
-		P.*,PF.*
-		FROM (SELECT * FROM PRODUCTS
-		WHERE PRODUCTNUM>0 AND
-		<choose>
-			<when test="kind=='col1'">
-				PRODUCTNAME
-			</when>
-			<when test="kind=='col2'">
-				PRODUCTPRICE
-			</when>
-			<when test="kind=='pcate'">
-				PCATEGORYNUM
-			</when>
-			<otherwise>
-				PRODUCTDETAIL
-			</otherwise>
-		</choose>
-		LIKE CONCAT('%',#{search},'%')
-		AND CATEGORYNUM LIKE CONCAT('%',#{subSearch},'%')
-		ORDER BY PRODUCTNUM DESC
-		LIMIT #{startRow}, #{perPage}
-		) P
-		LEFT JOIN
-		PRODUCTSFILE PF
-		USING (PRODUCTNUM)
-		
-		ORDER BY P.PRODUCTPRICE DESC,PF.FILENUM ASC
-
-	</select>
+	<update id="countPlus" parameterType="Long">
+ 		UPDATE PRODUCTS SET 
+		PRODUCTCOUNT = PRODUCTCOUNT+(SELECT PRODUCTAMOUNT FROM CARTS WHERE CARTNUM=#{cartNum})
+		WHERE PRODUCTNUM=(SELECT PRODUCTNUM  FROM CARTS WHERE CARTNUM=#{cartNum})
+	</update>
 	
-	<select id="lowPriceList" parameterType="Pager" resultMap="productResult">
-		SELECT
-		P.*,PF.*
-		FROM (SELECT * FROM PRODUCTS
-		WHERE PRODUCTNUM>0 AND
-		<choose>
-			<when test="kind=='col1'">
-				PRODUCTNAME
-			</when>
-			<when test="kind=='col2'">
-				PRODUCTPRICE
-			</when>
-			<when test="kind=='pcate'">
-				PCATEGORYNUM
-			</when>
-			<otherwise>
-				PRODUCTDETAIL
-			</otherwise>
-		</choose>
-		LIKE CONCAT('%',#{search},'%')
-		AND CATEGORYNUM LIKE CONCAT('%',#{subSearch},'%')
-		ORDER BY PRODUCTNUM DESC
-		LIMIT #{startRow}, #{perPage}
-		) P
-		LEFT JOIN
-		PRODUCTSFILE PF
-		USING (PRODUCTNUM)
-		
-		ORDER BY P.PRODUCTPRICE ASC,PF.FILENUM ASC
-
-	</select>
+	<update id="saleMinus" parameterType="Long">
+ 		UPDATE PRODUCTS SET 
+		SALES = SALES-(SELECT PRODUCTAMOUNT FROM CARTS WHERE CARTNUM=#{cartNum})
+		WHERE PRODUCTNUM=(SELECT PRODUCTNUM  FROM CARTS WHERE CARTNUM=#{cartNum})
+	</update>
 	
-	<select id="regDateList" parameterType="Pager" resultMap="productResult">
-		SELECT
-		P.*,PF.*
-		FROM (SELECT * FROM PRODUCTS
-		WHERE PRODUCTNUM>0 AND
-		<choose>
-			<when test="kind=='col1'">
-				PRODUCTNAME
-			</when>
-			<when test="kind=='col2'">
-				PRODUCTPRICE
-			</when>
-			<when test="kind=='pcate'">
-				PCATEGORYNUM
-			</when>
-			<otherwise>
-				PRODUCTDETAIL
-			</otherwise>
-		</choose>
-		LIKE CONCAT('%',#{search},'%')
-		AND CATEGORYNUM LIKE CONCAT('%',#{subSearch},'%')
-		ORDER BY PRODUCTNUM DESC
-		LIMIT #{startRow}, #{perPage}
-		) P
-		LEFT JOIN
-		PRODUCTSFILE PF
-		USING (PRODUCTNUM)
-		
-		ORDER BY P.REGDATE DESC,PF.FILENUM ASC
-
-	</select>
-<!--  카테고리끝 -->	
-
+	<update id="salePlus" parameterType="Long">
+ 		UPDATE PRODUCTS SET 
+		SALES = SALES+(SELECT PRODUCTAMOUNT FROM CARTS WHERE CARTNUM=#{cartNum})
+		WHERE PRODUCTNUM=(SELECT PRODUCTNUM  FROM CARTS WHERE CARTNUM=#{cartNum})
+	</update>		
 
 </mapper>

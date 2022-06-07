@@ -13,61 +13,118 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <c:import url="../temp/header_script.jsp"></c:import>
-
-<title>Insert title here</title>
-</head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<!--  에디터 -->
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<link href="../resources/css/productAdd.css" rel="styleSheet" />
+<title>상품 등록 페이지</title>
 </head>
 <body>
-<div class="container">
-	<h1>상품 등록 페이지</h1>
+	<div class="content_wrap">
+		<div class="content_subject">
+			<span>상품 등록</span>
+		</div>
+		<div class="content_main">
+			<form action="add" method="post" id="enrollForm"
+				enctype="multipart/form-data">
+				<div class="form_section_title">
+					<label>대표 사진</label>
+				</div>
+				<div id="fileResult"></div>
+				<div>
+					<button type="button" id="fileAdd"
+						class="btn btn-danger d-block my-4" style="margin: 0 auto">대표사진
+						추가</button>
+				</div>
+				<div class="form_section">
 
-	<form action="add" method="post" enctype="multipart/form-data">
-		<div class="mb-3" style="width:200px">
-			<label>카테고리</label> <select name="pcategoryNum" class="form-control empty" id="pcategoryNum">
-				<option value="">선택해주세요.</option>
-				<option value="1">강아지</option>
-				<option value="2">고양이</option>
-			</select>
-		</div>
-		<div class="mb-3" style="width:200px" id="cResult"></div>
+					<div class="form_section_title">
+						<label>상품 이름</label>
+					</div>
+					<div class="form_section_content">
+						<input class="form-control" name="productName"> <span
+							class="ck_warn Name_warn">상품 이름을 입력해주세요.</span>
+					</div>
+					<div class="form_section_title">
+						<label>판매자</label>
+					</div>
+					<div class="form_section_content">
+						<input class="form-control mb-3" name="id" value="${user.id}">
+					</div>
+				</div>
+				<div class="form_section">
+					<div class="form_section_title">
+						<label> 카테고리</label>
+					</div>
+					<div class="form_section_content ">
+						<div class="cate_wrap ">
 
-		<div>
-			<label>상품명</label> <input name="productName" class="form-control productId">
+							<select name="pcategoryNum" class="form-control mb-3"
+								id="pcategoryNum">
+								<option value="">선택해주세요.</option>
+								<option value="1">강아지</option>
+								<option value="2">고양이</option>
+							</select>
+						</div>
+						<div class="cate_wrap" id="cResult"></div>
+						<span class="ck_warn cateCode_warn">카테고리를 선택해주세요.</span>
+					</div>
+				</div>
+				<div class="form_section">
+					<div class="form_section_title">
+						<label>상품 가격</label>
+					</div>
+					<div class="form_section_content">
+						<input name="productPrice" value="0" class="form-control">
+						<span class="ck_warn Price_warn">상품 가격을 입력해주세요.</span>
+					</div>
+				</div>
+				<div class="form_section">
+					<div class="form_section_title">
+						<label>상품 재고</label>
+					</div>
+					<div class="form_section_content">
+						<input name="productCount" value="0" class="form-control">
+						<span class="ck_warn Count_warn">상품 재고를 입력해주세요.</span>
+					</div>
+				</div>
+				<div class="form_section">
+					<div class="form_section_title">
+						<label>상품 할인율</label>
+					</div>
+					<div class="form_section_content">
+						<input name="rate" value="0" class="form-control">
+					</div>
+				</div>
+				<div class="form_section">
+					<div class="form_section_title">
+						<label>상품 설명</label>
+					</div>
+					<div class="form_section_content bit">
+						<textarea name="productDetail" class="form-control"
+							id="productDetail"></textarea>
+						<span class="ck_warn Detail_warn">상품 소개를 입력해주세요.</span>
+					</div>
+				</div>
+				<div class="btn_section">
+					<button type="submit" id="enrollBtn"
+						class="btn btn-danger d-block my-4" style="margin: 0 auto">상품 등록</button>
+				</div>
+			</form>
 		</div>
-		<div>
-			<label>상품 가격</label> <input name="productPrice" class="form-control productId">
-		</div>
-		<div>
-			<label>상품 설명</label> <input name="productDetail" class="form-control productId">
-		</div>
-		<div>
-			<label>상품 수량</label> <input name="productCount" class="form-control productId">
-		</div>
-		<div>
-			<label>할인율</label> <input name="rate" class="form-control productId">
-		</div>
-		<div>
-			<label>판매자</label> <input name="writer" class="form-control productId">
-		</div>
+	</div>
+	<script type="text/javascript" src="../resources/js/category.js"></script>
+	<script type="text/javascript" src="../resources/js/fileAdd.js"></script>
+	<script type="text/javascript" src="../js/summernote.js"></script>
 
-		<div id="fileResult"></div>
-		<div>
-		<button type="button" id="fileAdd" class="btn btn-danger d-block my-4">사진 추가</button>
-		</div>
-		<div>
-		<button type="submit">등록</button>
-		</div>
-	</form>
-</div>
-<script type="text/javascript" src="../resources/js/category.js"></script> 
-<script type="text/javascript" src="../resources/js/fileAdd.js"></script> 
+	<script type="text/javascript">
+		selectCategory();
+		fileAddInit(0);
+		summernoteInit("productDetail", "");
+	</script>
 
-<script type="text/javascript">
-selectCategory();
-fileAddInit(0);
-</script>
-	
 </body>
 </html>

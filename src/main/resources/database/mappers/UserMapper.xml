@@ -66,7 +66,7 @@
 	</select>
 
 	<select id="getLogin" resultType="UserVO" parameterType="UserVO">
-		SELECT NAME, ID, PHONE, ROLE FROM USER WHERE ID=#{id} and PW=#{pw}
+		SELECT NAME, ID, PHONE, ADDRESS, ROLE FROM USER WHERE ID=#{id} and PW=#{pw}
 	</select>
 	<!-- 재석 ROLE 추가 -->
 

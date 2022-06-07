@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pj.pet.pay.PayMapper">
+
+	<insert id="setAdd" parameterType="PayVO" useGeneratedKeys="true" keyProperty="payNum">
+		INSERT INTO PAY
+		VALUES(#{payNum},#{id},now(),#{totalPrice},#{arrive},#{totalCount},#{recipient},#{recipientPhone})
+	</insert>
+
+	<!-- 결제 페이지 카트 목록 -->
+	<select id="payCartList" parameterType="CartVO" resultMap="cartListResult">
+		SELECT C.*,P.PRODUCTNAME,P.PRODUCTPRICE,P.RATE,P.PRODUCTCOUNT,PF.*
+		FROM CARTS C
+		LEFT OUTER JOIN
+		PRODUCTS P
+		ON(C.PRODUCTNUM=P.PRODUCTNUM)
+		LEFT OUTER JOIN
+		PRODUCTSFILE PF
+		ON(P.PRODUCTNUM=PF.PRODUCTNUM)
+		WHERE C.ID =#{id} AND CARTNUM=#{cartNum}
+	</select>
+
+	<resultMap type="CartVO" id="cartListResult">
+		<id column="cartNum" property="cartNum" />
+		<result column="id" property="id" />
+		<result column="productNum" property="productNum" />
+		<result column="productAmount" property="productAmount" />
+		<result column="payCheck" property="payCheck" />
+		<collection property="productVO" resultMap="ProductVO" />
+		<collection property="productFileVOs"
+			resultMap="ProductFileVO" />
+	</resultMap>
+
+	<resultMap type="ProductVO" id="ProductVO">
+		<id column="productNum" property="productNum" />
+		<result column="productPrice" property="productPrice" />
+		<result column="productName" property="productName" />
+		<result column="productCount" property="productCount" />
+		<result column="rate" property="rate" />
+	</resultMap>
+
+	<resultMap type="ProductFileVO" id="ProductFileVO">
+		<id column="fileNum" property="fileNum" />
+		<result column="productNum" property="productNum" />
+		<result column="fileName" property="fileName" />
+		<result column="oriName" property="oriName" />
+	</resultMap>
+</mapper>

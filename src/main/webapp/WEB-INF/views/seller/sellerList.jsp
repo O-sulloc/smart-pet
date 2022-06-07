@@ -10,53 +10,19 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <c:import url="../temp/header_script.jsp"></c:import>
 
-<title>Store home </title>
+<title>seller page </title>
 </head>
 <body>
 
-<!--  카테고리 정렬  -->
-<nav class="navbar navbar-expand-lg navbar-light bg-success">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="../">HOME</a>
-    <div class="collapse navbar-collapse" id="allMenu">
-      <div class="navbar-nav">
-      <ul class="mainMenu1">
-        <li><a class="nav-link" href="./list?kind=pcate&search=1">DOG</a>
-        </li>
-      </ul>
-      <ul class="subMenu1">  
-        	<li><a class="dropdown-item" href="./list?kind=pcate&search=1&subSearch=100">사료</a></li>
-            <li><a class="dropdown-item" href="./list?kind=pcate&search=1&subSearch=200">간식</a></li>
-            <li><a class="dropdown-item" href="./list?kind=pcate&search=1&subSearch=300">장난감</a></li>
-            <li><a class="dropdown-item" href="./list?kind=pcate&search=1&subSearch=400">건강관리</a></li>   
-            <li><a class="dropdown-item" href="./list?kind=pcate&search=1&subSearch=500">용품</a></li>
-            <li><a class="dropdown-item" href="./list?kind=pcate&search=1&subSearch=600">미용/목욕</a></li>   
-            <li><a class="dropdown-item" href="./list?kind=pcate&search=1&subSearch=700">하우스</a></li>
-            <li><a class="dropdown-item" href="./list?kind=pcate&search=1&subSearch=800">목줄</a></li> 
-      </ul> 
-      
-      <ul class="mainMenu2">
-        <li><a class="nav-link" href="./list?kind=pcate&search=2">CAT</a>
-        </li>
-      </ul>
-      <ul class="subMenu2">  
-        	<li><a class="dropdown-item" href="./list?kind=pcate&search=2&subSearch=100">사료</a></li>
-            <li><a class="dropdown-item" href="./list?kind=pcate&search=2&subSearch=200">간식</a></li>
-            <li><a class="dropdown-item" href="./list?kind=pcate&search=2&subSearch=300">장난감</a></li>
-            <li><a class="dropdown-item" href="./list?kind=pcate&search=2&subSearch=400">건강관리</a></li>   
-            <li><a class="dropdown-item" href="./list?kind=pcate&search=2&subSearch=500">용품</a></li>
-            <li><a class="dropdown-item" href="./list?kind=pcate&search=2&subSearch=600">미용/목욕</a></li>   
-            <li><a class="dropdown-item" href="./list?kind=pcate&search=2&subSearch=700">하우스</a></li>
-            <li><a class="dropdown-item" href="./list?kind=pcate&search=2&subSearch=800">목줄</a></li> 
-      </ul> 
-      </div>
-    </div>
-     <div class="collapse navbar-collapse" id="allMenu2"></div>
-  </div>
-</nav>
 
 <!--  카테고리 정렬 끝 -->
-
+<div class="container-fluid">
+		<div class="row">
+			<div class="col-3">
+				<c:import url="../temp/sellerSidebar.jsp"></c:import>
+			</div>
+			<div class="col-9 container mt-3">
+				<main>
 <div class="container">
 
 <div class="row justify-content-between">
@@ -89,9 +55,9 @@
     <div class="card h-100 detail" data-num="${vo.productNum}">
       <img src="../resources/upload/product/${vo.productFileVOs[0].fileName}" class="card-img-top" alt="...">
       <div class="card-body">
-
+		
        <h5 class="card-title">${vo.productName}</h5>
-     
+       <p class="card-text">${vo.productDetail}</p>
        <p class="card-text">${vo.id}</p>
       </div>
       <div class="card-footer">
@@ -122,10 +88,10 @@
 			</ul>
 		</nav>
 	</div>
-	
-
-
-<a href="./add">상품 등록</a>
+</div>
+</main>
+</div>
+</div>
 </div>
 
 
