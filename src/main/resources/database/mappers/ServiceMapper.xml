@@ -212,7 +212,7 @@
 		LIMIT #{startRow}, #{perPage} 
 	</select>
 	
-	
+
 	<!--예약시간 지났는데 승인/거절 안한것들 거절로 변경하는 쿼리-->
 	<update id="updateOverdue" parameterType="UserVO">
 		update RESERVATION 
@@ -225,7 +225,7 @@
 		]]> 
 		and RESSTATE=0
 	</update>
-	
+	 
 	
 	<!--예약날짜,예약시간이 현재시간보다 전이고 예약 승인 된 것들(방문 확인 체크용)-->
 	<!--mysql 현재시간 +9로 계산됨-->

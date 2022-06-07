@@ -215,10 +215,10 @@ public class ServiceController {
 		UserVO userVO = (UserVO) session.getAttribute("user");
 		serviceVO.setId(userVO.getId());
 		serviceVO = serviceService.getDetail(serviceVO);
-
-		//mypage 접속시 예약시간지났는데 승인/거부 안한 예약들 자동으로 거부 처리 
-		serviceService.updateOverdue(userVO);
-		
+//
+//		//mypage 접속시 예약시간지났는데 승인/거부 안한 예약들 자동으로 거부 처리 
+//		serviceService.updateOverdue(userVO);
+//		
 		mv.addObject("vo", serviceVO);
 		mv.setViewName("service/mypage");
 		return mv;
