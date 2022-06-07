@@ -42,8 +42,8 @@
 		<li class="list-group-item">${seviceVO.homepage }</li>
 	</ul>
 
-
-
+	<!-- count 꺼내와야함 -->
+	<%-- <input type="text" id ="count" value="${count}"> --%>
 	<input type="hidden" id="term" value="${settingVO.term}">
 	<input type="hidden" id="capacity" value="${settingVO.capacity}">
 	<input type="hidden" id="holiday" value="${settingVO.holiday}">

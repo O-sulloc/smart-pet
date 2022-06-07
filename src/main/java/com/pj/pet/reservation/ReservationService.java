@@ -18,10 +18,15 @@ public class ReservationService {
 	@Autowired
 	private ReservationMapper reservationMapper;
 	
-	//예약 중복 방지
+	//예약 중복 방지(서비스 중복 금지)
 	public Long repetition(ReservationVO reservationVO) throws Exception{
 		return reservationMapper.repetition(reservationVO);
 	}
+	
+//	//예약 가능한 시간 띄어주기
+//	public Long possibleTime(ReservationVO reservationVO) throws Exception{
+//		return reservationMapper.possibleTime(reservationVO);
+//	}
 	
 	//예약 정보 수정
 	public int setUpdate(ReservationVO reservationVO) throws Exception{

@@ -26,6 +26,11 @@ public class ServiceService {
 	@Autowired
 	private FileManager fileManager;
 	
+	//예약 가능한 시간 띄어주기
+	public Long resCount(ReservationVO reservationVO) throws Exception{
+		return serviceMapper.resCount(reservationVO);
+	}
+	
 	public int updateOverdue(UserVO userVO)throws Exception{
 		return serviceMapper.updateOverdue(userVO);
 	}

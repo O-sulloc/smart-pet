@@ -7,6 +7,11 @@
     
 <mapper namespace="com.pj.pet.service.ServiceMapper">
 
+	<!-- 시간당 예약 가능한 시간만 -->
+	<select id="resCount" parameterType="ReservationVO" resultType="Long">
+		SELECT COUNT(*) resCount  FROM RESERVATION WHERE RESDATE =#{resDate} and RESTIME =#{resTime} and RESSTATE =0 and RESSTATE =1
+	</select>
+
 	<!-- 예약승인시 메일 보내기 -->
 	<!-- reservation 테이블에서 setNum이용해서 예약자의 이메일 가져옴 -->
 	<select id="findEmail" parameterType="reservationVO" resultType="userVO">

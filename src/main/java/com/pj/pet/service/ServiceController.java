@@ -389,6 +389,17 @@ public class ServiceController {
 		mv.setViewName("service/manage");
 		return mv;
 	}
+	
+	//예약 수용가능 시간
+	@GetMapping("resCount")
+	public ModelAndView resCount(ReservationVO reservationVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		Long resCount = serviceService.resCount(reservationVO);
+		mv.addObject("result",resCount);
+		mv.setViewName("common/getResult");
+		return mv;
+	
+	}
 
 	// 예약 시간 띄어주기 (서비스 상세 정보) + 파일정보
 	@GetMapping("detail")

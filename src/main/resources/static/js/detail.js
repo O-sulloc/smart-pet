@@ -83,6 +83,23 @@ function plusTerm(time){
     return time;
 }
 
+/*//수용인원 체크
+function capacityCk(resDate, resTime){
+	
+	$.ajax({
+		type:"GET",
+		url:"./resCount",
+		data:{
+			resNum:resDate,
+			resState:resTime
+		},
+		success:function(data){
+			console.log(data.trim())
+			return data.trim();
+		}
+	})
+}
+*/
 
 // 평일일 경우 예약시간 뿌리기 
 let result=openTime0; //09:00:00

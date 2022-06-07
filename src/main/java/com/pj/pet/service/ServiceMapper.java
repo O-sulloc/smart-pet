@@ -16,6 +16,9 @@ import com.pj.pet.util.Pager;
 @Mapper
 public interface ServiceMapper {
 	
+	//시간당 예약 가능한 시간만 보여주기
+	public Long resCount (ReservationVO reservationVO) throws Exception;
+	
 	//overdue 거부로 자동 update
 	public int updateOverdue(UserVO userVO)throws Exception;
 	

@@ -13,7 +13,10 @@ import com.pj.pet.user.UserVO;
 @Mapper
 public interface ReservationMapper {
 	
-	//예약 중복 방지
+//	//시간당 예약 가능한 시간만 보여주기
+//	public Long possibleTime (ReservationVO reservationVO) throws Exception;
+	
+	//예약 중복 방지 (서비스 중복 금지)
 	public Long repetition(ReservationVO reservationVO) throws Exception;
 	
 	// 예약 정보 수정 (날짜,시간,메모 변경)
