@@ -39,30 +39,7 @@
 			<div class="content">
 				<div class="row">
 					<!-- Start Of SideBar -->
-					<div class="col-lg-4 col-md-12 col-12">
-						<div class="service-sidebar">
-							<div class="single-widget service-category">
-								<h3>My Page</h3>
-								<ul>
-									<li><a href="/user/myPage"> My Profile <i
-											class="lni lni-user"></i>
-									</a></li>
-									<li><a href="/user/pwUpdate"> Change Password <i
-											class="lni lni-lock-alt"></i>
-									</a></li>
-									<li><a href="/user/petList"> Pet Profile <i
-											class="lni lni-github"></i>
-									</a></li>
-									<li><a href="#"> Appointment <i
-											class="lni lni-calendar"></i>
-									</a></li>
-									<li><a href="/user/reviewListPage"> Orders <i
-											class="lni lni-delivery"></i>
-									</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
+					<c:import url="../temp/sidebar.jsp"></c:import>
 					<!-- End Of SideBar -->
 
 					<div class="col-lg-8 col-md-12 col-12">
@@ -75,7 +52,7 @@
 										<div class="row">
 											<div class="col-12">
 												<div class="appointment-title">
-													<h2>My Info</h2>
+													<h2>My Profile</h2>
 												</div>
 											</div>
 										</div>
