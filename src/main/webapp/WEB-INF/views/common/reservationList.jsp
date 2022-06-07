@@ -23,9 +23,9 @@
 							<option class="option" value="20">20</option>
 							<option class="option" value="25">25</option></select> entries per page</label>
 				</div>
-				<div class="dataTable-search">
+<!-- 				<div class="dataTable-search">
 					<input class="dataTable-input" placeholder="Search..." type="text">
-				</div>
+				</div> -->
 			</div>
 			<div class="dataTable-container">
 				<table id="datatablesSimple" class="dataTable-table">

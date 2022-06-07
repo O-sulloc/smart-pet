@@ -50,7 +50,15 @@ public class ServiceController {
 	}
 	
 
-	
+	@GetMapping("resCount")
+	public ModelAndView resCount(ReservationVO reservationVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		Long resCount=serviceService.resCount(reservationVO);
+		
+		mv.addObject("result",resCount);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
 	
 	@PostMapping("sendEmail")
 	public void sendEmail(ReservationVO reservationVO)throws Exception{

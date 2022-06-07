@@ -23,10 +23,11 @@ public class reservationSettingInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("인터셉터 실행");
 		boolean check = false;
 		HttpSession session= request.getSession();
 		UserVO userVO=(UserVO)session.getAttribute("user");
+		
+		
 		
 		ReservationSettingVO reservationSettingVO=serviceService.getReservationSettingCheck(userVO);
 		
