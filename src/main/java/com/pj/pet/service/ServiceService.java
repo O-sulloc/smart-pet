@@ -26,6 +26,7 @@ public class ServiceService {
 	@Autowired
 	private FileManager fileManager;
 	
+
 	public Long resCount(ReservationVO reservationVO)throws Exception{
 		return serviceMapper.ResCount(reservationVO);
 	}
@@ -35,7 +36,7 @@ public class ServiceService {
 		return serviceMapper.registrationInterceptor(userVO);
 	}
 	
-	
+
 	public int updateOverdue(UserVO userVO)throws Exception{
 		return serviceMapper.updateOverdue(userVO);
 	}

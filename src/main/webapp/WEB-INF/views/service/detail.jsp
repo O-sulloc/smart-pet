@@ -43,7 +43,6 @@
 	</ul>
 
 
-
 	<input type="hidden" id="term" value="${settingVO.term}">
 	<input type="hidden" id="capacity" value="${settingVO.capacity}">
 	<input type="hidden" id="holiday" value="${settingVO.holiday}">

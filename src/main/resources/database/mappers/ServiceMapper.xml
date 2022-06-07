@@ -15,6 +15,7 @@
 	and NOT RESSTATE=2
 	</select>
 
+
 	<!-- 예약승인시 메일 보내기 -->
 	<!-- reservation 테이블에서 setNum이용해서 예약자의 이메일 가져옴 -->
 	<select id="findEmail" parameterType="reservationVO" resultType="userVO">

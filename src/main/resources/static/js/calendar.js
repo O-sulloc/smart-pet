@@ -8,11 +8,13 @@ let CDate = new Date(); //현재 날짜 및 시간
 let today = new Date(); //현재 날짜 및 시간
 let selectCk = 0;
 let clickDay="";
+
 let capacityCkReturn='';
 
 
 // console.log(CDate);
 // console.log(today);
+
 
 //전역
 let year = CDate.getFullYear();
@@ -71,15 +73,15 @@ let buildcalendar = function(){
 		
 		if(i < thisFirst.getDay()){
 			htmlDates += '<div class="date last">'+dates[i]+'</div>'; // 달력 처음 시작할 때 전달 날짜 클릭 X
-		}else if(i<lastday&&today.getMonth()==CDate.getMonth() && today.getFullYear()==CDate.getFullYear()) {  // 당일로부터 지난날 클릭 X 
+		}else if(i<lastday+3&&today.getMonth()==CDate.getMonth() && today.getFullYear()==CDate.getFullYear()) {  // 당일로부터 지난날 클릭 X 
 			htmlDates += '<div class="date last" disabled>'+dates[i]+'</div>'; 
 		
 		}else if($("#holiday").val().includes(getInputDayLabel())){ // 휴무일 지정 클릭 X
 			htmlDates += '<div class="date last" disabled>'+dates[i]+'</div>';
 			
-		}else if(today.getDate()==dates[i] && today.getMonth()==CDate.getMonth() && today.getFullYear()==CDate.getFullYear()){ // 오늘 날짜
+		}/*else if(today.getDate()==dates[i] && today.getMonth()==CDate.getMonth() && today.getFullYear()==CDate.getFullYear()){ // 오늘 날짜
 			 htmlDates += '<div id="date_'+dates[i]+'" class="date today" onclick="fn_selectDate('+dates[i]+');">'+dates[i]+'</div>'; 
-		}else if(i >= thisFirst.getDay() + thisLast.getDate()){ // 달력 다음 달로 넘어가는 날짜 클릭 X
+		}*/else if(i >= thisFirst.getDay() + thisLast.getDate()){ // 달력 다음 달로 넘어가는 날짜 클릭 X
 			 htmlDates += '<div class="date next">'+dates[i]+'</div>'; 
 		}else{
 			htmlDates += '<div id="date_'+dates[i]+'" class="date" onclick="fn_selectDate('+dates[i]+');">'+dates[i]+'</div>'; // 오늘 이후 날짜 클릭 O
@@ -164,9 +166,9 @@ function fn_selectDate(date){
 	if(CDate.getMonth + 1 < 10){
 		month = "0" + (CDate.getMonth() + 1);
 	}
-/*	if(date < 0){
+	if(date < 0){
 		date_txt = "0" + date;
-	}*/
+	}
 	
 	
 	//활성화된 날짜 클릭시 
@@ -176,15 +178,16 @@ function fn_selectDate(date){
 		$("#date_"+date).css("background-color", "red");
 		$("#date_"+date).css("color", "white");
 	
-		$("#resDate").val(year+"-"+month+"-"+date);
+		$("#resDate").val(year+"-"+(month<10?"0"+month:month)+"-"+(date<10?"0"+date:date));
 		
-		selectCk = year+"-"+month+"-"+date;
+		selectCk = year+"-"+(month<10?"0"+month:month)+"-"+(date<10?"0"+date:date);
 		console.log(selectCk)
 		
 		clickDay=year+"-"+(month<10?"0"+month:month)+"-"+(date<10?"0"+date:date);
 		console.log(clickDay)
 		d=date;
-		
+		clickDay=selectCk;
+		// console.log(clickDay);
 		selectCk = 0;
 		
 		//토요일 구분 
@@ -207,6 +210,8 @@ function fn_selectDate(date){
 }
 
 buildcalendar();
+
+
 
 
 $(".dateInfo_btn").click(function() {
