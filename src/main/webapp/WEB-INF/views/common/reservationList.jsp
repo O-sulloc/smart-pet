@@ -35,9 +35,9 @@
 								class="dataTable">예약자명</a></th>
 							<th data-sortable="" style="width: 15.1275%;"><a href="#"
 								class="dataTable">예약일</a></th>
-							<th data-sortable="" style="width: 13.8389%;"><a href="#"
+							<th data-sortable="" style="width: 11.8389%;"><a href="#"
 								class="dataTable">예약시간</a></th>
-							<th data-sortable="" style="width: 11.85906%;"><a href="#"
+							<th data-sortable="" style="width: 13.85906%;"><a href="#"
 								class="dataTable">예약상태</a></th>
 							<th data-sortable="" style="width: 15.0336%;"><a href="#"
 								class="dataTable">전화번호</a></th>
