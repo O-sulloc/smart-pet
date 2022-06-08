@@ -1,8 +1,10 @@
-let pn=1;
-let perPage=5;
+let pn="";
+let perPage="";
 let resNum=null;
 
-let state=1; //1:예약리스트 2:대기중인예약리스트 
+$(function() {
+    	getList(1,5);
+    });
 
 console.log("여기")
 
@@ -76,6 +78,7 @@ $("#list").on("click",".pager",function(){
 		if(pn > 0){
 			//pn=checkPn;
 			getList(pn,perPage);
+			
 		}else {
 			//이전 또는 다음 Block이 X
 			alert("마지막 페이지 입니다");
@@ -85,12 +88,14 @@ $("#list").on("click",".pager",function(){
 $("#list").on("change",".perPage",function(){
 	console.log($(this).val())
 	perPage=$(this).val();
+
+	getList(pn,perPage);	
 	
-	getList(pn,perPage);
-		
+
+	
 })
 
-getList(1,5);
+
 
 //common/reservationList.jsp에 table생성 
 //최신 추가된순으로 예약리스트 가져오는 ajax 
@@ -104,6 +109,19 @@ getList(1,5);
 			},
 			success:function(data){
 				$("#list").html(data.trim());
+				
+				//perPage 5로 초기화 되는것 방지 코드 
+				if(perPage=="5"){
+		       	 	$('#5').attr('selected',true);      
+			    } else if(ckPerPage=="10"){
+			        $('#10').attr('selected',true);
+			    }else if(ckPerPage==15){
+			        $('#15').attr('selected',true);
+			    }else if(ckPerPage==20){
+			        $('#20').attr('selected',true);
+			    } else{
+			        $('#25').attr('selected',true);
+			    }
 				
 			}
 		})	

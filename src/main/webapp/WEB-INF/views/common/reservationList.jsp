@@ -17,11 +17,12 @@
 			<div class="dataTable-top">
 				<div class="dataTable-dropdown">
 					<label><select class="dataTable-selector perPage">
-							<option class="option" value="5" selected="">5</option>
-							<option class="option" value="10">10</option>
-							<option class="option" value="15">15</option>
-							<option class="option" value="20">20</option>
-							<option class="option" value="25">25</option></select> entries per page</label>
+							<option class="option" value="5" id="5" >5</option>
+							<option class="option" value="10" id="10">10</option>
+							<option class="option" value="15"  id="15">15</option>
+							<option class="option" value="20"  id="20">20</option>
+							<option class="option" value="25"  id="25">25</option>
+							</select> entries per page</label>
 				</div>
 <!-- 				<div class="dataTable-search">
 					<input class="dataTable-input" placeholder="Search..." type="text">
@@ -91,7 +92,7 @@
 			
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 							<li class="page-item"><a data-pn="${i}" class="page-link pager"
-								href="#">${i}</a></li>
+								href="../?">${i}</a></li>
 						</c:forEach>
 			
 						<li class="page-item"><a data-pn="${pager.next?pager.lastNum+1:0}" class="page-link pager"
