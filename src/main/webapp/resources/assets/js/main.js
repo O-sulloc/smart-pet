@@ -87,10 +87,10 @@ Author: GrayGrids
     });
 
     //===== mobile-menu-btn
-    let navbarToggler = document.querySelector(".mobile-menu-btn");
+    /*let navbarToggler = document.querySelector(".mobile-menu-btn");
     navbarToggler.addEventListener('click', function () {
         navbarToggler.classList.toggle("active");
-    });
+    });*/
 
 
 })();

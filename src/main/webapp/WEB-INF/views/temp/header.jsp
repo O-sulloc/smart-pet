@@ -50,7 +50,14 @@
                                         <a href="javascript:void(0)" aria-label="Toggle navigation">salon</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="../notice/list" aria-label="Toggle navigation">고객센터</a>
+                                        <a class="page-scroll dd-menu collapsed" href="javascript:void(0)"
+                                            data-bs-toggle="collapse" data-bs-target="#submenu-1-1"
+                                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                                            aria-label="Toggle navigation">Notice</a>
+                                        <ul class="sub-menu collapse" id="submenu-1-1">
+                                            <li class="nav-item"><a href="/notice/list">Notice</a></li>
+                                            <li class="nav-item"><a href="/faq/list?gradeRef=400">FAQ</a></li>
+                                        </ul>
                                     </li>
                                     
                                     <c:if test="${empty user}">
@@ -74,7 +81,7 @@
 	                                        </a>
 	                                        <ul class="sub-menu collapse" id="submenu-1-2">
 	                                        	<c:if test="${user.role eq 0}"> <!-- 0 관리자 -->
-		                                            <li class="nav-item"><a href="/user/admin">Admin Page</a></li>
+		                                            <li class="nav-item"><a href="/user/myPage">Admin Page</a></li>
 		                                            <li class="nav-item"><a href="/user/admin/userUpdate">회원 등급 관리</a></li>
 	                                        	</c:if>
 	                                        	
