@@ -1,14 +1,28 @@
 
-.align .calendar{
 
-	margin-left: 175px;
-}
+
+
 
 .appointment.page {
   /* background-color: #f9f9f9; */
   position: relative;
   /* padding-top: 100px;
   padding-bottom: 100px; */
+}
+.calendar{
+	
+   width: 100%;
+  background: #fff;
+  border-radius: 0;
+  border: none;
+  padding: 25px;
+  padding-right: 45px;
+  height: 450px;
+  font-size: 14px;
+  border: 1px solid #eee;
+  font-weight: 400;
+  color: #666;
+  
 }
 
 .appointment.page .appointment-title h2 {
@@ -83,6 +97,16 @@
   margin-bottom: 15px;
   margin-left: 8px;
 }
+
+
+.dateInfo_btn{
+  font-size: 15px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 15px;
+  margin-left: 8px;
+}
+
 
 .appointment-form .appointment-input {
   position: relative;

@@ -26,6 +26,7 @@
                </div>
                <ul class="breadcrumb-nav">
                   <li><a href="/">Home</a></li>
+                  <li>Service</li>
                   <li>Information</li>
                </ul>
             </div>
@@ -214,7 +215,8 @@
 
 
 	</div>
-	<div class="container my-4 align">
+	<div class="resInfo" style="display:none;">
+	<div class="container my-4 ">
 		<div class="calendar">
 			<div class="header">
 				<button class="calendar_btn" onclick="prevCal();">&lt;</button>
@@ -255,7 +257,7 @@
 					<section class="appointment page section">
 
                         <div class="col-12 p-0">
-						<label for="resMemo">예약메모</label>
+						<label for="resMemo" class="resMemo">예약메모</label>
                            <div class="appointment-input">
                               <textarea name="resMemo" id="resMemo" placeholder="Write Your Message Here....."></textarea>
                            </div>
@@ -267,7 +269,7 @@
                         </div>
                      </div>
                   </div>
-                  
+                  </div>
 
                </div>
             </div>

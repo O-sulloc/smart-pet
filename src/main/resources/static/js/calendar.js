@@ -2,6 +2,10 @@
  * 
  */
 
+$(".dateInfo_btn").click(function(){
+	$(".resInfo").slideToggle();
+	
+});
 
  $("#buttons").hide();
  $("#buttons2").hide();
@@ -363,7 +367,7 @@ for(let i=0;i<40;i++){
     if(i==0){
         // <button type="button" name="resTime" class="btn btn-outline-primary">09:30</button>
    
-
+		
         let button = document.createElement('button')
         button.setAttribute("type","button")
         button.setAttribute("id","timeButton")
@@ -509,16 +513,23 @@ for(let i=0;i<40;i++){
 	alert("점심시간은 예약이 불가능합니다. 다른 시간을 선택해주세요.");
 	
 })*/
-
-
+ 
 
 
 $("#buttons").on("click","#timeButton",function(){
    console.log($(this).html());
    time=$(this).html();
+   $(this).css("background-color", "green");
+   $(this).css("color", "white");
    $("#resTime").val(time);
+
 })
 
 
-
-    
+$("#buttons2").on("click","#timeButton",function(){
+   console.log($(this).html());
+   $(this).css("background-color", "green");
+   $(this).css("color", "white");
+   time=$(this).html();
+   $("#resTime").val(time);
+})

@@ -34,12 +34,28 @@
 	
 			
 });
+/* 작동 안됨*/
+let trimValue=function(){
+/*input value공백 제거*/
+	const resState=$("#resState").val();
+	resState.replace(/\s/gi, "");
+	console.log(resState);
+	$("#resState").val(resState);
+	
+	
+	const resTimetrim=$("#resTime").val();
+	resTimetrim.replace(/\s/gi, "");
+	console.log(resTimetrim);
+	/*$("#resState").val()=$.trim($("#resState").val());*/
+	/*$("#resTime").val()=$.trim($("#resTime").val());*/
+
+}
+
 
 const res_btn=document.getElementById("res_btn");
 const frm=document.getElementById("frm");
 const resDate=document.getElementById("resDate");
 const resTime=document.getElementById("resTime");
-
 
 
 res_btn.addEventListener("click",function(){
