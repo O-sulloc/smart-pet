@@ -152,21 +152,20 @@
                          <div class="col-lg-6 col-md-6 col-12 p-0">
                            <div class="appointment-input">
                               <label for="resDate"><i class="lni lni-calendar"></i></label>
-                              <input type="text" name="resDate" id="resDate"
-                                value="${vo.resDate}" readonly="readonly">
+                                ${vo.resDate}
                            </div>
                         </div>
                          <div class="col-lg-6 col-md-6 col-12 p-0">
                            <div class="appointment-input">
                               <label for="resTime"><i class="lni lni-timer"></i></label>
-                              <input readonly="readonly" name="resTime" id="resTime" value="<c:set var="time" value="${vo.resTime}" />
-                        		${fn:split(time,':')[0]}시 ${fn:split(time,':')[1]}분">
+                              <c:set var="time" value="${vo.resTime}" />
+                        		${fn:split(time,':')[0]}시 ${fn:split(time,':')[1]}분
                            </div>
                         </div>
                          <div class="col-lg-6 col-md-6 col-12 p-0">
                            <div class="appointment-input">
                               <label for="resState"><i class="lni lni-popup"></i></label>
-                              <input readonly="readonly" name="resState" id="resState" value="<c:choose>
+                              <c:choose>
                               <c:when test="${vo.resState==0}">
                                  <span>예약진행중</span>
                               </c:when>
@@ -176,8 +175,7 @@
                                  <span>예약실패</span><</c:when>
                               <c:when test="${vo.resState==3}">
                                  <span>방문완료</span> <</c:when>
-                           </c:choose>">
-
+                           </c:choose>
                            </div>
                         </div>
                         
@@ -186,6 +184,7 @@
 
 
 	</div>
+<form action="appointmentUpdate" method="post">
 	<div class="resInfo" style="display:none;">
 	<div class="container my-4 ">
 		<div class="calendar">
@@ -211,7 +210,6 @@
 			
 		</div>
 	</div>
-<form action="appointmentUpdate" method="post" id="frm">
 			<!-- js로 시간 받아옴 -->
 
 			<!-- 평일  -->
