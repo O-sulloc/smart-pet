@@ -5,8 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<c:import url="../temp/header_css.jsp"></c:import>
-<c:import url="../temp/header_script.jsp"></c:import>
+<title>Completion Check Page</title>
+ <meta charset="utf-8">
+		 <meta http-equiv="x-ua-compatible" content="ie=edge" />
+		  <meta name="viewport" content="width=device-width, initial-scale=1">
+		  <link rel="shortcut icon" type="image/x-icon"
+			href="../resources/assets/images/favicon.svg" />
+			<c:import url="../temp/header_css.jsp"></c:import>
+
 
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
@@ -14,18 +20,58 @@
 <link href="../css/styles.css" rel="stylesheet">
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
 	crossorigin="anonymous"></script>
-<title>Insert title here</title>
+
 </head>
+
+
+
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
-		<div class="container">
 	
-			<!-- side bar import-->
-		<c:import url="../service/sellerSidebar.jsp"></c:import>
-
-		<div id="list" class="card-body col-md-auto">
-			<h5>방문완료 체크하는 페이지 </h5>
+	  <div class="breadcrumbs overlay">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+               <div class="breadcrumbs-content">
+                  <h1 class="page-title">방문 완료 체크 페이지</h1>
+               </div>
+               <ul class="breadcrumb-nav">
+                  <li><a href="/">Home</a></li>
+                  <li>방문 완료 체크 페이지 </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   
+   
+   
+   <div class="service-details">
+		<div class="container">
+			<div class="content">
+				<div class="row">
+					<!-- Start Of SideBar -->
+					<c:import url="../service/sellerSidebar.jsp"></c:import>
+					<!-- End Of SideBar -->
+				
+					<div class="col-lg-8 col-md-12 col-12">
+						<section class="appointment page">
+							<div class="container">
+								<!-- 예약 테이블 -->
+								<div id="list"></div>
+							</div>
+						</section>
+					</div>
+				</div>
 		</div>
+	</div>
+		
+   
+   
+
+		
+		
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
@@ -61,7 +107,7 @@
 <!-- Modal 끝 -->
 		
 		</div>
-
+<c:import url="../temp/header_script.jsp"></c:import>
 <script src="../js/completionCheck.js"></script>
 </body>
 </html>

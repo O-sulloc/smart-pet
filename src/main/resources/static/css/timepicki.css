@@ -89,3 +89,21 @@ a.reset_time {
 	margin-top: 5px;
 	color: #000;
 }
+
+
+
+
+
+
+
+
+
+
+        .label {
+           
+            float: left;
+            clear: left;
+            width: 100%;
+            margin: 5px;
+            text-align: left;
+        }

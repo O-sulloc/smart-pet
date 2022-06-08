@@ -6,14 +6,61 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/x-icon"
+	href="../resources/assets/images/favicon.svg" />
 <c:import url="../temp/header_css.jsp"></c:import>
 <c:import url="../temp/header_script.jsp"></c:import>
 <title>Insert title here</title>
 </head>
 <body>
-<h1>서비스 등록 페이지</h1>
+<c:import url="../temp/header.jsp"></c:import>
 
-</div>
+	<div class="breadcrumbs overlay">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+					<div class="breadcrumbs-content">
+						<h1 class="page-title">서비스 등록</h1>
+					</div>
+					<ul class="breadcrumb-nav">
+						<li><a href="/">Home</a></li>
+						<li>서비스 등록</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<div class="service-details">
+		<div class="container">
+			<div class="content">
+				<div class="row">
+					<!-- Start Of SideBar -->
+					<c:import url="../service/sellerSidebar.jsp"></c:import>
+					<!-- End Of SideBar -->
+
+					<div class="col-lg-8 col-md-12 col-12">
+						<section class="appointment page">
+							<div class="container">
+
+								<div class="row">
+									<div class="appointment-form">
+										<div class="row">
+											<div class="col-12">
+												<div class="appointment-title">
+													<h2>서비스 등록 </h2>
+												</div>
+											</div>
+										</div>
+
+
+
+
 <form action="./registration" method="post" enctype="multipart/form-data">
 
     <input type="hidden"  name="id" value="${user.id}">
@@ -62,9 +109,42 @@
     <label for="hospitalField" class="form-label">대표 이미지</label>
     <input type="file" name="file" class="form-control">
   </div>  
-
-  <button type="submit" class="btn btn-primary">등록</button>
+<div class="col-lg-6 col-md-6 col-12 p-0">
+	<div class="appointment-btn button">
+  <button type="submit" class="btn btn-success">등록</button>
+  </div>
+ </div>
 </form>
+
+
+
+
+
+
+
+
+
+
+
+									</div>
+								</div>		
+								</div>
+							
+						</section>
+					</div>
+				</div>
+			</div>
+</div>
+
+
+
+
+
+
+
+
+
+
 
 <script type="text/javascript" src="../js/registration.js"></script>
 </body>

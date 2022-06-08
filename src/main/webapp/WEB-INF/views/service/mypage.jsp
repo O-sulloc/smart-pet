@@ -13,6 +13,7 @@
 <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
   
 <c:import url="../temp/header_css.jsp"></c:import>
+
 </head>
 <body>
 
@@ -34,71 +35,106 @@
       </div>
    </div>
 
-<div class="container">
 
 	
-	<!-- side bar -->
-	<c:import url="../service/sellerSidebar.jsp"></c:import>
+	<div class="service-details">
+		<div class="container">
+			<div class="content">
+				<div class="row">
+					<!-- Start Of SideBar -->
+					<c:import url="../service/sellerSidebar.jsp"></c:import>
+					<!-- End Of SideBar -->
 
-	
-	<div class="row col-md-auto" >
-	
-		<div class="card">
-		
-			    	
-				<ul class="list-group list-group-flush">
-				   	<li class="list-group-item">
-				  
-				   		<img alt="" src="../resources/upload/service/${vo.serviceFileVO.fileName}">
-				   	</li>
-				</ul>
-		
-			<ul class="list-group list-group-flush">
-			
-			
-				<li class="list-group-item">
-				<c:choose>
-					<c:when test="${vo.serKind==1}">
-					병원명:
-					</c:when>
-					<c:when test="${vo.serKind==2}">
-					미용샵 이름:
-					</c:when>
-				</c:choose>
-				${vo.serName}</li>
-				
-		   		<li class="list-group-item">${vo.serAddress} </li>
-		   		
-		   		<c:choose>
-					<c:when test="${vo.serKind==1}">
-						<li class="list-group-item">${vo.hospitalField} </li>
-					</c:when>
-				</c:choose>
-		   		
-		   		<li class="list-group-item">${vo.serTel} </li>
-			   	<li class="list-group-item">${vo.homepage}</li>
-			   	
-			   	<div class="container my-4">
-					<div class="col-2 d-flex">
-						<a href="update" role="button" class="btn btn-success mx-1">Update</a>
-						<a href="delete?serNum=${vo.serNum}" role="button" class="btn btn-danger mx-1" id="delete">delete</a>
+					<div class="col-lg-8 col-md-12 col-12">
+						<!-- section start -->
+						<section class="appointment page">
+							<!-- <section class="appointment page"> -->
+							<div class="container">
+								<div class="row">
+									<div class="appointment-form">
+										<div class="row">
+											<div class="col-12">
+												<div class="appointment-title">
+													<h2>My Service Profile</h2>
+												</div>
+											</div>
+										</div>
+										
+										
+										
+										<div class="row">
+										
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-input">
+													<img alt="" src="../resources/upload/service/${vo.serviceFileVO.fileName}">
+												</div>
+											</div>
+											<hr>
+										
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-input">
+													<label for="serName"><i class="lni lni-home"></i></label> <input
+														type="text" name="serName" value="${vo.serName}" id="serName" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-input">
+													<label for="homepage"><i class="lni lni-home"></i></label> <input
+														type="text" name="homepage" value="${vo.homepage}" id="homepage" readonly>
+												</div>
+											</div>
+									
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-input">
+													<label for="serTel"><i class="lni lni-phone-set"></i></label>
+													<input type="text" name="serTel" id="sersTel" value="${vo.serTel}" readonly>
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-input">
+													<label for="serAddress"><i class="lni lni-map-marker"></i></label>
+													<input type="text" name="serAddress" value="${vo.serAddress}" id="serAddress" readonly>
+												</div>
+											</div>
+											<div class="mb-3 p-0">
+												<div class="appointment-input">
+													<label for="serTime"><i class="lni lni-map-marker"></i></label>
+													<input type="text" name="serTime" value="${vo.serTime}" id="serTime" readonly>
+												</div>
+											</div>
+											
+										<c:choose>
+											<c:when test="${vo.serKind==1}">
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-input">
+													<label for="hospitalField"><i class="lni lni-sthethoscope"></i></label>
+													<input type="text" name="hospitalField" value="${vo.hospitalField}" id="hospitalField" readonly>
+												</div>
+											</div>
+											</c:when>
+										</c:choose>
+							
+							
+									<hr>
+											<div class="col-lg-6 col-md-6 col-12 p-0">
+												<div class="appointment-btn button">
+													<button class="btn" onclick="location.href='/service/update'">Update</button>
+													<button class="btn" onclick="location.href='/service/delete'">Delete Service</button>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+								</div>
+							</div>
+						</section>
+						<!-- section end -->
 					</div>
 				</div>
-			</ul>
-		  
-		
-
-    	 
+			</div>
 		</div>
-	
 	</div>
-	
-</div>
-</div>
-	
-	
-	
-	
 
 
 

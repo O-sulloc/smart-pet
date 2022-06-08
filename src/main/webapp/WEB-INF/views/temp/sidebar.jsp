@@ -11,6 +11,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon"
 	href="../resources/assets/images/favicon.svg" />
+	
+	<link href="../css/ServiceSellerSidebar.css" rel="stylesheet">
 <!-- Place favicon.ico in the root directory -->
 
 <c:import url="../temp/header_css.jsp"></c:import>
@@ -18,7 +20,7 @@
 <body>
 
 	<!-- Start Of SideBar -->
-	<div class="col-lg-4 col-md-12 col-12">
+	<div class="col-lg-4 col-md-12 col-12" id="ServiceSellerSidebar">
 		<div class="service-sidebar">
 			<div class="single-widget service-category">
 				<h3>My Page</h3>
@@ -45,5 +47,6 @@
 		</div>
 	</div>
 	<!-- End Of SideBar -->
+			
 </body>
 </html>
