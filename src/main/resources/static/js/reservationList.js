@@ -113,11 +113,11 @@ $("#list").on("change",".perPage",function(){
 				//perPage 5로 초기화 되는것 방지 코드 
 				if(perPage=="5"){
 		       	 	$('#5').attr('selected',true);      
-			    } else if(ckPerPage=="10"){
+			    } else if(perPage=="10"){
 			        $('#10').attr('selected',true);
-			    }else if(ckPerPage==15){
+			    }else if(perPage==15){
 			        $('#15').attr('selected',true);
-			    }else if(ckPerPage==20){
+			    }else if(perPage==20){
 			        $('#20').attr('selected',true);
 			    } else{
 			        $('#25').attr('selected',true);
