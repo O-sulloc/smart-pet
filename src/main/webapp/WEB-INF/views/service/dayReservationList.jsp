@@ -1,60 +1,108 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html>
 <html>
 <head>
-<c:import url="../temp/header_css.jsp"></c:import>
-<c:import url="../temp/header_script.jsp"></c:import>
-<link href="../css/calendar.css" rel="stylesheet">
-
-<link
-	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
-	rel="stylesheet">
-<link href="../css/styles.css" rel="stylesheet">
-<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
-	crossorigin="anonymous"></script>
-
-<meta charset="UTF-8">
-<title>Insert title here</title>
+		<title>Resevation List By Date</title>
+		 <meta charset="utf-8">
+		 <meta http-equiv="x-ua-compatible" content="ie=edge" />
+		  <meta name="viewport" content="width=device-width, initial-scale=1">
+		  <link rel="shortcut icon" type="image/x-icon"
+			href="../resources/assets/images/favicon.svg" />
+			<c:import url="../temp/header_css.jsp"></c:import>
+		 
+		 
+		<link href="../css/calendar.css" rel="stylesheet">
+		
+		<link
+			href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
+			rel="stylesheet">
+			
+		<link href="../css/styles.css" rel="stylesheet">
+		<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
+			crossorigin="anonymous"></script>
+		
+		
 </head>
+
+
+
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
-	<div class="container">
-			<h1>날짜별 </h1>
-		<!-- side bar import-->
-		<c:import url="../service/sellerSidebar.jsp"></c:import>
- 
- <div class="col-md-auto">
- <!--달력 -->
-	<div class="container my-4">
-		<div class="calendar">
-				<div class="header">
-					<button class="calendar_btn" onclick="prevCal();">&lt;</button>
-					<div class="title">
-						<span class="year"></span> <span class="month"></span>
-					</div>
-					<button class="calendar_btn" onclick="nextCal();">&gt;</button>
-				</div>
-				<div class="day">
-					<div>일</div>
-					<div>월</div>
-					<div>화</div>
-					<div>수</div>
-					<div>목</div>
-					<div>금</div>
-					<div>토</div>
-				</div>
-				<div class="dates"></div>
+
+  <div class="breadcrumbs overlay">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+               <div class="breadcrumbs-content">
+                  <h1 class="page-title">날짜별 예약 현황</h1>
+               </div>
+               <ul class="breadcrumb-nav">
+                  <li><a href="/">Home</a></li>
+                  <li>날짜별 예약 현황</li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+	
+	<div class="service-details">
+		<div class="container">
+			<div class="content">
+				<div class="row">
+					<!-- Start Of SideBar -->
+					<c:import url="../service/sellerSidebar.jsp"></c:import>
+					<!-- End Of SideBar -->
+				
+				<div class="col-lg-8 col-md-12 col-12">
+					<section class="appointment page">
+						<div class="container">
+								 <!--달력 -->
+								<div class="container my-4">
+									<div class="calendar">
+											<div class="header">
+												<button class="calendar_btn" onclick="prevCal();">&lt;</button>
+												<div class="title">
+													<span class="year"></span> <span class="month"></span>
+												</div>
+												<button class="calendar_btn" onclick="nextCal();">&gt;</button>
+											</div>
+											<div class="day">
+												<div>일</div>
+												<div>월</div>
+												<div>화</div>
+												<div>수</div>
+												<div>목</div>
+												<div>금</div>
+												<div>토</div>
+											</div>
+											<div class="dates"></div>
+											
+													  <br>
+	
+									</div>
+								</div>
+									<!-- 달력 끝 -->
+						</div>
+										<div id="count"></div><!-- 예약 수 정보 -->
+	 		
+	 		<div id="list"></div><!-- 예약 테이블 -->
+					
+					</section>
+			
 			</div>
-		</div><!-- 달력 끝 -->
+		</div>
+	</div>
+			
+ 
+
+ 
+
 		
-		  <br>
-		
-		<div id="count"></div><!-- 예약 수 정보 -->
+
  		
- 		<div id="list"></div><!-- 예약 테이블 -->
+ 		
  <!-- Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
@@ -92,7 +140,7 @@
 	
 	</div><!-- col-md-auto -->
 	
-	
+	<c:import url="../temp/header_script.jsp"></c:import>
 		<script type="text/javascript" src="../js/dayReservationList.js"></script>
 </body>
 </html>

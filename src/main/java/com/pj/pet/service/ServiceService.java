@@ -26,6 +26,10 @@ public class ServiceService {
 	@Autowired
 	private FileManager fileManager;
 	
+	public int allApproved(UserVO userVO)throws Exception{
+		return serviceMapper.allApproved(userVO);
+	}
+
 
 	public Long resCount(ReservationVO reservationVO)throws Exception{
 		return serviceMapper.ResCount(reservationVO);

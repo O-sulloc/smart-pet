@@ -14,18 +14,23 @@
 
 		<div
 			class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+ 
+				
+				
 			<div class="dataTable-top">
+			<div class="allApproved">
+				<button class="btn btn-primary btn-small allApprovedBtn">모두 승인</button>
+			</div>
 				<div class="dataTable-dropdown">
 					<label><select class="dataTable-selector perPage">
-							<option class="option" value="5" selected="">5</option>
-							<option class="option" value="10">10</option>
-							<option class="option" value="15">15</option>
-							<option class="option" value="20">20</option>
-							<option class="option" value="25">25</option></select> entries per page</label>
+							<option class="option" value="5" id="5" >5</option>
+							<option class="option" value="10" id="10">10</option>
+							<option class="option" value="15"  id="15">15</option>
+							<option class="option" value="20"  id="20">20</option>
+							<option class="option" value="25"  id="25">25</option>
+							</select> entries per page</label>
 				</div>
-<!-- 				<div class="dataTable-search">
-					<input class="dataTable-input" placeholder="Search..." type="text">
-				</div> -->
+ 
 			</div>
 			<div class="dataTable-container">
 				<table id="datatablesSimple" class="dataTable-table">
@@ -35,9 +40,9 @@
 								class="dataTable">예약자명</a></th>
 							<th data-sortable="" style="width: 15.1275%;"><a href="#"
 								class="dataTable">예약일</a></th>
-							<th data-sortable="" style="width: 13.8389%;"><a href="#"
+							<th data-sortable="" style="width: 11.8389%;"><a href="#"
 								class="dataTable">예약시간</a></th>
-							<th data-sortable="" style="width: 11.85906%;"><a href="#"
+							<th data-sortable="" style="width: 13.85906%;"><a href="#"
 								class="dataTable">예약상태</a></th>
 							<th data-sortable="" style="width: 15.0336%;"><a href="#"
 								class="dataTable">전화번호</a></th>
@@ -86,17 +91,17 @@
 				<ul class="pagination">
 						<li class="page-item"><a data-pn="${pager.pre?pager.startNum-1:0}" class="page-link pager"
 							href="#"
-							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							aria-label="Previous" id="previous"> <span aria-hidden="true">&laquo;</span>
 						</a></li>
 			
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 							<li class="page-item"><a data-pn="${i}" class="page-link pager"
-								href="#">${i}</a></li>
+								href="#" id="page">${i}</a></li>
 						</c:forEach>
 			
 						<li class="page-item"><a data-pn="${pager.next?pager.lastNum+1:0}" class="page-link pager"
 							href="#"
-							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+							aria-label="Next" id="next"> <span aria-hidden="true">&raquo;</span>
 						</a></li>
 					</ul>
 				</nav>

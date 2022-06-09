@@ -48,7 +48,7 @@ function DatetimepickerDefaults(opts) {
 
 
 //설정버튼 눌렀을시 유효성 체크 후 데이터 전송 
-$('.btn').click(function(){
+$('.subBtn').click(function(){
 	if(validationCk()!=false){
 		$("form").submit();
 	}

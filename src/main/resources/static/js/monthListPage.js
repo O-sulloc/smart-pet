@@ -1,6 +1,29 @@
 console.log("dfsfs")
-
+let pn="";
+let perPage="";
 let resDate=""
+
+$("#list").on("click",".pager",function(){
+	pn=$(this).attr("data-pn");
+		if(pn > 0){
+			//pn=checkPn;
+			getMonthList(pn,perPage,resDate);
+			
+		}else {
+			//이전 또는 다음 Block이 X
+			alert("마지막 페이지 입니다");
+		}
+})
+
+$("#list").on("change",".perPage",function(){
+	console.log($(this).val())
+	perPage=$(this).val();
+	console.log(resDate)
+console.log(pn)
+console.log(perPage)
+	getMonthList(resDate,pn,perPage);	
+
+})
 
 //N월 클릭시 
 $(".monthpicker").on("click",".monthBtn",function(){
@@ -8,21 +31,35 @@ $(".monthpicker").on("click",".monthBtn",function(){
 	let year=$("#yearSelect option:selected").val()
 	resDate=(year+"-"+month)
 	console.log(resDate)
-	getDayList(resDate)
+	getMonthList(resDate,pn,perPage)
 	getStateCountList(resDate)
 })
 
 //해당 월에 해당하는 예약 리스트 가져오기 
-function getDayList(resDate){
+function getMonthList(resDate,perPage,pn){
 	$.ajax({
 			type:"GET",
 			url:"./ajaxMonthReservationList",
 			data:{
-				resDate:resDate
+				resDate:resDate,
+				pn:pn,
+				perPage:perPage
 			},
 			success:function(data){
 				$("#list").html(data.trim());
-			
+				
+				//perPage 5로 초기화 되는것 방지 코드 
+				if(perPage=="5"){
+		       	 	$('#5').attr('selected',true);      
+			    } else if(perPage=="10"){
+			        $('#10').attr('selected',true);
+			    }else if(perPage==15){
+			        $('#15').attr('selected',true);
+			    }else if(perPage==20){
+			        $('#20').attr('selected',true);
+			    } else{
+			        $('#25').attr('selected',true);
+			    }
 			},
 			error:function(){
 				alert('실패')
