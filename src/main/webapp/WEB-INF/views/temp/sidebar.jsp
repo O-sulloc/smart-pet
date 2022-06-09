@@ -50,7 +50,8 @@
 						<li><a href="/user/petList"> Pet Profile <i
 								class="lni lni-github"></i>
 						</a></li>
-						<li><a href="#"> Appointment <i class="lni lni-calendar"></i>
+						<li><a href="/user/appointment"> Appointment <i
+							 class="lni lni-calendar"></i>
 						</a></li>
 						<li><a href="/cart/list"> Cart <i
 								class="lni lni-cart-full"></i>
