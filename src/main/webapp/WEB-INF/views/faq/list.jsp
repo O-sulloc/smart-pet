@@ -10,12 +10,11 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon" href="../resources/assets/images/favicon.svg" />
-<!-- modal 되는지 보려고 위로 올림 -->
+<c:import url="../temp/header_css.jsp"></c:import>
 <c:import url="../temp/header_script.jsp"></c:import>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Place favicon.ico in the root directory -->
 
-<c:import url="../temp/header_css.jsp"></c:import>
 </head>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
@@ -25,7 +24,7 @@
 			<div class="row align-items-center">
 				<div class="col-lg-8 offset-lg-2 col-md-12 col-12">
 					<div class="breadcrumbs-content">
-						<h1 class="page-title">Frequently Asked Questions1111</h1>
+						<h1 class="page-title">Frequently Asked Questions</h1>
 					</div>
 					<ul class="breadcrumb-nav">
 						<li><a href="/">Home</a></li>
@@ -53,59 +52,60 @@
 								<div id="collapseOne${faq.rowNum}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 									<div class="accordion-body">
 										<p>${faq.contents}</p>
+										
+										<!-- 관리자 권한인듯 -->
+										<c:if test="${user.role eq 0}">
+											<div class="modalTotal" style="text-align: center">
+												<!-- modal  테스트 -->
+												<br>
+												<button class="btn btn-outline-success mx-1" id="modifyTotal${faq.num}">수정하기</button>
+											
+												<input type="hidden" name="num" value="${faq.num}" id="num${faq.num}">
+												<input type="hidden" name="grade" value="${faq.grade}" id="grade${faq.num}">
+												<!-- FAQ 수정 Modal-->
+												<div class="modal fade" id="modify${faq.num}" tabindex="-1" role="dialog" 
+												aria-labelledby="exampleModalLabel" aria-hidden="true">
+													<div class="modal-dialog" role="document">
+														<div class="modal-content">
+															<div class="modal-header">
+																<h5 class="modal-title" id="exampleModalLabel">FAQ 수정하기</h5>
+																<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+																	<span aria-hidden="true">X</span>
+																</button>
+															</div>
+															
+															<!-- CSS 넣기 -->
+															<h3>${faq.faqCateVO.cateName}</h3>
+															
+															
+															<div class="modal-body">
+																<label for="title" class="col-sm-2 col-form-label">Title</label>
+																<input type="text" class="form-control title_check" data-title="${faq.title}" 
+																id="title${faq.num}" name="title" value="${faq.title}">
+															</div>
+															<div class="modal-body">
+																<label for="contents" class="col-sm-2 col-form-label">Contents</label>
+																<textarea style="height:300px;" class="form-control" id="contents${faq.num}" 
+																name="contents">${faq.contents}</textarea>
+															</div>
+															
+															<div class="modal-footer">
+																<button type="button" class="btn btn-outline-success close" 
+																data-dismiss="modal">취소</button>
+																<button type="button" class="btn btn-success" id="modifyBtn${faq.num}">
+																수정</button>
+															</div>
+														</div>
+													</div>
+												</div>	
+												<button type="button" class="btn btn-outline-danger mx-1 deleteBtn" data-num="${faq.num}">삭제하기</button>
+												<br>
+											</div>
+										</c:if>
+										<!-- 관리자 글수정삭제 권한 여기까지 -->
 									</div>
 								</div>
 								
-								<!-- 관리자 권한인듯 -->
-								<c:if test="${user.role eq 0}">
-									<div class="modalTotal" style="text-align: center">
-										<!-- modal  테스트 -->
-										<br>
-										<button class="btn btn-outline-success mx-1" id="modifyTotal${vo.num}">수정하기</button>
-									
-										<input type="hidden" name="num" value="${vo.num}" id="num${vo.num}">
-										<input type="hidden" name="grade" value="${vo.grade}" id="grade${vo.num}">
-										<!-- FAQ 수정 Modal-->
-										<div class="modal fade" id="modify${vo.num}" tabindex="-1" role="dialog" 
-										aria-labelledby="exampleModalLabel" aria-hidden="true">
-											<div class="modal-dialog" role="document">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="exampleModalLabel">FAQ 수정하기</h5>
-														<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-															<span aria-hidden="true">X</span>
-														</button>
-													</div>
-													
-													<!-- CSS 넣기 -->
-													<h3>${vo.faqCateVO.cateName}</h3>
-													
-													
-													<div class="modal-body">
-														<label for="title" class="col-sm-2 col-form-label">Title</label>
-														<input type="text" class="form-control title_check" data-title="${vo.title}" 
-														id="title${vo.num}" name="title" value="${vo.title}">
-													</div>
-													<div class="modal-body">
-														<label for="contents" class="col-sm-2 col-form-label">Contents</label>
-														<textarea style="height:300px;" class="form-control" id="contents${vo.num}" 
-														name="contents">${vo.contents}</textarea>
-													</div>
-													
-													<div class="modal-footer">
-														<button type="button" class="btn btn-outline-success close" 
-														data-dismiss="modal">취소</button>
-														<button type="button" class="btn btn-success" id="modifyBtn${vo.num}">
-														수정</button>
-													</div>
-												</div>
-											</div>
-										</div>	
-										<button type="button" class="btn btn-outline-danger mx-1 deleteBtn" data-num="${vo.num}">삭제하기</button>
-										<br>
-									</div>
-								</c:if>
-								<!-- 관리자 글수정삭제 권한 여기까지 -->
 											
 							</c:forEach>
 						</div>
