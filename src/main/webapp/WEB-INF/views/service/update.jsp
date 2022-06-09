@@ -110,7 +110,7 @@
 												</div>
 												<div class="mb-3 p-0">
 													<div class="appointment-input">
-														<label for="serTime"><i class="lni lni-map-marker"></i></label>
+														<label for="serTime"><i class="lni lni-alarm-clock"></i></label>
 														<input type="text" name="serTime" value="${vo.serTime}"
 															id="serTime">
 													</div>
