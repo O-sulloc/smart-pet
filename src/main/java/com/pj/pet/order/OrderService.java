@@ -56,6 +56,7 @@ public class OrderService {
 			result = productMapper.countPlus(cartNum);
 			//환불 후 상품 판매량 감소
 			result = productMapper.saleMinus(cartNum);
+
 		}
 
 		return result;

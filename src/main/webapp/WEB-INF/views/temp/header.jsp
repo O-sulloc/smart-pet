@@ -32,15 +32,15 @@
                                 <span class="toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-                                <ul id="nav" class="navbar-nav ms-auto">
+                                 <ul id="nav" class="navbar-nav ms-auto">
                                     <li class="nav-item">
-                                        <a class="page-scroll dd-menu collapsed" href="javascript:void(0)"
+                                        <a class="page-scroll dd-menu collapsed productMenu"
                                             data-bs-toggle="collapse" data-bs-target="#submenu-1-1"
                                             aria-controls="navbarSupportedContent" aria-expanded="false"
                                             aria-label="Toggle navigation">product</a>
                                         <ul class="sub-menu collapse" id="submenu-1-1">
-                                            <li class="nav-item"><a href="#">dog</a></li>
-                                            <li class="nav-item"><a href="#">cat</a></li>
+                                            <li class="nav-item"><a href="../product/list?kind=pcate&search=1">dog</a></li>
+                                            <li class="nav-item"><a href="../product/list?kind=pcate&search=2">cat</a></li>
                                         </ul>
                                     </li>
                                     <li class="nav-item">
@@ -86,8 +86,7 @@
 	                                        	</c:if>
 	                                        	
 	                                        	<c:if test="${user.role eq 1}"> <!-- 1 상품 판매자 -->
-		                                            <li class="nav-item"><a href="/user/sellerList">Seller Page</a></li>
-		                                            <li class="nav-item"><a href="/user/sellerDetail">판매자 디테일</a></li>
+		                                            <li class="nav-item"><a href="/user/sellerList">Seller Page</a></li>		                                            
 		                                            <li class="nav-item"><a href="/product/add">상품 등록</a></li>
 		                                            <li class="nav-item"><a href="/user/sellerOrder">판매 내역</a></li>
 	                                        	</c:if>
@@ -127,3 +126,10 @@
     </header>
     <!-- End Header Area -->
  
+ <script type="text/javascript">
+ $(".productMenu").click(function(){
+
+	    location.href="../product/list"
+});
+ 
+</script>

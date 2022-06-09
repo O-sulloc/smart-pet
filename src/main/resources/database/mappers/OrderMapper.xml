@@ -32,7 +32,7 @@
 
 	<!-- 환불 -->
 	<update id="refund" parameterType="OrderVO">
-		UPDATE ORDERS SET REFUND=1 WHERE ORDERNUM=#{orderNum}
+		UPDATE ORDERS SET REFUND=#{refund} WHERE ORDERNUM=#{orderNum}
 	</update>
 		
 	<select id="getOrderCart" parameterType="OrderVO" resultMap="orderCart">
@@ -108,8 +108,7 @@
 		LEFT JOIN
 		CARTREFER CR
 		ON(C.CARTNUM=CR.CARTNUM)
-		WHERE C.ID =#{id} AND PAYCHECK=1 AND CR.PAYNUM
-		=#{payNum}
+		WHERE C.ID =#{id} AND PAYCHECK=1 AND CR.PAYNUM =#{payNum}
 	</select>
 
 	<resultMap type="CartVO" id="cartListResult">

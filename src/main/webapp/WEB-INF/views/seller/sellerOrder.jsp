@@ -26,14 +26,31 @@
 
 </head>
 <body>
-
-	<c:import url="../temp/header.jsp"></c:import>
+<c:import url="../temp/header.jsp"></c:import>
+   <div class="breadcrumbs overlay">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+               <div class="breadcrumbs-content">
+                  <h1 class="page-title">Seller Order List</h1>
+               </div>
+               <ul class="breadcrumb-nav">
+                  <li><a href="./sellerList">Seller Page</a></li>
+                  <li>Seller Order List</li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Start Of SideBar -->
+   	<div class="service-details">
+		<div class="container">
+				<div class="row">
+					
+					<c:import url="../temp/sellerSidebar.jsp"></c:import>
+					<!-- End Of SideBar -->
+<div class="col-lg-8 col-md-12 col-12">
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-3">
-				<c:import url="../temp/sellerSidebar.jsp"></c:import>
-			</div>
-			<div class="col-9 container mt-3">
 				<main>
 					<c:forEach items="${olist}" var="ovo">
 						<section id="content">
@@ -61,13 +78,18 @@
 								<c:when test="${ovo.shipState eq 1 }"></c:when>
 								<c:otherwise>
 								<div id="ship" class="deliveryChange">
-   								<button type="button" data-oNum="${ovo.orderNum}" id="ship1btn${ovo.orderNum}" class="btn btn-primary">배송</button>
+   								<button data-oNum="${ovo.orderNum}" type="button" id="ship1btn${ovo.orderNum}" class="btn btn-success">배송</button>
  								</div>
  								</c:otherwise>
  								</c:choose>	
  								<c:if test="${ovo.refund eq 1}">
 								<p>
 									<span style="color:red">환불완료</span>
+								</p>
+								</c:if>
+								<c:if test="${ovo.shipState eq 1}">
+								<p>
+									<span style="color:green">배송완료</span>
 								</p>
 								</c:if>
 							</div>
@@ -78,7 +100,9 @@
 			</div>
 		</div>
 	</div>
-	
+	</div></div>
+	<c:import url="../temp/header_script.jsp"></c:import>
+	<c:import url="../temp/footer.jsp"></c:import>
 	<script type="text/javascript" src="../resources/js/order.js"></script>
 </body>
 </html>

@@ -1,0 +1,40 @@
+div.products div.productsInfo {
+	float: right;
+	width: 550px;
+	font-size: 22px;
+}
+
+div.products div.productsInfo p {
+	margin: 0 0 20px 0;
+}
+
+div.products div.productsInfo p span {
+	display: inline-block;
+	width: 100px;
+	margin-right: 15px;
+}
+
+td button {
+	font-size: 26px;
+	border: none;
+	background: none;
+}
+
+input {
+	font-size: 22px;
+	width: 50px;
+	padding: 5px;
+	margin: 0;
+	border: 1px solid #eee;
+}
+
+#inputnumbox {
+	pointer-events: none;
+}
+.Th{
+	vertical-align:middle;
+}
+#uName{
+	text-align: center;
+	margin-top: 50px;
+}

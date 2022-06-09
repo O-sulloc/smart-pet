@@ -37,6 +37,7 @@
 					<li><a href="/user/pwUpdate"> Change Password <i
 							class="lni lni-lock-alt"></i>
 					</a></li>
+
 					<c:if test="${user.role eq 2 }"> <!-- 1 user만 볼 수 있ㄴ 사이드바 -->
 						<li><a href="/user/petList"> Pet Profile <i
 								class="lni lni-github"></i>
@@ -46,10 +47,11 @@
 						<li><a href="/cart/list"> Cart <i
 								class="lni lni-cart-full"></i>
 						</a></li>
-						<li><a href="/user/reviewListPage"> Orders <i
+						<li><a href="/user/orderList"> Orders <i
 								class="lni lni-delivery"></i>
 						</a></li>
 					</c:if>
+
 				</ul>
 			</div>
 		</div>

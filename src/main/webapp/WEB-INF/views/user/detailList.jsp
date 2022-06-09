@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Order List Detail</title>
 
 <style>
 
@@ -20,23 +20,38 @@
  .gdsInfo { float:right; width:calc(100% - 220px); line-height:2; }
  .gdsInfo span { font-size:20px; font-weight:bold; display:inline-block; width:100px; margin-right:10px; }
 </style>
-
 </head>
 <body>
-	<c:import url="../temp/header.jsp"></c:import>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-3">
-				<c:import url="../temp/sidebar.jsp"></c:import>
-			</div>
-			<div class="col-9 container mt-3">
-				<main>
-
-					<section id="content">
+<c:import url="../temp/header.jsp"></c:import>
+   <div class="breadcrumbs overlay">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+               <div class="breadcrumbs-content">
+                  <h1 class="page-title"> Order List Detail</h1>
+               </div>
+               <ul class="breadcrumb-nav">
+                  <li><a href="./myPage">My Page</a></li>
+                  <li> Order List Detail</li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Start Of SideBar -->
+   	<div class="service-details">
+		<div class="container">
+				<div class="row">
+					<c:import url="../temp/sidebar.jsp"></c:import>
+<div class="col-lg-8 col-md-12 col-12" >	
+<div class="container-fluid" style="border-top: 4px solid #006838;">
+<button class="btn btn-success col-12">구매한 상품</button>
+		<div class="row" >
+					<section id="content" >
 
 						<ul class="orderView">
 							<c:forEach items="${plist}" var="pvo">
-								<li>
+								<li style="margin-top: 20px">
 									<div class="thumb">
 										<img src="../resources/upload/product/${pvo.productFileVOs[0].fileName}" />
 									</div>
@@ -44,7 +59,7 @@
 										<p>
 											<span>상품명</span>${pvo.productVO.productName}</p>
 										<p>
-											<span>개당 가격</span>${pvo.productVO.totalPrice}원</p>
+										 	<span>개당 가격</span>${pvo.productVO.totalPrice}원</p> 
 										<p>
 											<span>구입 수량</span>${pvo.productAmount}개</p>
 										<p>
@@ -54,11 +69,13 @@
 							</c:forEach>
 						</ul>
 					</section>
-				</main>
 			</div>
 		</div>
 	</div>
-
+</div>
+		</div></div>
+	<c:import url="../temp/header_script.jsp"></c:import>
+	<c:import url="../temp/footer.jsp"></c:import>
 
 </body>
 </html>

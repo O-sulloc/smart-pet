@@ -44,6 +44,7 @@ public class OrderController {
 		UserVO user = (UserVO) session.getAttribute("user");
 		cartVO.setId(user.getId());
 		List<CartVO> ar2 = orderService.orderDetailList(payVO);
+	
 		mv.addObject("plist", ar2);
 		mv.setViewName("user/detailList");
 		return mv;

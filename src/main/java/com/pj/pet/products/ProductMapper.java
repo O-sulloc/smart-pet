@@ -12,7 +12,7 @@ import com.pj.pet.util.Pager;
 public interface ProductMapper {
 	//상품
 	public List<ProductVO> getList(Pager pager) throws Exception;
-
+	
 	public Long getTotalCount(Pager pager) throws Exception;
 
 	public ProductVO getDetail(ProductVO productVO) throws Exception;
@@ -34,7 +34,7 @@ public interface ProductMapper {
 	//카테고리 정렬
 	public CategoryVO getCategoryDetail(CategoryVO categoryVO) throws Exception;
 	
-	public Long getpCount()throws Exception;
+	public Long getpCount(Pager pager)throws Exception;
 	
 	//재고 변경
 	public int countMinus(Long cartNum) throws Exception;
@@ -45,5 +45,6 @@ public interface ProductMapper {
 	public int saleMinus(Long cartNum) throws Exception;
 	
 	public int salePlus(Long cartNum) throws Exception;
-
-}
+	
+	public List<ProductVO> bestList() throws Exception;
+}	

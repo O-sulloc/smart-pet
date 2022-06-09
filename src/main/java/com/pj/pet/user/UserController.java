@@ -396,9 +396,7 @@ public class UserController {
 		UserVO userVO = (UserVO)session.getAttribute("user");
 		pager.setId(userVO.getId());
 		List<ProductVO> ar =productService.getList(pager);
-		Long count = productService.getpCount();
 		mv.addObject("list",ar);
-		mv.addObject("count",count);
 		mv.addObject("pager",pager); 
 		mv.setViewName("seller/sellerList");
 		return mv;

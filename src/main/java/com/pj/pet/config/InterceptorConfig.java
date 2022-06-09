@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.pj.pet.interceptor.SellerInterceptor;
 import com.pj.pet.interceptor.ServiceSellerInterceptor;
 import com.pj.pet.interceptor.reservationSettingInterceptor;
 import com.pj.pet.interceptor.ServiceUserInterceptor;
@@ -19,7 +20,8 @@ public class InterceptorConfig implements WebMvcConfigurer{
 	private registrationInterceptor registrationInterceptor;
 	@Autowired
 	private reservationSettingInterceptor reservationSettingInterceptor;
-	
+	@Autowired
+	private SellerInterceptor sellerInterceptor;
 	@Autowired
 	private ServiceUserInterceptor serviceUserInterceptor;
 	
@@ -49,7 +51,13 @@ public class InterceptorConfig implements WebMvcConfigurer{
 				.addPathPatterns("/user/appointment")			//유저 예약 목록
 				.addPathPatterns("/user/appointmentUpdate");	//유저 예약 업데이트
 		
-
+		registry.addInterceptor(sellerInterceptor)
+				.addPathPatterns("/seller/sellerDetail")		//판매자 상품목록 디테일
+				.addPathPatterns("/seller/sellerList")			//판매자 상품목록
+				.addPathPatterns("/seller/sellerOrder")			//판매자 판매목록 리스트
+				.addPathPatterns("/product/add")				//판매자 상품 등록
+				.addPathPatterns("/product/update")				//판매자 상품 수정
+				.addPathPatterns("/product/delete");			//판매자 상품 삭제
 	}
 	
 

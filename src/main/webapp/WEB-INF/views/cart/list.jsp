@@ -12,49 +12,29 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<c:import url="../temp/header_script.jsp"></c:import>
-
-<style type="text/css">
-div.products div.productsInfo {
-	float: right;
-	width: 550px;
-	font-size: 22px;
-}
-
-div.products div.productsInfo p {
-	margin: 0 0 20px 0;
-}
-
-div.products div.productsInfo p span {
-	display: inline-block;
-	width: 100px;
-	margin-right: 15px;
-}
-
-td button {
-	font-size: 26px;
-	border: none;
-	background: none;
-}
-
-input {
-	font-size: 22px;
-	width: 50px;
-	padding: 5px;
-	margin: 0;
-	border: 1px solid #eee;
-}
-
-#inputnumbox {
-	pointer-events: none;
-}
-</style>
-<title>Cart list</title>
+<c:import url="../temp/header_css.jsp"></c:import>
+<link href="../resources/css/cart.css" rel="styleSheet" />
+<title> Cart </title>
 </head>
 <body>
-
+<c:import url="../temp/header.jsp"></c:import>
+   <div class="breadcrumbs overlay">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+               <div class="breadcrumbs-content">
+                  <h1 class="page-title"> Cart List</h1>
+               </div>
+               <ul class="breadcrumb-nav">
+                  <li><a href="../user/myPage">My page</a></li>
+                  <li>Cart</li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
 	<div class="container">
-		<h1 class="display-3">장바구니</h1>
+		<h1 class="display-3" id="uName">${user.id}님의 장바구니</h1>
 		<div style="padding-top: 50px;">
 			<table class="table table-hover">
 				<tr>
@@ -86,19 +66,17 @@ input {
 							<tr>
 								<td><input type="checkbox" class="check"
 									data-check="${vo.cartNum}"></td>
-								<td class="detail" data-num="${vo.productVO.productNum}"><img style="width: 50px; height: 50px;"
+								<td class="psdetail" data-num="${vo.productVO.productNum}"><img style="width: 50px; height: 50px;"
 									src="../resources/upload/product/${vo.productFileVOs[0].fileName}"></td>
-								<td class="detail" data-num="${vo.productVO.productNum}">${vo.productVO.productName}</td>
+								<td class="psdetail" data-num="${vo.productVO.productNum}">${vo.productVO.productName}</td>
 								<td>${vo.productVO.totalPrice}</td>
 								<td>
 									<div class="countBtn" data-pNum="${vo.cartNum}">
 										<button type="button" id="minus" data-num="${vo.cartNum}"
 											class="minus">-</button>
 										<!--히든  -->
-										<input class="pCount${vo.cartNum}" type="hidden"
-											value="${vo.productVO.productCount}"> <input
-											class="pPrice${vo.cartNum}" type="hidden"
-											value="${vo.productVO.totalPrice}">
+										<input class="pCount${vo.cartNum}" type="hidden" value="${vo.productVO.productCount}"> 
+										<input class="pPrice${vo.cartNum}" type="hidden" value="${vo.productVO.totalPrice}">
 										<!--히든 끝 -->
 										<input type="number" id="inputnumbox"
 											data-check="${vo.cartNum}" class="col-2 numBox${vo.cartNum}"
@@ -120,11 +98,9 @@ input {
 							<th></th>
 							<th></th>
 							<th></th>
-							<th>총 상품수량:<input type="number" id="amountResult" value=""
-								readonly="readonly" style="border: none" /></th>
-							<th style="text-align: right">총 상품금액:</th>
-							<th><input type="number" id="totalResult" class="col-5"
-								value="" readonly="readonly" style="border: none" /></th>
+							<th class="Th">총 상품수량:<input type="number" id="amountResult" value="" readonly="readonly" style="border: none" /></th>
+							<th class="Th" style="text-align: right">총 상품금액:</th>
+							<th><input type="number" id="totalResult" class="col-5" value="" readonly="readonly" style="border: none" /></th>
 							<th></th>
 						</tr>
 			</table>
@@ -134,10 +110,8 @@ input {
 						<td align="left">
 							<button id="allBtn" class="btn btn-danger">선택상품 삭제</button>
 						</td>
-						<td align="right"><a href="../product/list"
-							class="btn btn-secondary"> 쇼핑 계속하기</a>
-							<button id="orderBtn" data-id="${user.id}"
-								class="btn btn-secondary">주문하기</button></td>
+						<td align="right"><button class="btn btn-success" id="shopping">쇼핑 계속하기</button>
+						<button id="orderBtn" data-id="${user.id}" class="btn btn-success">주문하기</button></td>
 					</tr>
 				</table>
 
@@ -148,7 +122,8 @@ input {
 		</div>
 
 	</div>
-
+	<c:import url="../temp/header_script.jsp"></c:import>
+	<c:import url="../temp/footer.jsp"></c:import>
 	<script type="text/javascript" src="../resources/js/cart.js"></script>
 </body>
 </html>

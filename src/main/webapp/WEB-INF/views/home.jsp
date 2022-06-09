@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<c:import url="./temp/header_script.jsp"></c:import>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>MediGrids - Medical & Hospital</title>
