@@ -37,7 +37,7 @@
 					<li><a href="/cart/list"> Cart <i
 							class="lni lni-cart-full"></i>
 					</a></li>
-					<li><a href="/user/reviewListPage"> Orders <i
+					<li><a href="/user/orderList"> Order List <i
 							class="lni lni-delivery"></i>
 					</a></li>
 				</ul>

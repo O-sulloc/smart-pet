@@ -23,14 +23,31 @@
 
 </head>
 <body>
-
-	<c:import url="../temp/header.jsp"></c:import>
+<c:import url="../temp/header.jsp"></c:import>
+   <div class="breadcrumbs overlay">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+               <div class="breadcrumbs-content">
+                  <h1 class="page-title"> Order List</h1>
+               </div>
+               <ul class="breadcrumb-nav">
+                  <li><a href="./myPage">My Page</a></li>
+                  <li> Order List</li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Start Of SideBar -->
+   	<div class="service-details">
+		<div class="container">
+				<div class="row">
+					
+					<c:import url="../temp/sidebar.jsp"></c:import>
+					<!-- End Of SideBar -->
+<div class="col-lg-8 col-md-12 col-12">
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-3">
-				<c:import url="../temp/sidebar.jsp"></c:import>
-			</div>
-			<div class="col-9 container mt-3">
 				<main>
 				<c:forEach items="${cvo}" var="vo">
 				<input type="hidden" value="${vo.cartVO.cartNum}" class="cartNum">
@@ -54,7 +71,6 @@
 									<span>배송상태</span>
 									<c:choose>
 									<c:when test="${ovo.shipState eq 0 }">배송 준비</c:when>
-									<c:when test="${ovo.shipState eq 1 }">배송 중</c:when>
 									<c:otherwise>배송 완료</c:otherwise>
 									</c:choose>
 								</p> 
@@ -77,6 +93,9 @@
 			</div>
 		</div>
 	</div>
+		</div></div>
+	<c:import url="../temp/header_script.jsp"></c:import>
+	<c:import url="../temp/footer.jsp"></c:import>
 	<script type="text/javascript" src="../resources/js/order.js"></script>
 </body>
 </html>

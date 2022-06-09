@@ -1,0 +1,30 @@
+#pCount {
+	margin-top: 20px;
+	color: black;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.pInfo {
+	color: black;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.pInfo2 {
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.sale_price {
+	font-weight: bold;
+	font-size: 14px;
+	text-decoration: line-through;
+}
+
+.discount_price {
+	font-weight: bold;
+	color: red;
+	font-size: 18px;
+}
+

@@ -72,7 +72,7 @@
 
 	<select id="getDetail" parameterType="ProductVO" resultMap="productResult">
 		SELECT
-		P.PRODUCTNUM,P.CATEGORYNUM,P.PCATEGORYNUM,P.PRODUCTNAME,P.PRODUCTPRICE,P.PRODUCTDETAIL,P.PRODUCTCOUNT,P.RATE,P.STARAVG,PF.*
+		P.PRODUCTNUM,P.CATEGORYNUM,P.PCATEGORYNUM,P.PRODUCTNAME,P.PRODUCTPRICE,P.PRODUCTDETAIL,P.PRODUCTCOUNT,P.RATE,P.PRODUCTINFO,PF.*
 		FROM PRODUCTS P
 		LEFT JOIN
 		PRODUCTSFILE PF
@@ -92,8 +92,7 @@
 		<result column="sales" property="sales" />
 		<result column="regDate" property="regDate" />
 		<result column="id" property="id" />
-		<!-- 재석추가 -->
-		<result column="starAvg" property="starAvg" />
+		<result column="productInfo" property="productInfo" />
 		<collection property="productFileVOs" javaType="List" ofType="ProductFileVO">
 			<id column="fileNum" property="fileNum" />
 			<result column="fileName" property="fileName" />
@@ -103,7 +102,7 @@
 
 	<insert id="setAdd" parameterType="ProductVO" useGeneratedKeys="true" keyProperty="productNum">
 		INSERT INTO PRODUCTS
-		VALUES(#{productNum},#{categoryNum},#{productName},#{productPrice},#{productDetail},#{productCount},#{rate},0,now(),#{id},#{pcategoryNum},0)
+		VALUES(#{productNum},#{categoryNum},#{productName},#{productPrice},#{productDetail},#{productCount},#{rate},0,now(),#{id},#{pcategoryNum},#{productInfo})
 	</insert>
 
 	<update id="setUpdate" parameterType="ProductVO">
@@ -146,8 +145,10 @@
 		SELECT * FROM CATEGORY WHERE CATEGORYNUM =#{categoryNum}
 	</select>
 
-	<select id="getpCount" resultType="Long">
-		SELECT COUNT(PRODUCTNUM) FROM PRODUCTS
+	<select id="getpCount" resultType="Long" parameterType="Pager">
+		SELECT COUNT(PRODUCTNUM)FROM PRODUCTS 
+		WHERE PCATEGORYNUM LIKE CONCAT('%',#{search},'%')  
+		AND CATEGORYNUM LIKE CONCAT('%',#{subSearch},'%')
 	</select>	
 
 <!--  카테고리끝 -->
@@ -175,6 +176,27 @@
  		UPDATE PRODUCTS SET 
 		SALES = SALES+(SELECT PRODUCTAMOUNT FROM CARTS WHERE CARTNUM=#{cartNum})
 		WHERE PRODUCTNUM=(SELECT PRODUCTNUM  FROM CARTS WHERE CARTNUM=#{cartNum})
-	</update>		
-
+	</update>
+	
+<!-- 	<update id="setSales" parameterType="Long">
+		UPDATE PRODUCTS  SET SALES=0 WHERE SALE=0 
+		AND PRODUCTNUM=(SELECT PRODUCTNUM  FROM CARTS WHERE CARTNUM=#{cartNum})	
+	</update>
+	
+	<update id="setCount" parameterType="Long">
+		UPDATE PRODUCTS  SET PRODUCTCOUNT=0 WHERE PRODUCTCOUNT<0 
+		AND PRODUCTNUM=(SELECT PRODUCTNUM  FROM CARTS WHERE CARTNUM=#{cartNum})	
+	</update> -->
+	
+	<!-- 베스트 상품 5개 -->
+	<select id="bestList" resultMap="productResult">
+		SELECT
+		P.*,PF.*
+		FROM PRODUCTS P
+		INNER JOIN
+		PRODUCTSFILE PF
+		USING(PRODUCTNUM)
+		WHERE PRODUCTCOUNT >0
+		ORDER BY SALES DESC LIMIT 4
+	</select>
 </mapper>

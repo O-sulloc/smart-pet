@@ -1,35 +1,81 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- 재석추가 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
   <c:import url="../temp/header_css.jsp"></c:import>
-<!--   <link href="../resources/css/notice_list.css" rel="styleSheet" />
-  <link href="../resources/css/reviewList.css" rel="styleSheet" />
-  <link href="../resources/css/qnaList.css" rel="styleSheet" /> -->
   <link href="../resources/css/productDetail.css" rel="styleSheet" />
-  <!-- 재석추가 끝 -->
-
-  <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <c:import url="../temp/header_script.jsp"></c:import>
 
-<title>${vo.productName }</title>
-</head>
+<title>${vo.productName}</title>
 <body>
+	<c:import url="../temp/header.jsp"></c:import>
+
+	   <div class="breadcrumbs overlay">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+               <div class="breadcrumbs-content">
+                  <h1 class="page-title">Product Detail</h1>
+               </div>
+               <ul class="breadcrumb-nav">
+               <c:if test="${pager.search eq 1}">  
+                 <li><a class="dropdown-item"
+								href="./list?kind=pcate&search=1&subSearch=100">사료</a></li>
+							<li><a class="dropdown-item"
+								href="./list?kind=pcate&search=1&subSearch=200">간식</a></li>
+							<li><a class="dropdown-item"
+								href="./list?kind=pcate&search=1&subSearch=300">장난감</a></li>
+							<li><a class="dropdown-item"
+								href="./list?kind=pcate&search=1&subSearch=400">건강관리</a></li>
+							<li><a class="dropdown-item"
+								href="./list?kind=pcate&search=1&subSearch=500">용품</a></li>
+							<li><a class="dropdown-item"
+								href="./list?kind=pcate&search=1&subSearch=600">미용/목욕</a></li>
+							<li><a class="dropdown-item"
+								href="./list?kind=pcate&search=1&subSearch=700">하우스</a></li>
+							<li><a class="dropdown-item"
+								href="./list?kind=pcate&search=1&subSearch=800">목줄</a></li> </c:if>
+      
+                              <c:if test="${pager.search eq 2}">  
+                  <li><a class="dropdown-item"
+								href="./list?kind=pcate&search=2&subSearch=100">사료</a></li>
+							<li><a class="dropdown-item"
+								href="./list?kind=pcate&search=2&subSearch=200">간식</a></li>
+							<li><a class="dropdown-item"
+								href="./list?kind=pcate&search=2&subSearch=300">장난감</a></li>
+							<li><a class="dropdown-item"
+								href="./list?kind=pcate&search=2&subSearch=400">건강관리</a></li>
+							<li><a class="dropdown-item"
+								href="./list?kind=pcate&search=2&subSearch=500">용품</a></li>
+							<li><a class="dropdown-item"
+								href="./list?kind=pcate&search=2&subSearch=600">미용/목욕</a></li>
+							<li><a class="dropdown-item"
+								href="./list?kind=pcate&search=2&subSearch=700">하우스</a></li>
+							<li><a class="dropdown-item"
+								href="./list?kind=pcate&search=2&subSearch=800">목줄</a></li> </c:if>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
 
 <!-- 히든 -->
 <input class="pCount_hidden" type="hidden" name=productCount value="${vo.productCount}">
 <input class="tPrice_hidden" type="hidden" name=totalPrice value="${vo.totalPrice}">
 <!-- 히든 끝 -->
 
-    <div class="line">
-    </div>			
+<div class="line"></div>	
     <div class="content_top">
         <div class="ct_left_area">
             <div class="image_wrap">
@@ -69,14 +115,13 @@
         </div>
         <div class="ct_right_area">
             <div class="title">
-                <h1>
-                    ${vo.productName}
-                </h1>
+             	<h3>${vo.productName}</h3>
+				<div style="margin-top:20px;"><h6>${vo.productInfo}</h6></div>
             </div>
             <div class="line">
             </div>
-            <div class="catergory" style="text-align:center;">
-                 <span>
+            <div class="catergory" style="text-align:center; font-size: 18px;">
+                 <span>[
                     <c:choose>
                         <c:when test="${vo.pcategoryNum eq 1}">강아지</c:when>
                         <c:otherwise>고양이</c:otherwise>
@@ -84,7 +129,7 @@
                  </span>
                  <span>|</span>
                  <span>
-                    ${cvo.categoryName}
+                    ${cvo.categoryName} ]
                  </span>
             </div>
             <div class="line">
@@ -118,8 +163,8 @@
                 	</div>
           
                 <div class="button_set" style="margin-top:50px;">
-                    <button class="addToCart" data-id="${user.id}" data-pNum="${vo.productNum}">장바구니 담기</button>
-                    <button class="addBuy" data-id="${user.id}" data-pNum="${vo.productNum}">바로구매</button>
+                    <button id="btnss" class="addToCart" data-id="${user.id}" data-pNum="${vo.productNum}">장바구니 담기</button>
+                    <button id="btnss2" class="addBuy" data-id="${user.id}" data-pNum="${vo.productNum}">바로구매</button>
                 </div>
             </div>
         </div>
@@ -132,31 +177,8 @@
         </div>
 
 	
-<%-- 	<!-- 재석추가 -->
-	<!-- 리뷰 지금 현재 상품번호 1번만 가지고 -->
-	<!-- container 때문인지 옆으로 나옴 --><!-- common폴더 reviewList, reviewTest로 하는중 -->
-	<!-- productNum 사용때문에 가지고옴! -->
-	<input type="hidden" id="productNum" value="${vo.productNum}">
-	<input type="hidden" id="starAvg" value="${vo.starAvg}">
-	<input type="hidden" id="starCount" value="${starCount}">
-	<c:if test="${not empty id}">
-		<input type="hidden" id="id" value="${id}">
-	</c:if>
-	<div class="container">
-		<!-- 리뷰 리스트 ajax -->
-		<div class="row" id="list">
-			
-		</div>
-	</div>
-	
-	<!-- QNA 지금 현재 상품번호 1번만 가지고 -->
-	
-	<div class="container">
-		<!-- 리뷰 리스트 ajax -->
-		<div class="row" id="qnaList">
-			
-		</div>
-	</div> --%>
+	<c:import url="../temp/header_script.jsp"></c:import>
+	<c:import url="../temp/footer.jsp"></c:import>
 
 <script type="text/javascript" src="../resources/js/productDetail.js"></script>
 <script type="text/javascript" src="../resources/js/detailReview.js"></script>

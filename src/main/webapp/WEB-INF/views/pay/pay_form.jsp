@@ -12,6 +12,7 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+<c:import url="../temp/header_css.jsp"></c:import>
 <c:import url="../temp/header_script.jsp"></c:import>
 
 
@@ -35,10 +36,25 @@ input {
 <title>Order/Payment</title>
 </head>
 <body>
-
+<c:import url="../temp/header.jsp"></c:import>
+   <div class="breadcrumbs overlay">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+               <div class="breadcrumbs-content">
+                  <h1 class="page-title">Order/Payment</h1>
+               </div>
+               <ul class="breadcrumb-nav">
+                  <li><a href="/">Home</a></li>
+                  <li>Order/Payment</li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
 	<div class="container">
 		<h1 class="display-3">Order/Payment</h1>
-		<div style="padding-top: 50px;">
+		<div style="padding-top: 50px; margin-bottom: 50px">
 			<table class="table table-hover">
 				<tr>
 					<th colspan="3"></th>
@@ -88,11 +104,11 @@ input {
 			<input type="hidden" id="userPhone" data-phone="${user.phone}">
 			
 			<div class="row" style="text-align: center">
-				<h4>배송 정보</h4>
-				<div>
-					<h5>배송지 선택</h5>
+				<button class="btn btn-success">배송 정보</button>
+				<div style="margin-top: 50px">
+					<div style="margin-top: 50px;  font-size: 20px;">배송지 선택</div>
 
-					<select id="selectBox" class="col-sm-3" style="text-align: center">
+					<select id="selectBox" class="col-mt-3" style="text-align: center">
 						<option value="">배송지 선택해주세요.</option>
 						<option value="0">${user.id}님의배송지</option>
 						<option value="1">신규 배송지</option>
@@ -114,8 +130,11 @@ input {
 	
 		</div>
 			<!-- 결제 폼 끝 -->
-
-	</div>
+	</div>	
+	<c:import url="../temp/header_script.jsp"></c:import>
+	<c:import url="../temp/footer.jsp"></c:import>
+	
+	
 	<!-- 결제 api -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>

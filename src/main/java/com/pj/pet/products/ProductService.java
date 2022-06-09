@@ -88,8 +88,8 @@ public class ProductService {
 		return productMapper.getCategoryDetail(categoryVO);
 	}
 	
-	public Long getpCount()throws Exception{
-		return productMapper.getpCount();
+	public Long getpCount(Pager pager)throws Exception{
+		return productMapper.getpCount(pager);
 	}
 	//카테고리 끝
 	
@@ -110,6 +110,8 @@ public class ProductService {
 	   }
 	//summernote 끝
 	 	
-
+	 public List<ProductVO> bestList() throws Exception{
+		 return productMapper.bestList();
+	 }
 }
 

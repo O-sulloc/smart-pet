@@ -34,15 +34,14 @@
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                 <ul id="nav" class="navbar-nav ms-auto">
                                     <li class="nav-item">
-                                        <a class="page-scroll dd-menu collapsed" href="javascript:void(0)"
+                                        <a class="page-scroll dd-menu collapsed productMenu"
                                             data-bs-toggle="collapse" data-bs-target="#submenu-1-1"
                                             aria-controls="navbarSupportedContent" aria-expanded="false"
                                             aria-label="Toggle navigation">상품</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-1">
-                                            <li class="nav-item"><a href="#">강아지 물품</a></li>
-                                            <li class="nav-item"><a href="#">고양이 물품</a></li>
-                                        </ul>
-                                    </li>
+                                        <ul class="sub-menu collapse mainMenu1" id="submenu-1-1">
+                                            <li class="nav-item"><a href="../product/list?kind=pcate&search=1">강아지 상품</a></li>
+                                            <li class="nav-item"><a href="../product/list?kind=pcate&search=2">고양이 상품</a></li>
+									</ul>
                                     <li class="nav-item">
                                         <a class="page-scroll dd-menu collapsed" href="javascript:void(0)"
                                             data-bs-toggle="collapse" data-bs-target="#submenu-1-2"
@@ -102,3 +101,10 @@
     </header>
     <!-- End Header Area -->
  
+ <script type="text/javascript">
+ $(".productMenu").click(function(){
+
+	    location.href="../product/list"
+});
+ 
+</script>
