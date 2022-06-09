@@ -21,8 +21,8 @@ public class SellerInterceptor implements HandlerInterceptor {
 		UserVO userVO = (UserVO) session.getAttribute("user");
 		if (userVO != null) {
 			
-			if (userVO.getRole() == 1) {
-				check = true;
+			if(userVO.getRole()==1) {
+				check=true;
 			}
 
 		}
