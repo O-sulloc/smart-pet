@@ -99,7 +99,7 @@
 							placeholder="Search" aria-label="Search">
 					</div>
 					<div class="col-2">
-						<button class="btn btn-outline-success btn-sm" type="submit">Search</button>
+						<button class="btn btn-outline-success btn-sm" type="submit"><i class="lni lni-search-alt"></i></button>
 					</div>
 				</form>
 			</div>
