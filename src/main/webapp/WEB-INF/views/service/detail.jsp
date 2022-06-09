@@ -44,6 +44,7 @@
 				   	<li class="list-group-item">
 						<input type="hidden" readonly="readonly" id="serNum" data-sn="${seviceVO.serNum}">
 				   		<!-- <h5>대표이미지</h5> -->
+				   		
 				   		<img alt="대표이미지" width="500px" height="550px" src="../resources/upload/service/${file}">
 				   	</li>
 				</ul>
