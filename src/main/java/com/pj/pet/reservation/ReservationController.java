@@ -167,6 +167,7 @@ public class ReservationController {
 		String id=userVO.getId();
 		
 		reservationVO.setId(id);
+		System.out.println("예약날짜!!!!!!변경!!!!!!!!!"+reservationVO.getResDate());
 		int reseult= reservationService.setUpdate(reservationVO);
 		mv.addObject("vo",reservationVO);
 		mv.setViewName("redirect:./appointment");

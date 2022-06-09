@@ -7,25 +7,44 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <c:import url="../temp/header_css.jsp"></c:import>
+<link href="../resources/css/serConfirm.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <body>
 <c:import url="../temp/header.jsp"></c:import>
+   <div class="breadcrumbs overlay">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+               <div class="breadcrumbs-content">
+                  <h1 class="page-title">Thank you</h1>
+               </div>
+               <ul class="breadcrumb-nav">
+                  <li><a href="/">Home</a></li>
+                  <li>Service</li>
+                  <li>Information</li>
+                  <li>confirmation of reservation</li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+
 <div class="container mt-4">
-	<div class="row mt-4">
-		<div class="alert alert-primary" role="alert">
-	  		<h4 class="text-center" style="text-transform: uppercase;">예약 확인</h4>
-		</div>
-	</div>
 	
 	
-	<h4>예약을 확인해주세요.</h4>
- 	<a href="../user/appointment">예약확인</a>
+	
+	<h2 class="wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
+	<a href="../user/appointment">Please confirm your reservation</a>
+</h2>
 </div>
 
 
 
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+ <!-- jquery -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   
+   <c:import url="../temp/header_script.jsp"></c:import>
+   <c:import url="../temp/footer.jsp"></c:import>
 </body>
 </html>

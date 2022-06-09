@@ -44,10 +44,10 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="javascript:void(0)" aria-label="Toggle navigation">hospital</a>
+                                        <a href="/service/hospitalList" aria-label="Toggle navigation">병원</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="javascript:void(0)" aria-label="Toggle navigation">salon</a>
+                                        <a href="/service/shopList" aria-label="Toggle navigation">미용샵</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="page-scroll dd-menu collapsed" href="javascript:void(0)"

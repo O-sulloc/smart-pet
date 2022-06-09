@@ -1,6 +1,12 @@
 /**
  * 
  */
+
+$(".dateInfo_btn").click(function(){
+	$(".resInfo").slideToggle();
+	
+});
+
  $("#buttons").hide();
  $("#buttons2").hide();
  
@@ -214,11 +220,7 @@ buildcalendar();
 
 
 
-$(".dateInfo_btn").click(function() {
-		$(".calendar").slideToggle();
 
-			});
-			
 
 //===============================================================================================
 //===============================================================================================
@@ -239,6 +241,15 @@ let capacity=$("#capacity").val();
 let holiday=$("#holiday").val();
 let startBreaktime=$("#startBreaktime").val();
 let endBreaktime=$("#endBreaktime").val();
+
+//현재시간
+let thours = ('0' + today.getHours()).slice(-2); 
+let tminutes = ('0' + today.getMinutes()).slice(-2);
+let tseconds = ('0' + today.getSeconds()).slice(-2); 
+
+let timeString = thours + ':' + tminutes  + ':' + tseconds;
+
+console.log("현재시간"+timeString);
 
 
 
@@ -356,17 +367,17 @@ for(let i=0;i<40;i++){
     if(i==0){
         // <button type="button" name="resTime" class="btn btn-outline-primary">09:30</button>
    
-
+		
         let button = document.createElement('button')
         button.setAttribute("type","button")
         button.setAttribute("id","timeButton")
         button.setAttribute("name","resTime")
 
            	if(capacityCk(clickDay,openTime0)>=capacity){
-				button.setAttribute("class","btn btn-outline-secondary")
+				button.setAttribute("class","btn btn-outline-secondary time2")
 					button.setAttribute("disabled",true)
 			}else{
-				 button.setAttribute("class","btn btn-outline-primary")
+				 button.setAttribute("class","btn btn-outline-primary time2")
 			}
        
         button.innerHTML=hy(openTime0);
@@ -391,17 +402,17 @@ for(let i=0;i<40;i++){
 		     
 		        
 		        if(ar.includes(result)){ 
-		       	 	button.setAttribute("class","btn btn-outline-secondary lunchTime")
+		       	 	button.setAttribute("class","btn btn-outline-secondary time2")
 					button.setAttribute("hidden",true)
 					console.log(result)
 				//아니면 추가 
 				
 				}else if(capacityCk(clickDay,result)>=capacity){
 				
-					button.setAttribute("class","btn btn-outline-secondary")
+					button.setAttribute("class","btn btn-outline-secondary time2")
 					button.setAttribute("disabled",true)
 				}else{
-					button.setAttribute("class","btn btn-outline-primary")
+					button.setAttribute("class","btn btn-outline-primary time2")
 				}
 		       
 			    button.innerHTML=result;
@@ -441,10 +452,10 @@ for(let i=0;i<40;i++){
         console.log(capacityCk(clickDay,openTime1))
        	if(capacityCk(clickDay,openTime1)>=capacity){
 	
-				button.setAttribute("class","btn btn-outline-secondary")
+				button.setAttribute("class","btn btn-outline-secondary time2")
 				button.setAttribute("disabled",true)
 			}else{
-				 button.setAttribute("class","btn btn-outline-primary")
+				 button.setAttribute("class","btn btn-outline-primary time2")
 			}
         button.innerHTML=hy(openTime1);
 
@@ -469,15 +480,15 @@ for(let i=0;i<40;i++){
 	        
 	        
 	        if(ar.includes(result2)){//점심시간일경우 회색으로 변경
-	       	 	button.setAttribute("class","btn btn-outline-secondary")
+	       	 	button.setAttribute("class","btn btn-outline-secondary time2")
 				button.setAttribute("hidden",true)
 	       	 
 			
 			}else if(capacityCk(clickDay,result2)>=capacity){
-				button.setAttribute("class","btn btn-outline-secondary")
+				button.setAttribute("class","btn btn-outline-secondary time2")
 				button.setAttribute("disabled",true)
  			}else{
-				button.setAttribute("class","btn btn-outline-primary")
+				button.setAttribute("class","btn btn-outline-primary time2")
 				
 			}
 	        
@@ -498,20 +509,86 @@ for(let i=0;i<40;i++){
 }
 
 //점심시간일 경우 값이 들어가지 않도록
-$(".lunchTime").on("click",function(){
+/*$(".lunchTime").on("click",function(){
 	alert("점심시간은 예약이 불가능합니다. 다른 시간을 선택해주세요.");
 	
-})
+})*/
+ 
 
-
-
-
+// 평일 시간 버튼
 $("#buttons").on("click","#timeButton",function(){
    console.log($(this).html());
    time=$(this).html();
+  /* $(this).css("background-color", "green");
+   $(this).css("color", "white");*/
    $("#resTime").val(time);
+   
+   // 시간 선택했을 때 (전에 선택했던건 원래대로)
+let time2 = document.getElementsByClassName("time2");
+	 
+     function handleClick(event) {
+       //onsole.log(event.target);
+        // console.log(this);
+        // 콘솔창을 보면 둘다 동일한 값이 나온다
+
+       //console.log(event.target.classList);
+
+      if (event.target.classList[1] === "clicked") {
+          event.target.classList.remove("clicked");
+       }else {
+          for (let i = 0; i < time2.length; i++) {
+            time2[i].classList.remove("clicked");
+         }
+          event.target.classList.add("clicked");
+       }
+     }
+
+     function init() {
+	
+       for (let i = 0; i < time2.length; i++) {
+         time2[i].addEventListener("click", handleClick);
+       }
+     }
+
+     init();
+
 })
 
+// 주말 시간 버튼 
+$("#buttons2").on("click","#timeButton",function(){
+   console.log($(this).html());
+  /* $(this).css("background-color", "green");
+   $(this).css("color", "white");*/
+   time=$(this).html();
+   $("#resTime").val(time);
+   
+   // 시간 선택했을 때 (전에 선택했던건 원래대로)
+  let time2 = document.getElementsByClassName("time2");
 
+     function handleClick(event) {
+       //console.log(event.target);
+        // console.log(this);
+        // 콘솔창을 보면 둘다 동일한 값이 나온다
 
-    
+       //console.log(event.target.classList);
+
+      if (event.target.classList[1] === "clicked") {
+          event.target.classList.remove("clicked");
+       }else {
+          for (let i = 0; i < time2.length; i++) {
+            time2[i].classList.remove("clicked");
+         }
+          event.target.classList.add("clicked");
+       }
+     }
+
+     function init() {
+	
+       for (let i = 0; i < time2.length; i++) {
+         time2[i].addEventListener("click", handleClick);
+       }
+     }
+
+     init();
+})
+

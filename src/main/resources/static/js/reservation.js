@@ -34,3 +34,44 @@
 	
 			
 });
+/* 작동 안됨*/
+let trimValue=function(){
+/*input value공백 제거*/
+	const resState=$("#resState").val();
+	resState.replace(/\s/gi, "");
+	console.log(resState);
+	$("#resState").val(resState);
+	
+	
+	const resTimetrim=$("#resTime").val();
+	resTimetrim.replace(/\s/gi, "");
+	console.log(resTimetrim);
+	/*$("#resState").val()=$.trim($("#resState").val());*/
+	/*$("#resTime").val()=$.trim($("#resTime").val());*/
+
+}
+
+
+const res_btn=document.getElementById("res_btn");
+const frm=document.getElementById("frm");
+const resDate=document.getElementById("resDate");
+const resTime=document.getElementById("resTime");
+
+
+res_btn.addEventListener("click",function(){
+	
+	if(resDate.value==''){
+		alert("예약날짜를 선택하세요.");
+		return;
+	}
+	
+	if(resTime.value==''){
+		alert("예약시간을 선택하세요.");
+		return;
+		
+	}
+	frm.submit();
+	alert("예약 승인 검토 중 입니다. 빠른 시일 내로 확답 드리겠습니다. 기다려주셔서 감사합니다. ");
+	
+	
+})
