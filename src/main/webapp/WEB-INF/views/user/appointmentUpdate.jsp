@@ -244,7 +244,7 @@
                               <textarea name="resMemo" id="resMemo">${vo.resMemo }</textarea>
                            </div>
                         </div>
-				<button type="submit" class="btn btn-outline-success res_update" >예약수정</button>
+				<button type="submit" class="btn btn-outline-success res_update" id="res_btn" >예약수정</button>
 			</div>
 		</form>
 		

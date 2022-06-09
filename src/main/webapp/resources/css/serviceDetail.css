@@ -2,13 +2,20 @@
 
 
 
-
 .appointment.page {
   /* background-color: #f9f9f9; */
   position: relative;
   /* padding-top: 100px;
   padding-bottom: 100px; */
 }
+
+/* 시간버튼 클릭시 */
+ .clicked {
+ 	background-color:green;
+    color: white;
+ }
+
+
 .calendar{
 	
    width: 100%;
