@@ -250,7 +250,7 @@
 		
 		<!-- 예약 삭제 버튼 -->
 		<div>
-			<a class="btn btn-danger res_delete"
+			<a class="btn btn-danger res_delete btn-sm"
 				href="./appointmentDelete?resNum=${vo.resNum}" role="button">예약취소</a>
 		</div>
                      </div>
