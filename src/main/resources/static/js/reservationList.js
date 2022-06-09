@@ -1,5 +1,5 @@
 let pn="";
-let perPage="";
+let perPage="5";
 let resNum=null;
 
 
@@ -107,6 +107,10 @@ $("#list").on("click",".pager",function(){
 	pn=$(this).attr("data-pn");
 		if(pn > 0){
 			//pn=checkPn;
+			console.log("===========")
+			console.log(pn)
+			console.log(perPage)
+			console.log("===========")
 			getList(pn,perPage);
 			
 		}else {
@@ -115,10 +119,14 @@ $("#list").on("click",".pager",function(){
 		}
 })
 
+//perPage 변경시
 $("#list").on("change",".perPage",function(){
 	console.log($(this).val())
 	perPage=$(this).val();
-
+			console.log("===========")
+			console.log(pn)
+			console.log(perPage)
+			console.log("===========")
 	getList(pn,perPage);	
 
 })
