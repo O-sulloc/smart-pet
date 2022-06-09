@@ -49,6 +49,24 @@ public class ServiceController {
 		return "service";
 	}
 	
+	//대기중인 예약 모두 승인 
+	@GetMapping("allApproved")
+	public ModelAndView allApproved(HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		UserVO userVO = (UserVO) session.getAttribute("user");
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!");
+		System.out.println(userVO.getId());
+		
+		int result= serviceService.allApproved(userVO);
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!");
+		System.out.println(result);
+		
+		mv.addObject("result",result);
+		mv.setViewName("common/ajaxResult");
+	
+		return mv;
+	}
+	
 
 	@GetMapping("resCount")
 	public ModelAndView resCount(ReservationVO reservationVO)throws Exception{

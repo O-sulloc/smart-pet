@@ -7,6 +7,13 @@
     
 <mapper namespace="com.pj.pet.service.ServiceMapper">
 
+	<!-- 대기중인 예약들 모두 승인 -->
+	<update id="allApproved" parameterType="UserVO">
+		update RESERVATION SET RESSTATE=1
+		where RESSTATE=0 and 
+		SERNUM=(SELECT SERNUM FROM SERVICE where id=#{id})
+	</update>
+
 	<!-- 시간 당 예약한 사람 수  -->
 	<select id="ResCount" parameterType="ReservationVO" resultType="Long">
 	select count(*) from  RESERVATION
@@ -45,7 +52,7 @@
 	<!-- reservationSetting 등록되어있는지 확인하기 위해 아무거나(setnum)가져옴  -->
 	<select id="getReservationSettingCheck" parameterType="UserVO" resultType="ReservationSettingVO">
 		select SETNUM from RESERVATIONSETTING 
-		WHERE  serNum=(SELECT SERNUM FROM SERVICE where id=#{id})
+		WHERE  SERNUM=(SELECT SERNUM FROM SERVICE where id=#{id})
 	</select>
 
 

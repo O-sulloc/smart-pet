@@ -2,11 +2,41 @@ let pn="";
 let perPage="";
 let resNum=null;
 
+
+
+
+
+
 $(function() {
     	getList(1,5);
     });
 
 console.log("여기")
+
+//모두 승인 버튼 클릭 시 
+$("#list").on("click",".allApprovedBtn",function(){
+	if(confirm("대기 중인 예약을 모두 승인하시겠습니까?")){
+		console.log('yes')
+		$.ajax({
+			type:"GET",
+			url:"./allApproved",
+			data:{
+	
+			},
+			success:function(data){
+				if(data.trim()==1){
+					
+					console.log('성공')
+				}
+			}
+		})//ajax로 데이터 전송 	 
+		getList(pn,perPage);
+		
+	}else{
+		console.log('no')
+	}
+	   
+})
 
 //예약상태 변경 버튼 클릭시 
 $("#list").on("click",".modalBtn",function(){
@@ -90,12 +120,8 @@ $("#list").on("change",".perPage",function(){
 	perPage=$(this).val();
 
 	getList(pn,perPage);	
-	
 
-	
 })
-
-
 
 //common/reservationList.jsp에 table생성 
 //최신 추가된순으로 예약리스트 가져오는 ajax 
@@ -108,6 +134,8 @@ $("#list").on("change",".perPage",function(){
 				perPage:perPage
 			},
 			success:function(data){
+				console.log(pn)
+				console.log(perPage)
 				$("#list").html(data.trim());
 				
 				//perPage 5로 초기화 되는것 방지 코드 

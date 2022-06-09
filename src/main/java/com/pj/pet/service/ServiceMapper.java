@@ -15,6 +15,8 @@ import com.pj.pet.util.Pager;
 
 @Mapper
 public interface ServiceMapper {
+	//대기중인 예약 모두 승인
+	public int allApproved(UserVO userVO)throws Exception; 
 	
 	//시간 당 예약한 사람 수
 	public Long ResCount(ReservationVO reservationVO)throws Exception;

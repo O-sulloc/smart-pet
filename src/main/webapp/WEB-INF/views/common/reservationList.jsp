@@ -14,7 +14,13 @@
 
 		<div
 			class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+ 
+				
+				
 			<div class="dataTable-top">
+			<div class="allApproved">
+				<button class="btn btn-primary btn-small allApprovedBtn">모두 승인</button>
+			</div>
 				<div class="dataTable-dropdown">
 					<label><select class="dataTable-selector perPage">
 							<option class="option" value="5" id="5" >5</option>
@@ -24,9 +30,7 @@
 							<option class="option" value="25"  id="25">25</option>
 							</select> entries per page</label>
 				</div>
-<!-- 				<div class="dataTable-search">
-					<input class="dataTable-input" placeholder="Search..." type="text">
-				</div> -->
+ 
 			</div>
 			<div class="dataTable-container">
 				<table id="datatablesSimple" class="dataTable-table">
@@ -87,17 +91,17 @@
 				<ul class="pagination">
 						<li class="page-item"><a data-pn="${pager.pre?pager.startNum-1:0}" class="page-link pager"
 							href="#"
-							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							aria-label="Previous" id="previous"> <span aria-hidden="true">&laquo;</span>
 						</a></li>
 			
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 							<li class="page-item"><a data-pn="${i}" class="page-link pager"
-								href="../?">${i}</a></li>
+								href="#" id="page">${i}</a></li>
 						</c:forEach>
 			
 						<li class="page-item"><a data-pn="${pager.next?pager.lastNum+1:0}" class="page-link pager"
 							href="#"
-							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+							aria-label="Next" id="next"> <span aria-hidden="true">&raquo;</span>
 						</a></li>
 					</ul>
 				</nav>
