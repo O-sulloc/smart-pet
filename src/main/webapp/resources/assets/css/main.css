@@ -52,6 +52,120 @@ button:focus,
   box-shadow: none !important;
 }
 
+/* notice update css*/
+
+.contact-us {
+    position: relative;
+    background-color: #fff;
+}
+
+.contact-us .contact-head {
+    position: relative;
+    z-index: 5;
+}
+
+.contact-us .form-main {
+    padding: 45px 50px 50px;
+    background-color: #fff;
+    border-top: 4px solid #006838;
+    -webkit-box-shadow: 0 1px 30px 0 rgb(32 32 32 / 11%);
+    box-shadow: 0 1px 30px 0 rgb(32 32 32 / 11%);
+    height: 100%;
+}
+
+.contact-us .form-main .form-title {
+    margin-bottom: 30px;
+}
+
+.contact-us .form-main .form-title h2 {
+    margin-bottom: 35px;
+    font-size: 22px;
+}
+
+.contact-us .form .form-group {
+    margin-bottom: 15px;
+    display: block;
+}
+
+.contact-us .form .form-group input {
+    height: 55px;
+    line-height: 55px;
+    width: 100%;
+    border: 1px solid #e6e2f5;
+    padding: 0 20px;
+    color: #333;
+    font-weight: 400;
+    border-radius: 0;
+}
+
+.contact-us .form .form-group textarea {
+    height: 180px;
+    width: 100%;
+    border: 1px solid #e6e2f5;
+    padding: 15px 20px;
+    color: #333;
+    resize: none;
+    font-weight: 400;
+    border-radius: 0;
+    resize: vertical;
+}
+
+/* notice list blog css*/
+.blog-single {
+    background: #f9f9f9;
+}
+
+.blog-single .detail-inner {
+    background-color: #fff;
+    padding: 40px;
+    margin-bottom: 40px;
+    border: 1px solid #eee;
+    border-radius: 0;
+    border-top-color: transparent;
+}
+
+.blog-single .post-title {
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 32px;
+}
+
+.blog-single .post-title a {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.blog-single .meta-info {
+    margin-top: 25px;
+}
+
+.blog-single .meta-info li {
+    font-size: 15px;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.blog-single .meta-info li a {
+    color: #888;
+    font-size: 14px;
+}
+
+.blog-single p {
+    font-size: 14px;
+    margin: 20px 0;
+    line-height: 26px;
+}
+
+.post-comments {
+    background-color: #fff;
+    padding: 40px;
+    margin-top: 40px;
+    border: 1px solid #eee;
+}
+
+
+
+
 /* faq widget */
 .blog-list .form-head .outer-link {
     display: block;

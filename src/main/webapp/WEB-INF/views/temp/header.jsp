@@ -83,6 +83,8 @@
 	                                        	<c:if test="${user.role eq 0}"> <!-- 0 관리자 -->
 		                                            <li class="nav-item"><a href="/user/myPage">Admin Page</a></li>
 		                                            <li class="nav-item"><a href="/user/admin/userUpdate">회원 등급 관리</a></li>
+		                                            <li class="nav-item"><a href="/notice/add">Notice 글 작성</a></li>
+		                                            <li class="nav-item"><a href="/faq/add">FAQ 글 작성</a></li>
 	                                        	</c:if>
 	                                        	
 	                                        	<c:if test="${user.role eq 1}"> <!-- 1 상품 판매자 -->

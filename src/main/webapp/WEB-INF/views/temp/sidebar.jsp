@@ -29,16 +29,24 @@
 					<li><a href="/user/myPage"> ${user.role ==0?'Admin Page':'My Page'} <i
 							class="lni lni-user"></i>
 					</a></li>
+					
 					<c:if test="${user.role eq 0 }"> <!-- 0 관리자만 볼 수 있ㄴ 사이드바 -->
 						<li><a href="/user/admin/userUpdate"> Update User Role <i
 							class="lni lni-cog"></i>
 						</a></li>
+						<li><a href="/notice/add"> Notice 글 작성 <i
+							class="lni lni-cog"></i>
+						</a></li>
+						<li><a href="/faq/add">FAQ 글 작성<i
+							class="lni lni-cog"></i>
+						</a></li>
 					</c:if>
+					
 					<li><a href="/user/pwUpdate"> Change Password <i
 							class="lni lni-lock-alt"></i>
 					</a></li>
-
-					<c:if test="${user.role eq 2 }"> <!-- 1 user만 볼 수 있ㄴ 사이드바 -->
+					
+					<c:if test="${user.role eq 2 }"> <!-- 2 user만 볼 수 있ㄴ 사이드바 -->
 						<li><a href="/user/petList"> Pet Profile <i
 								class="lni lni-github"></i>
 						</a></li>
