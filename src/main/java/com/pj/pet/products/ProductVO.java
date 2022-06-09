@@ -19,7 +19,7 @@ public class ProductVO {
 	private Long categoryNum;
 	@NotNull(message = "필수 항목 입니다")
 	private Long pcategoryNum;
-	@Size(min = 10, max = 40, message = "상품 이름은 10자 이상 40자 이하로 기입해주세요.")
+	@Size(min = 5, max = 80, message = "상품 이름은 10자 이상 40자 이하로 기입해주세요.")
 	private String productName;
 	@Min(value = 1000, message = "가격은 1000원 이상으로 기입해주세요.")
 	private Long productPrice;
