@@ -95,7 +95,7 @@
 	                                        	<c:if test="${user.role eq 2}"> <!-- 2 일반 회원 -->
 		                                            <li class="nav-item"><a href="/user/loginCheck">My Profile</a></li>
 		                                            <li class="nav-item"><a href="/user/petList">Pet Profile</a></li>
-		                                            <li class="nav-item"><a href="/reservation/confirmList">Appointment</a></li>
+		                                            <li class="nav-item"><a href="/user/appointment">Appointment</a></li>
 		                                            <li class="nav-item"><a href="/cart/list">Cart</a></li>
 		                                            <li class="nav-item"><a href="user/reviewListPage">Orders</a></li>
 	                                        	</c:if>
@@ -116,7 +116,7 @@
                                 </ul>
                             </div> <!-- navbar collapse -->
                             <div class="button add-list-button">
-                                <a href="javascript:void(0)" class="btn">Book Appointment</a>
+                                <a href="/user/appointment" class="btn">Book Appointment</a>
                             </div>
                         </nav>
                         <!-- End Navbar -->
