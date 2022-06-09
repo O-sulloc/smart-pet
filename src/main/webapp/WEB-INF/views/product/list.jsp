@@ -39,13 +39,7 @@
 							<li><a class="dropdown-item"
 								href="./list?kind=pcate&search=1&subSearch=400">건강관리</a></li>
 							<li><a class="dropdown-item"
-								href="./list?kind=pcate&search=1&subSearch=500">용품</a></li>
-							<li><a class="dropdown-item"
-								href="./list?kind=pcate&search=1&subSearch=600">미용/목욕</a></li>
-							<li><a class="dropdown-item"
-								href="./list?kind=pcate&search=1&subSearch=700">하우스</a></li>
-							<li><a class="dropdown-item"
-								href="./list?kind=pcate&search=1&subSearch=800">목줄</a></li>
+								href="./list?kind=pcate&search=1&subSearch=500">용품</a></li>		
 						</c:if>
 
 						<c:if test="${pager.search eq 2}">
@@ -59,12 +53,6 @@
 								href="./list?kind=pcate&search=2&subSearch=400">건강관리</a></li>
 							<li><a class="dropdown-item"
 								href="./list?kind=pcate&search=2&subSearch=500">용품</a></li>
-							<li><a class="dropdown-item"
-								href="./list?kind=pcate&search=2&subSearch=600">미용/목욕</a></li>
-							<li><a class="dropdown-item"
-								href="./list?kind=pcate&search=2&subSearch=700">하우스</a></li>
-							<li><a class="dropdown-item"
-								href="./list?kind=pcate&search=2&subSearch=800">목줄</a></li>
 						</c:if>
 					</ul>
 				</div>

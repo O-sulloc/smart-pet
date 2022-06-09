@@ -38,7 +38,7 @@
 					<!-- End Of SideBar -->
 					
 
-<div class="col-lg-8 col-md-12 col-12">
+<div class="col-lg-9 col-md-12 col-12">
 	<div class="row mt-4">
 		<table class="table table-hover">
 			<thead>
@@ -47,8 +47,9 @@
 					<th>이미지</th>
 					<th>상품 이름</th>
 					<th>상품 가격</th>
-					<th>상품 재고</th>
 					<th>할인율</th>
+					<th>상품 재고</th>
+					<th>판매량</th>
 					<th>상품 등록일</th>
 				</tr>
 			</thead>
@@ -59,8 +60,9 @@
 					<td><img style="width: 50px; height: 50px;" src="../resources/upload/product/${vo.productFileVOs[0].fileName}"></td>
 					<td><a class="link-success text-decoration-none" href="./sellerDetail?productNum=${vo.productNum}">${vo.productName}</a></td>
 					<td>${vo.totalPrice}</td>
-					<td>${vo.productCount}</td>
 					<td>${vo.rate}</td>
+					<td>${vo.productCount}</td>
+					<td>${vo.sales}</td>
 					<td>${vo.regDate}</td>
 				</tr>
 			</c:forEach>	

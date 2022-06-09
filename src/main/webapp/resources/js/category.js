@@ -14,9 +14,6 @@
 	f=f+'<option value="300">장난감</option>';
 	f=f+'<option value="400">건강관리</option>';
 	f=f+'<option value="500">용품</option>';
-	f=f+'<option value="600">미용/목욕</option>';
-	f=f+'<option value="700">하우스</option>';
-	f=f+'<option value="800">목줄</option>';
 	f=f+'</select>';
 	f=f+'</div>';
 	$("#cResult").append(f);
@@ -31,9 +28,6 @@ if(this.value==2){
 	f=f+'<option value="300">장난감</option>';
 	f=f+'<option value="400">건강관리</option>';
 	f=f+'<option value="500">용품</option>';
-	f=f+'<option value="600">미용/목욕</option>';
-	f=f+'<option value="700">하우스</option>';
-	f=f+'<option value="800">목줄</option>';
 	f=f+'</select>';
 	f=f+'</div>';
 	$("#cResult").append(f);

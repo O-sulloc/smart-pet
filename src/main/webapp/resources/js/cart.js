@@ -6,7 +6,7 @@ $("#shopping").click(function(){
     location.href="../product/list"
     });
 
-$(".detail").click(function(){
+$(".psdetail").click(function(){
     let num= $(this).attr("data-num");
     location.href="../product/detail?productNum="+num
     });

@@ -12,7 +12,6 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<c:import url="../temp/header_script.jsp"></c:import>
 <c:import url="../temp/header_css.jsp"></c:import>
 <link href="../resources/css/cart.css" rel="styleSheet" />
 <title> Cart </title>
@@ -24,7 +23,7 @@
          <div class="row align-items-center">
             <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
                <div class="breadcrumbs-content">
-                  <h1 class="page-title">Cart</h1>
+                  <h1 class="page-title"> Cart List</h1>
                </div>
                <ul class="breadcrumb-nav">
                   <li><a href="../user/myPage">My page</a></li>
@@ -67,19 +66,17 @@
 							<tr>
 								<td><input type="checkbox" class="check"
 									data-check="${vo.cartNum}"></td>
-								<td class="detail" data-num="${vo.productVO.productNum}"><img style="width: 50px; height: 50px;"
+								<td class="psdetail" data-num="${vo.productVO.productNum}"><img style="width: 50px; height: 50px;"
 									src="../resources/upload/product/${vo.productFileVOs[0].fileName}"></td>
-								<td class="detail" data-num="${vo.productVO.productNum}">${vo.productVO.productName}</td>
+								<td class="psdetail" data-num="${vo.productVO.productNum}">${vo.productVO.productName}</td>
 								<td>${vo.productVO.totalPrice}</td>
 								<td>
 									<div class="countBtn" data-pNum="${vo.cartNum}">
 										<button type="button" id="minus" data-num="${vo.cartNum}"
 											class="minus">-</button>
 										<!--히든  -->
-										<input class="pCount${vo.cartNum}" type="hidden"
-											value="${vo.productVO.productCount}"> <input
-											class="pPrice${vo.cartNum}" type="hidden"
-											value="${vo.productVO.totalPrice}">
+										<input class="pCount${vo.cartNum}" type="hidden" value="${vo.productVO.productCount}"> 
+										<input class="pPrice${vo.cartNum}" type="hidden" value="${vo.productVO.totalPrice}">
 										<!--히든 끝 -->
 										<input type="number" id="inputnumbox"
 											data-check="${vo.cartNum}" class="col-2 numBox${vo.cartNum}"
@@ -125,7 +122,8 @@
 		</div>
 
 	</div>
-
+	<c:import url="../temp/header_script.jsp"></c:import>
+	<c:import url="../temp/footer.jsp"></c:import>
 	<script type="text/javascript" src="../resources/js/cart.js"></script>
 </body>
 </html>

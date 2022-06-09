@@ -78,7 +78,7 @@
 								<c:when test="${ovo.shipState eq 1 }"></c:when>
 								<c:otherwise>
 								<div id="ship" class="deliveryChange">
-   								<button type="button" data-oNum="${ovo.orderNum}" id="ship1btn${ovo.orderNum}" class="btn btn-success">배송</button>
+   								<button data-oNum="${ovo.orderNum}" type="button" id="ship1btn${ovo.orderNum}" class="btn btn-success">배송</button>
  								</div>
  								</c:otherwise>
  								</c:choose>	

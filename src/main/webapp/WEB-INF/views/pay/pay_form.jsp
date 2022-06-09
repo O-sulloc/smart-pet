@@ -53,7 +53,7 @@ input {
       </div>
    </div>
 	<div class="container">
-		<h1 class="display-3">Order/Payment</h1>
+		<h1 class="display-3">주문 상품 목록</h1>
 		<div style="padding-top: 50px; margin-bottom: 50px">
 			<table class="table table-hover">
 				<tr>
@@ -124,7 +124,7 @@ input {
 			</c:if>
 			</c:forEach>
 			<div class="d-grid gap-2 col-4 mx-auto" style="padding-top: 50px;">
-				<button type="button" id="payBtn" data-id="${user.id}" class="btn btn-primary">결제</button>
+				<button type="button" id="payBtn" data-id="${user.id}" class="btn btn-success">결제</button>
 				<button type="button" id="kakaoBtn" data-id="${user.id}"  data-name="${user.name}" class="btn btn-warning">카카오 페이</button>
 			</div>
 	

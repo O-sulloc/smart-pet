@@ -42,7 +42,6 @@
    	<div class="service-details">
 		<div class="container">
 				<div class="row">
-					
 					<c:import url="../temp/sidebar.jsp"></c:import>
 <div class="col-lg-8 col-md-12 col-12" >	
 <div class="container-fluid" style="border-top: 4px solid #006838;">
