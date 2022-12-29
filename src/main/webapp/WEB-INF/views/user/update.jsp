@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
-<title>My Page - MediGrids</title>
+<title>My Page</title>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon"
@@ -23,11 +23,11 @@
 			<div class="row align-items-center">
 				<div class="col-lg-8 offset-lg-2 col-md-12 col-12">
 					<div class="breadcrumbs-content">
-						<h1 class="page-title">My Page</h1>
+						<h1 class="page-title">내 프로필</h1>
 					</div>
 					<ul class="breadcrumb-nav">
-						<li><a href="/">Home</a></li>
-						<li>My Page</li>
+						<li><a href="/">홈</a></li>
+						<li>내 프로필 수정</li>
 					</ul>
 				</div>
 			</div>
@@ -102,7 +102,7 @@
 												</div>
 												<div class="col-lg-6 col-md-6 col-12 p-0">
 													<div class="appointment-btn button">
-														<button class="btn" type="submit" id="btn">Confirm</button>
+														<button class="btn" type="submit" id="btn">확인</button>
 													</div>
 												</div>
 											</div>

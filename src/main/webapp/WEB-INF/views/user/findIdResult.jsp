@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
-<title>Find Id - MediGrids Medical & Hospital</title>
+<title>아이디 찾기</title>
 	<meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../resources/assets/images/favicon.svg" />
@@ -35,21 +35,21 @@
 						<i class="lni lni-magnifier"></i>
 						<c:choose>
 			              	<c:when test="${not empty idResult}">
-								<h1>Ta-da!</h1>
+								<h1>짜잔!</h1>
 			              		<h2><spring:message code="user.info.findId" arguments="${idResult.id}"></spring:message></h2>
-								<span class="outer-link">Lost your <a href="findPw">password</a>
-								<span>?</span>
+								<span class="outer-link"><a href="findPw">비밀번호</a>
+								<span>찾으러 가기</span>
 								</span>
 								<div class="button my-4">
-									<a href="/user/login" class="btn">Login</a>
+									<a href="/user/login" class="btn">로그인</a>
 								</div>
 			              	</c:when>
 			              	<c:otherwise>
-			              		<h1>Wrong!</h1>
+			              		<h1>음..</h1>
 			              		<h2><spring:message code="user.info.noId"></spring:message></h2>
-			              		<p>Please check your information again.</p>
+			              		<p>정보를 확인해주세요.</p>
 			              		<div class="button my-4">
-									<a href="/user/findId" class="btn">Previous Page</a>
+									<a href="/user/findId" class="btn">이전 페이지</a>
 								</div>
 			              	</c:otherwise>
 						</c:choose>

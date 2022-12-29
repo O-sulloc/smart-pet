@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-	<title>Login - MediGrids</title>
+	<title>로그인</title>
 	<meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../resources/assets/images/favicon.svg" />
@@ -24,11 +24,11 @@
 			<div class="row align-items-center">
 				<div class="col-lg-8 offset-lg-2 col-md-12 col-12">
 					<div class="breadcrumbs-content">
-						<h1 class="page-title">Login</h1>
+						<h1 class="page-title">로그인</h1>
 					</div>
 					<ul class="breadcrumb-nav">
-						<li><a href="/">Home</a></li>
-						<li>Login</li>
+						<li><a href="/">홈</a></li>
+						<li>로그인</li>
 					</ul>
 				</div>
 			</div>
@@ -40,39 +40,38 @@
 			<div class="row">
 				<div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
 					<div class="form-head">
-					<h4 class="title">Login To Your Account</h4>
+					<h4 class="title">로그인</h4>
 						<form action="login" method="post">
 							<div class="form-group">
 								<!-- <input name="email" type="email" placeholder="Email"> -->
-								<input type="text" class="form-control" name="id" value="${cookie.remember.value }" placeholder="ID">
+								<input type="text" class="form-control" name="id" value="${cookie.remember.value }" placeholder="아이디">
 							</div>
 							<div class="form-group">
 								<!-- <input name="password" type="password" placeholder="Password"> -->
-								<input type="password" name="pw" class="form-control" placeholder="Password">
+								<input type="password" name="pw" class="form-control" placeholder="비밀번호">
 							</div>
 							<div class="check-and-pass">
 								<div class="row align-items-center">
 									<div class="col-lg-6 col-md-6 col-12">
 										<div class="form-check">
 											<input type="checkbox" class="form-check-input width-auto" id="exampleCheck1" value="1" name="remember">
-											<label class="form-check-label">Remember me</label>
+											<label class="form-check-label">아이디 기억하기</label>
 										</div>
 									</div>
 									<div class="col-lg-6 col-md-6 col-12">
-										<span class="outer-link">Lost your
-												<a href="findId">id</a>
-												<span>or</span>
-												<a href="findPw">password</a>
-												<span>?</span>
+										<span class="outer-link">
+												<a href="findId">아이디 찾기</a>
+												<span>|</span>
+												<a href="findPw">비밀번호 찾기</a>
 										</span>
 									</div>
 								</div>
 							</div>
 							<div class="button">
-								<button type="submit" class="btn">Login Now</button>
+								<button type="submit" class="btn">로그인</button>
 							</div>
-							<p class="outer-link">Don't have an account? 
-								<a href="join">Register here</a>
+							<p class="outer-link">아이디가 없으신가요?
+								<a href="join">회원가입</a>
 							</p>
 						</form>
 					</div>

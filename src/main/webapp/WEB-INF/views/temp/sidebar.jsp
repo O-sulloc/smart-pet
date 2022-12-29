@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
-<title>My Page - MediGrids</title>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon"
@@ -24,9 +23,9 @@
 
 		<div class="service-sidebar">
 			<div class="single-widget service-category">
-				<h3>My Page</h3>
+				<h3>마이페이지</h3>
 				<ul>
-					<li><a href="/user/myPage"> ${user.role ==0?'Admin Page':'My Page'} <i
+					<li><a href="/user/myPage"> ${user.role ==0?'Admin Page':'내 프로필'} <i
 							class="lni lni-user"></i>
 					</a></li>
 					
@@ -42,21 +41,21 @@
 						</a></li>
 					</c:if>
 					
-					<li><a href="/user/pwUpdate"> Change Password <i
+					<li><a href="/user/pwUpdate"> 비밀번호 변경 <i
 							class="lni lni-lock-alt"></i>
 					</a></li>
 					
 					<c:if test="${user.role eq 2 }"> <!-- 2 user만 볼 수 있ㄴ 사이드바 -->
-						<li><a href="/user/petList"> Pet Profile <i
+						<li><a href="/user/petList"> 펫 프로필 <i
 								class="lni lni-github"></i>
 						</a></li>
-						<li><a href="/user/appointment"> Appointment <i
+						<li><a href="/user/appointment"> 예약 현황 <i
 							 class="lni lni-calendar"></i>
 						</a></li>
-						<li><a href="/cart/list"> Cart <i
+						<li><a href="/cart/list"> 장바구니 <i
 								class="lni lni-cart-full"></i>
 						</a></li>
-						<li><a href="/user/orderList"> Orders <i
+						<li><a href="/user/orderList"> 주문내역 <i
 								class="lni lni-delivery"></i>
 						</a></li>
 					</c:if>

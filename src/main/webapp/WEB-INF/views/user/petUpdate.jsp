@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
-<title>My Page - MediGrids</title>
+<title>My Page</title>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon"
@@ -23,11 +23,11 @@
 			<div class="row align-items-center">
 				<div class="col-lg-8 offset-lg-2 col-md-12 col-12">
 					<div class="breadcrumbs-content">
-						<h1 class="page-title">My Page</h1>
+						<h1 class="page-title">펫 정보 수정</h1>
 					</div>
 					<ul class="breadcrumb-nav">
-						<li><a href="/">Home</a></li>
-						<li>My Page</li>
+						<li><a href="/">홈</a></li>
+						<li>펫 정보 수정</li>
 					</ul>
 				</div>
 			</div>
@@ -54,7 +54,7 @@
 										<div class="row">
 											<div class="col-12">
 												<div class="appointment-title">
-													<h2>Update Your Pet's Profile</h2>
+													<h2>펫 정보 수정</h2>
 												</div>
 											</div>
 										</div>
@@ -73,9 +73,9 @@
 													<div class="appointment-input">
 														<label for="petKind"><i class="lni lni-notepad"></i></label>
 														<select name="petKind" id="petKind">
-															<option value="none" selected disabled>Dog / Cat</option>
-															<option value="0" id="petKind" selected="selected">Dog</option>
-															<option value="1" id="petKind">Cat</option>
+															<option value="none" selected disabled>강아지 / 고양이</option>
+															<option value="0" id="petKind" selected="selected">강아지</option>
+															<option value="1" id="petKind">강아지</option>
 														</select>
 													</div>
 												</c:if>
@@ -83,9 +83,9 @@
 													<div class="appointment-input">
 														<label for="petKind"><i class="lni lni-notepad"></i></label>
 														<select name="petKind" id="petKind">
-															<option value="none" selected disabled>Dog / Cat</option>
-															<option value="0" id="petKind">Dog</option>
-															<option value="1" id="petKind" selected="selected">Cat</option>
+															<option value="none" selected disabled>강아지 / 고양이</option>
+															<option value="0" id="petKind">강아지</option>
+															<option value="1" id="petKind" selected="selected">강아지</option>
 														</select>
 													</div>
 												</c:if>
@@ -103,9 +103,9 @@
 													<div class="appointment-input">
 														<label for="petSex"><i class="lni lni-magnifier"></i></label>
 														<select name="petSex" id="petSex">
-															<option value="none" selected disabled>Girl / Boy</option>
-															<option value="0" id="petSex" selected="selected">Girl</option>
-															<option value="1" id="petSex">Boy</option>
+															<option value="none" selected disabled>여 / 남</option>
+															<option value="0" id="petSex" selected="selected">여</option>
+															<option value="1" id="petSex">남</option>
 														</select>
 													</div>
 												</c:if>
@@ -113,17 +113,17 @@
 													<div class="appointment-input">
 														<label for="petSex"><i class="lni lni-magnifier"></i></label>
 														<select name="petSex" id="petSex">
-															<option value="none" selected disabled>Girl / Boy</option>
-															<option value="0" id="petSex">Girl</option>
-															<option value="1" id="petSex" selected="selected">Boy</option>
+															<option value="none" selected disabled>여 / 남</option>
+															<option value="0" id="petSex">여</option>
+															<option value="1" id="petSex" selected="selected">남</option>
 														</select>
 													</div>
 												</c:if>
 											</div>
 											<div class="col-lg-6 col-md-6 col-12 p-0">
 												<div class="appointment-btn button">
-													<button class="btn" type="submit">Add</button>
-													<button class="btn" onclick="location.href='/user/petDelete'">Delete</button>
+													<button class="btn" type="submit">확인</button>
+													<button class="btn" onclick="location.href='/user/petDelete'">삭제</button>
 												</div>
 											</div>
 										</div>

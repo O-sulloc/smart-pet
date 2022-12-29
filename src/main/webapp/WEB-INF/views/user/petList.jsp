@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
-<title>My Page - MediGrids</title>
+<title>My Page</title>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon"
@@ -23,11 +23,11 @@
 			<div class="row align-items-center">
 				<div class="col-lg-8 offset-lg-2 col-md-12 col-12">
 					<div class="breadcrumbs-content">
-						<h1 class="page-title">Pet Profile</h1>
+						<h1 class="page-title">펫 프로필</h1>
 					</div>
 					<ul class="breadcrumb-nav">
-						<li><a href="/">Home</a></li>
-						<li>Pet Profile</li>
+						<li><a href="/">홈</a></li>
+						<li>펫 프로필</li>
 					</ul>
 				</div>
 			</div>
@@ -59,12 +59,12 @@
 												<h4 class="title"><i class="lni lni-heart-filled"></i></h4>
 											</div>
 											<ul class="table-list">
-												<li>Add</li>
-												<li>Your</li>
-												<li>Pet</li>
+												<li>당신의</li>
+												<li>펫을</li>
+												<li>등록하세요</li>
 											</ul>
 											<div class="button">
-												<a href="./petAdd" class="btn">Add</a>
+												<a href="./petAdd" class="btn">등록</a>
 											</div>
 										</div>
 									</div>
@@ -83,10 +83,10 @@
 												<ul class="table-list">
 													<li>${pet.petKind==0?'강아지':'고양이'}</li>
 													<li>생년월일: ${pet.petBirth}</li>
-													<li>성별: ${pet.petSex==0?'여아':'남아'}</li>
+													<li>성별: ${pet.petSex==0?'여':'남'}</li>
 												</ul>
 												<div class="button">
-													<a href="./petUpdate?petNum=${pet.petNum}" class="btn">Update</a>
+													<a href="./petUpdate?petNum=${pet.petNum}" class="btn">수정</a>
 												</div>
 											</div>
 										</div>

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Vet - MediGrids</title>
+    <title>동물 병원</title>
 	<meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../resources/assets/images/favicon.svg" />
@@ -20,11 +20,11 @@
 			<div class="row align-items-center">
 				<div class="col-lg-8 offset-lg-2 col-md-12 col-12">
 					<div class="breadcrumbs-content">
-						<h1 class="page-title">Veterinary</h1>
+						<h1 class="page-title">동물 병원</h1>
 					</div>
 					<ul class="breadcrumb-nav">
-						<li><a href="/">Home</a></li>
-						<li>Find Veterinary</li>
+						<li><a href="/">홈</a></li>
+						<li>동물 병원</li>
 					</ul>
 				</div>
 			</div>
@@ -41,11 +41,11 @@
 							<ul class="list-info">
 								<li>
 									<i class="lni lni-map-marker"></i>
-									<span>Location : </span> ${vet.road_nm_addr}
+									<span>위치 : </span> ${vet.road_nm_addr}
 								</li>
 								<li>
 									<i class="lni lni-phone-set"></i>
-									<span>Telephone : </span> ${vet.tel_no}
+									<span>전화번호 : </span> ${vet.tel_no}
 								</li>
 							</ul>
 						</div>

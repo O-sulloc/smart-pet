@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-	<title>MediGrids</title>
+	<title>본인확인</title>
 	<meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../resources/assets/images/favicon.svg" />
@@ -22,11 +22,11 @@
 			<div class="row align-items-center">
 				<div class="col-lg-8 offset-lg-2 col-md-12 col-12">
 					<div class="breadcrumbs-content">
-						<h1 class="page-title">Verify</h1>
+						<h1 class="page-title">본인확인</h1>
 					</div>
 					<ul class="breadcrumb-nav">
-						<li><a href="/">Home</a></li>
-						<li>Verify</li>
+						<li><a href="/">홈</a></li>
+						<li>본인확인</li>
 					</ul>
 				</div>
 			</div>
@@ -38,17 +38,17 @@
 			<div class="row">
 				<div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
 					<div class="form-head">
-					<h4 class="title">Enter Your Password</h4>
+					<h4 class="title">비밀번호를 입력하세요.</h4>
 						<form action="loginCheck" method="post" id="frm">
 							<div class="form-group">
 								<input type="text" name="id" value="${vo.id}" hidden="">
 							</div>
 							<div class="form-group">
-								<input type="password" id="pw" name="pw" class="form-control" placeholder="Password">
+								<input type="password" id="pw" name="pw" class="form-control" placeholder="비밀번호">
 								<div id="pwResult"></div>
 							</div>
 							<div class="button">
-								<button type="button" class="btn" id="btn">access</button>
+								<button type="button" class="btn" id="btn">확인</button>
 							</div>
 						</form>
 					</div>
@@ -67,7 +67,7 @@
 	pw.addEventListener("blur", function(){
 	       let result = pw.value;
 	       if(result ==''){
-	           pwResult.innerHTML='Please Enter Your Password';
+	           pwResult.innerHTML='비밀번호를 입력하세요';
 	           pwCheck=false;
 	       }else{
 	           pwResult.innerHTML='';
@@ -79,7 +79,7 @@
 		if(pwCheck){
 			frm.submit();
 		}else{
-	        alert("Please Enter Your Password");
+	        alert("비밀번호를 입력하세요");
 		}
 	});
 	</script>

@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-	<title>Find Id - MediGrids</title>
+	<title>아이디 찾기</title>
 	<meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../resources/assets/images/favicon.svg" />
@@ -23,11 +23,11 @@
 			<div class="row align-items-center">
 				<div class="col-lg-8 offset-lg-2 col-md-12 col-12">
 					<div class="breadcrumbs-content">
-						<h1 class="page-title">Find Id</h1>
+						<h1 class="page-title">아이디 찾기</h1>
 					</div>
 					<ul class="breadcrumb-nav">
-						<li><a href="/">Home</a></li>
-						<li>Find Id</li>
+						<li><a href="/">홈</a></li>
+						<li>아이디 찾기</li>
 					</ul>
 				</div>
 			</div>
@@ -39,34 +39,33 @@
 			<div class="row">
 				<div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
 					<div class="form-head">
-					<h4 class="title">Enter Your Name And Email</h4>
+					<h4 class="title">아이디 찾기</h4>
 						<form:form modelAttribute="userVO" method="post" id="frm">
 							<div class="form-group">
-								<form:input path="name" cssClass="form-control" id="name" placeholder="Name"/>
+								<form:input path="name" cssClass="form-control" id="name" placeholder="이름"/>
 								<form:errors path="name"></form:errors>
 								<div id="nameResult"></div>
 							</div>
 							<div class="form-group">
-								<form:input path="email" cssClass="form-control" id="email" placeholder="Email"/>
+								<form:input path="email" cssClass="form-control" id="email" placeholder="이메일"/>
 								<form:errors path="email"></form:errors>
 								<div id="emailResult"></div>
 							</div>
 							<div class="check-and-pass">
 								<div class="row align-items-start">
 									<div class="col-lg-6 col-md-6 col-6">
-										<span class="outer-link">Lost your
-											<a href="findPw">password</a>
-											<span>?</span>
+										<span class="outer-link">
+											<a href="findPw" style="float: left;">비밀번호 찾기</a>
 										</span>
 									</div>
 								</div>
 							</div>
 							<div class="button">
-								<button type="button" class="btn" id="btn">Find Id</button>
+								<button type="button" class="btn" id="btn">아이디 찾기</button>
 							</div>
 							
-							<p class="outer-link">Don't have an account? 
-								<a href="join">Register here</a>
+							<p class="outer-link">아이디가 없으신가요?
+								<a href="join">회원가입하기</a>
 							</p>
 						</form:form>
 					</div>

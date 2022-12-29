@@ -8,7 +8,7 @@
 <c:import url="./temp/header_script.jsp"></c:import>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>MediGrids - Medical & Hospital</title>
+    <title>Home</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="./resources/assets/images/favicon.svg" />
@@ -51,14 +51,12 @@
                             <div class="hero-text">
                                 <!-- Start Hero Text -->
                                 <div class="section-heading">
-                                    <h2 class="wow fadeInLeft" data-wow-delay=".3s">Find A Doctor & <br>Book Appointment
+                                    <h2 class="wow fadeInLeft" data-wow-delay=".3s">동물병원, 미용샵 <br>예약하기
                                     </h2>
-                                    <p class="wow fadeInLeft" data-wow-delay=".5s">Since the first days of operation of
-                                        MediGrids, our teaming has been focused on
-                                        building a high-qualities medicals service by MediGrids.</p>
+                                    <p class="wow fadeInLeft" data-wow-delay=".5s">자주 방문하는 동물병원과 미용샵. 이제 집에서 간편하게 예약하세요!</p>
                                     <div class="button wow fadeInLeft" data-wow-delay=".7s">
-                                        <a href="appointment.html" class="btn">Book Appointment</a>
-                                        <a href="./stores/test?rowNum=12&pageNo=1" class="btn">Find Veterinary</a>
+                                        <a href="appointment.html" class="btn">바로 예약</a>
+                                        <a href="./stores/test?rowNum=12&pageNo=1" class="btn">동물병원 찾기</a>
                                     </div>
                                 </div>
                                 <!-- End Hero Text -->
@@ -81,13 +79,11 @@
                             <div class="hero-text wow fadeInLeft" data-wow-delay=".3s">
                                 <!-- Start Hero Text -->
                                 <div class="section-heading">
-                                    <h2>We only give <br> Best care to your eyes</h2>
-                                    <p>Since the first days of operation of MediGrids, our teaming has been focused
-                                        on
-                                        building a high-qualities medicals service by MediGrids.</p>
+                                    <h2>SNS를 휩쓴 검증된 애견용품<br> 지금 바로 만나보세요</h2>
+                                    <p>트위터, 인스타그램 각종 SNS에서 화재가 된 그 상품! 지금 바로 구매하실 수 있습니다.</p>
                                     <div class="button">
-                                        <a href="appointment.jsp" class="btn">Book Appointment</a>
-                                        <a href="./stores/test?rowNum=12&pageNo=1" class="btn">Find Veterinary</a>
+                                        <a href="http://localhost/product/list?kind=pcate&search=1" class="btn">강아지 용품</a>
+                                        <a href="http://localhost/product/list?kind=pcate&search=2" class="btn">고양이 용품</a>
                                     </div>
                                 </div>
                                 <!-- End Hero Text -->
@@ -102,35 +98,7 @@
                 </div>
             </div>
             <!-- End Single Slider -->
-            <!-- Start Single Slider -->
-            <div class="single-slider">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-12 col-12">
-                            <div class="hero-text wow fadeInLeft" data-wow-delay=".3s">
-                                <!-- Start Hero Text -->
-                                <div class="section-heading">
-                                    <h2>Superior solutions that <br> help you to shine.</h2>
-                                    <p>Since the first days of operation of MediGrids, our teaming has been focused
-                                        on
-                                        building a high-qualities medicals service by MediGrids.</p>
-                                    <div class="button">
-                                        <a href="appointment.jsp" class="btn">Book Appointment</a>
-                                        <a href="about-us.jsp" class="btn">About Us</a>
-                                    </div>
-                                </div>
-                                <!-- End Hero Text -->
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-12 col-12">
-                            <div class="hero-image">
-                                <img src="./resources/assets/images/hero/slider-3.png" alt="#">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Single Slider -->
+
         </div>
     </section>
     <!-- End Hero Area -->

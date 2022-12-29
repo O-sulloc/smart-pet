@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
-<title>Mail Success - MediGrids Medical & Hospital</title>
+<title>비밀번호 찾기</title>
 	<meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../resources/assets/images/favicon.svg" />
@@ -32,11 +32,11 @@
 				<div class="container">
 					<div class="success-content">
 						<i class="lni lni-thumbs-up"></i>
-						<h1>Voila!</h1>
-						<h2>Your Mail Sent Successfully</h2>
-						<p>Sent a new temporary password to your email. Please check and login again.</p>
+						<h1>짜잔!</h1>
+						<h2>이메일로 임시 비밀번호를 발송했어요.</h2>
+						<p>임시 비밀번호로 로그인 후 반드시 비밀번호를 바꿔주세요.</p>
 						<div class="button">
-							<a href="/user/login" class="btn">Login</a>
+							<a href="/user/login" class="btn">로그인</a>
 						</div>
 					</div>
 				</div>

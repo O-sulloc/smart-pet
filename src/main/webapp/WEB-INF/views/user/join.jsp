@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-	<title>MediGrids 회원가입</title>
+	<title>회원가입</title>
 	<meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../resources/assets/images/favicon.svg" />
@@ -25,11 +25,11 @@
 			<div class="row align-items-center">
 				<div class="col-lg-8 offset-lg-2 col-md-12 col-12">
 					<div class="breadcrumbs-content">
-						<h1 class="page-title">Registration</h1>
+						<h1 class="page-title">회원가입</h1>
 					</div>
 					<ul class="breadcrumb-nav">
-						<li><a href="/">Home</a></li>
-						<li>Registration</li>
+						<li><a href="/">홈</a></li>
+						<li>회원가입</li>
 					</ul>
 				</div>
 			</div>
@@ -41,36 +41,36 @@
 			<div class="row">
 				<div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
 					<div class="form-head">
-					<h4 class="title">Registration</h4>
+					<h4 class="title">회원가입</h4>
 					<form:form modelAttribute="userVO" method="post" id="frm">
 						<div class="form-group">
-							<form:input path="name" cssClass="form-control" id="name" placeholder="Name"/>
+							<form:input path="name" cssClass="form-control" id="name" placeholder="이름"/>
 							<form:errors path="name"></form:errors>
 						</div>
 						<div class="form-group">
-							<form:input path="id" cssClass="form-control" id="id" placeholder="ID"/>
+							<form:input path="id" cssClass="form-control" id="id" placeholder="아이디"/>
 								<div>
 									<form:errors path="id"></form:errors>
 								</div>
 						</div>
 						<div class="form-group">
-							<form:password path="pw" cssClass="form-control" id="pw" placeholder="Password"/>
+							<form:password path="pw" cssClass="form-control" id="pw" placeholder="비밀번호"/>
 							<form:errors path="pw"></form:errors>
 						</div>
 						<div class="form-group">
-							<form:password path="checkPw" cssClass="form-control" id="checkPw" placeholder="Confirm Password"/>
+							<form:password path="checkPw" cssClass="form-control" id="checkPw" placeholder="비밀번호 확인"/>
 							<form:errors path="checkPw"></form:errors>
 						</div>
 						<div class="form-group">
-							<form:input path="email" cssClass="form-control" id="email" placeholder="Email" />
+							<form:input path="email" cssClass="form-control" id="email" placeholder="이메일" />
 	              			<form:errors path="email"></form:errors>
 						</div>
 						<div class="form-group">
-							<form:input path="phone" cssClass="form-control" placeholder="Phone"/>
+							<form:input path="phone" cssClass="form-control" placeholder="휴대폰"/>
 							<form:errors path="phone"></form:errors>
 						</div>
 						<div class="form-group">
-							<form:input path="address" cssClass="form-control" placeholder="Address" id="address"/>
+							<form:input path="address" cssClass="form-control" placeholder="주소" id="address"/>
 							<form:errors path="address"></form:errors>
 						</div>
 						
@@ -79,31 +79,28 @@
 								<div class="col-12">
 									<div class="form-check">
 										<input type="checkbox" class="form-check-input width-auto checkAll" id="all">
-										<label class="form-check-label" for="all">Agree to All</label>
+										<label class="form-check-label" for="all">전체 동의</label>
 									</div>
 									<div class="form-check col-12">
 										<input type="checkbox" class="form-check-input width-auto ch" id="check1">
-										<label class="form-check-label" for="check1">Agree to our <a href="javascript:void(0)">Terms and
-										Conditions</a></label>
+										<label class="form-check-label" for="check1">이용약관 동의 <a href="javascript:void(0)">(필수)</a></label>
 									</div>
 									<div class="form-check col-12">
 										<input type="checkbox" class="form-check-input width-auto ch" id="check2">
-										<label class="form-check-label" for="check2">Agree to our <a href="javascript:void(0)">Terms and
-										Conditions</a></label>
+										<label class="form-check-label" for="check2">개인정보 수집 및 이용 동의 <a href="javascript:void(0)">(필수)</a></label>
 									</div>
 									<div class="form-check">
 										<input type="checkbox" class="form-check-input width-auto ch" id="check3">
-										<label class="form-check-label" for="check3">Agree to our <a href="javascript:void(0)">Terms and
-										Conditions</a></label>
+										<label class="form-check-label" for="check3">위치기반서비스 이용약관 동의</label>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="button">
-							<button type="button" class="btn" id="btn">Registration</button>
+							<button type="button" class="btn" id="btn">가입하기</button>
 						</div>
 						
-						<p class="outer-link">Already have an account? <a href="/user/login"> Login Now</a>
+						<p class="outer-link">이미 가입하셨나입?<a href="/user/login">로그인</a>
 						</p>
 					</form:form>
 					</div>

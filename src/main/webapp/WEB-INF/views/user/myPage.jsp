@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
-<title>My Page - MediGrids</title>
+<title>My Page</title>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon"
@@ -23,11 +23,11 @@
 			<div class="row align-items-center">
 				<div class="col-lg-8 offset-lg-2 col-md-12 col-12">
 					<div class="breadcrumbs-content">
-						<h1 class="page-title">My Page</h1>
+							<h1 class="page-title">마이페이지</h1>
 					</div>
 					<ul class="breadcrumb-nav">
-						<li><a href="/">Home</a></li>
-						<li>My Page</li>
+						<li><a href="/">홈</a></li>
+						<li>마이페이지</li>
 					</ul>
 				</div>
 			</div>
@@ -52,7 +52,7 @@
 										<div class="row">
 											<div class="col-12">
 												<div class="appointment-title">
-													<h2>My Profile</h2>
+													<h2>내 프로필</h2>
 												</div>
 											</div>
 										</div>
@@ -95,8 +95,8 @@
 											</div>
 											<div class="col-lg-6 col-md-6 col-12 p-0">
 												<div class="appointment-btn button">
-													<button class="btn" onclick="location.href='/user/update'">Update</button>
-													<button class="btn" onclick="location.href='/user/delete'">Delete account</button>
+													<button class="btn" onclick="location.href='/user/update'">정보 수정</button>
+													<button class="btn" onclick="location.href='/user/delete'">탈퇴하기</button>
 												</div>
 											</div>
 										</div>
