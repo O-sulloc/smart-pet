@@ -39,12 +39,7 @@
 ## 3. 프로젝트 구조
 
 <details>
-  <summary>1) E-R Diagram</summary>
-  ![ERD](https://user-images.githubusercontent.com/96342941/209979990-d352569f-b971-4990-88cc-c2a89abeb659.png)
-</details>
-
-<details>
-  <summary>2) UseCase Diagram</summary>
+  <summary>1) UseCase Diagram</summary>
   ![usecase](https://user-images.githubusercontent.com/96342941/209980338-b483cf3c-837d-4d88-85d9-a27f57bcc055.png)
 </details>
 
